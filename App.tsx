@@ -13,6 +13,25 @@ import styled, {
   DefaultTheme,
 } from "styled-components/native";
 import ThemeStyle from "./src/styles/ThemeStyle";
+import {
+  BodyMedium14,
+  BodyMedium16,
+  BodyMedium18,
+  BodyRegular12,
+  BodyRegular18,
+  BodySemibold10,
+  BodySemibold12,
+  BodySemibold14,
+  BodySemibold16,
+  BodySemibold18,
+  HeadingRegular20,
+  HeadingRegular24,
+  HeadingSemiBold24,
+  HeadingSemiBold28,
+  HeadingSemiBold32,
+  HeadingSemiBold40,
+  HeadingSemiBold44,
+} from "./src/common/Typo";
 
 export type Props = {
   label: string;
@@ -73,6 +92,24 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <ColorItem color={theme.color.theme.layoutBg} label="Disabled" />
           <ColorItem color={theme.color.theme.tableHeader} label="Disabled" />
         </ColorWrap>
+
+        <HeadingSemiBold44>Display 1 </HeadingSemiBold44>
+        <HeadingSemiBold40>Display 2</HeadingSemiBold40>
+        <HeadingSemiBold32>Display 3</HeadingSemiBold32>
+        <HeadingSemiBold28>Heading 1 Semibold</HeadingSemiBold28>
+        <HeadingSemiBold24>Heading 2 Semibold</HeadingSemiBold24>
+        <HeadingRegular24>Heading 2 Regular</HeadingRegular24>
+        <HeadingRegular20>Heading 3 Regular</HeadingRegular20>
+        <BodySemibold18>Feature SemiBold</BodySemibold18>
+        <BodySemibold16>Highlight SemiBold</BodySemibold16>
+        <BodySemibold14>Content SemiBold</BodySemibold14>
+        <BodySemibold12>Caption SemiBold</BodySemibold12>
+        <BodySemibold10>Micro Semibold</BodySemibold10>
+        <BodyMedium18>Feature Medium</BodyMedium18>
+        <BodyMedium16>Highlight Medium</BodyMedium16>
+        <BodyMedium14>Content Medium</BodyMedium14>
+        <BodyRegular18>Feature Regular</BodyRegular18>
+        <BodyRegular12>Caption Regular</BodyRegular12>
       </View>
     </ThemeProvider>
   );
