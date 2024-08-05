@@ -94,10 +94,18 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
         </ColorWrap>
 
         <HeadingSemiBold44>Display 1 </HeadingSemiBold44>
-        <HeadingSemiBold40>Display 2</HeadingSemiBold40>
-        <HeadingSemiBold32>Display 3</HeadingSemiBold32>
-        <HeadingSemiBold28>Heading 1 Semibold</HeadingSemiBold28>
-        <HeadingSemiBold24>Heading 2 Semibold</HeadingSemiBold24>
+        <HeadingSemiBold40 color={theme.color.primary.main}>
+          Display 2
+        </HeadingSemiBold40>
+        <HeadingSemiBold32 color={theme.color.theme.textSecondary}>
+          Display 3
+        </HeadingSemiBold32>
+        <HeadingSemiBold28 color={theme.color.theme.textDisabled}>
+          Heading 1 Semibold
+        </HeadingSemiBold28>
+        <HeadingSemiBold24 color={theme.color.theme.border}>
+          Heading 2 Semibold
+        </HeadingSemiBold24>
         <HeadingRegular24>Heading 2 Regular</HeadingRegular24>
         <HeadingRegular20>Heading 3 Regular</HeadingRegular20>
         <BodySemibold18>Feature SemiBold</BodySemibold18>
