@@ -230,7 +230,7 @@ const StyledInput = styled(TextInput)`
 `;
 
 const CloseButton = styled(TouchableOpacity)`
-  
+
 `;
 
 const CloseButtonText = styled.Text`
