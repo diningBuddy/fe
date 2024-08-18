@@ -24,6 +24,7 @@ import MypageScreen from "./src/screens/MypageScreen";
 import BrowserScreen from "./src/screens/BrowserScreen";
 import SampleColor from "./src/components/sample/SampleColor";
 import SampleFont from "./src/components/sample/SampleFont";
+import SampleInput from "./src/components/sample/SampleInput";
 
 export type Props = {
   label: string;
@@ -63,6 +64,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
             component={SampleColor}
           />
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
+          <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

@@ -39,6 +39,14 @@ const HomeScreen = ({ navigation }: Props) => {
       >
         <HeadingSemiBold24>Sample Font</HeadingSemiBold24>
       </SampleBtn>
+
+      <SampleBtn
+          onPress={() => {
+            navigation.navigate(RouteNames.SAMPLE_INPUT);
+          }}
+      >
+        <HeadingSemiBold24>Sample Input</HeadingSemiBold24>
+      </SampleBtn>
     </View>
   );
 };
