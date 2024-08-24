@@ -54,6 +54,16 @@ const SampleInput = () => {
             label="destructive + disabled"
             description="Your message will be copied to the support team."
         />
+        <InputButton
+            variant="default"
+            state="initial"
+            description="Your message will be copied to the support team."
+        />
+       <InputButton
+             variant="default"
+             label="no description"
+             state="initial"
+       />
       </ScrollViewContainer>
   );
 };

@@ -2,7 +2,12 @@ import React, {useContext, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
 
-const InputButton = ({variant, state, label, description}) => {
+const InputButton = ({
+                       variant = "default",
+                       state = "initial",
+                       label = "",
+                       description = "",
+                     }) => {
   const theme = useContext(ThemeContext);
 
   // State to manage the value of the input fields
@@ -15,7 +20,7 @@ const InputButton = ({variant, state, label, description}) => {
 
   return (
       <InputRow>
-        <Label>{label}</Label>
+        {label && <Label>{label}</Label>}
         <InputWrapper variant={variant} state={state}>
           <InputContainer>
             <StyledInput
@@ -29,9 +34,11 @@ const InputButton = ({variant, state, label, description}) => {
             </CloseButton>
           </InputContainer>
         </InputWrapper>
-        <DescriptionText variant={variant}>
-          {description}
-        </DescriptionText>
+        {description && (
+            <DescriptionText variant={variant}>
+              {description}
+            </DescriptionText>
+        )}
       </InputRow>
   );
 };
