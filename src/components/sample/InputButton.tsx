@@ -21,7 +21,7 @@ const InputButton = ({
   return (
       <InputRow>
         {label && <Label>{label}</Label>}
-        <InputWrapper variant={variant} state={state}>
+        <InputWrapper variant={variant} state={state} theme={theme}>
           <InputContainer>
             <StyledInput
                 placeholder="Type your message here"
@@ -35,7 +35,7 @@ const InputButton = ({
           </InputContainer>
         </InputWrapper>
         {description && (
-            <DescriptionText variant={variant}>
+            <DescriptionText variant={variant} theme={theme}>
               {description}
             </DescriptionText>
         )}
