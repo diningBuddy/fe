@@ -49,6 +49,7 @@ const InputRow = styled.View`
 
 const Label = styled.Text`
   margin-bottom: 6px;
+  margin-left: 3px;
   color: #333;
 `;
 
@@ -95,6 +96,7 @@ const CloseButtonText = styled.Text`
 `;
 
 const DescriptionText = styled.Text`
+  margin-left: 3px;
   margin-top: 6px;
   font-size: 12px;
   color: ${({variant, theme}) =>
