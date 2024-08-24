@@ -32,6 +32,7 @@ export const color = {
     dividers: "#0000000F",
     layoutBg: "#000000CC",
     tableHeader: "#00000005",
+    defaultWhite: "#FFFFFF",
   },
 };
 
