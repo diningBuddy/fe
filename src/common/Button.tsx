@@ -4,15 +4,19 @@ import styled from "styled-components/native";
 interface ButtonStyle {
   mode: string;
   margin?: string;
-  size?: "sm" | "md" | "lg";
-  fontColor?: string;
+  height?: "sm" | "md" | "lg";
+  color?: string;
   isIcon?: boolean;
   isPressed?: boolean; // 클릭 상태를 관리하기 위한 속성 추가
+  fontSize?: "sm" | "md" | "lg";
+  isUnderLine?: boolean;
 }
 
 const MAIN = "main";
 const SECONDARY = "secondary";
 const OUTLINE_RED = "outlineRed";
+const OUTLINE_GRAY = "outlineGray";
+
 const OUTLINE = "outline";
 const TEXT = "text";
 
@@ -22,27 +26,31 @@ export const Button = styled.TouchableOpacity<ButtonStyle>`
   align-items: center;
 
   height: ${(props) =>
-    props.size === "lg" ? "48px" : props.size === "md" ? "42px" : "34px"};
+    props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px"};
   padding: ${(props) =>
-    props.size === "lg"
+    props.height === "lg"
       ? "14px 16px"
-      : props.size === "md"
+      : props.height === "md"
       ? "12px 14px"
       : "10px 12px"};
   margin: ${(props) => props.margin || "0"};
 
   border: ${(props) =>
-    props.mode === OUTLINE_RED
-      ? `1px solid ${props.theme.color.destructive.main}`
-      : props.mode === OUTLINE
+    props.mode === OUTLINE
       ? `1px solid ${props.theme.color.tertiary.main}`
       : "none"};
 
   border-radius: 6px;
 
   background: ${(props) => {
-    if (props.isPressed) {
+    if (props.isPressed && props.mode === MAIN) {
       return props.theme.color.primary.pressed;
+    } else if (props.isPressed && props.mode === SECONDARY) {
+      return props.theme.color.secondary.pressed;
+    } else if (props.isPressed && props.mode === OUTLINE) {
+      return props.theme.color.theme.defaultWhite;
+    } else if (props.isPressed && props.mode === TEXT) {
+      return "transparent";
     }
 
     switch (props.mode) {
@@ -53,7 +61,9 @@ export const Button = styled.TouchableOpacity<ButtonStyle>`
       case OUTLINE_RED:
         return props.theme.color.theme.layoutBg; // OUTLINE_RED는 기본 배경색으로 설정
       case OUTLINE:
-        return props.theme.color.theme.layoutBg; // OUTLINE는 기본 배경색으로 설정
+        return props.theme.color.theme.defaultWhite; // OUTLINE는 기본 배경색으로 설정
+      case TEXT:
+        return "transparent";
       default:
         return props.theme.color.theme.layoutBg; // 기본 배경색
     }
@@ -63,20 +73,45 @@ export const Button = styled.TouchableOpacity<ButtonStyle>`
 `;
 
 export const ButtonText = styled.Text<ButtonStyle>`
-  color: ${(props) =>
-    props.fontColor ||
-    props.theme.color.theme.defaultWhite ||
-    (props.mode === MAIN
-      ? props.theme.color.theme.defaultWhite
-      : [OUTLINE, TEXT].includes(props.mode)
-      ? props.theme.color.theme.textSecondary
-      : props.theme.color.destructive.main)};
+  color: ${(props) => {
+    switch (props.mode) {
+      case OUTLINE_RED:
+        return props.theme.color.primary.main;
+      case OUTLINE_GRAY:
+        return props.theme.color.tertiary.main;
+      case OUTLINE:
+        return props.theme.color.theme.textMain;
+      case TEXT:
+        return props.theme.color.primary.main; // TEXT 모드에서 primary.main
+      default:
+        return props.color || props.theme.color.theme.defaultWhite; // 기본 색상은 하얀색
+    }
+  }};
   font-size: ${(props) =>
-    props.size === "lg" ? "16px" : props.size === "md" ? "14px" : "12px"};
+    props.fontSize === "lg"
+      ? "16px"
+      : props.fontSize === "sm"
+      ? "12px"
+      : "14px"};
   font-weight: 600;
+
+  text-decoration: ${(props) => (props.isUnderLine ? "underline" : "none")};
 `;
+
+// export const ButtonIcon = styled.Text<ButtonStyle>`
+//   height: "18px";
+//   width: "18px";
+//   padding: ${(props) =>
+//     props.height === "lg"
+//       ? "15px 15px"
+//       : props.height === "md"
+//       ? "13px 13px"
+//       : "10px 10px"};
+// `;
 
 Button.defaultProps = {
   mode: MAIN,
-  size: "md",
+  height: "md",
+  fontSize: "md",
+  isUnderLine: false,
 };

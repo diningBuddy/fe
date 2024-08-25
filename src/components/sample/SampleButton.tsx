@@ -9,8 +9,8 @@ const SampleButton = () => {
     <View style={styles.container}>
       {/* Primary */}
       <View style={styles.buttonGroup}>
-        <Button size="sm">
-          <ButtonText>SMALL BUTTON</ButtonText>
+        <Button height="sm">
+          <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
 
         <Button
@@ -18,53 +18,139 @@ const SampleButton = () => {
           onPressIn={() => setIsPressed(true)}
           onPressOut={() => setIsPressed(false)}
         >
-          <ButtonText>BUTTON</ButtonText>
+          <ButtonText>MEDIUM</ButtonText>
         </Button>
 
-        <Button size="lg">
-          <ButtonText>LARGE BUTTON</ButtonText>
+        <Button height="lg">
+          <ButtonText fontSize="lg">LARGE</ButtonText>
         </Button>
       </View>
 
       {/* Secondary */}
       <View style={styles.buttonGroup}>
-        <Button mode="secondary" size="sm">
-          <ButtonText>SMALL BUTTON</ButtonText>
+        <Button mode="secondary" height="sm">
+          <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
 
         <Button mode="secondary">
-          <ButtonText>BUTTON</ButtonText>
+          <ButtonText>MEDIUM</ButtonText>
         </Button>
-        <Button mode="secondary" size="lg">
-          <ButtonText>LARGE BUTTON</ButtonText>
+        <Button mode="secondary" height="lg">
+          <ButtonText>LARGE</ButtonText>
         </Button>
       </View>
 
       {/* Outline */}
       <View style={styles.buttonGroup}>
-        <Button mode="outline" size="sm">
-          <ButtonText>SMALL BUTTON</ButtonText>
+        <Button mode="outline" height="sm">
+          <ButtonText mode="outline" fontSize="sm">
+            SMALL
+          </ButtonText>
         </Button>
 
         <Button mode="outline">
-          <ButtonText>BUTTON</ButtonText>
+          <ButtonText mode="outline">MEDIUM</ButtonText>
         </Button>
-        <Button mode="outline" size="lg">
-          <ButtonText>LARGE BUTTON</ButtonText>
+        <Button mode="outline" height="lg">
+          <ButtonText mode="outline" fontSize="lg">
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* OUTLINE_RED Border none, only Text */}
+      <View style={styles.buttonGroup}>
+        <Button mode="text" height="sm">
+          <ButtonText mode="outlineRed" fontSize="sm">
+            SMALL
+          </ButtonText>
+        </Button>
+
+        <Button mode="text">
+          <ButtonText mode="outlineRed">MEDIUM</ButtonText>
+        </Button>
+        <Button mode="text" height="lg">
+          <ButtonText mode="outlineRed" fontSize="lg">
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* OUTLINE_RED Border none, only Text underline */}
+      <View style={styles.buttonGroup}>
+        <Button mode="text" height="sm">
+          <ButtonText mode="outlineRed" fontSize="sm" isUnderLine>
+            SMALL
+          </ButtonText>
+        </Button>
+
+        <Button mode="text">
+          <ButtonText mode="outlineRed" isUnderLine>
+            MEDIUM
+          </ButtonText>
+        </Button>
+        <Button mode="text" height="lg">
+          <ButtonText mode="outlineRed" fontSize="lg" isUnderLine>
+            LARGE
+          </ButtonText>
         </Button>
       </View>
 
       {/* Border none, only Text */}
       <View style={styles.buttonGroup}>
-        <Button mode="text" size="sm">
-          <ButtonText>SMALL BUTTON</ButtonText>
+        <Button mode="text" height="sm">
+          <ButtonText mode="outline" fontSize="sm">
+            SMALL
+          </ButtonText>
         </Button>
 
         <Button mode="text">
-          <ButtonText>BUTTON</ButtonText>
+          <ButtonText mode="outline">MEDIUM</ButtonText>
         </Button>
-        <Button mode="text" size="lg">
-          <ButtonText>LARGE BUTTON</ButtonText>
+        <Button mode="text" height="lg">
+          <ButtonText mode="outline" fontSize="lg">
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* Border none, only Text underline */}
+      <View style={styles.buttonGroup}>
+        <Button mode="text" height="sm">
+          <ButtonText mode="outline" fontSize="sm" isUnderLine>
+            SMALL
+          </ButtonText>
+        </Button>
+
+        <Button mode="text">
+          <ButtonText mode="outline" isUnderLine>
+            MEDIUM
+          </ButtonText>
+        </Button>
+        <Button mode="text" height="lg">
+          <ButtonText mode="outline" fontSize="lg" isUnderLine>
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* OUTLINE_GRAY Border none, only Text underline */}
+      <View style={styles.buttonGroup}>
+        <Button mode="text" height="sm">
+          <ButtonText mode="outlineGray" fontSize="sm" isUnderLine>
+            SMALL
+          </ButtonText>
+        </Button>
+
+        <Button mode="text">
+          <ButtonText mode="outlineGray" isUnderLine>
+            MEDIUM
+          </ButtonText>
+        </Button>
+        <Button mode="text" height="lg">
+          <ButtonText mode="outlineGray" fontSize="lg" isUnderLine>
+            LARGE
+          </ButtonText>
         </Button>
       </View>
     </View>
