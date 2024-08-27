@@ -33,6 +33,11 @@ export const color = {
     layoutBg: "#000000CC",
     tableHeader: "#00000005",
   },
+  sys: {
+    destructive: {
+      destructive: "#FF6D59"
+    },
+  },
 };
 
 const ThemeStyle = { color };

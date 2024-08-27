@@ -49,12 +49,6 @@ const SampleInput = () => {
             description="Your message will be copied to the support team."
         />
         <InputButton
-            variant="destructive"
-            state="disabled"
-            label="destructive + disabled"
-            description="Your message will be copied to the support team."
-        />
-        <InputButton
             variant="default"
             state="initial"
             description="Your message will be copied to the support team."

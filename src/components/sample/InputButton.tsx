@@ -55,15 +55,7 @@ const Label = styled.Text`
 
 const InputWrapper = styled.View`
   border: 1px solid ${({variant, state, theme}) => {
-    if (variant === "destructive") {
-      return state === "focused"
-          ? theme.color.destructive.active
-          : theme.color.destructive.main;
-    } else {
-      return state === "focused"
-          ? theme.color.primary.main
-          : theme.color.theme.border;
-    }
+    return variant == "default" ? theme.color.theme.border : theme.color.sys.destructive.destructive;
   }};
   width: 328px;
   border-radius: 6px;
