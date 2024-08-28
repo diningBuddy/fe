@@ -38,9 +38,14 @@ export const color = {
       destructive: "#FF6D59"
     },
   },
+  global: {
+    neutral: {
+      8: "#595959",
+    }
+  }
 };
 
-const ThemeStyle = { color };
+const ThemeStyle = {color};
 export type Theme = typeof ThemeStyle;
 
 export default ThemeStyle;

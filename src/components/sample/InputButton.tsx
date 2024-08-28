@@ -1,6 +1,7 @@
 import React, {useContext, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
+import {BodyMedium14} from "../../common/Typo";
 
 const InputButton = ({
                        variant = "default",
@@ -20,7 +21,7 @@ const InputButton = ({
 
   return (
       <InputRow>
-        {label && <Label>{label}</Label>}
+        {label && <Label theme={theme}>{label}</Label>}
         <InputWrapper variant={variant} state={state} theme={theme}>
           <InputContainer>
             <StyledInput
@@ -47,10 +48,10 @@ const InputRow = styled.View`
   margin-bottom: 24px; /* Increased margin to accommodate the description text */
 `;
 
-const Label = styled.Text`
+const Label = styled(BodyMedium14)`
   margin-bottom: 6px;
   margin-left: 3px;
-  color: #333;
+  color: ${({theme}) => theme.color.global.neutral[8]};
 `;
 
 const InputWrapper = styled.View`
