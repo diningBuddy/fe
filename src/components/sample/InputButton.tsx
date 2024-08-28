@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
-import {TextInput, TouchableOpacity} from "react-native";
+import {TouchableOpacity} from "react-native";
 import {BodyMedium14} from "../../common/Typo";
 
 const InputButton = ({
@@ -8,6 +8,7 @@ const InputButton = ({
                        state = "initial",
                        label = "",
                        description = "",
+                       placeholder = "Type your message here",
                      }) => {
   const theme = useContext(ThemeContext);
 
@@ -25,7 +26,8 @@ const InputButton = ({
         <InputWrapper variant={variant} state={state} theme={theme}>
           <InputContainer>
             <StyledInput
-                placeholder="Type your message here"
+                theme={theme}
+                placeholder={placeholder}
                 value={inputValue}
                 onChangeText={setInputValue}
                 editable={state !== "disabled"}
@@ -48,10 +50,11 @@ const InputRow = styled.View`
   margin-bottom: 24px; /* Increased margin to accommodate the description text */
 `;
 
-const Label = styled(BodyMedium14)`
+const Label = styled(BodyMedium14).attrs(({theme}) => ({
+  color: theme.color.global.neutral.eight,
+}))`
   margin-bottom: 6px;
   margin-left: 3px;
-  color: ${({theme}) => theme.color.global.neutral.eight};
 `;
 
 const InputWrapper = styled.View`
@@ -74,11 +77,15 @@ const InputContainer = styled.View`
   flex-direction: row;
 `;
 
-const StyledInput = styled(TextInput)`
-  display: flex;
-  font-size: 14px;
-  border-radius: 6px;
-  color: ${({state}) => (state === "disabled" ? "#888" : "#000")};
+const StyledInput = styled(BodyMedium14)`
+  font-style: normal;
+  color: ${({
+              state,
+              theme
+            }) =>
+      (state === "initial" || state === "disabled" ?
+          theme.color.theme.textDisabled : theme.color.global.neutral.nine)
+  };
 `;
 
 const CloseButton = styled(TouchableOpacity)`

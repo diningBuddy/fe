@@ -43,6 +43,7 @@ export const color = {
       one: "#FFFFFF",
       three: "#F5F5F5",
       eight: "#595959",
+      nine: "#434343",
     }
   }
 };

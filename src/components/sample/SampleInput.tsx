@@ -11,53 +11,62 @@ const SampleInput = () => {
             state="initial"
             label="default + initial"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="default"
             state="focused"
             label="default + focused"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="default"
             state="filled"
             label="default + filled"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="default"
             state="disabled"
             label="default + disabled"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="destructive"
             state="initial"
             label="destructive + initial"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="destructive"
             state="focused"
             label="destructive + focused"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="destructive"
             state="filled"
             label="destructive + filled"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
         <InputButton
             variant="default"
             state="initial"
             description="Your message will be copied to the support team."
+            placeholder="Type your message here"
         />
-       <InputButton
-             variant="default"
-             label="no description"
-             state="initial"
-       />
+        <InputButton
+            variant="default"
+            label="no description"
+            state="initial"
+            placeholder="Type your message here"
+        />
       </ScrollViewContainer>
   );
 };
