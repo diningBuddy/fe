@@ -40,7 +40,9 @@ export const color = {
   },
   global: {
     neutral: {
-      8: "#595959",
+      one: "#FFFFFF",
+      three: "#F5F5F5",
+      eight: "#595959",
     }
   }
 };

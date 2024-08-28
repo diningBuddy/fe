@@ -51,7 +51,7 @@ const InputRow = styled.View`
 const Label = styled(BodyMedium14)`
   margin-bottom: 6px;
   margin-left: 3px;
-  color: ${({theme}) => theme.color.global.neutral[8]};
+  color: ${({theme}) => theme.color.global.neutral.eight};
 `;
 
 const InputWrapper = styled.View`
@@ -60,8 +60,9 @@ const InputWrapper = styled.View`
   }};
   width: 328px;
   border-radius: 6px;
-  background-color: ${({state}) =>
-      state === "disabled" ? "#e0e0e0" : "#fff"};
+  background-color: ${({variant, state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
+  }};
 `;
 
 const InputContainer = styled.View`
