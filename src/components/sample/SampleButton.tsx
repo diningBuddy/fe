@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Button, ButtonText } from "../../common/Button";
 
 const SampleButton = () => {
   const [isPressed, setIsPressed] = useState(false);
-
   return (
     <View style={styles.container}>
       {/* Primary */}
@@ -13,16 +12,18 @@ const SampleButton = () => {
           <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
 
-        <Button
-          isPressed={isPressed}
-          onPressIn={() => setIsPressed(true)}
-          onPressOut={() => setIsPressed(false)}
-        >
+        <Button isPressed={isPressed}>
           <ButtonText>MEDIUM</ButtonText>
         </Button>
 
         <Button height="lg">
           <ButtonText fontSize="lg">LARGE</ButtonText>
+        </Button>
+
+        <Button height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
         </Button>
       </View>
 
@@ -37,6 +38,13 @@ const SampleButton = () => {
         </Button>
         <Button mode="secondary" height="lg">
           <ButtonText>LARGE</ButtonText>
+        </Button>
+
+        {/* isDisabled */}
+        <Button height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
         </Button>
       </View>
 
@@ -56,6 +64,13 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
+
+        {/* isDisabled */}
+        <Button height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
       </View>
 
       {/* OUTLINE_RED Border none, only Text */}
@@ -71,6 +86,13 @@ const SampleButton = () => {
         </Button>
         <Button mode="text" height="lg">
           <ButtonText mode="outlineRed" fontSize="lg">
+            LARGE
+          </ButtonText>
+        </Button>
+
+        {/* isDisabled */}
+        <Button mode="text" height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
         </Button>
@@ -94,6 +116,13 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
+
+        {/* isDisabled */}
+        <Button height="lg" isDisabled mode="text">
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
       </View>
 
       {/* Border none, only Text */}
@@ -109,6 +138,13 @@ const SampleButton = () => {
         </Button>
         <Button mode="text" height="lg">
           <ButtonText mode="outline" fontSize="lg">
+            LARGE
+          </ButtonText>
+        </Button>
+
+        {/* isDisabled */}
+        <Button mode="text" height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
         </Button>
@@ -132,6 +168,13 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
+
+        {/* isDisabled */}
+        <Button mode="text" height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
       </View>
 
       {/* OUTLINE_GRAY Border none, only Text underline */}
@@ -152,6 +195,32 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
+
+        {/* isDisabled */}
+        <Button mode="text" height="lg" isDisabled>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* loading button */}
+      <View style={styles.buttonGroup}>
+        <Button mode="main" height="sm" isLoading />
+        <Button mode="main" isLoading />
+        <Button mode="main" height="lg" isLoading />
+      </View>
+
+      <View style={styles.buttonGroup}>
+        <Button mode="secondary" height="sm" isLoading />
+        <Button mode="secondary" isLoading />
+        <Button mode="secondary" height="lg" isLoading />
+      </View>
+
+      <View style={styles.buttonGroup}>
+        <Button mode="outline" height="sm" isLoading />
+        <Button mode="outline" isLoading />
+        <Button mode="outline" height="lg" isLoading />
       </View>
     </View>
   );

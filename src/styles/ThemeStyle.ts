@@ -16,7 +16,7 @@ export const color = {
     // main: "#D9D9D9", // Neutral/5
     main: "#8C8C8C",
     pressed: "#F0F0F0", // Neutral/4
-    active: "#D9D9D9", // Neutral/5
+    active: "#434343", // Neutral/5
     disabled: "#FAFAFA", // Neutral/2
   },
   destructive: {
