@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { Button, ButtonText } from "../../common/Button";
 
 const SampleButton = () => {
   const [isPressed, setIsPressed] = useState(false);
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {/* Primary */}
       <View style={styles.buttonGroup}>
         <Button height="sm">
@@ -222,7 +222,36 @@ const SampleButton = () => {
         <Button mode="outline" isLoading />
         <Button mode="outline" height="lg" isLoading />
       </View>
-    </View>
+
+      {/* pencil icon button  */}
+      <View style={styles.buttonGroup}>
+        <Button height="sm" isIcon />
+        <Button isIcon />
+        <Button height="lg" isIcon />
+        <Button height="lg" isIcon isDisabled />
+      </View>
+
+      {/* pencil icon button isCircle */}
+      <View style={styles.buttonGroup}>
+        <Button height="sm" isIcon />
+        <Button isIcon />
+        <Button height="lg" isIcon />
+        <Button height="lg" isIcon isDisabled />
+      </View>
+
+      <View style={styles.buttonGroup}>
+        <Button mode="secondary" height="sm" isIcon />
+        <Button mode="secondary" isIcon />
+        <Button mode="secondary" height="lg" isIcon />
+        <Button mode="secondary" height="lg" isIcon isDisabled />
+      </View>
+
+      <View style={styles.buttonGroup}>
+        <Button mode="outline" height="sm" isIcon />
+        <Button mode="outline" height="lg" isIcon />
+        <Button mode="outline" height="lg" isIcon isDisabled />
+      </View>
+    </ScrollView>
   );
 };
 
