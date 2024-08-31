@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
-import {BodyMedium14} from "../../common/Typo";
+import {BodyMedium14, BodyRegular12} from "../../common/Typo";
 
 const InputButton = ({
                        variant = "default",
@@ -101,14 +101,16 @@ const CloseButtonText = styled.Text`
   color: #888;
 `;
 
-const DescriptionText = styled.Text`
+const DescriptionText = styled(BodyRegular12)`
+  font-style: normal;
+  font-weight: 400;
+    
   margin-left: 3px;
   margin-top: 6px;
-  font-size: 12px;
   color: ${({variant, theme}) =>
-      variant === "destructive"
-          ? theme.color.destructive.main
-          : theme.color.theme.textSecondary};
-`;
+        variant === "destructive"
+            ? theme.color.destructive.main
+            : theme.color.theme.textSecondary};
+`
 
 export default InputButton;
