@@ -45,13 +45,7 @@ export const Button = (props: ButtonStyle) => {
     >
       {props.isLoading && (
         <IconContainer>
-          <Svg
-            width="36"
-            height="19"
-            viewBox="0 0 36 19"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <Svg width="36" height="19" viewBox="0 0 36 19" fill="none">
             <Circle cx="4" cy="10" r="4" fill={loadingFill1} />
             <Circle cx="18" cy="10" r="4" fill={loadingFill2} />
             <Circle cx="32" cy="10" r="4" fill={loadingFill2} />
@@ -59,13 +53,7 @@ export const Button = (props: ButtonStyle) => {
         </IconContainer>
       )}
       {!props.isLoading && props.isIcon && (
-        <Svg
-          width="18"
-          height="18"
-          viewBox="0 0 18 18"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+        <Svg width="18" height="18" viewBox="0 0 18 18" fill="none">
           <Path
             d="M16.2984 1.70163C15.5295 0.932789 14.283 0.932789 13.5141 1.70163L12.6463 2.5695L15.4305 5.35373L16.2984 4.48587C17.0672 3.71702 17.0672 2.47048 16.2984 1.70163Z"
             fill={iconFill}
@@ -97,17 +85,23 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   justify-content: center;
   align-items: center;
 
-  height: ${(props) =>
+  height: ${(props: { height: string }) =>
     props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px"};
-  padding: ${(props) =>
+  padding: ${(props: { height: string }) =>
     props.height === "lg"
       ? "14px 16px"
       : props.height === "md"
       ? "12px 14px"
       : "10px 12px"};
-  margin: ${(props) => props.margin || "0"};
+  margin: ${(props: { margin: any }) => props.margin || "0"};
 
-  border: ${(props) => {
+  border: ${(props: {
+    isIcon: any;
+    mode: string;
+    isDisabled: any;
+    isPressed: any;
+    theme: { color: { primary: { main: any }; tertiary: { main: any } } };
+  }) => {
     if (props.isIcon && (props.mode === MAIN || props.mode === SECONDARY)) {
       return "0";
     }
@@ -125,9 +119,22 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
     }
   }};
 
-  border-radius: ${(props) => (props.isCircle ? "50%" : "6px")};
+  border-radius: ${(props: { isCircle: any }) =>
+    props.isCircle ? "50%" : "6px"};
 
-  background: ${(props) => {
+  background: ${(props: {
+    isIcon: any;
+    mode: string;
+    isDisabled: any;
+    theme: {
+      color: {
+        primary: { main: any; active: any };
+        secondary: { disabled: any; active: any; pressed: any };
+        theme: { defaultWhite: any; layoutBg: any };
+      };
+    };
+    isPressed: any;
+  }) => {
     if (props.isIcon && props.mode === MAIN && !props.isDisabled) {
       return props.theme.color.primary.main;
     } else if (props.isIcon && props.mode === MAIN) {
@@ -167,11 +174,24 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
     }
   }};
 
-  opacity: ${(props) => (props.isPressed ? 1 : 0.9)};
+  opacity: ${(props: { isPressed: any }) => (props.isPressed ? 1 : 0.9)};
 `;
 
 export const ButtonText = styled.Text<ButtonStyle>`
-  color: ${(props) => {
+  color: ${(props: {
+    isDisabled: any;
+    isPressed: any;
+    mode: string;
+    theme: {
+      color: {
+        primary: { main: any; active: any };
+        secondary: { active: any };
+        theme: { defaultWhite: any; textMain: any };
+        tertiary: { main: any };
+      };
+    };
+    color: any;
+  }) => {
     if (props.isDisabled) {
       return "#D9D9D9";
     }
@@ -206,7 +226,7 @@ export const ButtonText = styled.Text<ButtonStyle>`
     }
   }};
 
-  font-size: ${(props) =>
+  font-size: ${(props: { fontSize: string }) =>
     props.fontSize === "lg"
       ? "16px"
       : props.fontSize === "sm"
@@ -214,7 +234,8 @@ export const ButtonText = styled.Text<ButtonStyle>`
       : "14px"};
   font-weight: 600;
 
-  text-decoration: ${(props) => (props.isUnderLine ? "underline" : "none")};
+  text-decoration: ${(props: { isUnderLine: any }) =>
+    props.isUnderLine ? "underline" : "none"};
 `;
 
 Button.defaultProps = {
