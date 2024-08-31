@@ -1,6 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
-import {TouchableOpacity} from "react-native";
+import {TextInput, TouchableOpacity} from "react-native";
 import {BodyMedium14} from "../../common/Typo";
 
 const InputButton = ({
@@ -8,16 +8,21 @@ const InputButton = ({
                        state = "initial",
                        label = "",
                        description = "",
+                       inputValue = "",
                        placeholder = "Type your message here",
                      }) => {
   const theme = useContext(ThemeContext);
 
   // State to manage the value of the input fields
-  const [inputValue, setInputValue] = useState("");
+  const [value, setValue] = useState(inputValue);
+
+  useEffect(() => {
+      setValue(inputValue);
+  }, [inputValue]);
 
   // Function to clear the input field
   const clearInput = () => {
-    setInputValue("");
+      setValue("");
   };
 
   return (
@@ -28,8 +33,8 @@ const InputButton = ({
             <StyledInput
                 theme={theme}
                 placeholder={placeholder}
-                value={inputValue}
-                onChangeText={setInputValue}
+                value={value}
+                onChangeText={setValue}
                 editable={state !== "disabled"}
             />
             <CloseButton onPress={clearInput} disabled={state === "disabled"}>
@@ -77,15 +82,15 @@ const InputContainer = styled.View`
   flex-direction: row;
 `;
 
-const StyledInput = styled(BodyMedium14)`
+const StyledInput = styled(TextInput).attrs(({ theme }) => ({
+    placeholderTextColor: theme.color.theme.textDisabled,
+}))`
+  font-size: 14px;
   font-style: normal;
-  color: ${({
-              state,
-              theme
-            }) =>
-      (state === "initial" || state === "disabled" ?
-          theme.color.theme.textDisabled : theme.color.global.neutral.nine)
-  };
+  font-weight: 400;
+  line-height: 16.94px;
+    
+  color: ${({theme}) => theme.color.global.neutral.nine};
 `;
 
 const CloseButton = styled(TouchableOpacity)`

@@ -19,6 +19,7 @@ const SampleInput = () => {
             label="default + focused"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
+            inputValue="Pre-filled destructive text"
         />
         <InputButton
             variant="default"
@@ -26,6 +27,7 @@ const SampleInput = () => {
             label="default + filled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
+            inputValue="Pre-filled destructive text"
         />
         <InputButton
             variant="default"
@@ -47,6 +49,7 @@ const SampleInput = () => {
             label="destructive + focused"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
+            inputValue="Pre-filled destructive text"
         />
         <InputButton
             variant="destructive"
@@ -54,6 +57,7 @@ const SampleInput = () => {
             label="destructive + filled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
+            inputValue="Pre-filled destructive text"
         />
         <InputButton
             variant="default"
