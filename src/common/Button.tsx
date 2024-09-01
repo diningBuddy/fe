@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import Svg, { Circle, Path } from "react-native-svg";
-
 interface ButtonStyle {
   mode: string;
   children?: React.ReactNode;
@@ -15,6 +14,8 @@ interface ButtonStyle {
   isUnderLine?: boolean;
   isDisabled?: boolean;
   isCircle?: boolean;
+  iconR?: React.ReactNode;
+  iconL?: React.ReactNode;
 }
 
 const MAIN = "main";
@@ -66,14 +67,24 @@ export const Button = (props: ButtonStyle) => {
           />
         </Svg>
       )}
-      {!props.isLoading && !props.isIcon && (
-        <ButtonText {...props} isPressed={isPressed}>
-          {props.children}
-        </ButtonText>
-      )}
+      <ContentContainer>
+        <IconContainer>{props.iconL}</IconContainer>
+        {!props.isLoading && !props.isIcon && (
+          <ButtonText {...props} isPressed={isPressed}>
+            {props.children}
+          </ButtonText>
+        )}
+        <IconContainer>{props.iconR}</IconContainer>
+      </ContentContainer>
     </StyledButton>
   );
 };
+
+const ContentContainer = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const IconContainer = styled.View`
   justify-content: center;

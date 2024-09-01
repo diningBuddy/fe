@@ -13,8 +13,7 @@ const SampleButton = () => {
           <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
 
-        <Button isPressed={isPressed}>
-          <ChevronRight width={18} height={18} />
+        <Button isPressed={isPressed} iconR={<ChevronRight />}>
           <ButtonText>MEDIUM</ButtonText>
         </Button>
 
