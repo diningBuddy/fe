@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { Button, ButtonText } from "../../common/Button";
+import { ChevronRight } from "../../assets/icons/arrow/chevron";
 
 const SampleButton = () => {
   const [isPressed, setIsPressed] = useState(false);
@@ -13,6 +14,7 @@ const SampleButton = () => {
         </Button>
 
         <Button isPressed={isPressed}>
+          <ChevronRight width={18} height={18} />
           <ButtonText>MEDIUM</ButtonText>
         </Button>
 
