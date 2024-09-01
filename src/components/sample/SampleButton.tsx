@@ -12,15 +12,15 @@ const SampleButton = () => {
         <Button height="sm">
           <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
-
-        <Button isPressed={isPressed} iconR={<ChevronRight />}>
+        <Button
+          isPressed={isPressed}
+          iconR={<ChevronRight width={24} height={24} fill="#ffffff" />}
+        >
           <ButtonText>MEDIUM</ButtonText>
         </Button>
-
         <Button height="lg">
           <ButtonText fontSize="lg">LARGE</ButtonText>
         </Button>
-
         <Button height="lg" isDisabled>
           <ButtonText fontSize="lg" isDisabled>
             LARGE
@@ -226,31 +226,31 @@ const SampleButton = () => {
 
       {/* pencil icon button  */}
       <View style={styles.buttonGroup}>
-        <Button height="sm" isIcon />
-        <Button isIcon />
-        <Button height="lg" isIcon />
-        <Button height="lg" isIcon isDisabled />
+        <Button height="sm" isPencil />
+        <Button isPencil />
+        <Button height="lg" isPencil />
+        <Button height="lg" isPencil isDisabled />
       </View>
 
       {/* pencil icon button isCircle */}
       <View style={styles.buttonGroup}>
-        <Button height="sm" isIcon />
-        <Button isIcon />
-        <Button height="lg" isIcon />
-        <Button height="lg" isIcon isDisabled />
+        <Button height="sm" isPencil />
+        <Button isPencil />
+        <Button height="lg" isPencil />
+        <Button height="lg" isPencil isDisabled />
       </View>
 
       <View style={styles.buttonGroup}>
-        <Button mode="secondary" height="sm" isIcon />
-        <Button mode="secondary" isIcon />
-        <Button mode="secondary" height="lg" isIcon />
-        <Button mode="secondary" height="lg" isIcon isDisabled />
+        <Button mode="secondary" height="sm" isPencil />
+        <Button mode="secondary" isPencil />
+        <Button mode="secondary" height="lg" isPencil />
+        <Button mode="secondary" height="lg" isPencil isDisabled />
       </View>
 
       <View style={styles.buttonGroup}>
-        <Button mode="outline" height="sm" isIcon />
-        <Button mode="outline" height="lg" isIcon />
-        <Button mode="outline" height="lg" isIcon isDisabled />
+        <Button mode="outline" height="sm" isPencil />
+        <Button mode="outline" height="lg" isPencil />
+        <Button mode="outline" height="lg" isPencil isDisabled />
       </View>
     </ScrollView>
   );
