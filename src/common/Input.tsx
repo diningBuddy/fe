@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import styled, {ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
-import {BodyMedium14, BodyRegular12} from "../../common/Typo";
+import {BodyMedium14, BodyRegular12} from "./Typo";
 import Svg, {G, Path} from "react-native-svg";
 
 const Input = ({

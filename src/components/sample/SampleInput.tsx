@@ -1,6 +1,6 @@
 import React from "react";
 import {ScrollView} from "react-native";
-import Input from "./Input";
+import Input from "../../common/Input";
 import styled from "styled-components/native"; // Import the renamed Input component
 
 const SampleInput = () => {
