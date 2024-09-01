@@ -73,7 +73,6 @@ const InputWrapper = styled.View`
     border: 1px solid ${({variant, state, theme}) => {
         return variant == "default" ? theme.color.theme.border : theme.color.sys.destructive.destructive;
     }};
-    width: 328px;
     border-radius: 6px;
     background-color: ${({variant, state, theme}) => {
         return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
