@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import Svg, { Circle, Path } from "react-native-svg";
-import { SvgProps } from "react-native-svg";
+import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 interface ButtonStyle {
   mode: string;
   children?: React.ReactNode;
@@ -15,8 +14,8 @@ interface ButtonStyle {
   isUnderLine?: boolean;
   isDisabled?: boolean;
   isCircle?: boolean;
-  iconR?: React.ReactNode;
-  iconL?: React.ReactNode;
+  iconR?: React.ComponentType<SvgProps>;
+  iconL?: React.ComponentType<SvgProps>;
   iconColor?: string;
 }
 
@@ -38,6 +37,21 @@ export const Button = (props: ButtonStyle) => {
     ? "black"
     : "white";
   const iconOpacity = props.isDisabled ? "0.25" : "1";
+
+  const renderIcon = (
+    IconComponent: React.ComponentType<SvgProps> | undefined
+  ) => {
+    if (IconComponent) {
+      return (
+        <IconComponent
+          width={20}
+          height={20}
+          fill={props.iconColor || "currentColor"}
+        />
+      );
+    }
+    return null;
+  };
 
   return (
     <StyledButton
@@ -66,13 +80,13 @@ export const Button = (props: ButtonStyle) => {
         </Svg>
       )}
       <ContentContainer>
-        <IconContainer>{props.iconL}</IconContainer>
+        <IconContainer>{renderIcon(props.iconL)}</IconContainer>
         {!props.isLoading && !props.isPencil && (
           <ButtonText {...props} isPressed={isPressed}>
             {props.children}
           </ButtonText>
         )}
-        <IconContainer>{props.iconR}</IconContainer>
+        <IconContainer>{renderIcon(props.iconR)}</IconContainer>
       </ContentContainer>
     </StyledButton>
   );

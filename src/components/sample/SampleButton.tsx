@@ -12,10 +12,7 @@ const SampleButton = () => {
         <Button height="sm">
           <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
-        <Button
-          isPressed={isPressed}
-          iconR={<ChevronRight width={24} height={24} fill="#ffffff" />}
-        >
+        <Button isPressed={isPressed} iconR={ChevronRight} iconColor="#ffffff">
           <ButtonText>MEDIUM</ButtonText>
         </Button>
         <Button height="lg">
@@ -232,8 +229,8 @@ const SampleButton = () => {
         <Button height="lg" isPencil isDisabled />
       </View>
 
-      {/* pencil icon button isCircle */}
       <View style={styles.buttonGroup}>
+        {/* pencil icon button isCircle */}
         <Button height="sm" isPencil />
         <Button isPencil />
         <Button height="lg" isPencil />
