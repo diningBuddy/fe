@@ -4,7 +4,7 @@ import {TextInput, TouchableOpacity} from "react-native";
 import {BodyMedium14, BodyRegular12} from "../../common/Typo";
 import Svg, {G, Path} from "react-native-svg";
 
-const InputButton = ({
+const Input = ({
                          variant = "default",
                          state = "initial",
                          label = "",
@@ -114,4 +114,4 @@ const DescriptionText = styled(BodyRegular12)`
                     : theme.color.theme.textSecondary};
 `
 
-export default InputButton;
+export default Input;

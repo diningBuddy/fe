@@ -1,19 +1,19 @@
 import React from "react";
 import {ScrollView} from "react-native";
-import InputButton from "./InputButton";
-import styled from "styled-components/native"; // Import the renamed InputButton component
+import Input from "./Input";
+import styled from "styled-components/native"; // Import the renamed Input component
 
 const SampleInput = () => {
   return (
       <ScrollViewContainer>
-        <InputButton
+        <Input
             variant="default"
             state="initial"
             label="default + initial"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
-        <InputButton
+        <Input
             variant="default"
             state="focused"
             label="default + focused"
@@ -21,7 +21,7 @@ const SampleInput = () => {
             placeholder="Type your message here"
             inputValue="Type your message here"
         />
-        <InputButton
+        <Input
             variant="default"
             state="filled"
             label="default + filled"
@@ -29,21 +29,21 @@ const SampleInput = () => {
             placeholder="Type your message here"
             inputValue="Type your message here"
         />
-        <InputButton
+        <Input
             variant="default"
             state="disabled"
             label="default + disabled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
-        <InputButton
+        <Input
             variant="destructive"
             state="initial"
             label="destructive + initial"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
-        <InputButton
+        <Input
             variant="destructive"
             state="focused"
             label="destructive + focused"
@@ -51,7 +51,7 @@ const SampleInput = () => {
             placeholder="Type your message here"
             inputValue="Type your message here"
         />
-        <InputButton
+        <Input
             variant="destructive"
             state="filled"
             label="destructive + filled"
@@ -59,13 +59,13 @@ const SampleInput = () => {
             placeholder="Type your message here"
             inputValue="Type your message here"
         />
-        <InputButton
+        <Input
             variant="default"
             state="initial"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
-        <InputButton
+        <Input
             variant="default"
             label="no description"
             state="initial"
