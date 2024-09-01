@@ -30,7 +30,7 @@ const Input = ({
         <InputRow>
             {label && <Label theme={theme}>{label}</Label>}
             <InputWrapper variant={variant} state={state} theme={theme}>
-                <InputContainer>
+                <InputContainer variant={variant} state={state} theme={theme}>
                     <StyledInput
                         theme={theme}
                         placeholder={placeholder}
@@ -70,22 +70,43 @@ const Label = styled(BodyMedium14).attrs(({theme}) => ({
 `;
 
 const InputWrapper = styled.View`
-    border: 1px solid ${({variant, state, theme}) => {
-        return variant == "default" ? theme.color.theme.border : theme.color.sys.destructive.destructive;
-    }};
-    border-radius: 6px;
-    background-color: ${({variant, state, theme}) => {
-        return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
-    }};
+  border: 1px solid ${({variant, state, theme}) => {
+    if (variant === "default") {
+      return theme.color.theme.border; 
+    } else if (variant === "destructive") {
+      return state === "focused"
+          ? theme.color.theme.border 
+          : theme.color.sys.destructive.destructive; 
+    }
+  }};
+  border-radius: 6px;
+  background-color: ${({variant, state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
+  }};
+  padding: ${({ state }) => { 
+    return state === "focused" ? "3px" : "0px";
+  }};
 `;
 
 const InputContainer = styled.View`
     display: flex;
-    padding: 12px 14px;
     justify-content: space-between;
     align-items: center;
     align-self: stretch;
     flex-direction: row;
+    padding: 12px 14px;
+    border: ${({ state, variant, theme }) => {
+      if (state === "focused") {
+        return `1px solid ${
+            variant === "default"
+                ? theme.color.sys.secondary.secondary
+                : theme.color.sys.destructive.destructive
+        }`;
+      } else {
+        return 'none'; 
+      }
+    }};
+    border-radius: 6px;
 `;
 
 const StyledInput = styled(TextInput).attrs(({theme}) => ({

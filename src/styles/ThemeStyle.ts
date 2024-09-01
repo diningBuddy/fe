@@ -37,6 +37,9 @@ export const color = {
     destructive: {
       destructive: "#FF6D59"
     },
+    secondary: {
+      secondary: "#262626"
+    }
   },
   global: {
     neutral: {
