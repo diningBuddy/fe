@@ -103,11 +103,6 @@ const StyledInput = styled(TextInput).attrs(({theme}) => ({
 const CloseButton = styled(TouchableOpacity)`
 `;
 
-const CloseButtonText = styled.Text`
-    font-size: 16px;
-    color: #888;
-`;
-
 const DescriptionText = styled(BodyRegular12)`
     font-style: normal;
     font-weight: 400;
