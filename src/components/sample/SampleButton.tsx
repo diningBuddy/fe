@@ -9,10 +9,10 @@ const SampleButton = () => {
     <ScrollView contentContainerStyle={styles.container}>
       {/* Primary */}
       <View style={styles.buttonGroup}>
-        <Button height="sm">
+        <Button height="sm" iconL={ChevronRight}>
           <ButtonText fontSize="sm">SMALL</ButtonText>
         </Button>
-        <Button isPressed={isPressed} iconR={ChevronRight} iconColor="#ffffff">
+        <Button isPressed={isPressed}>
           <ButtonText>MEDIUM</ButtonText>
         </Button>
         <Button height="lg">
@@ -25,7 +25,46 @@ const SampleButton = () => {
         </Button>
       </View>
 
+      {/* Primary + icon*/}
+      <View style={styles.buttonGroup}>
+        <Button height="sm">
+          <ButtonText fontSize="sm">SMALL</ButtonText>
+        </Button>
+        <Button isPressed={isPressed} iconL={ChevronRight} iconColor="#ffffff">
+          <ButtonText>MEDIUM</ButtonText>
+        </Button>
+        <Button height="lg">
+          <ButtonText fontSize="lg">LARGE</ButtonText>
+        </Button>
+        <Button height="lg" isDisabled iconL={ChevronRight} iconColor="#ffffff">
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
       {/* Secondary */}
+      <View style={styles.buttonGroup}>
+        <Button mode="secondary" height="sm">
+          <ButtonText fontSize="sm">SMALL</ButtonText>
+        </Button>
+
+        <Button mode="secondary" iconR={ChevronRight}>
+          <ButtonText>MEDIUM</ButtonText>
+        </Button>
+        <Button mode="secondary" height="lg">
+          <ButtonText>LARGE</ButtonText>
+        </Button>
+
+        {/* isDisabled */}
+        <Button height="lg" isDisabled iconL={ChevronRight}>
+          <ButtonText fontSize="lg" isDisabled>
+            LARGE
+          </ButtonText>
+        </Button>
+      </View>
+
+      {/* Secondary + icon*/}
       <View style={styles.buttonGroup}>
         <Button mode="secondary" height="sm">
           <ButtonText fontSize="sm">SMALL</ButtonText>
@@ -34,7 +73,7 @@ const SampleButton = () => {
         <Button mode="secondary">
           <ButtonText>MEDIUM</ButtonText>
         </Button>
-        <Button mode="secondary" height="lg">
+        <Button mode="secondary" height="lg" iconL={ChevronRight}>
           <ButtonText>LARGE</ButtonText>
         </Button>
 
@@ -231,10 +270,10 @@ const SampleButton = () => {
 
       <View style={styles.buttonGroup}>
         {/* pencil icon button isCircle */}
-        <Button height="sm" isPencil />
-        <Button isPencil />
-        <Button height="lg" isPencil />
-        <Button height="lg" isPencil isDisabled />
+        <Button height="sm" isPencil isCircle />
+        <Button isPencil isCircle />
+        <Button height="lg" isPencil isCircle />
+        <Button height="lg" isPencil isDisabled isCircle />
       </View>
 
       <View style={styles.buttonGroup}>
@@ -245,7 +284,15 @@ const SampleButton = () => {
       </View>
 
       <View style={styles.buttonGroup}>
+        <Button mode="secondary" height="sm" isPencil isCircle />
+        <Button mode="secondary" isPencil isCircle />
+        <Button mode="secondary" height="lg" isPencil isCircle />
+        <Button mode="secondary" height="lg" isPencil isDisabled isCircle />
+      </View>
+
+      <View style={styles.buttonGroup}>
         <Button mode="outline" height="sm" isPencil />
+        <Button mode="outline" isPencil />
         <Button mode="outline" height="lg" isPencil />
         <Button mode="outline" height="lg" isPencil isDisabled />
       </View>

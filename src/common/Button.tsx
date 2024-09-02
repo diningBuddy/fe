@@ -38,14 +38,27 @@ export const Button = (props: ButtonStyle) => {
     : "white";
   const iconOpacity = props.isDisabled ? "0.25" : "1";
 
+  const getSvgSize = (height: string) => {
+    switch (height) {
+      case "lg":
+        return 20;
+      case "md":
+        return 18;
+      case "sm":
+        return 16;
+      default:
+        return 18;
+    }
+  };
+
   const renderIcon = (
     IconComponent: React.ComponentType<SvgProps> | undefined
   ) => {
     if (IconComponent) {
       return (
         <IconComponent
-          width={20}
-          height={20}
+          width={getSvgSize(props.height || "md")}
+          height={getSvgSize(props.height || "md")}
           fill={props.iconColor || "currentColor"}
         />
       );
@@ -66,7 +79,12 @@ export const Button = (props: ButtonStyle) => {
         </IconContainer>
       )}
       {!props.isLoading && props.isPencil && (
-        <Svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <Svg
+          width={getSvgSize(props.height || "md")}
+          height={getSvgSize(props.height || "md")}
+          viewBox="0 0 18 18"
+          fill="none"
+        >
           <Path
             d="M16.2984 1.70163C15.5295 0.932789 14.283 0.932789 13.5141 1.70163L12.6463 2.5695L15.4305 5.35373L16.2984 4.48587C17.0672 3.71702 17.0672 2.47048 16.2984 1.70163Z"
             fill={pencilIconFill}
@@ -118,14 +136,21 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   justify-content: center;
   align-items: center;
 
+  width: ${(props: { height: string; isCircle: boolean }) =>
+    props.isCircle
+      ? props.height === "lg"
+        ? "48px"
+        : props.height === "md"
+        ? "42px"
+        : "34px"
+      : "auto"};
+
   height: ${(props: { height: string }) =>
     props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px"};
-  padding: ${(props: { height: string }) =>
-    props.height === "lg"
-      ? "14px 16px"
-      : props.height === "md"
-      ? "12px 14px"
-      : "10px 12px"};
+
+  padding: ${(props: { isCircle: boolean }) =>
+    props.isCircle ? "0" : "12px 14px"};
+
   margin: ${(props: { margin: any }) => props.margin || "0"};
 
   border: ${(props: {
@@ -152,8 +177,17 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
     }
   }};
 
-  border-radius: ${(props: { isCircle: any }) =>
-    props.isCircle ? "50%" : "6px"};
+  /* border-radius: ${(props: { isCircle: any }) =>
+    props.isCircle ? "50%" : "6px"}; */
+
+  border-radius: ${(props: { isCircle: boolean; height: string }) =>
+    props.isCircle
+      ? props.height === "lg"
+        ? "24px"
+        : props.height === "md"
+        ? "21px"
+        : "17px"
+      : "6px"};
 
   background: ${(props: {
     isPencil: any;
