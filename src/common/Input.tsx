@@ -84,7 +84,7 @@ const InputWrapper = styled.View`
     return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
   }};
   padding: ${({ state }) => { 
-    return state === "focused" ? "3px" : "0px";
+    return state === "focused" ? "4px" : "0px";
   }};
 `;
 
