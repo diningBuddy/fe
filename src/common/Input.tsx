@@ -72,7 +72,7 @@ const InputRow = styled.View`
 `;
 
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
-  color: theme.color.global.neutral.eight,
+  color: theme.color.global.neutral[800],
 }))`
   margin: 6px 0 0 3px;
 `;
@@ -89,7 +89,7 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   }};
   border-radius: 6px;
   background-color: ${({variant, state, theme}) => {
-    return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
+    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
   }};
   padding: ${({state}) => {
     return state === "focused" ? "4px" : "0px";
@@ -118,14 +118,14 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
 `;
 
 const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
-  placeholderTextColor: theme.color.theme.textDisabled,
+  placeholderTextColor: theme.color.theme.disabled,
 }))`
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 16.94px;
 
-  color: ${({theme}) => theme.color.global.neutral.nine};
+  color: ${({theme}) => theme.color.global.neutral[900]};
 `;
 
 const CloseButton = styled(TouchableOpacity)`
@@ -139,8 +139,8 @@ const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme
   margin-top: 6px;
   color: ${({variant, theme}) =>
       variant === "destructive"
-          ? theme.color.destructive.main
-          : theme.color.theme.textSecondary};
+          ? theme.color.destructive.default
+          : theme.color.global.neutral[700]};
 `
 
 export default Input;
