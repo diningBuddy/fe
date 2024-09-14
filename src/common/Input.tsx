@@ -65,8 +65,7 @@ const InputRow = styled.View`
 const Label = styled(BodyMedium14).attrs(({theme}) => ({
     color: theme.color.global.neutral.eight,
 }))`
-    margin-bottom: 6px;
-    margin-left: 3px;
+    margin: 6px 0 0 3px;
 `;
 
 const InputWrapper = styled.View`
