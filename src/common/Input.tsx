@@ -107,8 +107,8 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
     if (state === "focused") {
       return `1px solid ${
           variant === "default"
-              ? theme.color.sys.secondary.secondary
-              : theme.color.sys.destructive.destructive
+              ? theme.color.sys.secondary.default
+              : theme.color.sys.destructive.default
       }`;
     } else {
       return 'none';
@@ -139,7 +139,7 @@ const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme
   margin-top: 6px;
   color: ${({variant, theme}) =>
       variant === "destructive"
-          ? theme.color.destructive.default
+          ? theme.color.sys.destructive.default
           : theme.color.global.neutral[700]};
 `
 
