@@ -1,137 +1,146 @@
 import React, {useContext, useEffect, useState} from "react";
-import styled, {ThemeContext} from "styled-components/native";
+import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
 import {BodyMedium14, BodyRegular12} from "./Typo";
 import Svg, {G, Path} from "react-native-svg";
 
-const Input = ({
-                         variant = "default",
-                         state = "initial",
-                         label = "",
-                         description = "",
-                         inputValue = "",
-                         placeholder = "Type your message here",
-                     }) => {
-    const theme = useContext(ThemeContext);
+interface InputProps {
+  variant?: "default" | "destructive";
+  state?: "initial" | "focused" | "disabled";
+  label?: string;
+  description?: string;
+  inputValue?: string;
+  placeholder?: string;
+}
 
-    // State to manage the value of the input fields
-    const [value, setValue] = useState(inputValue);
+const Input: React.FC<InputProps> = ({
+                                       variant = "default",
+                                       state = "initial",
+                                       label = "",
+                                       description = "",
+                                       inputValue = "",
+                                       placeholder = "Type your message here",
+                                     }) => {
+  const theme = useContext(ThemeContext);
 
-    useEffect(() => {
-        setValue(inputValue);
-    }, [inputValue]);
+  // State to manage the value of the input fields
+  const [value, setValue] = useState(inputValue);
 
-    // Function to clear the input field
-    const clearInput = () => {
-        setValue("");
-    };
+  useEffect(() => {
+    setValue(inputValue);
+  }, [inputValue]);
 
-    return (
-        <InputRow>
-            {label && <Label theme={theme}>{label}</Label>}
-            <InputWrapper variant={variant} state={state} theme={theme}>
-                <InputContainer variant={variant} state={state} theme={theme}>
-                    <StyledInput
-                        theme={theme}
-                        placeholder={placeholder}
-                        value={value}
-                        onChangeText={setValue}
-                        editable={state !== "disabled"}
-                    />
-                    <CloseButton onPress={clearInput} disabled={state === "disabled"}>
-                        <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-                            <G id="Icon/circle-close">
-                                <Path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                                      d="M2.1001 12C2.1001 6.53236 6.53247 2.09998 12.0001 2.09998C17.4677 2.09998 21.9001 6.53236 21.9001 12C21.9001 17.4676 17.4677 21.9 12.0001 21.9C6.53247 21.9 2.1001 17.4676 2.1001 12ZM8.50009 7.22721L7.22729 8.5L10.7273 12L7.22729 15.5L8.50009 16.7728L12.0001 13.2728L15.5001 16.7728L16.7729 15.5L13.2729 12L16.7729 8.5L15.5001 7.22721L12.0001 10.7272L8.50009 7.22721Z"
-                                      fill="gray"/>
-                            </G>
-                        </Svg>
-                    </CloseButton>
-                </InputContainer>
-            </InputWrapper>
-            {description && (
-                <DescriptionText variant={variant} theme={theme}>
-                    {description}
-                </DescriptionText>
-            )}
-        </InputRow>
-    );
+  // Function to clear the input field
+  const clearInput = () => {
+    setValue("");
+  };
+
+  return (
+      <InputRow>
+        {label && <Label theme={theme}>{label}</Label>}
+        <InputWrapper variant={variant} state={state} theme={theme}>
+          <InputContainer variant={variant} state={state} theme={theme}>
+            <StyledInput
+                theme={theme}
+                placeholder={placeholder}
+                value={value}
+                onChangeText={setValue}
+                editable={state !== "disabled"}
+            />
+            <CloseButton onPress={clearInput} disabled={state === "disabled"}>
+              <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+                <G id="Icon/circle-close">
+                  <Path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
+                        d="M2.1001 12C2.1001 6.53236 6.53247 2.09998 12.0001 2.09998C17.4677 2.09998 21.9001 6.53236 21.9001 12C21.9001 17.4676 17.4677 21.9 12.0001 21.9C6.53247 21.9 2.1001 17.4676 2.1001 12ZM8.50009 7.22721L7.22729 8.5L10.7273 12L7.22729 15.5L8.50009 16.7728L12.0001 13.2728L15.5001 16.7728L16.7729 15.5L13.2729 12L16.7729 8.5L15.5001 7.22721L12.0001 10.7272L8.50009 7.22721Z"
+                        fill="gray"/>
+                </G>
+              </Svg>
+            </CloseButton>
+          </InputContainer>
+        </InputWrapper>
+        {description && (
+            <DescriptionText variant={variant} theme={theme}>
+              {description}
+            </DescriptionText>
+        )}
+      </InputRow>
+  );
 };
 
 const InputRow = styled.View`
-    margin-bottom: 24px; /* Increased margin to accommodate the description text */
+  margin-bottom: 24px; /* Increased margin to accommodate the description text */
 `;
 
-const Label = styled(BodyMedium14).attrs(({theme}) => ({
-    color: theme.color.global.neutral.eight,
+const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
+  color: theme.color.global.neutral.eight,
 }))`
-    margin: 6px 0 0 3px;
+  margin: 6px 0 0 3px;
 `;
 
-const InputWrapper = styled.View`
+const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   border: 1px solid ${({variant, state, theme}) => {
     if (variant === "default") {
-      return theme.color.theme.border; 
+      return theme.color.theme.border;
     } else if (variant === "destructive") {
       return state === "focused"
-          ? theme.color.theme.border 
-          : theme.color.sys.destructive.destructive; 
+          ? theme.color.theme.border
+          : theme.color.sys.destructive.destructive;
     }
   }};
   border-radius: 6px;
   background-color: ${({variant, state, theme}) => {
     return state === "disabled" ? theme.color.global.neutral.three : theme.color.global.neutral.one;
   }};
-  padding: ${({ state }) => { 
+  padding: ${({state}) => {
     return state === "focused" ? "4px" : "0px";
   }};
 `;
 
-const InputContainer = styled.View`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-self: stretch;
-    flex-direction: row;
-    padding: 12px 14px;
-    border: ${({ state, variant, theme }) => {
-      if (state === "focused") {
-        return `1px solid ${
-            variant === "default"
-                ? theme.color.sys.secondary.secondary
-                : theme.color.sys.destructive.destructive
-        }`;
-      } else {
-        return 'none'; 
-      }
-    }};
-    border-radius: 6px;
+const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  flex-direction: row;
+  padding: 12px 14px;
+  border: ${({state, variant, theme}) => {
+    if (state === "focused") {
+      return `1px solid ${
+          variant === "default"
+              ? theme.color.sys.secondary.secondary
+              : theme.color.sys.destructive.destructive
+      }`;
+    } else {
+      return 'none';
+    }
+  }};
+  border-radius: 6px;
 `;
 
-const StyledInput = styled(TextInput).attrs(({theme}) => ({
-    placeholderTextColor: theme.color.theme.textDisabled,
+const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
+  placeholderTextColor: theme.color.theme.textDisabled,
 }))`
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 16.94px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16.94px;
 
-    color: ${({theme}) => theme.color.global.neutral.nine};
+  color: ${({theme}) => theme.color.global.neutral.nine};
 `;
 
 const CloseButton = styled(TouchableOpacity)`
 `;
 
-const DescriptionText = styled(BodyRegular12)`
-    font-style: normal;
-    font-weight: 400;
+const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
+  font-style: normal;
+  font-weight: 400;
 
-    margin-left: 3px;
-    margin-top: 6px;
-    color: ${({variant, theme}) =>
-            variant === "destructive"
-                    ? theme.color.destructive.main
-                    : theme.color.theme.textSecondary};
+  margin-left: 3px;
+  margin-top: 6px;
+  color: ${({variant, theme}) =>
+      variant === "destructive"
+          ? theme.color.destructive.main
+          : theme.color.theme.textSecondary};
 `
 
 export default Input;
