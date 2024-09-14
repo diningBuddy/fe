@@ -71,7 +71,7 @@ const StyledButton = styled(TouchableOpacity)<{ color?: string }>`
   justify-content: center;
   height: 50px;
   background-color: ${({ theme, color }) =>
-    color ? color : theme.color.primary.main};
+    color ? color : theme.color.sys.primary.default};
 `;
 
 const StyledText = styled.Text`
@@ -84,7 +84,7 @@ const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
   background-color: ${({ color, theme }) =>
-    color ? color : theme.color.primary.main};
+    color ? color : theme.color.sys.primary.default};
 `;
 
 export default ListScreen;

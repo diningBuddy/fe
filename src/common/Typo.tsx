@@ -14,7 +14,7 @@ const defaultFontSize = 16;
 
 const BaseText = styled.Text<TypoStyle>`
   margin: ${({ margin = "0" }) => margin};
-  color: ${({ color, theme }) => color || theme.color.theme.textMain};
+  color: ${({ color, theme }) => color || theme.color.theme.main};
   font-size: ${({ size, fontSize }) =>
     size ? `${size}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`};
   font-weight: ${({ fontWeight }) => fontWeight || 400};
