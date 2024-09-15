@@ -54,16 +54,10 @@ const styles = StyleSheet.create({
 
 const SampleBtn = styled(TouchableOpacity)`
   padding: 12px 16px;
-  background-color: ${({ theme }) => theme.color.primary.main};
+  background-color: ${({ theme }) => theme.color.sys.primary.default};
   border-radius: 8px;
   margin-bottom: 12px;
   align-items: center;
-`;
-const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
-  width: 50px;
-  height: 50px;
-  background-color: ${({ color, theme }) =>
-    color ? color : theme.color.primary.main};
 `;
 
 export default HomeScreen;

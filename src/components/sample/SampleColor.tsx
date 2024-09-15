@@ -1,76 +1,64 @@
-import React, { useContext } from "react";
-import styled, {
-  ThemeProvider,
-  ThemeContext,
-  DefaultTheme,
-} from "styled-components/native";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import React, {useContext} from "react";
+import styled, {ThemeContext,} from "styled-components/native";
+import {StyleSheet, Text, TouchableOpacity, View,} from "react-native";
 import ThemeStyle from "../../styles/ThemeStyle";
 
 const SampleColor = () => {
   const theme = useContext(ThemeContext) || ThemeStyle;
   return (
-    <View style={styles.container}>
-      <StyledText>Primary</StyledText>
-      <ColorWrap>
-        <ColorItem color={theme.color.primary.main} label="Main" />
-        <ColorItem color={theme.color.primary.pressed} label="Pressed" />
-        <ColorItem color={theme.color.primary.active} label="Active" />
-        <ColorItem color={theme.color.primary.disabled} label="Disabled" />
-      </ColorWrap>
-      <StyledText>Secondary</StyledText>
-      <ColorWrap>
-        <ColorItem color={theme.color.secondary.main} label="Main" />
-        <ColorItem color={theme.color.secondary.pressed} label="Pressed" />
-        <ColorItem color={theme.color.secondary.active} label="Active" />
-        <ColorItem color={theme.color.secondary.disabled} label="Disabled" />
-      </ColorWrap>
-      <StyledText>Tertiary</StyledText>
-      <ColorWrap>
-        <ColorItem color={theme.color.tertiary.main} label="Main" />
-        <ColorItem color={theme.color.tertiary.pressed} label="Pressed" />
-        <ColorItem color={theme.color.tertiary.active} label="Active" />
-        <ColorItem color={theme.color.tertiary.disabled} label="Disabled" />
-      </ColorWrap>
+      <View style={styles.container}>
+        <StyledText>Sys Primary</StyledText>
+        <ColorWrap>
+          <ColorItem color={theme.color.sys.primary.default} label="Default"/>
+          <ColorItem color={theme.color.sys.primary.pressed} label="Pressed"/>
+          <ColorItem color={theme.color.sys.primary.active} label="Active"/>
+          <ColorItem color={theme.color.sys.primary.disabled} label="Disabled"/>
+        </ColorWrap>
+        <StyledText>Sys Secondary</StyledText>
+        <ColorWrap>
+          <ColorItem color={theme.color.sys.secondary.default} label="Default"/>
+          <ColorItem color={theme.color.sys.secondary.pressed} label="Pressed"/>
+          <ColorItem color={theme.color.sys.secondary.active} label="Active"/>
+          <ColorItem color={theme.color.sys.secondary.disabled} label="Disabled"/>
+        </ColorWrap>
+        <StyledText>Sys Tertiary</StyledText>
+        <ColorWrap>
+          <ColorItem color={theme.color.sys.tertiary.default} label="Default"/>
+          <ColorItem color={theme.color.sys.tertiary.pressed} label="Pressed"/>
+          <ColorItem color={theme.color.sys.tertiary.active} label="Active"/>
+          <ColorItem color={theme.color.sys.tertiary.disabled} label="Disabled"/>
+        </ColorWrap>
 
-      <StyledText>Destructive</StyledText>
-      <ColorWrap>
-        <ColorItem color={theme.color.destructive.main} label="Main" />
-        <ColorItem color={theme.color.destructive.pressed} label="Pressed" />
-        <ColorItem color={theme.color.destructive.active} label="Active" />
-        <ColorItem color={theme.color.destructive.disabled} label="Disabled" />
-      </ColorWrap>
+        <StyledText>Sys Destructive</StyledText>
+        <ColorWrap>
+          <ColorItem color={theme.color.sys.destructive.default} label="Default"/>
+          <ColorItem color={theme.color.sys.destructive.pressed} label="Pressed"/>
+          <ColorItem color={theme.color.sys.destructive.active} label="Active"/>
+          <ColorItem color={theme.color.sys.destructive.disabled} label="Disabled"/>
+        </ColorWrap>
 
-      <StyledText>Theme</StyledText>
-      <ColorWrap>
-        <ColorItem color={theme.color.theme.textMain} label="Main" />
-        <ColorItem color={theme.color.theme.textSecondary} label="Pressed" />
-        <ColorItem color={theme.color.theme.textDisabled} label="Active" />
-        <ColorItem color={theme.color.theme.border} label="Disabled" />
-      </ColorWrap>
-      <ColorWrap>
-        <ColorItem color={theme.color.theme.dividers} label="Disabled" />
-        <ColorItem color={theme.color.theme.layoutBg} label="Disabled" />
-        <ColorItem color={theme.color.theme.tableHeader} label="Disabled" />
-      </ColorWrap>
-    </View>
+        <StyledText>Theme</StyledText>
+        <ColorWrap>
+          <ColorItem color={theme.color.theme.headingText} label="headingText"/>
+          <ColorItem color={theme.color.theme.text} label="text"/>
+          <ColorItem color={theme.color.theme.secondaryText} label="secondaryText"/>
+          <ColorItem color={theme.color.theme.disabled} label="disabled"/>
+          <ColorItem color={theme.color.theme.border} label="border"/>
+          <ColorItem color={theme.color.theme.dividers} label="dividers"/>
+          <ColorItem color={theme.color.theme.layoutBackground} label="layoutBackground"/>
+        </ColorWrap>
+      </View>
   );
 };
 
 const ColorItem: React.FC<{ color: string; label: string }> = ({
-  color,
-  label,
-}) => (
-  <ColorContainer>
-    <StyledColor color={color} />
-    <Text>{label}</Text>
-  </ColorContainer>
+                                                                 color,
+                                                                 label,
+                                                               }) => (
+    <ColorContainer>
+      <StyledColor color={color}/>
+      <Text>{label}</Text>
+    </ColorContainer>
 );
 
 const styles = StyleSheet.create({
@@ -102,8 +90,8 @@ const StyledText = styled.Text`
 const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
-  background-color: ${({ color, theme }) =>
-    color ? color : theme.color.primary.main};
+  background-color: ${({color, theme}) =>
+      color ? color : theme.color.sys.primary.default};
 `;
 
 export default SampleColor;
