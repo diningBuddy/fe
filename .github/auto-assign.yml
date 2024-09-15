@@ -1,0 +1,12 @@
+addReviewers: true
+
+addAssignees: author
+
+reviewers:
+  - sinkyoungdeok
+  - SOL-hub
+
+numberOfReviewers: 0
+
+skipKeywords:
+  - wip
