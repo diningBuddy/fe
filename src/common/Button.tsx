@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import Svg, { Circle, Path, SvgProps } from "react-native-svg";
+import ThemeStyle from "../styles/ThemeStyle";
+
 interface ButtonStyle {
   mode: string;
+  theme?: (typeof ThemeStyle)["color"];
   children?: React.ReactNode;
   margin?: string;
   height?: "sm" | "md" | "lg";
@@ -26,13 +29,16 @@ const OUTLINE_GRAY = "outlineGray";
 const OUTLINE = "outline";
 const TEXT = "text";
 
-export const Button = (props: ButtonStyle) => {
+export const Button: React.FC<ButtonStyle> = (props) => {
   const [isPressed, setIsPressed] = useState(false);
   const loadingFill1 = props.mode === OUTLINE ? "#727272" : "#BEBEBE";
   const loadingFill2 = props.mode === OUTLINE ? "#BEBEBE" : "white";
+  const theme = props.theme || ThemeStyle.color;
 
   const pencilIconFill = props.isDisabled
     ? "#434343"
+    : isPressed && props.mode == OUTLINE
+    ? theme.sys.primary.default
     : props.mode === OUTLINE
     ? "black"
     : "white";
@@ -153,13 +159,7 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
 
   margin: ${(props: { margin: any }) => props.margin || "0"};
 
-  border: ${(props: {
-    isPencil: any;
-    mode: string;
-    isDisabled: any;
-    isPressed: any;
-    theme: { color: { primary: { main: any }; tertiary: { main: any } } };
-  }) => {
+  border: ${(props) => {
     if (props.isPencil && (props.mode === MAIN || props.mode === SECONDARY)) {
       return "0";
     }
@@ -167,20 +167,17 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
       if (props.mode === TEXT) {
         return "none";
       }
-      return "1px solid #D9D9D9";
+      return `1px solid ${props.theme.color.sys.tertiary.default}`;
     } else if (props.isPressed && props.mode === OUTLINE) {
-      return `1px solid ${props.theme.color.primary.main}`;
+      return `1px solid ${props.theme.color.sys.primary.default}`;
     } else if (props.mode === OUTLINE) {
-      return `1px solid ${props.theme.color.tertiary.main}`;
+      return `1px solid ${props.theme.color.sys.tertiary.default}`;
     } else {
       return "none";
     }
   }};
 
-  /* border-radius: ${(props: { isCircle: any }) =>
-    props.isCircle ? "50%" : "6px"}; */
-
-  border-radius: ${(props: { isCircle: boolean; height: string }) =>
+  border-radius: ${(props) =>
     props.isCircle
       ? props.height === "lg"
         ? "24px"
@@ -189,21 +186,9 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
         : "17px"
       : "6px"};
 
-  background: ${(props: {
-    isPencil: any;
-    mode: string;
-    isDisabled: any;
-    theme: {
-      color: {
-        primary: { main: any; active: any };
-        secondary: { disabled: any; active: any; pressed: any };
-        theme: { defaultWhite: any; layoutBg: any };
-      };
-    };
-    isPressed: any;
-  }) => {
+  background: ${(props) => {
     if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
-      return props.theme.color.primary.main;
+      return props.theme.color.sys.primary.default;
     } else if (props.isPencil && props.mode === MAIN) {
       return "white";
     } else if (props.isPencil && props.mode === SECONDARY && props.isDisabled) {
@@ -212,97 +197,79 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
       if (props.mode === TEXT) {
         return "transparent";
       }
-      return props.theme.color.secondary.disabled;
+      return props.theme.color.sys.secondary.disabled;
     } else if (props.isPressed && props.mode === MAIN) {
-      return props.theme.color.primary.active;
+      return props.theme.color.sys.primary.active;
     } else if (props.isPressed && props.mode === SECONDARY) {
-      return props.theme.color.secondary.active;
+      return props.theme.color.sys.secondary.active;
     } else if (props.isPressed && props.mode === OUTLINE) {
-      return props.theme.color.theme.defaultWhite;
+      return "white";
     }
 
     switch (props.mode) {
       case MAIN:
-        if (props.isPencil) {
-          return "white";
-        } else {
-          return props.theme.color.primary.main;
-        }
+        return props.isPencil ? "white" : props.theme.color.sys.primary.default;
+
       case SECONDARY:
-        return props.theme.color.secondary.pressed;
+        return props.theme.color.sys.secondary.pressed;
+
       case OUTLINE_RED:
-        return props.theme.color.theme.layoutBg;
+        return props.theme.color.theme.headingText;
       case OUTLINE:
-        return props.theme.color.theme.defaultWhite;
+        return "white";
       case TEXT:
         return "transparent";
       default:
-        return props.theme.color.theme.layoutBg;
+        return props.theme.color.theme.headingText;
     }
   }};
 
-  opacity: ${(props: { isPressed: any }) => (props.isPressed ? 1 : 0.9)};
+  opacity: ${(props) => (props.isPressed ? 1 : 0.9)};
 `;
 
 export const ButtonText = styled.Text<ButtonStyle>`
-  color: ${(props: {
-    isDisabled: any;
-    isPressed: any;
-    mode: string;
-    theme: {
-      color: {
-        primary: { main: any; active: any };
-        secondary: { active: any };
-        theme: { defaultWhite: any; textMain: any };
-        tertiary: { main: any };
-      };
-    };
-    color: any;
-  }) => {
+  color: ${(props) => {
     if (props.isDisabled) {
       return "#D9D9D9";
     }
     if (props.isPressed && props.mode === OUTLINE) {
-      return props.theme.color.primary.main;
+      return props.theme.color.sys.primary.default;
     }
     if (props.isPressed && props.mode === OUTLINE_RED) {
-      return props.theme.color.primary.active;
+      return props.theme.color.sys.primary.active;
     }
-
     if (props.isPressed && props.mode === OUTLINE_GRAY) {
-      return props.theme.color.primary.main;
+      return props.theme.color.sys.primary.default;
     }
-
     if (props.isPressed && props.mode === TEXT) {
-      return props.theme.color.secondary.active;
+      return props.theme.color.sys.secondary.active;
     }
 
     switch (props.mode) {
-      case MAIN:
-        return props.theme.color.theme.defaultWhite;
       case OUTLINE_RED:
-        return props.theme.color.primary.main;
+        return props.theme.color.sys.primary.default;
+
       case OUTLINE_GRAY:
-        return props.theme.color.tertiary.main;
+        return props.theme.color.sys.tertiary.default;
+
       case OUTLINE:
-        return props.theme.color.theme.textMain;
+        return props.theme.color.theme.headingText;
       case TEXT:
-        return props.theme.color.primary.main;
+        return props.theme.color.sys.primary.default;
+
       default:
-        return props.color || props.theme.color.theme.defaultWhite;
+        return props.color || "white";
     }
   }};
 
-  font-size: ${(props: { fontSize: string }) =>
+  font-size: ${(props) =>
     props.fontSize === "lg"
       ? "16px"
       : props.fontSize === "sm"
       ? "12px"
       : "14px"};
   font-weight: 600;
-
-  text-decoration: ${(props: { isUnderLine: any }) =>
-    props.isUnderLine ? "underline" : "none"};
+  text-decoration: ${(props) => (props.isUnderLine ? "underline" : "none")};
 `;
 
 Button.defaultProps = {
