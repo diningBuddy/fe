@@ -296,6 +296,14 @@ const SampleButton = () => {
         <Button mode="outline" height="lg" isPencil />
         <Button mode="outline" height="lg" isPencil isDisabled />
       </View>
+
+      <View style={styles.buttonGroup}>
+        {/* pencil icon button isCircle */}
+        <Button mode="outline" height="sm" isPencil isCircle />
+        <Button mode="outline" isPencil isCircle />
+        <Button mode="outline" height="lg" isPencil isCircle />
+        <Button mode="outline" height="lg" isPencil isDisabled isCircle />
+      </View>
     </ScrollView>
   );
 };

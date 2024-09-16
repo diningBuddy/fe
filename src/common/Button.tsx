@@ -4,7 +4,7 @@ import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 import ThemeStyle from "../styles/ThemeStyle";
 
 interface ButtonStyle {
-  mode: string;
+  mode?: string;
   theme?: (typeof ThemeStyle)["color"];
   children?: React.ReactNode;
   margin?: string;
