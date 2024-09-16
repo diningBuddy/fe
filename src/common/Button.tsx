@@ -31,17 +31,19 @@ const TEXT = "text";
 
 export const Button: React.FC<ButtonStyle> = (props) => {
   const [isPressed, setIsPressed] = useState(false);
-  const loadingFill1 = props.mode === OUTLINE ? "#727272" : "#BEBEBE";
-  const loadingFill2 = props.mode === OUTLINE ? "#BEBEBE" : "white";
   const theme = props.theme || ThemeStyle.color;
+  const loadingFill1 = props.mode === OUTLINE ? "#727272" : "#BEBEBE";
+
+  const loadingFill2 =
+    props.mode === OUTLINE ? "#BEBEBE" : theme.global.neutral[100];
 
   const pencilIconFill = props.isDisabled
     ? theme.global.neutral[900]
-    : isPressed && props.mode == OUTLINE
-    ? theme.color.sys.primary.default
+    : isPressed && props.mode === OUTLINE
+    ? theme.sys.primary.default
     : props.mode === OUTLINE
-    ? "black"
-    : "white";
+    ? theme.global.neutral[900]
+    : theme.global.neutral[100];
   const iconOpacity = props.isDisabled ? "0.25" : "1";
 
   const getSvgSize = (height: string) => {
@@ -190,9 +192,9 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
     if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
       return props.theme.color.sys.primary.default;
     } else if (props.isPencil && props.mode === MAIN) {
-      return "white";
+      return props.theme.color.global.neutral[100];
     } else if (props.isPencil && props.mode === SECONDARY && props.isDisabled) {
-      return "white";
+      return props.theme.color.global.neutral[100];
     } else if (props.isDisabled) {
       if (props.mode === TEXT) {
         return "transparent";
@@ -203,12 +205,14 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
     } else if (props.isPressed && props.mode === SECONDARY) {
       return props.theme.color.sys.secondary.active;
     } else if (props.isPressed && props.mode === OUTLINE) {
-      return "white";
+      return props.theme.color.global.neutral[100];
     }
 
     switch (props.mode) {
       case MAIN:
-        return props.isPencil ? "white" : props.theme.color.sys.primary.default;
+        return props.isPencil
+          ? props.theme.color.global.neutral[100]
+          : props.theme.color.sys.primary.default;
 
       case SECONDARY:
         return props.theme.color.sys.secondary.pressed;
@@ -216,7 +220,7 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
       case OUTLINE_RED:
         return props.theme.color.theme.headingText;
       case OUTLINE:
-        return "white";
+        return props.theme.color.global.neutral[100];
       case TEXT:
         return "transparent";
       default:
@@ -258,7 +262,7 @@ export const ButtonText = styled.Text<ButtonStyle>`
         return props.theme.color.sys.primary.default;
 
       default:
-        return props.color || "white";
+        return props.color || props.theme.color.global.neutral[100];
     }
   }};
 
