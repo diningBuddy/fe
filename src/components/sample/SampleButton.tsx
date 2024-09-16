@@ -260,6 +260,13 @@ const SampleButton = () => {
         <Button mode="outline" height="lg" isLoading />
       </View>
 
+      {/* loading button */}
+      <View style={styles.buttonGroup}>
+        <Button mode="outline" height="sm" isLoading isDisabled />
+        <Button mode="outline" isLoading isDisabled />
+        <Button mode="outline" height="lg" isLoading isDisabled />
+      </View>
+
       {/* pencil icon button  */}
       <View style={styles.buttonGroup}>
         <Button height="sm" isPencil />

@@ -162,7 +162,12 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   margin: ${(props: { margin: any }) => props.margin || "0"};
 
   border: ${(props) => {
-    if (props.isPencil && (props.mode === MAIN || props.mode === SECONDARY)) {
+    if (props.isLoading && props.mode === OUTLINE) {
+      return props.theme.color.sys.tertiary.default;
+    } else if (
+      props.isPencil &&
+      (props.mode === MAIN || props.mode === SECONDARY)
+    ) {
       return "0";
     }
     if (props.isDisabled) {
@@ -189,7 +194,11 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
       : "6px"};
 
   background: ${(props) => {
-    if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
+    if (props.isLoading && props.isDisabled) {
+      return props.theme.color.sys.tertiary.default;
+    } else if (props.isLoading && props.isPressed && props.mode === OUTLINE) {
+      return props.theme.color.global.neutral[300];
+    } else if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
       return props.theme.color.sys.primary.default;
     } else if (props.isPencil && props.mode === MAIN) {
       return props.theme.color.global.neutral[100];
