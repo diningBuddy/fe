@@ -8,6 +8,7 @@ export const RouteNames = {
 
   SAMPLE_FONT: "sample-font" as const,
   SAMPLE_COLOR: "sample-color" as const,
+  SAMPLE_BUTTON: "sample-button" as const,
   SAMPLE_INPUT: "sample-input" as const,
 };
 
@@ -20,5 +21,6 @@ export type RootStackParamList = {
   [RouteNames.MYPAGE]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
+  [RouteNames.SAMPLE_BUTTON]: undefined;
   [RouteNames.SAMPLE_INPUT]: undefined;
 };
