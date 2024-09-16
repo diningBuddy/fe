@@ -79,13 +79,21 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
       return theme.color.theme.border;
     } else if (variant === "destructive") {
       return state === "focused"
-          ? theme.color.theme.border
-          : theme.color.sys.destructive.destructive;
+          ? "transparent"
+          : theme.color.sys.destructive.default;
     }
   }};
   border-radius: 6px;
   background-color: ${({variant, state, theme}) => {
-    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
+    if (state === "disabled") {
+      return theme.color.global.neutral[300];
+    } else {
+      if (variant === "default") {
+        return theme.color.sys.secondary.disabled;
+      } else {
+        return theme.color.sys.destructive.disabled;
+      }
+    }
   }};
   padding: ${({state}) => {
     return state === "focused" ? "4px" : "0px";
@@ -110,6 +118,9 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return 'none';
     }
   }};
+  background-color: ${({variant, state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
+  }};
   border-radius: 6px;
 `;
 
@@ -132,7 +143,7 @@ const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme
   font-weight: 400;
 
   margin-left: 3px;
-  margin-top: 6px;
+  margin-top: 5px;
   color: ${({variant, theme}) =>
       variant === "destructive"
           ? theme.color.sys.destructive.default
