@@ -2,7 +2,6 @@ import React, {useContext, useEffect, useState} from "react";
 import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
 import {BodyMedium14, BodyRegular12} from "./Typo";
-import Svg, {G, Path} from "react-native-svg";
 import {CircleClose} from "../assets/icons/shape";
 
 interface InputProps {
@@ -76,7 +75,9 @@ const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => (
 const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   border: 1px solid ${({variant, state, theme}) => {
     if (variant === "default") {
-      return theme.color.theme.border;
+      return state === "focused"
+          ? "transparent" :
+          theme.color.theme.border;
     } else if (variant === "destructive") {
       return state === "focused"
           ? "transparent"

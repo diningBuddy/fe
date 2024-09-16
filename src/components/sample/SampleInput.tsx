@@ -77,7 +77,7 @@ const SampleInput = () => {
 
 const ScrollViewContainer = styled(ScrollView)`
   padding: 20px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 `;
 
 export default SampleInput;
