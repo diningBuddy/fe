@@ -36,9 +36,9 @@ export const Button: React.FC<ButtonStyle> = (props) => {
   const theme = props.theme || ThemeStyle.color;
 
   const pencilIconFill = props.isDisabled
-    ? "#434343"
+    ? theme.global.neutral[900]
     : isPressed && props.mode == OUTLINE
-    ? theme.sys.primary.default
+    ? theme.color.sys.primary.default
     : props.mode === OUTLINE
     ? "black"
     : "white";
