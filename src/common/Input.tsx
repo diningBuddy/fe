@@ -3,6 +3,7 @@ import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
 import {TextInput, TouchableOpacity} from "react-native";
 import {BodyMedium14, BodyRegular12} from "./Typo";
 import Svg, {G, Path} from "react-native-svg";
+import {CircleClose} from "../assets/icons/shape";
 
 interface InputProps {
   variant?: "default" | "destructive";
@@ -47,14 +48,9 @@ const Input: React.FC<InputProps> = ({
                 onChangeText={setValue}
                 editable={state !== "disabled"}
             />
+
             <CloseButton onPress={clearInput} disabled={state === "disabled"}>
-              <Svg width="20" height="20" viewBox="0 0 22 22" fill="none">
-                <G id="Icon/circle-close">
-                  <Path id="Vector" fill-rule="evenodd" clip-rule="evenodd"
-                        d="M2.1001 12C2.1001 6.53236 6.53247 2.09998 12.0001 2.09998C17.4677 2.09998 21.9001 6.53236 21.9001 12C21.9001 17.4676 17.4677 21.9 12.0001 21.9C6.53247 21.9 2.1001 17.4676 2.1001 12ZM8.50009 7.22721L7.22729 8.5L10.7273 12L7.22729 15.5L8.50009 16.7728L12.0001 13.2728L15.5001 16.7728L16.7729 15.5L13.2729 12L16.7729 8.5L15.5001 7.22721L12.0001 10.7272L8.50009 7.22721Z"
-                        fill="gray"/>
-                </G>
-              </Svg>
+              <CircleClose/>
             </CloseButton>
           </InputContainer>
         </InputWrapper>
