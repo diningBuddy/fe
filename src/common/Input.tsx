@@ -66,7 +66,7 @@ const Input: React.FC<InputProps> = ({
 };
 
 const InputRow = styled.View`
-  margin-bottom: 24px; /* Increased margin to accommodate the description text */
+  margin-bottom: 24px; 
 `;
 
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
@@ -87,7 +87,6 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
           : theme.color.sys.destructive.default;
     }
   }};
-  border-radius: 6px;
   background-color: ${({variant, state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
@@ -99,6 +98,7 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
       }
     }
   }};
+  border-radius: 6px;
   padding: ${({state}) => {
     return state === "focused" ? "4px" : "0px";
   }};
@@ -110,6 +110,9 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
   align-items: center;
   align-self: stretch;
   flex-direction: row;
+  background-color: ${({variant, state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
+  }};
   padding: 12px 14px;
   border: ${({state, variant, theme}) => {
     if (state === "focused") {
@@ -122,9 +125,6 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return 'none';
     }
   }};
-  background-color: ${({variant, state, theme}) => {
-    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
-  }};
   border-radius: 6px;
 `;
 
@@ -135,7 +135,6 @@ const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) =
   font-style: normal;
   font-weight: 400;
   line-height: 16.94px;
-
   color: ${({theme}) => theme.color.global.neutral[900]};
 `;
 
@@ -145,7 +144,6 @@ const CloseButton = styled(TouchableOpacity)`
 const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
   font-style: normal;
   font-weight: 400;
-
   margin-left: 3px;
   margin-top: 5px;
   color: ${({variant, theme}) =>
