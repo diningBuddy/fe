@@ -8,7 +8,7 @@ interface TextAreaProps {
   label?: string;
   description?: string;
   placeholder?: string;
-  disabled?: boolean;
+  isDisabled?: boolean;
   isSuccess?: boolean;
   maxLength?: number;
 }
@@ -18,26 +18,26 @@ const TextArea: React.FC<TextAreaProps> = ({
                                              label = "",
                                              description = "",
                                              placeholder = "Type your message here",
-                                             disabled = false,
+                                             isDisabled = false,
                                              isSuccess = false,
                                              maxLength = 200,
                                            }) => {
   const theme = useContext(ThemeContext);
   const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
-      disabled ? "disabled" : "initial"
+      isDisabled ? "disabled" : "initial"
   );
   const [charCount, setCharCount] = useState(0);
 
   useEffect(() => {
-    if (disabled) {
+    if (isDisabled) {
       setState("disabled");
     } else if (value) {
       setState("filled");
     } else if (!value && state === "filled") {
       setState("initial");
     }
-  }, [value, disabled]);
+  }, [value, isDisabled]);
 
   const handleTextChange = (text: string) => {
     setValue(text);
@@ -53,10 +53,10 @@ const TextArea: React.FC<TextAreaProps> = ({
                 theme={theme}
                 placeholder={placeholder}
                 value={value}
-                onFocus={() => !disabled && setState("focused")}
+                onFocus={() => !isDisabled && setState("focused")}
                 onBlur={() => {
-                  if (!value && !disabled) setState("initial");
-                  else if (!disabled) setState("filled");
+                  if (!value && !isDisabled) setState("initial");
+                  else if (!isDisabled) setState("filled");
                 }}
                 onChangeText={handleTextChange}
                 editable={state !== "disabled"}

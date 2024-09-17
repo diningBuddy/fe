@@ -23,7 +23,7 @@ const SampleTextArea = () => {
             label="default + disabled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
-            disabled={true}
+            isDisabled={true}
         />
         <TextArea
             variant="destructive"
