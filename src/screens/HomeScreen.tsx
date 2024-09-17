@@ -39,6 +39,13 @@ const HomeScreen = ({ navigation }: Props) => {
         }}>
         <HeadingSemiBold24>Sample Input</HeadingSemiBold24>
       </SampleBtn>
+
+      <SampleBtn
+        onPress={() => {
+          navigation.navigate(RouteNames.SAMPLE_TEXTAREA);
+        }}>
+        <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
+      </SampleBtn>
     </View>
   );
 };

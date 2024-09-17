@@ -16,6 +16,7 @@ import SampleColor from "./src/components/sample/SampleColor";
 import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
+import SampleTextArea from "./src/components/sample/SampleTextArea";
 
 export type Props = {
   label: string;
@@ -50,6 +51,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
           <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
+          <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
