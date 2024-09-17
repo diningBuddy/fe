@@ -8,67 +8,31 @@ const SampleInput = () => {
       <ScrollViewContainer>
         <Input
             variant="default"
-            state="initial"
-            label="default + initial"
+            label="default"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
         <Input
             variant="default"
-            state="focused"
-            label="default + focused"
-            description="Your message will be copied to the support team."
-            placeholder="Type your message here"
-            inputValue="Type your message here"
-        />
-        <Input
-            variant="default"
-            state="filled"
-            label="default + filled"
-            description="Your message will be copied to the support team."
-            placeholder="Type your message here"
-            inputValue="Type your message here"
-        />
-        <Input
-            variant="default"
-            state="disabled"
             label="default + disabled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
+            disabled={true}
         />
         <Input
             variant="destructive"
-            state="initial"
-            label="destructive + initial"
+            label="destructive"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
-        />
-        <Input
-            variant="destructive"
-            state="focused"
-            label="destructive + focused"
-            description="Your message will be copied to the support team."
-            placeholder="Type your message here"
-            inputValue="Type your message here"
-        />
-        <Input
-            variant="destructive"
-            state="filled"
-            label="destructive + filled"
-            description="Your message will be copied to the support team."
-            placeholder="Type your message here"
-            inputValue="Type your message here"
         />
         <Input
             variant="default"
-            state="initial"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
         />
         <Input
             variant="default"
             label="no description"
-            state="initial"
             placeholder="Type your message here"
         />
       </ScrollViewContainer>

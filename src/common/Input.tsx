@@ -6,34 +6,34 @@ import {CircleClose} from "../assets/icons/shape";
 
 interface InputProps {
   variant?: "default" | "destructive";
-  state?: "initial" | "focused" | "disabled";
   label?: string;
   description?: string;
-  inputValue?: string;
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
                                        variant = "default",
-                                       state = "initial",
                                        label = "",
                                        description = "",
-                                       inputValue = "",
                                        placeholder = "Type your message here",
+                                       disabled = false,
                                      }) => {
   const theme = useContext(ThemeContext);
-
-  // State to manage the value of the input fields
-  const [value, setValue] = useState(inputValue);
+  const [value, setValue] = useState(""); // 입력 값 관리
+  const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
+      disabled ? "disabled" : "initial" // 초기 상태가 disabled일 경우 반영
+  );
 
   useEffect(() => {
-    setValue(inputValue);
-  }, [inputValue]);
-
-  // Function to clear the input field
-  const clearInput = () => {
-    setValue("");
-  };
+    if (disabled) {
+      setState("disabled");
+    } else if (value) {
+      setState("filled");
+    } else if (!value && state === "filled") {
+      setState("initial");
+    }
+  }, [value, disabled]);
 
   return (
       <InputRow>
@@ -44,11 +44,14 @@ const Input: React.FC<InputProps> = ({
                 theme={theme}
                 placeholder={placeholder}
                 value={value}
-                onChangeText={setValue}
-                editable={state !== "disabled"}
+                onFocus={() => !disabled && setState("focused")} // disabled 상태에서는 포커스 되지 않도록 처리
+                onBlur={() => {
+                  if (!value && !disabled) setState("initial"); // 포커스 해제 및 값 없을 시 initial로
+                }}
+                onChangeText={setValue} // 입력 시 값을 업데이트
+                editable={!disabled} // disabled 상태에서는 편집 불가
             />
-
-            <CloseButton onPress={clearInput} disabled={state === "disabled"}>
+            <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
               <CircleClose/>
             </CloseButton>
           </InputContainer>
