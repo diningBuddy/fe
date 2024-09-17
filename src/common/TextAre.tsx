@@ -9,6 +9,7 @@ interface TextAreaProps {
   description?: string;
   placeholder?: string;
   disabled?: boolean;
+  isSuccess?: boolean;
   maxLength?: number;
 }
 
@@ -18,6 +19,7 @@ const TextArea: React.FC<TextAreaProps> = ({
                                              description = "",
                                              placeholder = "Type your message here",
                                              disabled = false,
+                                             isSuccess = false,
                                              maxLength = 200,
                                            }) => {
   const theme = useContext(ThemeContext);
@@ -65,7 +67,7 @@ const TextArea: React.FC<TextAreaProps> = ({
         </InputWrapper>
         <DescriptionRow>
           {description && (
-              <DescriptionText variant={variant} theme={theme}>
+              <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
                 {description}
               </DescriptionText>
           )}
@@ -174,10 +176,11 @@ const DescriptionText = styled(BodyRegular12)<TextAreaProps & { theme: DefaultTh
   word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
-  color: ${({variant, theme}) =>
-      variant === "destructive"
-          ? theme.color.sys.destructive.default
-          : theme.color.global.neutral[700]};
+  color: ${({isSuccess, variant, theme}) =>
+      isSuccess ? theme.color.global.green[600]
+          : variant === "destructive"
+              ? theme.color.sys.destructive.default
+              : theme.color.global.neutral[700]};
 `;
 
 const CharCounter = styled(BodyRegular12)`

@@ -13,6 +13,13 @@ const SampleTextArea = () => {
         />
         <TextArea
             variant="default"
+            label="default"
+            description="Your message will be copied to the support team."
+            placeholder="Type your message here"
+            isSuccess={true}
+        />
+        <TextArea
+            variant="default"
             label="default + disabled"
             description="Your message will be copied to the support team."
             placeholder="Type your message here"
