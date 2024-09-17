@@ -10,6 +10,7 @@ interface InputProps {
   description?: string;
   placeholder?: string;
   isDisabled?: boolean;
+  isSuccess?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -18,9 +19,10 @@ const Input: React.FC<InputProps> = ({
                                        description = "",
                                        placeholder = "Type your message here",
                                        isDisabled = false,
+                                       isSuccess = false,
                                      }) => {
   const theme = useContext(ThemeContext);
-  const [value, setValue] = useState(""); 
+  const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
       isDisabled ? "disabled" : "initial"
   );
@@ -57,7 +59,7 @@ const Input: React.FC<InputProps> = ({
           </InputContainer>
         </InputWrapper>
         {description && (
-            <DescriptionText variant={variant} theme={theme}>
+            <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
               {description}
             </DescriptionText>
         )}
@@ -152,10 +154,11 @@ const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme
   margin-top: 5px;
   font-style: normal;
   font-weight: 400;
-  color: ${({variant, theme}) =>
-      variant === "destructive"
-          ? theme.color.sys.destructive.default
-          : theme.color.global.neutral[700]};
+  color: ${({isSuccess, variant, theme}) =>
+      isSuccess ? theme.color.global.green[600]
+          : variant === "destructive"
+              ? theme.color.sys.destructive.default
+              : theme.color.global.neutral[700]};
 `
 
 export default Input;
