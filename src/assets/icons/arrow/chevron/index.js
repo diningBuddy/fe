@@ -1,6 +1,6 @@
-import {ReactComponent as ChevronDown} from './chevron-down.svg';
-import {ReactComponent as ChevronLeft} from './chevron-left.svg';
-import {ReactComponent as ChevronRight} from './chevron-right.svg';
-import {ReactComponent as ChevronUp} from './chevron-up.svg';
+import ChevronDown from "./chevron-down.svg";
+import ChevronLeft from "./chevron-left.svg";
+import ChevronRight from "./chevron-right.svg";
+import ChevronUp from "./chevron-up.svg";
 
-export {ChevronDown, ChevronLeft, ChevronRight, ChevronUp};
+export { ChevronDown, ChevronLeft, ChevronRight, ChevronUp };

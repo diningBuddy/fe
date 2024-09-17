@@ -96,7 +96,7 @@ export const global = {
     900: "#00286E",
     1000: "#001847",
   },
-}
+};
 
 export const sys = {
   primary: {
@@ -123,7 +123,7 @@ export const sys = {
     active: global.orange[700],
     disabled: global.orange[100],
   },
-}
+};
 
 export const theme = {
   headingText: global.alpha.alphaBlack[900],
@@ -133,7 +133,7 @@ export const theme = {
   border: global.alpha.alphaBlack[150],
   dividers: global.alpha.alphaBlack[100],
   layoutBackground: global.alpha.alphaBlack[800],
-}
+};
 
 export const color = {
   global,
@@ -141,7 +141,7 @@ export const color = {
   theme,
 };
 
-const ThemeStyle = {color};
+const ThemeStyle = { color };
 export type Theme = typeof ThemeStyle;
 
 export default ThemeStyle;
