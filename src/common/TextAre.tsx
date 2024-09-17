@@ -84,7 +84,7 @@ const InputRow = styled.View`
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
   color: theme.color.global.neutral[800],
 }))`
-  margin: 6px 0 0 3px;
+  margin: 0 0 6px 3px;
 `;
 
 const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
@@ -99,7 +99,16 @@ const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
           : theme.color.sys.destructive.default;
     }
   }};
-  border-radius: 6px;
+  border-radius: ${({variant, state, theme}) => {
+    if (state === "focused") {
+      return "10px";
+    } else {
+      return "6px";
+    }
+  }};
+  padding: ${({state}) => {
+    return state === "focused" ? "4px" : "0px";
+  }};
   background-color: ${({variant, state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
@@ -111,9 +120,6 @@ const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
       }
     }
   }};
-  padding: ${({state}) => {
-    return state === "focused" ? "4px" : "0px";
-  }};
 `;
 
 const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
@@ -122,6 +128,7 @@ const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
   align-items: center;
   align-self: stretch;
   flex-direction: row;
+  padding: 12px 14px;
   border: ${({state, variant, theme}) => {
     if (state === "focused") {
       return `1px solid ${
@@ -134,7 +141,6 @@ const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
     }
   }};
   border-radius: 6px;
-  padding: 12px 14px;
   background-color: ${({variant, state, theme}) => {
     return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
   }};
@@ -143,6 +149,8 @@ const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
 const StyledTextArea = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
   placeholderTextColor: theme.color.theme.disabled,
 }))`
+  margin: 0 0 -4px 0;
+  flex: 1;
   height: 80px;
   font-size: 14px;
   font-style: normal;
@@ -150,8 +158,6 @@ const StyledTextArea = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }
   line-height: 16.94px;
   color: ${({theme}) => theme.color.global.neutral[900]};
   text-align-vertical: top; 
-  margin: 0 0 -4px 0;
-  flex: 1;
 `;
 
 const DescriptionRow = styled.View`
@@ -163,22 +169,22 @@ const DescriptionRow = styled.View`
 
 const DescriptionText = styled(BodyRegular12)<TextAreaProps & { theme: DefaultTheme }>`
   margin: 6px 0 0 3px;
+  flex: 3;
+  flex-wrap: wrap;
+  word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
   color: ${({variant, theme}) =>
       variant === "destructive"
           ? theme.color.sys.destructive.default
           : theme.color.global.neutral[700]};
-  flex: 3;
-  flex-wrap: wrap;
-  word-wrap: break-word;
 `;
 
 const CharCounter = styled(BodyRegular12)`
   text-align: right;
-  color: ${({theme}) => theme.color.global.neutral[600]};
   margin-top: 5px;
   flex: 1;
+  color: ${({theme}) => theme.color.global.neutral[600]};
 `;
 
 export default TextArea;
