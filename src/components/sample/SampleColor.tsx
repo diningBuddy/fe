@@ -19,10 +19,7 @@ const SampleColor = () => {
         <ColorItem color={theme.color.sys.secondary.default} label="Default" />
         <ColorItem color={theme.color.sys.secondary.pressed} label="Pressed" />
         <ColorItem color={theme.color.sys.secondary.active} label="Active" />
-        <ColorItem
-          color={theme.color.sys.secondary.disabled}
-          label="Disabled"
-        />
+        <ColorItem color={theme.color.sys.secondary.disabled} label="Disabled" />
       </ColorWrap>
       <StyledText>Sys Tertiary</StyledText>
       <ColorWrap>
@@ -34,45 +31,27 @@ const SampleColor = () => {
 
       <StyledText>Sys Destructive</StyledText>
       <ColorWrap>
-        <ColorItem
-          color={theme.color.sys.destructive.default}
-          label="Default"
-        />
-        <ColorItem
-          color={theme.color.sys.destructive.pressed}
-          label="Pressed"
-        />
+        <ColorItem color={theme.color.sys.destructive.default} label="Default" />
+        <ColorItem color={theme.color.sys.destructive.pressed} label="Pressed" />
         <ColorItem color={theme.color.sys.destructive.active} label="Active" />
-        <ColorItem
-          color={theme.color.sys.destructive.disabled}
-          label="Disabled"
-        />
+        <ColorItem color={theme.color.sys.destructive.disabled} label="Disabled" />
       </ColorWrap>
 
       <StyledText>Theme</StyledText>
       <ColorWrap>
         <ColorItem color={theme.color.theme.headingText} label="headingText" />
         <ColorItem color={theme.color.theme.text} label="text" />
-        <ColorItem
-          color={theme.color.theme.secondaryText}
-          label="secondaryText"
-        />
+        <ColorItem color={theme.color.theme.secondaryText} label="secondaryText" />
         <ColorItem color={theme.color.theme.disabled} label="disabled" />
         <ColorItem color={theme.color.theme.border} label="border" />
         <ColorItem color={theme.color.theme.dividers} label="dividers" />
-        <ColorItem
-          color={theme.color.theme.layoutBackground}
-          label="layoutBackground"
-        />
+        <ColorItem color={theme.color.theme.layoutBackground} label="layoutBackground" />
       </ColorWrap>
     </View>
   );
 };
 
-const ColorItem: React.FC<{ color: string; label: string }> = ({
-  color,
-  label,
-}) => (
+const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
   <ColorContainer>
     <StyledColor color={color} />
     <Text>{label}</Text>
@@ -108,8 +87,7 @@ const StyledText = styled.Text`
 const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
-  background-color: ${({ color, theme }) =>
-    color ? color : theme.color.sys.primary.default};
+  background-color: ${({ color, theme }) => (color ? color : theme.color.sys.primary.default)};
 `;
 
 export default SampleColor;
