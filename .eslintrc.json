@@ -21,13 +21,13 @@
   },
   "plugins": ["react", "react-native", "react-hooks", "@typescript-eslint"],
   "rules": {
-    "react-native/no-unused-styles": "warn",
-    "react-native/split-platform-components": "warn",
-    "react-native/no-inline-styles": "warn",
-    "react-native/no-color-literals": "warn",
-    "react-native/no-raw-text": "warn",
+    "react-native/no-unused-styles": "off", //"warn",
+    "react-native/split-platform-components": "off", //"warn",
+    "react-native/no-inline-styles": "off", //"warn",
+    "react-native/no-color-literals": "off", //"warn",
+    "react-native/no-raw-text": "off", //"warn",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "off", //"warn",
     "import/no-unresolved": "error", // 잘못된 경로로 인한 에러 방지
     "import/order": [
       "error",
