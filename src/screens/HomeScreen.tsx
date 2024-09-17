@@ -48,8 +48,16 @@ const HomeScreen = ({navigation}: Props) => {
             onPress={() => {
               navigation.navigate(RouteNames.SAMPLE_TEXTAREA);
             }}
-            >
+        >
           <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
+        </SampleBtn>
+
+        <SampleBtn
+            onPress={() => {
+              navigation.navigate(RouteNames.SAMPLE_SEARCH);
+            }}
+        >
+          <HeadingSemiBold24>Sample Search</HeadingSemiBold24>
         </SampleBtn>
       </View>
   );

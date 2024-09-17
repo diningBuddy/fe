@@ -17,6 +17,7 @@ import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
+import SampleSearch from "./src/components/sample/SampleSearch";
 
 export type Props = {
   label: string;
@@ -64,6 +65,10 @@ const App: React.FC<Props> = ({label, onPress, color, ...rest}) => {
             <Stack.Screen
                 name={RouteNames.SAMPLE_TEXTAREA}
                 component={SampleTextArea}
+            />
+            <Stack.Screen
+                name={RouteNames.SAMPLE_SEARCH}
+                component={SampleSearch}
             />
           </Stack.Navigator>
         </NavigationContainer>
