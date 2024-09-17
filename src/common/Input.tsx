@@ -66,7 +66,7 @@ const Input: React.FC<InputProps> = ({
 };
 
 const InputRow = styled.View`
-  margin-bottom: 24px; 
+  margin-bottom: 24px;
 `;
 
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
