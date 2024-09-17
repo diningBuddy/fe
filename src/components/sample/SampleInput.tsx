@@ -5,7 +5,7 @@ import styled from "styled-components/native"; // Import the renamed Input compo
 
 const SampleInput = () => {
   return (
-      <ScrollViewContainer>
+      <ScrollViewContainer keyboardShouldPersistTaps="handled">
         <Input
             variant="default"
             label="default"
