@@ -72,7 +72,7 @@ const InputRow = styled.View`
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
   color: theme.color.global.neutral[800],
 }))`
-  margin: 6px 0 0 3px;
+  margin: 0 0 6px 3px;
 `;
 
 const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
@@ -87,6 +87,16 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
           : theme.color.sys.destructive.default;
     }
   }};
+  border-radius: ${({variant, state, theme}) => {
+    if (state === "focused") {
+      return "10px";
+    } else {
+      return "6px";
+    }
+  }};
+  padding: ${({state}) => {
+    return state === "focused" ? "4px" : "0px";
+  }};
   background-color: ${({variant, state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
@@ -98,10 +108,6 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
       }
     }
   }};
-  border-radius: 6px;
-  padding: ${({state}) => {
-    return state === "focused" ? "4px" : "0px";
-  }};
 `;
 
 const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
@@ -110,9 +116,6 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
   align-items: center;
   align-self: stretch;
   flex-direction: row;
-  background-color: ${({variant, state, theme}) => {
-    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
-  }};
   padding: 12px 14px;
   border: ${({state, variant, theme}) => {
     if (state === "focused") {
@@ -126,6 +129,9 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
     }
   }};
   border-radius: 6px;
+  background-color: ${({variant, state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
+  }};
 `;
 
 const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
@@ -142,10 +148,10 @@ const CloseButton = styled(TouchableOpacity)`
 `;
 
 const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
-  font-style: normal;
-  font-weight: 400;
   margin-left: 3px;
   margin-top: 5px;
+  font-style: normal;
+  font-weight: 400;
   color: ${({variant, theme}) =>
       variant === "destructive"
           ? theme.color.sys.destructive.default
