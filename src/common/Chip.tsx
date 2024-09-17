@@ -6,11 +6,11 @@ import ThemeStyle from "../styles/ThemeStyle";
 interface ChipProps {
   mode?: string;
   margin?: string;
-  selected?: boolean;
+  isSelected?: boolean;
   padding?: "sm" | "md" | "lg";
   height?: "sm" | "md" | "lg";
   theme?: (typeof ThemeStyle)["color"];
-  outline?: boolean;
+  isOutline?: boolean;
   children: React.ReactNode;
   color?: string;
   isPressed?: boolean;
@@ -28,10 +28,18 @@ const OUTLINE = "outline";
 export const TextChip = ({
   mode = MAIN,
   margin = "0",
-  selected = false,
+  isSelected = false,
   children,
+  height = "md",
+  isOutline = true,
 }: ChipProps) => (
-  <ChipBox margin={margin} selected={selected} mode={mode}>
+  <ChipBox
+    margin={margin}
+    isSelected={isSelected}
+    mode={mode}
+    isOutline={isOutline}
+    height={height}
+  >
     <StyledText>{children}</StyledText>
   </ChipBox>
 );
@@ -39,28 +47,36 @@ export const TextChip = ({
 export const OutlineChip = ({
   mode = SECONDARY,
   margin = "0",
-  selected = false,
+  isSelected = false,
+  height = "md",
   onPress,
   children,
+  isOutline = false,
 }: ChipProps) => (
   <ChipBox
     margin={margin}
-    selected={selected}
-    outline
+    isSelected={isSelected}
+    isOutline={isOutline}
     mode={mode}
     onPress={onPress}
+    height={height}
   >
-    <StyledText color={selected ? "black" : "red"}>{children}</StyledText>
+    <StyledText color={isSelected ? "black" : "red"}>{children}</StyledText>
   </ChipBox>
 );
 
 export const OutlineChipGray = ({
   margin = "0",
-  selected = false,
+  isSelected = false,
   onPress,
   children,
 }: ChipProps) => (
-  <ChipBoxGray margin={margin} selected={selected} outline onPress={onPress}>
+  <ChipBoxGray
+    margin={margin}
+    isSelected={isSelected}
+    isOutline
+    onPress={onPress}
+  >
     <StyledText>{children}</StyledText>
   </ChipBoxGray>
 );
@@ -68,9 +84,13 @@ export const OutlineChipGray = ({
 const ChipBox = styled(TouchableOpacity)<ChipProps>`
   justify-content: center;
   align-items: center;
-  padding: ${({ outline }) => (outline ? "12px 16px" : "8px 12px")};
-  background-color: ${({ selected, outline }) =>
-    selected ? (outline ? "red" : "black") : "pink"};
+
+  height: ${(props) =>
+    props.height === "lg" ? "40px" : props.height === "md" ? "36px" : "28px"};
+
+  padding: ${({ isOutline }) => (isOutline ? "12px 16px" : "8px 12px")};
+  background-color: ${({ isSelected, isOutline }) =>
+    isSelected ? (isOutline ? "red" : "black") : "pink"};
   background: ${({ theme, isDisabled, mode, isPressed }) => {
     if (isDisabled) return theme.color.tertiary.pressed;
     if (mode === MAIN && isPressed) return theme.color.sys.secondary.disabled;
@@ -78,9 +98,12 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
     if (mode === MAIN) return theme.color.global.neutral[100];
     return "transparent";
   }};
-  border-width: ${({ outline }) => (outline ? "1px" : 0)};
-  border-color: red;
-  border-radius: ${({ outline }) => (outline ? "24px" : "16px")};
+  border-width: ${({ isOutline }) => (isOutline ? "1px" : 0)};
+
+  border-color: ${({ theme, isOutline }) =>
+    isOutline ? theme.color.global.neutral[700] : "transparent"};
+
+  border-radius: ${({ isOutline }) => (isOutline ? "24px" : "16px")};
   margin: ${({ margin }) => margin};
   font-size: ${({ fontSize }) => {
     switch (fontSize) {
@@ -96,7 +119,7 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
 `;
 
 const ChipBoxGray = styled(ChipBox)`
-  border-color: ${({ selected }) => (selected ? "green" : "gray")};
+  border-color: ${({ isSelected }) => (isSelected ? "green" : "gray")};
 `;
 
 const StyledText = styled.Text<{
@@ -105,11 +128,23 @@ const StyledText = styled.Text<{
   isPressed?: boolean;
   mode?: string;
   isSquared?: boolean;
+  fontSize?: "sm" | "md" | "lg";
 }>`
   color: ${({ theme, isDisabled, isPressed, mode, isSquared }) => {
     if (isDisabled) return "#D9D9D9";
     if (isPressed && mode === OUTLINE_RED) return theme.color.theme.disabled;
     if (mode === OUTLINE || isSquared) return theme.color.theme.headingText;
     return theme.color.theme.textMain || theme.color.theme.headingText;
+  }};
+
+  font-size: ${({ fontSize }) => {
+    switch (fontSize) {
+      case "lg":
+        return "16px";
+      case "sm":
+        return "12px";
+      default:
+        return "14px";
+    }
   }};
 `;
