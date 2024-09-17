@@ -1,16 +1,6 @@
 import React, { useContext } from "react";
-import styled, {
-  ThemeProvider,
-  ThemeContext,
-  DefaultTheme,
-} from "styled-components/native";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TouchableOpacityProps,
-} from "react-native";
+import styled, { ThemeProvider, ThemeContext, DefaultTheme } from "styled-components/native";
+import { StyleSheet, Text, View, TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import ThemeStyle from "../styles/ThemeStyle";
@@ -26,8 +16,7 @@ const ListScreen = ({ navigation }: Props) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate(RouteNames.BROWSER);
-        }}
-      >
+        }}>
         <Text>SampleColor</Text>
       </TouchableOpacity>
       <SampleColor />
@@ -35,10 +24,7 @@ const ListScreen = ({ navigation }: Props) => {
   );
 };
 
-const ColorItem: React.FC<{ color: string; label: string }> = ({
-  color,
-  label,
-}) => (
+const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
   <ColorContainer>
     <StyledColor color={color} />
     <Text>{label}</Text>
@@ -70,8 +56,7 @@ const StyledButton = styled(TouchableOpacity)<{ color?: string }>`
   align-items: center;
   justify-content: center;
   height: 50px;
-  background-color: ${({ theme, color }) =>
-    color ? color : theme.color.sys.primary.default};
+  background-color: ${({ theme, color }) => (color ? color : theme.color.sys.primary.default)};
 `;
 
 const StyledText = styled.Text`
@@ -83,8 +68,7 @@ const StyledText = styled.Text`
 const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
-  background-color: ${({ color, theme }) =>
-    color ? color : theme.color.sys.primary.default};
+  background-color: ${({ color, theme }) => (color ? color : theme.color.sys.primary.default)};
 `;
 
 export default ListScreen;

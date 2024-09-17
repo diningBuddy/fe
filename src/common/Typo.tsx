@@ -15,15 +15,10 @@ const defaultFontSize = 16;
 const BaseText = styled.Text<TypoStyle>`
   margin: ${({ margin = "0" }) => margin};
   color: ${({ color, theme }) => color || theme.color.theme.main};
-  font-size: ${({ size, fontSize }) =>
-    size ? `${size}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`};
+  font-size: ${({ size, fontSize }) => (size ? `${size}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`)};
   font-weight: ${({ fontWeight }) => fontWeight || 400};
   line-height: ${({ lineHeight, fontSize }) =>
-    lineHeight
-      ? `${lineHeight}px`
-      : fontSize
-      ? `${fontSize}px`
-      : `${defaultFontSize}px`};
+    lineHeight ? `${lineHeight}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`};
   text-align: ${({ textAlign }) => textAlign || "left"};
 `;
 
