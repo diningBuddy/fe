@@ -1,0 +1,146 @@
+import React, {useContext, useEffect, useState} from "react";
+import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
+import {SearchIcon} from "../assets/icons/general";
+import {TextInput, TouchableOpacity} from "react-native";
+import {CircleClose} from "../assets/icons/shape";
+
+interface InputProps {
+  placeholder?: string;
+  isDisabled?: boolean;
+}
+
+const Search: React.FC<InputProps> = ({
+                                        placeholder = "원하는 식당을 검색해 보세요",
+                                        isDisabled = false,
+                                      }) => {
+  const theme = useContext(ThemeContext);
+  const [value, setValue] = useState("");
+  const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
+      isDisabled ? "disabled" : "initial"
+  );
+
+  useEffect(() => {
+    if (isDisabled) {
+      setState("disabled");
+    } else if (!value) {
+      setState("initial");
+    }
+  }, [value, isDisabled]);
+
+  const handleFocus = () => {
+    if (!isDisabled) {
+      setState("focused");
+    }
+  };
+
+  const handleBlur = () => {
+    if (!value && !isDisabled) {
+      setState("initial");
+    } else if (!isDisabled) {
+      setState("filled");
+    }
+  };
+
+  return (
+      <SearchRow>
+        <InputWrapper state={state} theme={theme}>
+          <InputContainer state={state} theme={theme}>
+            <StyledSearchIcon state={state}/>
+            <StyledInput
+                theme={theme}
+                placeholder={placeholder}
+                value={value}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                onChangeText={setValue}
+                editable={!isDisabled}
+            />
+            <CloseButton state={state} onPress={() => setValue("")}>
+              <CircleClose/>
+            </CloseButton>
+          </InputContainer>
+        </InputWrapper>
+      </SearchRow>
+  );
+};
+
+const SearchRow = styled.View`
+  margin-bottom: 24px;
+`;
+
+const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
+  border: 1px solid ${({state, theme}) => {
+    return state === "focused"
+        ? "transparent" :
+        theme.color.theme.border;
+  }};
+  border-radius: ${({state, theme}) => {
+    if (state === "focused") {
+      return "10px";
+    } else {
+      return "6px";
+    }
+  }};
+  padding: ${({state}) => {
+    return state === "focused" ? "4px" : "0px";
+  }};
+  background-color: ${({state, theme}) => {
+    if (state === "disabled") {
+      return theme.color.global.neutral[300];
+    } else {
+      return theme.color.sys.secondary.disabled;
+    }
+  }};
+`;
+
+const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  flex-direction: row;
+  padding: 12px 14px;
+  border: ${({state, theme}) => {
+    if (state === "focused") {
+      return `1px solid ${theme.color.sys.secondary.default}`;
+    } else {
+      return 'none';
+    }
+  }};
+  border-radius: 6px;
+  background-color: ${({state, theme}) => {
+    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
+  }};
+`;
+
+const StyledSearchIcon = styled(SearchIcon)`
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  opacity: ${({state}) => {
+    if (state === "initial" || state === "disabled") {
+      return 0.2; 
+    } else {
+      return 1;
+    }
+  }};
+  display: ${({state}) => (state === "focused" ? "none" : "flex")};
+`;
+
+const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
+  placeholderTextColor: theme.color.theme.disabled,
+}))`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16.94px;
+  color: ${({theme}) => theme.color.global.neutral[900]};
+  flex-grow: 1;
+  margin-left: 8px;
+`;
+
+const CloseButton = styled(TouchableOpacity)`
+  display: ${({state}) => (state === "initial" || state === "disabled" ? "none" : "flex")};
+`;
+
+export default Search;

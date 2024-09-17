@@ -16,12 +16,17 @@ import {ReactComponent as EyeSlashOutline} from './eye-slash-outline.svg';
 import {ReactComponent as EyeSlash} from './eye-slash.svg';
 import {ReactComponent as FunnelOutline} from './funnel-outline.svg';
 import {ReactComponent as Funnel} from './funnel.svg';
-import {ReactComponent as HandThumbDownOutline} from './hand-thumb-down-outline.svg';
+import {
+  ReactComponent as HandThumbDownOutline
+} from './hand-thumb-down-outline.svg';
 import {ReactComponent as HandThumbDown} from './hand-thumb-down.svg';
-import {ReactComponent as HandThumbUpOutline} from './hand-thumb-up-outline.svg';
-import {ReactComponent as HandThumbUp} from './hand-thumb-up-outline.svg';
+import {
+  ReactComponent as HandThumbUpOutline,
+  ReactComponent as HandThumbUp
+} from './hand-thumb-up-outline.svg';
 import {ReactComponent as HomeOutline} from './home-outline';
 import {ReactComponent as Home} from './home.svg';
+import SearchIcon from './search.svg';
 
 export {
   Bar2,
@@ -47,4 +52,5 @@ export {
   HandThumbUp,
   HomeOutline,
   Home,
+  SearchIcon,
 };
