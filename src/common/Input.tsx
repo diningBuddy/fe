@@ -9,7 +9,7 @@ interface InputProps {
   label?: string;
   description?: string;
   placeholder?: string;
-  disabled?: boolean;
+  isDisabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -17,23 +17,23 @@ const Input: React.FC<InputProps> = ({
                                        label = "",
                                        description = "",
                                        placeholder = "Type your message here",
-                                       disabled = false,
+                                       isDisabled = false,
                                      }) => {
   const theme = useContext(ThemeContext);
-  const [value, setValue] = useState(""); // 입력 값 관리
+  const [value, setValue] = useState(""); 
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
-      disabled ? "disabled" : "initial" // 초기 상태가 disabled일 경우 반영
+      isDisabled ? "disabled" : "initial"
   );
 
   useEffect(() => {
-    if (disabled) {
+    if (isDisabled) {
       setState("disabled");
     } else if (value) {
       setState("filled");
     } else if (!value && state === "filled") {
       setState("initial");
     }
-  }, [value, disabled]);
+  }, [value, isDisabled]);
 
   return (
       <InputRow>
@@ -44,12 +44,12 @@ const Input: React.FC<InputProps> = ({
                 theme={theme}
                 placeholder={placeholder}
                 value={value}
-                onFocus={() => !disabled && setState("focused")} // disabled 상태에서는 포커스 되지 않도록 처리
+                onFocus={() => !isDisabled && setState("focused")}
                 onBlur={() => {
-                  if (!value && !disabled) setState("initial"); // 포커스 해제 및 값 없을 시 initial로
+                  if (!value && !isDisabled) setState("initial");
                 }}
-                onChangeText={setValue} // 입력 시 값을 업데이트
-                editable={!disabled} // disabled 상태에서는 편집 불가
+                onChangeText={setValue}
+                editable={!isDisabled}
             />
             <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
               <CircleClose/>
