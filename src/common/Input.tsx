@@ -6,34 +6,36 @@ import {CircleClose} from "../assets/icons/shape";
 
 interface InputProps {
   variant?: "default" | "destructive";
-  state?: "initial" | "focused" | "disabled";
   label?: string;
   description?: string;
-  inputValue?: string;
   placeholder?: string;
+  isDisabled?: boolean;
+  isSuccess?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
                                        variant = "default",
-                                       state = "initial",
                                        label = "",
                                        description = "",
-                                       inputValue = "",
                                        placeholder = "Type your message here",
+                                       isDisabled = false,
+                                       isSuccess = false,
                                      }) => {
   const theme = useContext(ThemeContext);
-
-  // State to manage the value of the input fields
-  const [value, setValue] = useState(inputValue);
+  const [value, setValue] = useState("");
+  const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
+      isDisabled ? "disabled" : "initial"
+  );
 
   useEffect(() => {
-    setValue(inputValue);
-  }, [inputValue]);
-
-  // Function to clear the input field
-  const clearInput = () => {
-    setValue("");
-  };
+    if (isDisabled) {
+      setState("disabled");
+    } else if (value) {
+      setState("filled");
+    } else if (!value && state === "filled") {
+      setState("initial");
+    }
+  }, [value, isDisabled]);
 
   return (
       <InputRow>
@@ -44,17 +46,20 @@ const Input: React.FC<InputProps> = ({
                 theme={theme}
                 placeholder={placeholder}
                 value={value}
+                onFocus={() => !isDisabled && setState("focused")}
+                onBlur={() => {
+                  if (!value && !isDisabled) setState("initial");
+                }}
                 onChangeText={setValue}
-                editable={state !== "disabled"}
+                editable={!isDisabled}
             />
-
-            <CloseButton onPress={clearInput} disabled={state === "disabled"}>
+            <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
               <CircleClose/>
             </CloseButton>
           </InputContainer>
         </InputWrapper>
         {description && (
-            <DescriptionText variant={variant} theme={theme}>
+            <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
               {description}
             </DescriptionText>
         )}
@@ -63,13 +68,13 @@ const Input: React.FC<InputProps> = ({
 };
 
 const InputRow = styled.View`
-  margin-bottom: 24px; /* Increased margin to accommodate the description text */
+  margin-bottom: 24px;
 `;
 
 const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
   color: theme.color.global.neutral[800],
 }))`
-  margin: 6px 0 0 3px;
+  margin: 0 0 6px 3px;
 `;
 
 const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
@@ -84,7 +89,16 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
           : theme.color.sys.destructive.default;
     }
   }};
-  border-radius: 6px;
+  border-radius: ${({variant, state, theme}) => {
+    if (state === "focused") {
+      return "10px";
+    } else {
+      return "6px";
+    }
+  }};
+  padding: ${({state}) => {
+    return state === "focused" ? "4px" : "0px";
+  }};
   background-color: ${({variant, state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
@@ -95,9 +109,6 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
         return theme.color.sys.destructive.disabled;
       }
     }
-  }};
-  padding: ${({state}) => {
-    return state === "focused" ? "4px" : "0px";
   }};
 `;
 
@@ -119,10 +130,10 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return 'none';
     }
   }};
+  border-radius: 6px;
   background-color: ${({variant, state, theme}) => {
     return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
   }};
-  border-radius: 6px;
 `;
 
 const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
@@ -132,7 +143,6 @@ const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) =
   font-style: normal;
   font-weight: 400;
   line-height: 16.94px;
-
   color: ${({theme}) => theme.color.global.neutral[900]};
 `;
 
@@ -140,15 +150,15 @@ const CloseButton = styled(TouchableOpacity)`
 `;
 
 const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
-  font-style: normal;
-  font-weight: 400;
-
   margin-left: 3px;
   margin-top: 5px;
-  color: ${({variant, theme}) =>
-      variant === "destructive"
-          ? theme.color.sys.destructive.default
-          : theme.color.global.neutral[700]};
+  font-style: normal;
+  font-weight: 400;
+  color: ${({isSuccess, variant, theme}) =>
+      isSuccess ? theme.color.global.green[600]
+          : variant === "destructive"
+              ? theme.color.sys.destructive.default
+              : theme.color.global.neutral[700]};
 `
 
 export default Input;
