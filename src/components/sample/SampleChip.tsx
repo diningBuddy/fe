@@ -11,27 +11,55 @@ const SampleChip = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.buttonGroup}>
-        <TextChip height="sm">텍스트영역</TextChip>
-        <TextChip>텍스트영역</TextChip>
-        <TextChip height="lg">텍스트영역</TextChip>
-        <TextChip height="lg" isDisabled>
-          텍스트영역
-        </TextChip>
-      </View>
+      {/* 둥근 팁 */}
+      <View style={styles.chipGroupWrap}>
+        <View style={styles.buttonGroup}>
+          <TextChip height="sm">텍스트영역</TextChip>
+          <TextChip>텍스트영역</TextChip>
+          <TextChip height="lg">텍스트영역</TextChip>
+          <TextChip height="lg" isDisabled>
+            텍스트영역
+          </TextChip>
+        </View>
 
-      <View style={styles.buttonGroup}>
-        <OutlineChip isSquared height="sm">
-          텍스트영역
-        </OutlineChip>
-        <OutlineChip isSquared>텍스트영역</OutlineChip>
-        <OutlineChip isSquared>텍스트영역</OutlineChip>
-        <OutlineChip height="lg" isSquared>
-          텍스트영역
-        </OutlineChip>
-        <OutlineChip height="lg" isSquared isDisabled>
-          텍스트영역
-        </OutlineChip>
+        {/* 네모 팁 */}
+        <View style={styles.buttonGroup}>
+          <TextChip isSquared height="sm">
+            텍스트영역
+          </TextChip>
+          <TextChip isSquared>텍스트영역</TextChip>
+          <TextChip isSquared height="lg">
+            텍스트영역
+          </TextChip>
+          <TextChip isSquared height="lg" isDisabled>
+            텍스트영역
+          </TextChip>
+        </View>
+      </View>
+      <View style={styles.chipGroupWrap}>
+        {/* 둥근 칩 */}
+        <View style={styles.buttonGroup}>
+          <OutlineChip height="sm">텍스트 SM</OutlineChip>
+          <OutlineChip>텍스트 MD</OutlineChip>
+          <OutlineChip height="lg">텍스트 LG</OutlineChip>
+          <OutlineChip height="lg" isDisabled>
+            텍스트영역
+          </OutlineChip>
+        </View>
+
+        {/* 네모 칩 */}
+        <View style={styles.buttonGroup}>
+          <OutlineChip isSquared height="sm">
+            텍스트영역
+          </OutlineChip>
+          <OutlineChip isSquared>텍스트영역</OutlineChip>
+          <OutlineChip height="lg" isSquared>
+            텍스트영역
+          </OutlineChip>
+          <OutlineChip height="lg" isSquared isDisabled>
+            텍스트영역
+          </OutlineChip>
+        </View>
       </View>
     </ScrollView>
   );
@@ -42,10 +70,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 24,
+    backgroundColor: "#ffffff",
+  },
+  chipGroupWrap: {
+    flexDirection: "row",
+    padding: 24,
     gap: 12,
   },
   buttonGroup: {
-    // flexDirection: "row",
     margin: 8,
     gap: 12,
   },
