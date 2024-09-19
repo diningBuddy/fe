@@ -11,65 +11,6 @@ const SampleChip = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* 둥근 팁 */}
-      <View style={styles.chipGroupWrap}>
-        <View style={styles.buttonGroup}>
-          <TextChip
-            height="sm"
-            isSelected={pressed === "text1"}
-            onPress={() => handlePress("text1")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip
-            isSelected={pressed === "text2"}
-            onPress={() => handlePress("text2")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip
-            height="lg"
-            isSelected={pressed === "text3"}
-            onPress={() => handlePress("text3")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip height="lg" isDisabled>
-            텍스트영역
-          </TextChip>
-        </View>
-
-        {/* 네모 팁 */}
-        <View style={styles.buttonGroup}>
-          <TextChip
-            isSquared
-            height="sm"
-            isSelected={pressed === "square1"}
-            onPress={() => handlePress("square1")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip
-            isSquared
-            isSelected={pressed === "square2"}
-            onPress={() => handlePress("square2")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip
-            isSquared
-            height="lg"
-            isSelected={pressed === "square3"}
-            onPress={() => handlePress("square3")}
-          >
-            텍스트영역
-          </TextChip>
-          <TextChip isSquared height="lg" isDisabled>
-            텍스트영역
-          </TextChip>
-        </View>
-      </View>
-
       <View style={styles.chipGroupWrap}>
         {/* 둥근 칩 */}
         <View style={styles.buttonGroup}>
@@ -126,6 +67,64 @@ const SampleChip = () => {
           <OutlineChip isSquared height="lg" isDisabled>
             텍스트영역
           </OutlineChip>
+        </View>
+      </View>
+      {/* 둥근 팁 */}
+      <View style={styles.chipGroupWrap}>
+        <View style={styles.buttonGroup}>
+          <TextChip
+            height="sm"
+            isSelected={pressed === "text1"}
+            onPress={() => handlePress("text1")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip
+            isSelected={pressed === "text2"}
+            onPress={() => handlePress("text2")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip
+            height="lg"
+            isSelected={pressed === "text3"}
+            onPress={() => handlePress("text3")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip height="lg" isDisabled>
+            텍스트영역
+          </TextChip>
+        </View>
+
+        {/* 네모 팁 */}
+        <View style={styles.buttonGroup}>
+          <TextChip
+            isSquared
+            height="sm"
+            isSelected={pressed === "square1"}
+            onPress={() => handlePress("square1")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip
+            isSquared
+            isSelected={pressed === "square2"}
+            onPress={() => handlePress("square2")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip
+            isSquared
+            height="lg"
+            isSelected={pressed === "square3"}
+            onPress={() => handlePress("square3")}
+          >
+            텍스트영역
+          </TextChip>
+          <TextChip isSquared height="lg" isDisabled>
+            텍스트영역
+          </TextChip>
         </View>
       </View>
     </ScrollView>

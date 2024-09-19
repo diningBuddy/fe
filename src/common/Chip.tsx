@@ -4,8 +4,7 @@ import { TouchableOpacity } from "react-native";
 import ThemeStyle from "../styles/ThemeStyle";
 
 interface ChipProps {
-  mode?: string;
-  margin?: string;
+  mode?: "outline" | "noOutline";
   isSelected?: boolean;
   padding?: "sm" | "md" | "lg";
   height?: "sm" | "md" | "lg";
@@ -20,14 +19,8 @@ interface ChipProps {
   onPress?: () => void;
 }
 
-const MAIN = "main";
-const SECONDARY = "secondary";
-const OUTLINE_RED = "outlineRed";
-const OUTLINE = "outline";
-
-export const TextChip = ({
-  mode = MAIN,
-  margin = "0",
+export const OutlineChip = ({
+  mode = "outline",
   isSelected = false,
   children,
   height = "md",
@@ -38,7 +31,6 @@ export const TextChip = ({
   onPress,
 }: ChipProps) => (
   <ChipBox
-    margin={margin}
     isSelected={isSelected}
     mode={mode}
     isOutline={isOutline}
@@ -54,9 +46,8 @@ export const TextChip = ({
   </ChipBox>
 );
 
-export const OutlineChip = ({
-  mode = SECONDARY,
-  margin = "0",
+export const TextChip = ({
+  mode = "noOutline",
   isSelected = false,
   height = "md",
   isDisabled = false,
@@ -67,7 +58,6 @@ export const OutlineChip = ({
   fontSize = "md",
 }: ChipProps) => (
   <ChipBox
-    margin={margin}
     isSelected={isSelected}
     isOutline={isOutline}
     isDisabled={isDisabled}
@@ -94,22 +84,28 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
 
   background-color: ${({ isDisabled, isSelected, theme }) =>
     isDisabled
-      ? "pink"
+      ? "red"
       : isSelected
         ? theme.color.sys.primary.default
         : "transparent"};
 
   background: ${({ theme, isDisabled, mode, isPressed, isSelected }) => {
     if (isDisabled) return theme.color.sys.tertiary.pressed;
-    if (mode === MAIN && isSelected) return theme.color.sys.primary.disabled;
-    if (mode === SECONDARY && isSelected)
-      return theme.color.global.neutral[900];
-    if (mode === MAIN && isPressed) return theme.color.sys.secondary.disabled;
-    if (mode === SECONDARY && isPressed)
-      return theme.color.sys.tertiary.default;
-    if (mode === SECONDARY) return theme.color.global.neutral[300];
-    if (mode === MAIN) return theme.color.global.neutral[100];
-    return "transparent";
+
+    const backgroundMap: Record<"outline" | "noOutline", string> = {
+      outline: isSelected
+        ? theme.color.sys.primary.disabled
+        : isPressed
+          ? theme.color.sys.noOutline.disabled
+          : theme.color.global.neutral[100],
+      noOutline: isSelected
+        ? theme.color.global.neutral[900]
+        : isPressed
+          ? theme.color.sys.tertiary.default
+          : theme.color.global.neutral[300],
+    };
+
+    return backgroundMap[mode || "outline"];
   }};
 
   border-width: ${({ isOutline }) => (isOutline ? "1px" : 0)};
@@ -121,8 +117,6 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
         : "transparent"};
 
   border-radius: ${({ isSquared }) => (isSquared ? "6px" : "72px")};
-
-  margin: ${({ margin }) => margin};
 
   ${({ isDisabled }) => isDisabled && `pointer-events: none;`}
 `;
@@ -136,20 +130,19 @@ const StyledText = styled.Text<{
   isSquared?: boolean;
   fontSize?: "sm" | "md" | "lg";
 }>`
-  color: ${({ theme, isDisabled, isPressed, mode, isSquared, isSelected }) => {
+  color: ${({ theme, isDisabled, isSelected, mode }) => {
     if (isDisabled) return "#D9D9D9";
 
-    if (isSelected) {
-      if (mode === MAIN) return theme.color.sys.primary.default;
-      if (mode === SECONDARY) return theme.color.global.neutral[100];
-    }
-    // if (isPressed && mode === OUTLINE_RED) return theme.color.theme.disabled;
-    if (isPressed && mode === OUTLINE_RED) return theme.color.theme.headingText;
-    if (mode === MAIN && isSelected) return theme.color.sys.primary.default;
-    if (mode === SECONDARY && isSelected)
-      return theme.color.global.neutral[100];
-    if (mode === OUTLINE || isSquared) return theme.color.theme.headingText;
-    return theme.color.theme.headingText;
+    const colorMap: Record<"outline" | "noOutline", string> = {
+      outline: isSelected
+        ? theme.color.sys.primary.default
+        : theme.color.theme.headingText,
+      noOutline: isSelected
+        ? theme.color.global.neutral[100]
+        : theme.color.theme.headingText,
+    };
+
+    return colorMap[mode || "outline"];
   }};
 
   font-size: ${({ fontSize }) => {
