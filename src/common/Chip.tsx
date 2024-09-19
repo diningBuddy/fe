@@ -35,6 +35,7 @@ export const TextChip = ({
   isDisabled = false,
   isSquared = false,
   fontSize = "md",
+  onPress,
 }: ChipProps) => (
   <ChipBox
     margin={margin}
@@ -45,8 +46,11 @@ export const TextChip = ({
     isDisabled={isDisabled}
     isSquared={isSquared}
     fontSize={fontSize}
+    onPress={onPress}
   >
-    <StyledText>{children}</StyledText>
+    <StyledText isSelected={isSelected} mode={mode}>
+      {children}
+    </StyledText>
   </ChipBox>
 );
 
@@ -73,24 +77,10 @@ export const OutlineChip = ({
     height={height}
     fontSize={fontSize}
   >
-    <StyledText color={isSelected ? "black" : "red"}>{children}</StyledText>
+    <StyledText isSelected={isSelected} mode={mode}>
+      {children}
+    </StyledText>
   </ChipBox>
-);
-
-export const OutlineChipGray = ({
-  margin = "0",
-  isSelected = false,
-  onPress,
-  children,
-}: ChipProps) => (
-  <ChipBoxGray
-    margin={margin}
-    isSelected={isSelected}
-    isOutline
-    onPress={onPress}
-  >
-    <StyledText>{children}</StyledText>
-  </ChipBoxGray>
 );
 
 const ChipBox = styled(TouchableOpacity)<ChipProps>`
@@ -102,11 +92,18 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
 
   padding: ${({ isOutline }) => (isOutline ? "12px 16px" : "8px 12px")};
 
-  background-color: ${({ isDisabled, isSelected, isOutline }) =>
-    isDisabled ? "pink" : isSelected ? (isOutline ? "red" : "black") : "pink"};
+  background-color: ${({ isDisabled, isSelected, theme }) =>
+    isDisabled
+      ? "pink"
+      : isSelected
+        ? theme.color.sys.primary.default
+        : "transparent"};
 
-  background: ${({ theme, isDisabled, mode, isPressed }) => {
+  background: ${({ theme, isDisabled, mode, isPressed, isSelected }) => {
     if (isDisabled) return theme.color.sys.tertiary.pressed;
+    if (mode === MAIN && isSelected) return theme.color.sys.primary.disabled;
+    if (mode === SECONDARY && isSelected)
+      return theme.color.global.neutral[900];
     if (mode === MAIN && isPressed) return theme.color.sys.secondary.disabled;
     if (mode === SECONDARY && isPressed)
       return theme.color.sys.tertiary.default;
@@ -114,10 +111,14 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
     if (mode === MAIN) return theme.color.global.neutral[100];
     return "transparent";
   }};
-  border-width: ${({ isOutline }) => (isOutline ? "1px" : 0)};
 
-  border-color: ${({ theme, isOutline }) =>
-    isOutline ? theme.color.global.neutral[700] : "transparent"};
+  border-width: ${({ isOutline }) => (isOutline ? "1px" : 0)};
+  border-color: ${({ theme, isSelected, isOutline }) =>
+    isSelected
+      ? theme.color.sys.primary.default
+      : isOutline
+        ? theme.color.global.neutral[700]
+        : "transparent"};
 
   border-radius: ${({ isSquared }) => (isSquared ? "6px" : "72px")};
 
@@ -126,23 +127,27 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
   ${({ isDisabled }) => isDisabled && `pointer-events: none;`}
 `;
 
-const ChipBoxGray = styled(ChipBox)`
-  border-color: ${({ isSelected }) => (isSelected ? "green" : "gray")};
-`;
-
 const StyledText = styled.Text<{
   color?: string;
+  isSelected?: boolean;
   isDisabled?: boolean;
   isPressed?: boolean;
   mode?: string;
   isSquared?: boolean;
   fontSize?: "sm" | "md" | "lg";
 }>`
-  color: ${({ theme, isDisabled, isPressed, mode, isSquared }) => {
+  color: ${({ theme, isDisabled, isPressed, mode, isSquared, isSelected }) => {
     if (isDisabled) return "#D9D9D9";
+
+    if (isSelected) {
+      if (mode === MAIN) return theme.color.sys.primary.default;
+      if (mode === SECONDARY) return theme.color.global.neutral[100];
+    }
     // if (isPressed && mode === OUTLINE_RED) return theme.color.theme.disabled;
     if (isPressed && mode === OUTLINE_RED) return theme.color.theme.headingText;
-
+    if (mode === MAIN && isSelected) return theme.color.sys.primary.default;
+    if (mode === SECONDARY && isSelected)
+      return theme.color.global.neutral[100];
     if (mode === OUTLINE || isSquared) return theme.color.theme.headingText;
     return theme.color.theme.headingText;
   }};
