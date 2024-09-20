@@ -16,39 +16,35 @@ const HomeScreen = ({ navigation }: Props) => {
       <SampleBtn
         onPress={() => {
           navigation.navigate(RouteNames.SAMPLE_COLOR);
-        }}
-      >
+        }}>
         <HeadingSemiBold24>Sample Color</HeadingSemiBold24>
       </SampleBtn>
 
       <SampleBtn
         onPress={() => {
           navigation.navigate(RouteNames.SAMPLE_FONT);
-        }}
-      >
+        }}>
         <HeadingSemiBold24>Sample Font</HeadingSemiBold24>
       </SampleBtn>
       <SampleBtn
         onPress={() => {
           navigation.navigate(RouteNames.SAMPLE_BUTTON);
-        }}
-      >
+        }}>
         <HeadingSemiBold24>Sample Button</HeadingSemiBold24>
       </SampleBtn>
 
       <SampleBtn
         onPress={() => {
           navigation.navigate(RouteNames.SAMPLE_INPUT);
-        }}
-      >
+        }}>
         <HeadingSemiBold24>Sample Input</HeadingSemiBold24>
       </SampleBtn>
+
       <SampleBtn
         onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_CHIP);
-        }}
-      >
-        <HeadingSemiBold24>Sample Chip</HeadingSemiBold24>
+          navigation.navigate(RouteNames.SAMPLE_TEXTAREA);
+        }}>
+        <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
       </SampleBtn>
     </View>
   );

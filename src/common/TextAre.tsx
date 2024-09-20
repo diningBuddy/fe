@@ -1,31 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
-import { TextInput, TouchableOpacity } from "react-native";
 import { BodyMedium14, BodyRegular12 } from "./Typo";
-import { CircleClose } from "../assets/icons/shape";
+import { TextInput } from "react-native";
 
-interface InputProps {
+interface TextAreaProps {
   variant?: "default" | "destructive";
   label?: string;
   description?: string;
   placeholder?: string;
   isDisabled?: boolean;
   isSuccess?: boolean;
+  maxLength?: number;
 }
 
-const Input: React.FC<InputProps> = ({
+const TextArea: React.FC<TextAreaProps> = ({
   variant = "default",
   label = "",
   description = "",
   placeholder = "Type your message here",
   isDisabled = false,
   isSuccess = false,
+  maxLength = 200,
 }) => {
   const theme = useContext(ThemeContext);
   const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
     isDisabled ? "disabled" : "initial"
   );
+  const [charCount, setCharCount] = useState(0);
 
   useEffect(() => {
     if (isDisabled) {
@@ -37,32 +39,42 @@ const Input: React.FC<InputProps> = ({
     }
   }, [value, isDisabled]);
 
+  const handleTextChange = (text: string) => {
+    setValue(text);
+    setCharCount(text.length);
+  };
+
   return (
     <InputRow>
       {label && <Label theme={theme}>{label}</Label>}
       <InputWrapper variant={variant} state={state} theme={theme}>
-        <InputContainer variant={variant} state={state} theme={theme}>
-          <StyledInput
+        <TextAreaContainer variant={variant} state={state} theme={theme}>
+          <StyledTextArea
             theme={theme}
             placeholder={placeholder}
             value={value}
             onFocus={() => !isDisabled && setState("focused")}
             onBlur={() => {
               if (!value && !isDisabled) setState("initial");
+              else if (!isDisabled) setState("filled");
             }}
-            onChangeText={setValue}
-            editable={!isDisabled}
+            onChangeText={handleTextChange}
+            editable={state !== "disabled"}
+            multiline={true}
+            maxLength={maxLength}
           />
-          <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
-            <CircleClose />
-          </CloseButton>
-        </InputContainer>
+        </TextAreaContainer>
       </InputWrapper>
-      {description && (
-        <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
-          {description}
-        </DescriptionText>
-      )}
+      <DescriptionRow>
+        {description && (
+          <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
+            {description}
+          </DescriptionText>
+        )}
+        <CharCounter theme={theme}>
+          {charCount}/{maxLength}
+        </CharCounter>
+      </DescriptionRow>
     </InputRow>
   );
 };
@@ -77,7 +89,7 @@ const Label = styled(BodyMedium14).attrs(({ theme }: { theme: DefaultTheme }) =>
   margin: 0 0 6px 3px;
 `;
 
-const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
+const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
   border: 1px solid
     ${({ variant, state, theme }) => {
       if (variant === "default") {
@@ -109,7 +121,7 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   }};
 `;
 
-const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
+const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -125,30 +137,38 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return "none";
     }
   }};
-
   border-radius: 6px;
   background-color: ${({ variant, state, theme }) => {
     return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
   }};
 `;
 
-const StyledInput = styled(TextInput).attrs(({ theme }: { theme: DefaultTheme }) => ({
+const StyledTextArea = styled(TextInput).attrs(({ theme }: { theme: DefaultTheme }) => ({
   placeholderTextColor: theme.color.theme.disabled,
 }))`
+  margin: 0 0 -4px 0;
+  flex: 1;
+  height: 80px;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 16.94px;
-
   color: ${({ theme }) => theme.color.global.neutral[900]};
+  text-align-vertical: top;
 `;
 
-const CloseButton = styled(TouchableOpacity)``;
-
-const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
-  margin-left: 3px;
+const DescriptionRow = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 5px;
+`;
 
+const DescriptionText = styled(BodyRegular12)<TextAreaProps & { theme: DefaultTheme }>`
+  margin: 6px 0 0 3px;
+  flex: 3;
+  flex-wrap: wrap;
+  word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
   color: ${({ isSuccess, variant, theme }) =>
@@ -159,4 +179,11 @@ const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme
         : theme.color.global.neutral[700]};
 `;
 
-export default Input;
+const CharCounter = styled(BodyRegular12)`
+  text-align: right;
+  margin-top: 5px;
+  flex: 1;
+  color: ${({ theme }) => theme.color.global.neutral[600]};
+`;
+
+export default TextArea;
