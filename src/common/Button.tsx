@@ -34,16 +34,15 @@ export const Button: React.FC<ButtonStyle> = (props) => {
   const theme = props.theme || ThemeStyle.color;
   const loadingFill1 = props.mode === OUTLINE ? "#727272" : "#BEBEBE";
 
-  const loadingFill2 =
-    props.mode === OUTLINE ? "#BEBEBE" : theme.global.neutral[100];
+  const loadingFill2 = props.mode === OUTLINE ? "#BEBEBE" : theme.global.neutral[100];
 
   const pencilIconFill = props.isDisabled
     ? theme.global.neutral[900]
     : isPressed && props.mode === OUTLINE
-    ? theme.sys.primary.default
-    : props.mode === OUTLINE
-    ? theme.global.neutral[900]
-    : theme.global.neutral[100];
+      ? theme.sys.primary.default
+      : props.mode === OUTLINE
+        ? theme.global.neutral[900]
+        : theme.global.neutral[100];
   const iconOpacity = props.isDisabled ? "0.25" : "1";
 
   const getSvgSize = (height: string) => {
@@ -59,9 +58,7 @@ export const Button: React.FC<ButtonStyle> = (props) => {
     }
   };
 
-  const renderIcon = (
-    IconComponent: React.ComponentType<SvgProps> | undefined
-  ) => {
+  const renderIcon = (IconComponent: React.ComponentType<SvgProps> | undefined) => {
     if (IconComponent) {
       return (
         <IconComponent
@@ -79,8 +76,7 @@ export const Button: React.FC<ButtonStyle> = (props) => {
       {...props}
       isPressed={isPressed}
       onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-    >
+      onPressOut={() => setIsPressed(false)}>
       {props.isLoading && (
         <IconContainer>
           <LoadingIcon fill1={loadingFill1} fill2={loadingFill2} />
@@ -91,8 +87,7 @@ export const Button: React.FC<ButtonStyle> = (props) => {
           width={getSvgSize(props.height || "md")}
           height={getSvgSize(props.height || "md")}
           viewBox="0 0 18 18"
-          fill="none"
-        >
+          fill="none">
           <Path
             d="M16.2984 1.70163C15.5295 0.932789 14.283 0.932789 13.5141 1.70163L12.6463 2.5695L15.4305 5.35373L16.2984 4.48587C17.0672 3.71702 17.0672 2.47048 16.2984 1.70163Z"
             fill={pencilIconFill}
@@ -145,29 +140,18 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   align-items: center;
 
   width: ${(props: { height: string; isCircle: boolean }) =>
-    props.isCircle
-      ? props.height === "lg"
-        ? "48px"
-        : props.height === "md"
-        ? "42px"
-        : "34px"
-      : "auto"};
+    props.isCircle ? (props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px") : "auto"};
 
-  height: ${(props: { height: string }) =>
-    props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px"};
+  height: ${(props: { height: string }) => (props.height === "lg" ? "48px" : props.height === "md" ? "42px" : "34px")};
 
-  padding: ${(props: { isCircle: boolean }) =>
-    props.isCircle ? "0" : "12px 14px"};
+  padding: ${(props: { isCircle: boolean }) => (props.isCircle ? "0" : "12px 14px")};
 
   margin: ${(props: { margin: any }) => props.margin || "0"};
 
   border: ${(props) => {
     if (props.isLoading && props.mode === OUTLINE) {
       return props.theme.color.sys.tertiary.default;
-    } else if (
-      props.isPencil &&
-      (props.mode === MAIN || props.mode === SECONDARY)
-    ) {
+    } else if (props.isPencil && (props.mode === MAIN || props.mode === SECONDARY)) {
       return "0";
     }
     if (props.isDisabled) {
@@ -185,13 +169,7 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   }};
 
   border-radius: ${(props) =>
-    props.isCircle
-      ? props.height === "lg"
-        ? "24px"
-        : props.height === "md"
-        ? "21px"
-        : "17px"
-      : "6px"};
+    props.isCircle ? (props.height === "lg" ? "24px" : props.height === "md" ? "21px" : "17px") : "6px"};
 
   background: ${(props) => {
     if (props.isLoading && props.isDisabled) {
@@ -219,9 +197,7 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
 
     switch (props.mode) {
       case MAIN:
-        return props.isPencil
-          ? props.theme.color.global.neutral[100]
-          : props.theme.color.sys.primary.default;
+        return props.isPencil ? props.theme.color.global.neutral[100] : props.theme.color.sys.primary.default;
 
       case SECONDARY:
         return props.theme.color.sys.secondary.pressed;
@@ -275,12 +251,7 @@ export const ButtonText = styled.Text<ButtonStyle>`
     }
   }};
 
-  font-size: ${(props) =>
-    props.fontSize === "lg"
-      ? "16px"
-      : props.fontSize === "sm"
-      ? "12px"
-      : "14px"};
+  font-size: ${(props) => (props.fontSize === "lg" ? "16px" : props.fontSize === "sm" ? "12px" : "14px")};
   font-weight: 600;
   text-decoration: ${(props) => (props.isUnderLine ? "underline" : "none")};
 `;
