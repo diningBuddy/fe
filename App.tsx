@@ -16,7 +16,7 @@ import SampleColor from "./src/components/sample/SampleColor";
 import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
-import SampleChip from "./src/components/sample/SampleChip";
+import SampleTextArea from "./src/components/sample/SampleTextArea";
 
 export type Props = {
   label: string;
@@ -45,26 +45,13 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
     <ThemeProvider theme={ThemeStyle}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-            name={RouteNames.HOME_TAB}
-            component={HomeTab}
-            options={{ headerShown: false }}
-          />
+          <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
           <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
-          <Stack.Screen
-            name={RouteNames.SAMPLE_COLOR}
-            component={SampleColor}
-          />
+          <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
-          <Stack.Screen
-            name={RouteNames.SAMPLE_BUTTON}
-            component={SampleButton}
-          />
-          <Stack.Screen
-            name={RouteNames.SAMPLE_INPUT}
-            component={SampleInput}
-          />
-          <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
+          <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
+          <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
+          <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
