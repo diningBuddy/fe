@@ -47,7 +47,6 @@ const SampleChip = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* map */}
       <View style={styles.chipGroupList}>
         {itemList.map((item) => (
           <View key={item.id}>
@@ -61,7 +60,6 @@ const SampleChip = () => {
         ))}
       </View>
 
-      {/* textChip map */}
       <View style={styles.chipGroupList}>
         {itemList2.map((item) => (
           <View key={item.id}>
@@ -76,7 +74,6 @@ const SampleChip = () => {
       </View>
 
       <View style={styles.chipGroupWrap}>
-        {/* 둥근 칩 */}
         <View style={styles.buttonGroup}>
           <OutlineChip
             height="sm"
@@ -103,7 +100,6 @@ const SampleChip = () => {
           </OutlineChip>
         </View>
 
-        {/* 네모 칩 */}
         <View style={styles.buttonGroup}>
           <OutlineChip
             isSquared
@@ -134,7 +130,6 @@ const SampleChip = () => {
         </View>
       </View>
 
-      {/* 둥근 팁 */}
       <View style={styles.chipGroupWrap}>
         <View style={styles.buttonGroup}>
           <TextChip
@@ -162,7 +157,6 @@ const SampleChip = () => {
           </TextChip>
         </View>
 
-        {/* 네모 팁 */}
         <View style={styles.buttonGroup}>
           <TextChip
             isSquared

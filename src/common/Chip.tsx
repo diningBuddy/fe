@@ -4,16 +4,16 @@ import { TouchableOpacity } from "react-native";
 import ThemeStyle from "../styles/ThemeStyle";
 
 interface ChipProps {
+  children: React.ReactNode;
   mode?: "outline" | "noOutline";
-  isSelected?: boolean;
+  theme?: (typeof ThemeStyle)["color"];
+  color?: string;
   padding?: "sm" | "md" | "lg";
   height?: "sm" | "md" | "lg";
-  theme?: (typeof ThemeStyle)["color"];
-  isOutline?: boolean;
-  children: React.ReactNode;
-  color?: string;
-  isPressed?: boolean;
   fontSize?: "sm" | "md" | "lg";
+  isOutline?: boolean;
+  isPressed?: boolean;
+  isSelected?: boolean;
   isDisabled?: boolean;
   isSquared?: boolean;
   onPress?: () => void;
