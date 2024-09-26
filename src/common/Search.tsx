@@ -22,8 +22,6 @@ const Search: React.FC<InputProps> = ({
   useEffect(() => {
     if (isDisabled) {
       setState("disabled");
-    } else if (!value) {
-      setState("initial");
     }
   }, [value, isDisabled]);
 
