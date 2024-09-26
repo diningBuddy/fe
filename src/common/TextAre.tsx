@@ -1,7 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
-import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
-import {BodyMedium14, BodyRegular12} from "./Typo";
-import {TextInput} from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
+import { BodyMedium14, BodyRegular12 } from "./Typo";
+import { TextInput } from "react-native";
 
 interface TextAreaProps {
   variant?: "default" | "destructive";
@@ -14,18 +14,18 @@ interface TextAreaProps {
 }
 
 const TextArea: React.FC<TextAreaProps> = ({
-                                             variant = "default",
-                                             label = "",
-                                             description = "",
-                                             placeholder = "Type your message here",
-                                             isDisabled = false,
-                                             isSuccess = false,
-                                             maxLength = 200,
-                                           }) => {
+  variant = "default",
+  label = "",
+  description = "",
+  placeholder = "Type your message here",
+  isDisabled = false,
+  isSuccess = false,
+  maxLength = 200,
+}) => {
   const theme = useContext(ThemeContext);
   const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
-      isDisabled ? "disabled" : "initial"
+    isDisabled ? "disabled" : "initial"
   );
   const [charCount, setCharCount] = useState(0);
 
@@ -45,37 +45,37 @@ const TextArea: React.FC<TextAreaProps> = ({
   };
 
   return (
-      <InputRow>
-        {label && <Label theme={theme}>{label}</Label>}
-        <InputWrapper variant={variant} state={state} theme={theme}>
-          <TextAreaContainer variant={variant} state={state} theme={theme}>
-            <StyledTextArea
-                theme={theme}
-                placeholder={placeholder}
-                value={value}
-                onFocus={() => !isDisabled && setState("focused")}
-                onBlur={() => {
-                  if (!value && !isDisabled) setState("initial");
-                  else if (!isDisabled) setState("filled");
-                }}
-                onChangeText={handleTextChange}
-                editable={state !== "disabled"}
-                multiline={true}
-                maxLength={maxLength}
-            />
-          </TextAreaContainer>
-        </InputWrapper>
-        <DescriptionRow>
-          {description && (
-              <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
-                {description}
-              </DescriptionText>
-          )}
-          <CharCounter theme={theme}>
-            {charCount}/{maxLength}
-          </CharCounter>
-        </DescriptionRow>
-      </InputRow>
+    <InputRow>
+      {label && <Label theme={theme}>{label}</Label>}
+      <InputWrapper variant={variant} state={state} theme={theme}>
+        <TextAreaContainer variant={variant} state={state} theme={theme}>
+          <StyledTextArea
+            theme={theme}
+            placeholder={placeholder}
+            value={value}
+            onFocus={() => !isDisabled && setState("focused")}
+            onBlur={() => {
+              if (!value && !isDisabled) setState("initial");
+              else if (!isDisabled) setState("filled");
+            }}
+            onChangeText={handleTextChange}
+            editable={state !== "disabled"}
+            multiline={true}
+            maxLength={maxLength}
+          />
+        </TextAreaContainer>
+      </InputWrapper>
+      <DescriptionRow>
+        {description && (
+          <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
+            {description}
+          </DescriptionText>
+        )}
+        <CharCounter theme={theme}>
+          {charCount}/{maxLength}
+        </CharCounter>
+      </DescriptionRow>
+    </InputRow>
   );
 };
 
@@ -83,35 +83,32 @@ const InputRow = styled.View`
   margin-bottom: 24px;
 `;
 
-const Label = styled(BodyMedium14).attrs(({theme}: { theme: DefaultTheme }) => ({
+const Label = styled(BodyMedium14).attrs(({ theme }: { theme: DefaultTheme }) => ({
   color: theme.color.global.neutral[800],
 }))`
   margin: 0 0 6px 3px;
 `;
 
 const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
-  border: 1px solid ${({variant, state, theme}) => {
-    if (variant === "default") {
-      return state === "focused"
-          ? "transparent" :
-          theme.color.theme.border;
-    } else if (variant === "destructive") {
-      return state === "focused"
-          ? "transparent"
-          : theme.color.sys.destructive.default;
-    }
-  }};
-  border-radius: ${({variant, state, theme}) => {
+  border: 1px solid
+    ${({ variant, state, theme }) => {
+      if (variant === "default") {
+        return state === "focused" ? "transparent" : theme.color.theme.border;
+      } else if (variant === "destructive") {
+        return state === "focused" ? "transparent" : theme.color.sys.destructive.default;
+      }
+    }};
+  border-radius: ${({ variant, state, theme }) => {
     if (state === "focused") {
       return "10px";
     } else {
       return "6px";
     }
   }};
-  padding: ${({state}) => {
+  padding: ${({ state }) => {
     return state === "focused" ? "4px" : "0px";
   }};
-  background-color: ${({variant, state, theme}) => {
+  background-color: ${({ variant, state, theme }) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
     } else {
@@ -131,24 +128,22 @@ const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
   align-self: stretch;
   flex-direction: row;
   padding: 12px 14px;
-  border: ${({state, variant, theme}) => {
+  border: ${({ state, variant, theme }) => {
     if (state === "focused") {
       return `1px solid ${
-          variant === "default"
-              ? theme.color.sys.secondary.default
-              : theme.color.sys.destructive.default
+        variant === "default" ? theme.color.sys.secondary.default : theme.color.sys.destructive.default
       }`;
     } else {
-      return 'none';
+      return "none";
     }
   }};
   border-radius: 6px;
-  background-color: ${({variant, state, theme}) => {
+  background-color: ${({ variant, state, theme }) => {
     return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
   }};
 `;
 
-const StyledTextArea = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
+const StyledTextArea = styled(TextInput).attrs(({ theme }: { theme: DefaultTheme }) => ({
   placeholderTextColor: theme.color.theme.disabled,
 }))`
   margin: 0 0 -4px 0;
@@ -158,8 +153,8 @@ const StyledTextArea = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }
   font-style: normal;
   font-weight: 400;
   line-height: 16.94px;
-  color: ${({theme}) => theme.color.global.neutral[900]};
-  text-align-vertical: top; 
+  color: ${({ theme }) => theme.color.global.neutral[900]};
+  text-align-vertical: top;
 `;
 
 const DescriptionRow = styled.View`
@@ -176,19 +171,19 @@ const DescriptionText = styled(BodyRegular12)<TextAreaProps & { theme: DefaultTh
   word-wrap: break-word;
   font-style: normal;
   font-weight: 400;
-  color: ${({isSuccess, variant, theme}) =>
-      isSuccess ? theme.color.global.green[600]
-          : variant === "destructive"
-              ? theme.color.sys.destructive.default
-              : theme.color.global.neutral[700]};
+  color: ${({ isSuccess, variant, theme }) =>
+    isSuccess
+      ? theme.color.global.green[600]
+      : variant === "destructive"
+        ? theme.color.sys.destructive.default
+        : theme.color.global.neutral[700]};
 `;
 
 const CharCounter = styled(BodyRegular12)`
   text-align: right;
   margin-top: 5px;
   flex: 1;
-  color: ${({theme}) => theme.color.global.neutral[600]};
+  color: ${({ theme }) => theme.color.global.neutral[600]};
 `;
 
 export default TextArea;
-

@@ -12,8 +12,7 @@ const MypageScreen = ({ navigation }: Props) => {
       <TouchableOpacity
         onPress={() => {
           navigation.navigate(RouteNames.BROWSER);
-        }}
-      >
+        }}>
         <Text>Go to Browser</Text>
       </TouchableOpacity>
     </View>

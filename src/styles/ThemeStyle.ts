@@ -38,6 +38,7 @@ export const global = {
     200: "#FAFAFA",
     300: "#F5F5F5",
     400: "#F0F0F0",
+    450: "#E4E4E4",
     500: "#D9D9D9",
     600: "#BFBFBF",
     700: "#8C8C8C",
