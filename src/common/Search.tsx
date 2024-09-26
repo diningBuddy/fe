@@ -55,7 +55,7 @@ const Search: React.FC<InputProps> = ({
                 onChangeText={setValue}
                 editable={!isDisabled}
             />
-            <CloseButton state={state} onPress={() => setValue("")}>
+            <CloseButton state={state} value={value} onPress={() => setValue("")}>
               <CircleClose/>
             </CloseButton>
           </InputContainer>
@@ -140,7 +140,7 @@ const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) =
 `;
 
 const CloseButton = styled(TouchableOpacity)`
-  display: ${({state}) => (state === "initial" || state === "disabled" ? "none" : "flex")};
+  display: ${({state, value}) => (state === "initial" || state === "disabled" || value === "" ? "none" : "flex")};
 `;
 
 export default Search;
