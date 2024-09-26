@@ -119,16 +119,16 @@ const StyledSearchIcon = styled(SearchIcon)`
   flex-shrink: 0;
   opacity: ${({state}) => {
     if (state === "initial" || state === "disabled") {
-      return 0.2; 
+      return 0.5; 
     } else {
-      return 1;
+      return 0.85;
     }
   }};
-  display: ${({state}) => (state === "focused" ? "none" : "flex")};
+  display: "flex";
 `;
 
 const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) => ({
-  placeholderTextColor: theme.color.theme.disabled,
+  placeholderTextColor: theme.color.global.alpha.alphaBlack[300],
 }))`
   font-size: 14px;
   font-style: normal;
