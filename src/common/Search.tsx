@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from "react";
 import styled, {DefaultTheme, ThemeContext} from "styled-components/native";
-import {SearchIcon} from "../assets/icons/general";
 import {TextInput, TouchableOpacity} from "react-native";
+
+import {SearchIcon} from "../assets/icons/general";
 import {CircleClose} from "../assets/icons/shape";
 
 interface InputProps {
@@ -67,27 +68,23 @@ const SearchRow = styled.View`
 `;
 
 const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
-  border: 1px solid ${({state, theme}) => {
-    return state === "focused"
+  border: 1px solid ${({state, theme}) => state === "focused"
         ? "transparent" :
-        theme.color.theme.border;
-  }};
+        theme.color.theme.border};
   border-radius: ${({state, theme}) => {
     if (state === "focused") {
       return "10px";
-    } else {
+    } 
       return "6px";
-    }
+    
   }};
-  padding: ${({state}) => {
-    return state === "focused" ? "4px" : "0px";
-  }};
+  padding: ${({state}) => state === "focused" ? "4px" : "0px"};
   background-color: ${({state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
-    } else {
+    } 
       return theme.color.sys.secondary.disabled;
-    }
+    
   }};
 `;
 
@@ -101,14 +98,12 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
   border: ${({state, theme}) => {
     if (state === "focused") {
       return `1px solid ${theme.color.sys.secondary.default}`;
-    } else {
+    } 
       return 'none';
-    }
+    
   }};
   border-radius: 6px;
-  background-color: ${({state, theme}) => {
-    return state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100];
-  }};
+  background-color: ${({state, theme}) => state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100]};
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -117,10 +112,10 @@ const StyledSearchIcon = styled(SearchIcon)`
   flex-shrink: 0;
   opacity: ${({state}) => {
     if (state === "initial" || state === "disabled") {
-      return 0.5; 
-    } else {
+      return 0.5;
+    } 
       return 0.85;
-    }
+    
   }};
   display: "flex";
 `;
@@ -138,7 +133,10 @@ const StyledInput = styled(TextInput).attrs(({theme}: { theme: DefaultTheme }) =
 `;
 
 const CloseButton = styled(TouchableOpacity)`
-  display: ${({state, value}) => (state === "initial" || state === "disabled" || value === "" ? "none" : "flex")};
+  display: ${({
+                state,
+                value
+              }) => (state === "initial" || state === "disabled" || value === "" ? "none" : "flex")};
 `;
 
 export default Search;

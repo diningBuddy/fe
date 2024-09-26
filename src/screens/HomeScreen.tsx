@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components/native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React, {useContext} from "react";
+import styled, {ThemeContext} from "styled-components/native";
+import {StyleSheet, TouchableOpacity, View} from "react-native";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
 
 import ThemeStyle from "../styles/ThemeStyle";
-import { RootStackParamList, RouteNames } from "../utils/routes";
-import { HeadingSemiBold24 } from "../common/Typo";
+import {RootStackParamList, RouteNames} from "../utils/routes";
+import {HeadingSemiBold24} from "../common/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-const HomeScreen = ({ navigation }: Props) => {
+function HomeScreen({ navigation }: Props) {
   const theme = useContext(ThemeContext) || ThemeStyle;
   return (
     <View style={styles.container}>
@@ -53,15 +53,14 @@ const HomeScreen = ({ navigation }: Props) => {
         <HeadingSemiBold24>Sample Tag</HeadingSemiBold24>
       </SampleBtn>
       <SampleBtn
-          onPress={() => {
-            navigation.navigate(RouteNames.SAMPLE_SEARCH);
-          }}
-      >
+        onPress={() => {
+          navigation.navigate(RouteNames.SAMPLE_SEARCH);
+        }}>
         <HeadingSemiBold24>Sample Search</HeadingSemiBold24>
       </SampleBtn>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
