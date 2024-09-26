@@ -69,22 +69,22 @@ const SearchRow = styled.View`
 
 const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   border: 1px solid ${({state, theme}) => state === "focused"
-        ? "transparent" :
-        theme.color.theme.border};
+      ? "transparent" :
+      theme.color.theme.border};
   border-radius: ${({state, theme}) => {
     if (state === "focused") {
       return "10px";
-    } 
-      return "6px";
-    
+    }
+    return "6px";
+
   }};
   padding: ${({state}) => state === "focused" ? "4px" : "0px"};
   background-color: ${({state, theme}) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
-    } 
-      return theme.color.sys.secondary.disabled;
-    
+    }
+    return theme.color.sys.secondary.disabled;
+
   }};
 `;
 
@@ -98,12 +98,15 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
   border: ${({state, theme}) => {
     if (state === "focused") {
       return `1px solid ${theme.color.sys.secondary.default}`;
-    } 
-      return 'none';
-    
+    }
+    return 'none';
+
   }};
   border-radius: 6px;
-  background-color: ${({state, theme}) => state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100]};
+  background-color: ${({
+                         state,
+                         theme
+                       }) => state === "disabled" ? theme.color.global.neutral[300] : theme.color.global.neutral[100]};
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -113,9 +116,9 @@ const StyledSearchIcon = styled(SearchIcon)`
   opacity: ${({state}) => {
     if (state === "initial" || state === "disabled") {
       return 0.5;
-    } 
-      return 0.85;
-    
+    }
+    return 0.85;
+
   }};
   display: "flex";
 `;
