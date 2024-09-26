@@ -1,11 +1,11 @@
-import React, {useContext} from "react";
-import styled, {ThemeContext} from "styled-components/native";
-import {StyleSheet, TouchableOpacity, View} from "react-native";
-import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import React, { useContext } from "react";
+import styled, { ThemeContext } from "styled-components/native";
+import { StyleSheet, TouchableOpacity, View } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import ThemeStyle from "../styles/ThemeStyle";
-import {RootStackParamList, RouteNames} from "../utils/routes";
-import {HeadingSemiBold24} from "../common/Typo";
+import { RootStackParamList, RouteNames } from "../utils/routes";
+import { HeadingSemiBold24 } from "../common/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
