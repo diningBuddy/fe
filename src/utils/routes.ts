@@ -12,6 +12,7 @@ export const RouteNames = {
   SAMPLE_INPUT: "sample-input" as const,
   SAMPLE_TEXTAREA: "sample-textarea" as const,
   SAMPLE_TAG: "sample-tag" as const,
+  SAMPLE_SEARCH: "sample-search" as const,
 };
 
 export type RootStackParamList = {
@@ -27,4 +28,5 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_INPUT]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
   [RouteNames.SAMPLE_TAG]: undefined;
+  [RouteNames.SAMPLE_SEARCH]: undefined;
 };

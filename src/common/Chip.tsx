@@ -52,15 +52,8 @@ export const OutlineChip = ({
       onPressOut={handlePressOut}
       isPressed={isPressed}
       accessible={true}
-      accessibilityLabel="Outline Chip"
-    >
-      <StyledText
-        height={height}
-        isSelected={isSelected}
-        mode={mode}
-        isPressed={isPressed}
-        isDisabled={isDisabled}
-      >
+      accessibilityLabel="Outline Chip">
+      <StyledText height={height} isSelected={isSelected} mode={mode} isPressed={isPressed} isDisabled={isDisabled}>
         {children}
       </StyledText>
     </ChipBox>
@@ -100,15 +93,8 @@ export const TextChip = ({
       onPressOut={handlePressOut}
       isPressed={isPressed}
       accessible={true}
-      accessibilityLabel="Text Chip"
-    >
-      <StyledText
-        height={height}
-        isSelected={isSelected}
-        mode={mode}
-        isPressed={isPressed}
-        isDisabled={isDisabled}
-      >
+      accessibilityLabel="Text Chip">
+      <StyledText height={height} isSelected={isSelected} mode={mode} isPressed={isPressed} isDisabled={isDisabled}>
         {children}
       </StyledText>
     </ChipBox>
@@ -157,32 +143,18 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
     getBackgroundColor(theme, isDisabled, isSelected, isPressed, mode)};
   border-width: ${({ isOutline }) => (isOutline ? "1px" : 0)};
   border-color: ${({ theme, isSelected, isOutline }) =>
-    isSelected
-      ? theme.color.sys.primary.default
-      : isOutline
-        ? theme.color.global.neutral[450]
-        : "transparent"};
+    isSelected ? theme.color.sys.primary.default : isOutline ? theme.color.global.neutral[450] : "transparent"};
   border-radius: ${({ isSquared }) => (isSquared ? "6px" : "72px")};
   ${({ isDisabled }) => isDisabled && `pointer-events: none;`};
 `;
 
-const getTextColor = (
-  theme: string,
-  isDisabled: boolean,
-  isSelected: boolean,
-  isPressed: boolean,
-  mode: string
-) => {
+const getTextColor = (theme: string, isDisabled: boolean, isSelected: boolean, isPressed: boolean, mode: string) => {
   if (isPressed) return theme.color.theme.headingText;
   if (isDisabled) return "rgba(0, 0, 0, 0.2)";
 
   const colorMap: Record<"outline" | "noOutline", string> = {
-    outline: isSelected
-      ? theme.color.sys.primary.default
-      : theme.color.theme.headingText,
-    noOutline: isSelected
-      ? theme.color.global.neutral[100]
-      : theme.color.theme.headingText,
+    outline: isSelected ? theme.color.sys.primary.default : theme.color.theme.headingText,
+    noOutline: isSelected ? theme.color.global.neutral[100] : theme.color.theme.headingText,
   };
 
   return colorMap[mode || "outline"];

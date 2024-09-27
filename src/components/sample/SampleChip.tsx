@@ -26,11 +26,7 @@ const SampleChip = () => {
   ];
 
   const handlePress = (chipId: string) => {
-    setPressed((prev) =>
-      prev.includes(chipId)
-        ? prev.filter((id) => id !== chipId)
-        : [...prev, chipId]
-    );
+    setPressed((prev) => (prev.includes(chipId) ? prev.filter((id) => id !== chipId) : [...prev, chipId]));
   };
 
   const isIncludes = (chipId: string): boolean => {
@@ -38,11 +34,7 @@ const SampleChip = () => {
   };
 
   const handleChipList = (value: string) => {
-    setPressed((prev) =>
-      prev.includes(value)
-        ? prev.filter((el) => el !== value)
-        : [...prev, value]
-    );
+    setPressed((prev) => (prev.includes(value) ? prev.filter((el) => el !== value) : [...prev, value]));
   };
 
   return (
@@ -50,10 +42,7 @@ const SampleChip = () => {
       <View style={styles.chipGroupList}>
         {itemList.map((item) => (
           <View key={item.id}>
-            <OutlineChip
-              isSelected={isIncludes(item.title)}
-              onPress={() => handleChipList(item.title)}
-            >
+            <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
               {item.title}
             </OutlineChip>
           </View>
@@ -63,10 +52,7 @@ const SampleChip = () => {
       <View style={styles.chipGroupList}>
         {itemList2.map((item) => (
           <View key={item.id}>
-            <TextChip
-              isSelected={isIncludes(item.title)}
-              onPress={() => handleChipList(item.title)}
-            >
+            <TextChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
               {item.title}
             </TextChip>
           </View>
@@ -75,24 +61,13 @@ const SampleChip = () => {
 
       <View style={styles.chipGroupWrap}>
         <View style={styles.buttonGroup}>
-          <OutlineChip
-            height="sm"
-            isSelected={pressed.includes("outline1")}
-            onPress={() => handlePress("outline1")}
-          >
+          <OutlineChip height="sm" isSelected={pressed.includes("outline1")} onPress={() => handlePress("outline1")}>
             텍스트 SM
           </OutlineChip>
-          <OutlineChip
-            isSelected={pressed.includes("outline2")}
-            onPress={() => handlePress("outline2")}
-          >
+          <OutlineChip isSelected={pressed.includes("outline2")} onPress={() => handlePress("outline2")}>
             텍스트 MD
           </OutlineChip>
-          <OutlineChip
-            height="lg"
-            isSelected={pressed.includes("outline3")}
-            onPress={() => handlePress("outline3")}
-          >
+          <OutlineChip height="lg" isSelected={pressed.includes("outline3")} onPress={() => handlePress("outline3")}>
             텍스트 LG
           </OutlineChip>
           <OutlineChip height="lg" isDisabled>
@@ -105,23 +80,20 @@ const SampleChip = () => {
             isSquared
             height="sm"
             isSelected={pressed.includes("outlineSquare1")}
-            onPress={() => handlePress("outlineSquare1")}
-          >
+            onPress={() => handlePress("outlineSquare1")}>
             텍스트SM
           </OutlineChip>
           <OutlineChip
             isSquared
             isSelected={pressed.includes("outlineSquare2")}
-            onPress={() => handlePress("outlineSquare2")}
-          >
+            onPress={() => handlePress("outlineSquare2")}>
             텍스트MD
           </OutlineChip>
           <OutlineChip
             height="lg"
             isSquared
             isSelected={pressed.includes("outlineSquare3")}
-            onPress={() => handlePress("outlineSquare3")}
-          >
+            onPress={() => handlePress("outlineSquare3")}>
             텍스트LG
           </OutlineChip>
           <OutlineChip isSquared height="lg" isDisabled>
@@ -132,24 +104,13 @@ const SampleChip = () => {
 
       <View style={styles.chipGroupWrap}>
         <View style={styles.buttonGroup}>
-          <TextChip
-            height="sm"
-            isSelected={pressed.includes("text1")}
-            onPress={() => handlePress("text1")}
-          >
+          <TextChip height="sm" isSelected={pressed.includes("text1")} onPress={() => handlePress("text1")}>
             텍스트SM
           </TextChip>
-          <TextChip
-            isSelected={pressed.includes("text2")}
-            onPress={() => handlePress("text2")}
-          >
+          <TextChip isSelected={pressed.includes("text2")} onPress={() => handlePress("text2")}>
             텍스트MD
           </TextChip>
-          <TextChip
-            height="lg"
-            isSelected={pressed.includes("text3")}
-            onPress={() => handlePress("text3")}
-          >
+          <TextChip height="lg" isSelected={pressed.includes("text3")} onPress={() => handlePress("text3")}>
             텍스트LG
           </TextChip>
           <TextChip height="lg" isDisabled>
@@ -162,23 +123,17 @@ const SampleChip = () => {
             isSquared
             height="sm"
             isSelected={pressed.includes("square1")}
-            onPress={() => handlePress("square1")}
-          >
+            onPress={() => handlePress("square1")}>
             텍스트SM
           </TextChip>
-          <TextChip
-            isSquared
-            isSelected={pressed.includes("square2")}
-            onPress={() => handlePress("square2")}
-          >
+          <TextChip isSquared isSelected={pressed.includes("square2")} onPress={() => handlePress("square2")}>
             텍스트MD
           </TextChip>
           <TextChip
             isSquared
             height="lg"
             isSelected={pressed.includes("square3")}
-            onPress={() => handlePress("square3")}
-          >
+            onPress={() => handlePress("square3")}>
             텍스트LG
           </TextChip>
           <TextChip isSquared height="lg" isDisabled>
