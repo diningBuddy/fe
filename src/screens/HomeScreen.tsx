@@ -46,15 +46,21 @@ const HomeScreen = ({ navigation }: Props) => {
         }}>
         <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
       </SampleBtn>
+      <SampleBtn
+        onPress={() => {
+          navigation.navigate(RouteNames.SAMPLE_RADIO);
+        }}>
+        <HeadingSemiBold24>Sample Radio</HeadingSemiBold24>
+      </SampleBtn>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    backgroundColor: "#fff",
+    flex: 1,
     justifyContent: "center",
   },
 });

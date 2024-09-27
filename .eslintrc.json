@@ -29,6 +29,10 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off", //"warn",
     "import/no-unresolved": "error", // 잘못된 경로로 인한 에러 방지
+    "react/function-component-definition": "off",
+    "arrow-body-style": "off",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-use-before-define": "off",
     "import/order": [
       "error",
       {
