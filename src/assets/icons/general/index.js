@@ -22,6 +22,7 @@ import HandThumbUpOutline from "./hand-thumb-up-outline.svg";
 import HandThumbUp from "./hand-thumb-up-outline.svg";
 import HomeOutline from "./home-outline";
 import Home from "./home.svg";
+import SearchIcon from "./search.svg";
 
 export {
   Bar2,
@@ -47,4 +48,5 @@ export {
   HandThumbUp,
   HomeOutline,
   Home,
+  SearchIcon,
 };

@@ -9,7 +9,7 @@ import { HeadingSemiBold24 } from "../common/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-const HomeScreen = ({ navigation }: Props) => {
+function HomeScreen({ navigation }: Props) {
   const theme = useContext(ThemeContext) || ThemeStyle;
   return (
     <View style={styles.container}>
@@ -52,9 +52,15 @@ const HomeScreen = ({ navigation }: Props) => {
         }}>
         <HeadingSemiBold24>Sample Tag</HeadingSemiBold24>
       </SampleBtn>
+      <SampleBtn
+        onPress={() => {
+          navigation.navigate(RouteNames.SAMPLE_SEARCH);
+        }}>
+        <HeadingSemiBold24>Sample Search</HeadingSemiBold24>
+      </SampleBtn>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
