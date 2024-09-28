@@ -19,6 +19,7 @@ import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
 import SampleTag from "./src/components/sample/SampleTag";
 import SampleSearch from "./src/components/sample/SampleSearch";
+import SampleToast from "./src/components/sample/SampleToast";
 
 export type Props = {
   label: string;
@@ -56,6 +57,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
           <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
+          <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

@@ -58,6 +58,12 @@ function HomeScreen({ navigation }: Props) {
         }}>
         <HeadingSemiBold24>Sample Search</HeadingSemiBold24>
       </SampleBtn>
+      <SampleBtn
+        onPress={() => {
+            navigation.navigate(RouteNames.SAMPLE_TOAST);
+        }}>
+      <HeadingSemiBold24>Sample Toast</HeadingSemiBold24>
+      </SampleBtn>
     </View>
   );
 }
