@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
+
 import ThemeStyle from "../styles/ThemeStyle";
+
 interface TagProps {
   label: string;
   height?: "sm" | "md";
@@ -14,7 +16,7 @@ interface TagProps {
   mode?: "info" | "success" | "error" | "neutral" | "primary";
 }
 
-const modeStyles = (theme: string) => ({
+const modeStyles = (theme: (typeof ThemeStyle)["color"]) => ({
   info: {
     textColor: theme.color.global.blue[600],
     bgColor: theme.color.global.blue[100],

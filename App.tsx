@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { TouchableOpacityProps } from "react-native";
 import { ThemeContext, ThemeProvider } from "styled-components/native";
-import ThemeStyle from "./src/styles/ThemeStyle";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ThemeStyle from "./src/styles/ThemeStyle";
 import HomeScreen from "./src/screens/HomeScreen";
 import ListScreen from "./src/screens/ListScreen";
 import MapScreen from "./src/screens/MapScreen";
@@ -19,11 +18,12 @@ import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
 import SampleTag from "./src/components/sample/SampleTag";
 import SampleSearch from "./src/components/sample/SampleSearch";
+import SampleChip from "./src/components/sample/SampleChip";
 
 export type Props = {
   label: string;
   color?: string;
-  onPress?: (data?: any) => void;
+  onPress?: (data?: unknown) => void;
 } & TouchableOpacityProps;
 
 const Tab = createBottomTabNavigator();
@@ -56,6 +56,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
           <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
+          <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
