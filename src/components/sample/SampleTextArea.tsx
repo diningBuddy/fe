@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { ScrollView } from "react-native";
+
 import TextArea from "../../common/TextAre";
 
 const SampleTextArea = () => {
@@ -16,14 +17,14 @@ const SampleTextArea = () => {
         label="default"
         description="Your message will be copied to the support team."
         placeholder="Type your message here"
-        isSuccess={true}
+        isSuccess
       />
       <TextArea
         variant="default"
         label="default + disabled"
         description="Your message will be copied to the support team."
         placeholder="Type your message here"
-        isDisabled={true}
+        isDisabled
       />
       <TextArea
         variant="destructive"

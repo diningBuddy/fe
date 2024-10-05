@@ -1,10 +1,19 @@
 import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components/native";
+import styled, { ThemeContext, DefaultTheme } from "styled-components/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 import ThemeStyle from "../../styles/ThemeStyle";
 
-const SampleColor = () => {
-  const theme = useContext(ThemeContext) || ThemeStyle;
+const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
+  <ColorContainer>
+    <StyledColor color={color} />
+    <Text>{label}</Text>
+  </ColorContainer>
+);
+
+const SampleColor: React.FC = () => {
+  const theme = (useContext(ThemeContext) as DefaultTheme) || ThemeStyle;
+
   return (
     <View style={styles.container}>
       <StyledText>Sys Primary</StyledText>
@@ -51,25 +60,15 @@ const SampleColor = () => {
   );
 };
 
-const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
-  <ColorContainer>
-    <StyledColor color={color} />
-    <Text>{label}</Text>
-  </ColorContainer>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+// 스타일 선언
+const StyledText = styled.Text`
+  margin-top: 18px;
+  font-size: 18px;
+  color: black;
+`;
 
 const ColorWrap = styled.View`
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: space-around;
 `;
 
@@ -78,16 +77,19 @@ const ColorContainer = styled.View`
   margin: 12px;
 `;
 
-const StyledText = styled.Text`
-  margin-top: 18px;
-  font-size: 18px;
-  color: black;
-`;
-
 const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
-  background-color: ${({ color, theme }) => (color ? color : theme.color.sys.primary.default)};
+  background-color: ${({ color, theme }) => color || theme.color.sys.primary.default};
 `;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    backgroundColor: "#fff",
+    flex: 1,
+    justifyContent: "center",
+  },
+});
 
 export default SampleColor;

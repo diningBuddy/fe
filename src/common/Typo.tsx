@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
+import { TextProps, Text } from "react-native";
 
-interface TypoStyle {
+interface TypoStyle extends TextProps {
   margin?: string;
   fontWeight?: number;
   fontSize?: number;
@@ -11,15 +12,20 @@ interface TypoStyle {
 }
 
 const defaultFontSize = 16;
+const defaultLineHeight = 1.2;
 
-const BaseText = styled.Text<TypoStyle>`
+const BaseText = styled(Text)<TypoStyle>`
   margin: ${({ margin = "0" }) => margin};
   color: ${({ color, theme }) => color || theme.color.theme.main};
   font-size: ${({ size, fontSize }) => (size ? `${size}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`)};
-  font-weight: ${({ fontWeight }) => fontWeight || 400};
+  font-weight: ${({ fontWeight = 400 }) => fontWeight};
   line-height: ${({ lineHeight, fontSize }) =>
-    lineHeight ? `${lineHeight}px` : fontSize ? `${fontSize}px` : `${defaultFontSize}px`};
-  text-align: ${({ textAlign }) => textAlign || "left"};
+    lineHeight
+      ? `${lineHeight}px`
+      : fontSize
+        ? `${fontSize * defaultLineHeight}px`
+        : `${defaultFontSize * defaultLineHeight}px`};
+  text-align: ${({ textAlign = "left" }) => textAlign};
 `;
 
 // Headings
@@ -73,25 +79,25 @@ export const BodySemibold18 = styled(BaseText)`
 export const BodySemibold16 = styled(BaseText)`
   font-weight: 600;
   font-size: 16px;
-  line-height: 21.48px;
+  line-height: 19.2px;
 `;
 
 export const BodySemibold14 = styled(BaseText)`
   font-weight: 600;
   font-size: 14px;
-  line-height: 16.71px;
+  line-height: 16.8px;
 `;
 
 export const BodySemibold12 = styled(BaseText)`
   font-weight: 600;
   font-size: 12px;
-  line-height: 14.32px;
+  line-height: 14.4px;
 `;
 
 export const BodySemibold10 = styled(BaseText)`
   font-weight: 600;
   font-size: 10px;
-  line-height: 11.93px;
+  line-height: 12px;
 `;
 
 export const BodyMedium18 = styled(BaseText)`
@@ -102,13 +108,13 @@ export const BodyMedium18 = styled(BaseText)`
 
 export const BodyMedium16 = styled(BaseText)`
   font-size: 16px;
-  line-height: 21.48px;
+  line-height: 19.2px;
 `;
 
 export const BodyMedium14 = styled(BaseText)`
   font-weight: 500;
   font-size: 14px;
-  line-height: 16.94px;
+  line-height: 16.8px;
 `;
 
 export const BodyRegular18 = styled(BaseText)`
@@ -118,5 +124,5 @@ export const BodyRegular18 = styled(BaseText)`
 
 export const BodyRegular12 = styled(BaseText)`
   font-size: 12px;
-  line-height: 16.94px;
+  line-height: 14.4px;
 `;

@@ -8,7 +8,8 @@
     "prettier",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -21,22 +22,33 @@
   },
   "plugins": ["react", "react-native", "react-hooks", "@typescript-eslint"],
   "rules": {
-    "react-native/no-unused-styles": "off", //"warn",
-    "react-native/split-platform-components": "off", //"warn",
-    "react-native/no-inline-styles": "off", //"warn",
-    "react-native/no-color-literals": "off", //"warn",
-    "react-native/no-raw-text": "off", //"warn",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "@typescript-eslint/no-throw-literal": "off",
+    "react-native/no-unused-styles": "warn",
+    "react-native/no-color-literals": "warn",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off", //"warn",
-    "import/no-unresolved": "error", // 잘못된 경로로 인한 에러 방지
+    "react-hooks/exhaustive-deps": "warn",
+    "import/no-unresolved": "error",
+    "import/no-duplicates": "error",
     "import/order": [
       "error",
       {
-        // import 순서를 깔끔하게 정리
         "groups": [["builtin", "external", "internal"]],
         "newlines-between": "always"
       }
     ],
-    "import/no-duplicates": "error" // 중복된 import 방지
+    "arrow-body-style": "off",
+    "react/function-component-definition": "off",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-console": "warn",
+    "react/prop-types": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react-native/no-raw-text": "off",
+    "no-nested-ternary": "off", //추후 error로
+    "react/destructuring-assignment": "off" //추후 warn로
   }
 }
