@@ -20,8 +20,8 @@ import HandThumbDownOutline from "./hand-thumb-down-outline.svg";
 import HandThumbDown from "./hand-thumb-down.svg";
 import HandThumbUpOutline from "./hand-thumb-up-outline.svg";
 import HandThumbUp from "./hand-thumb-up-outline.svg";
-import HomeOutline from "./home-outline";
-import Home from "./home.svg";
+import HomeBlank from "./home-blank.svg";
+import HomeFull from "./home-full.svg";
 import SearchIcon from "./search.svg";
 
 export {
@@ -46,7 +46,7 @@ export {
   HandThumbDown,
   HandThumbUpOutline,
   HandThumbUp,
-  HomeOutline,
-  Home,
+  HomeBlank,
+  HomeFull,
   SearchIcon,
 };
