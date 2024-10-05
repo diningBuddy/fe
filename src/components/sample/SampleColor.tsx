@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { ThemeContext } from "styled-components/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
 import ThemeStyle from "../../styles/ThemeStyle";
 
 const SampleColor = () => {
@@ -60,9 +61,9 @@ const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label })
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    backgroundColor: "#fff",
+    flex: 1,
     justifyContent: "center",
   },
 });
@@ -87,7 +88,7 @@ const StyledText = styled.Text`
 const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
   width: 50px;
   height: 50px;
-  background-color: ${({ color, theme }) => (color ? color : theme.color.sys.primary.default)};
+  background-color: ${({ color, theme }) => (color || theme.color.sys.primary.default)};
 `;
 
 export default SampleColor;

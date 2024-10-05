@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { TextInput, TouchableOpacity } from "react-native";
+
 import { BodyMedium14, BodyRegular12 } from "./Typo";
 import { CircleClose } from "../assets/icons/shape";
 
@@ -82,16 +83,16 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
     ${({ variant, state, theme }) => {
       if (variant === "default") {
         return state === "focused" ? "transparent" : theme.color.theme.border;
-      } else if (variant === "destructive") {
+      } if (variant === "destructive") {
         return state === "focused" ? "transparent" : theme.color.sys.destructive.default;
       }
     }};
   border-radius: ${({ variant, state, theme }) => {
     if (state === "focused") {
       return "10px";
-    } else {
+    } 
       return "6px";
-    }
+    
   }};
   padding: ${({ state }) => {
     return state === "focused" ? "4px" : "0px";
@@ -99,13 +100,13 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   background-color: ${({ variant, state, theme }) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
-    } else {
+    } 
       if (variant === "default") {
         return theme.color.sys.secondary.disabled;
-      } else {
+      } 
         return theme.color.sys.destructive.disabled;
-      }
-    }
+      
+    
   }};
 `;
 
@@ -121,9 +122,9 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return `1px solid ${
         variant === "default" ? theme.color.sys.secondary.default : theme.color.sys.destructive.default
       }`;
-    } else {
+    } 
       return "none";
-    }
+    
   }};
 
   border-radius: 6px;

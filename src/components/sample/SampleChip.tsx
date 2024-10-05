@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+
 import { OutlineChip, TextChip } from "../../common/Chip";
 
 const SampleChip = () => {
@@ -146,26 +147,26 @@ const SampleChip = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 18,
-    backgroundColor: "#ffffff",
+  buttonGroup: {
+    gap: 12,
+    margin: 8,
+  },
+  chipGroupList: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+    margin: 8,
   },
   chipGroupWrap: {
     flexDirection: "row",
+    gap: 12,
     padding: 12,
-    gap: 12,
   },
-  chipGroupList: {
-    margin: 8,
-    flexDirection: "row",
-    gap: 12,
-    flexWrap: "wrap",
-  },
-  buttonGroup: {
-    margin: 8,
-    gap: 12,
+  container: {
+    alignItems: "center",
+    backgroundColor: "#ffffff",
+    justifyContent: "center",
+    padding: 18,
   },
 });
 

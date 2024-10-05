@@ -1,79 +1,52 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback } from "react";
 import styled, { ThemeContext } from "styled-components/native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-import ThemeStyle from "../styles/ThemeStyle";
 import { RootStackParamList, RouteNames } from "../utils/routes";
 import { HeadingSemiBold24 } from "../common/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
 function HomeScreen({ navigation }: Props) {
-  const theme = useContext(ThemeContext) || ThemeStyle;
+  const theme = useContext(ThemeContext) || {};
+
+  const navigateTo = useCallback(
+    (route: keyof RootStackParamList) => {
+      navigation.navigate(route);
+    },
+    [navigation]
+  );
+
+  const buttons = [
+    { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
+    { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
+    { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
+    { label: "Sample Input", route: RouteNames.SAMPLE_INPUT },
+    { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
+    { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
+    { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
+  ];
+
   return (
-    <View style={styles.container}>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_COLOR);
-        }}>
-        <HeadingSemiBold24>Sample Color</HeadingSemiBold24>
-      </SampleBtn>
-
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_FONT);
-        }}>
-        <HeadingSemiBold24>Sample Font</HeadingSemiBold24>
-      </SampleBtn>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_BUTTON);
-        }}>
-        <HeadingSemiBold24>Sample Button</HeadingSemiBold24>
-      </SampleBtn>
-
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_INPUT);
-        }}>
-        <HeadingSemiBold24>Sample Input</HeadingSemiBold24>
-      </SampleBtn>
-
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_TEXTAREA);
-        }}>
-        <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
-      </SampleBtn>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_TAG);
-        }}>
-        <HeadingSemiBold24>Sample Tag</HeadingSemiBold24>
-      </SampleBtn>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_SEARCH);
-        }}>
-        <HeadingSemiBold24>Sample Search</HeadingSemiBold24>
-      </SampleBtn>
-    </View>
+    <Container>
+      {buttons.map((item) => (
+        <SampleBtn key={item.route} onPress={() => navigateTo(item.route)}>
+          <HeadingSemiBold24>{item.label}</HeadingSemiBold24>
+        </SampleBtn>
+      ))}
+    </Container>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    backgroundColor: "#fff",
-    flex: 1,
-    justifyContent: "center",
-  },
-});
+const Container = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+`;
 
-const SampleBtn = styled(TouchableOpacity)`
+const SampleBtn = styled.TouchableOpacity`
   padding: 12px 16px;
-  background-color: ${({ theme }) => theme.color.sys.primary.default};
+  background-color: ${({ theme }) => theme.color?.sys?.primary?.default || "#000"};
   border-radius: 8px;
   margin-bottom: 12px;
   align-items: center;

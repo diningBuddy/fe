@@ -9,7 +9,6 @@ import CheckBadge from "./check-badge.svg";
 import CheckCircleOutline from "./check-circle-outline.svg";
 import CheckCircle from "./check-circle.svg";
 import Check from "./check.svg";
-
 import EyeOutline from "./eye-outline.svg";
 import Eye from "./eye.svg";
 import EyeSlashOutline from "./eye-slash-outline.svg";

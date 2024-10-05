@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
 import { TouchableOpacityProps } from "react-native";
 import { ThemeContext, ThemeProvider } from "styled-components/native";
-import ThemeStyle from "./src/styles/ThemeStyle";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ThemeStyle from "./src/styles/ThemeStyle";
 import HomeScreen from "./src/screens/HomeScreen";
 import ListScreen from "./src/screens/ListScreen";
 import MapScreen from "./src/screens/MapScreen";

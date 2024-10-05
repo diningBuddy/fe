@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+
 import ThemeStyle from "../styles/ThemeStyle";
 
 interface ChipProps {
@@ -51,7 +52,7 @@ export const OutlineChip = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       isPressed={isPressed}
-      accessible={true}
+      accessible
       accessibilityLabel="Outline Chip">
       <StyledText height={height} isSelected={isSelected} mode={mode} isPressed={isPressed} isDisabled={isDisabled}>
         {children}
@@ -92,7 +93,7 @@ export const TextChip = ({
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
       isPressed={isPressed}
-      accessible={true}
+      accessible
       accessibilityLabel="Text Chip">
       <StyledText height={height} isSelected={isSelected} mode={mode} isPressed={isPressed} isDisabled={isDisabled}>
         {children}

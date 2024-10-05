@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
+
 import { Button, ButtonText } from "../../common/Button";
 import { ChevronRight } from "../../assets/icons/arrow/chevron";
 
@@ -20,7 +21,7 @@ const SampleButton = () => {
         </Button>
       </View>
 
-      {/* Primary + icon*/}
+      {/* Primary + icon */}
       <View style={styles.buttonGroup}>
         <Button height="sm" isDisabled>
           <ButtonText fontSize="sm" isDisabled>
@@ -244,15 +245,15 @@ const SampleButton = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-  },
   buttonGroup: {
     flexDirection: "row",
-    margin: 8,
     gap: 12,
+    margin: 8,
+  },
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
   },
 });
 
