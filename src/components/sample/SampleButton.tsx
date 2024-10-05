@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 
+// eslint-disable-next-line import/namespace
 import { Button, ButtonText } from "../../common/Button";
 import { ChevronRight } from "../../assets/icons/arrow/chevron";
 

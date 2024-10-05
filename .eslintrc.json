@@ -26,7 +26,6 @@
     "@typescript-eslint/no-throw-literal": "off",
     "react-native/no-unused-styles": "warn",
     "react-native/no-color-literals": "warn",
-    "react-native/no-raw-text": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": "error",
@@ -44,6 +43,12 @@
     "react/react-in-jsx-scope": "off",
     "no-console": "warn",
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-use-before-define": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react-native/no-raw-text": "off",
+    "no-nested-ternary": "off", //추후 error로
+    "react/destructuring-assignment": "off" //추후 warn로
   }
 }

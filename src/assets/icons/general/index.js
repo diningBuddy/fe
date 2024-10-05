@@ -18,8 +18,8 @@ import Funnel from "./funnel.svg";
 import HandThumbDownOutline from "./hand-thumb-down-outline.svg";
 import HandThumbDown from "./hand-thumb-down.svg";
 import HandThumbUpOutline from "./hand-thumb-up-outline.svg";
-import HandThumbUp from "./hand-thumb-up-outline.svg";
-import HomeOutline from "./home-outline";
+import HandThumbUp from "./hand-thumb-up.svg";
+import HomeOutline from "./home-outline.svg";
 import Home from "./home.svg";
 import SearchIcon from "./search.svg";
 

@@ -16,7 +16,7 @@ interface TagProps {
   mode?: "info" | "success" | "error" | "neutral" | "primary";
 }
 
-const modeStyles = (theme: string) => ({
+const modeStyles = (theme: (typeof ThemeStyle)["color"]) => ({
   info: {
     textColor: theme.color.global.blue[600],
     bgColor: theme.color.global.blue[100],

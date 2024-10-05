@@ -1,11 +1,19 @@
 import React, { useContext } from "react";
-import styled, { ThemeContext } from "styled-components/native";
+import styled, { ThemeContext, DefaultTheme } from "styled-components/native";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import ThemeStyle from "../../styles/ThemeStyle";
 
-const SampleColor = () => {
-  const theme = useContext(ThemeContext) || ThemeStyle;
+const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
+  <ColorContainer>
+    <StyledColor color={color} />
+    <Text>{label}</Text>
+  </ColorContainer>
+);
+
+const SampleColor: React.FC = () => {
+  const theme = (useContext(ThemeContext) as DefaultTheme) || ThemeStyle;
+
   return (
     <View style={styles.container}>
       <StyledText>Sys Primary</StyledText>
@@ -52,12 +60,28 @@ const SampleColor = () => {
   );
 };
 
-const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
-  <ColorContainer>
-    <StyledColor color={color} />
-    <Text>{label}</Text>
-  </ColorContainer>
-);
+// 스타일 선언
+const StyledText = styled.Text`
+  margin-top: 18px;
+  font-size: 18px;
+  color: black;
+`;
+
+const ColorWrap = styled.View`
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const ColorContainer = styled.View`
+  align-items: center;
+  margin: 12px;
+`;
+
+const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
+  width: 50px;
+  height: 50px;
+  background-color: ${({ color, theme }) => color || theme.color.sys.primary.default};
+`;
 
 const styles = StyleSheet.create({
   container: {
@@ -67,28 +91,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-const ColorWrap = styled.View`
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const ColorContainer = styled.View`
-  align-items: center;
-  margin: 12px;
-`;
-
-const StyledText = styled.Text`
-  margin-top: 18px;
-  font-size: 18px;
-  color: black;
-`;
-
-const StyledColor = styled(TouchableOpacity)<{ color?: string }>`
-  width: 50px;
-  height: 50px;
-  background-color: ${({ color, theme }) => (color || theme.color.sys.primary.default)};
-`;
 
 export default SampleColor;

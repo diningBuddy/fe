@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from "react";
 import styled, { ThemeContext } from "styled-components/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
 import { RootStackParamList, RouteNames } from "../utils/routes";
 import { HeadingSemiBold24 } from "../common/Typo";
 
@@ -24,6 +25,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
+    { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
   ];
 
   return (

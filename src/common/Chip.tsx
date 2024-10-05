@@ -7,13 +7,8 @@ import ThemeStyle from "../styles/ThemeStyle";
 interface ChipProps {
   children: React.ReactNode;
   mode?: "outline" | "noOutline";
-  theme?: (typeof ThemeStyle)["color"];
-  color?: string;
-  padding?: "sm" | "md" | "lg";
   height?: "sm" | "md" | "lg";
-  fontSize?: "sm" | "md" | "lg";
   isOutline?: boolean;
-  isPressed?: boolean;
   isSelected?: boolean;
   isDisabled?: boolean;
   isSquared?: boolean;
