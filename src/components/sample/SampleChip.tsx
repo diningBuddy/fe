@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 
-import { OutlineChip, TextChip } from "../../common/Chip";
+import { OutlineChip, TextChip } from "../../common/atom/Chip";
 
 const SampleChip = () => {
   const [pressed, setPressed] = useState<string[]>([]);

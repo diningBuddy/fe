@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { ScrollView } from "react-native";
 
-import TextArea from "../../common/TextAre";
+import TextArea from "../../common/atom/TextAre";
 
 const SampleTextArea = () => {
   return (
