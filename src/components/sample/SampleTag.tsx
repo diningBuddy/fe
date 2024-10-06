@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, View } from "react-native";
 import styled from "styled-components/native";
 
-import Tag from "../../common/Tag";
+import Tag from "../../common/atom/Tag";
 
 function SampleTag() {
   return (

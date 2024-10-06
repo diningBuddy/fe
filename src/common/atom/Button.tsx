@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import Svg, { Circle, Path, SvgProps } from "react-native-svg";
 
-import ThemeStyle from "../styles/ThemeStyle";
+import ThemeStyle from "../../styles/ThemeStyle";
 
 interface ButtonStyle {
   mode?: string;
@@ -152,7 +152,8 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   border: ${(props) => {
     if (props.isLoading && props.mode === OUTLINE) {
       return props.theme.color.sys.tertiary.default;
-    } if (props.isPencil && (props.mode === MAIN || props.mode === SECONDARY)) {
+    }
+    if (props.isPencil && (props.mode === MAIN || props.mode === SECONDARY)) {
       return "0";
     }
     if (props.isDisabled) {
@@ -160,13 +161,14 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
         return "none";
       }
       return `1px solid ${props.theme.color.sys.tertiary.default}`;
-    } if (props.isPressed && props.mode === OUTLINE) {
+    }
+    if (props.isPressed && props.mode === OUTLINE) {
       return `1px solid ${props.theme.color.sys.primary.default}`;
-    } if (props.mode === OUTLINE) {
+    }
+    if (props.mode === OUTLINE) {
       return `1px solid ${props.theme.color.sys.tertiary.default}`;
-    } 
-      return "none";
-    
+    }
+    return "none";
   }};
 
   border-radius: ${(props) =>
@@ -175,24 +177,32 @@ const StyledButton = styled.TouchableOpacity<ButtonStyle>`
   background: ${(props) => {
     if (props.isLoading && props.isDisabled) {
       return props.theme.color.sys.tertiary.default;
-    } if (props.isLoading && props.isPressed && props.mode === OUTLINE) {
+    }
+    if (props.isLoading && props.isPressed && props.mode === OUTLINE) {
       return props.theme.color.global.neutral[300];
-    } if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
+    }
+    if (props.isPencil && props.mode === MAIN && !props.isDisabled) {
       return props.theme.color.sys.primary.default;
-    } if (props.isPencil && props.mode === MAIN) {
+    }
+    if (props.isPencil && props.mode === MAIN) {
       return props.theme.color.global.neutral[100];
-    } if (props.isPencil && props.mode === SECONDARY && props.isDisabled) {
+    }
+    if (props.isPencil && props.mode === SECONDARY && props.isDisabled) {
       return props.theme.color.global.neutral[100];
-    } if (props.isDisabled) {
+    }
+    if (props.isDisabled) {
       if (props.mode === TEXT) {
         return "transparent";
       }
       return props.theme.color.sys.secondary.disabled;
-    } if (props.isPressed && props.mode === MAIN) {
+    }
+    if (props.isPressed && props.mode === MAIN) {
       return props.theme.color.sys.primary.active;
-    } if (props.isPressed && props.mode === SECONDARY) {
+    }
+    if (props.isPressed && props.mode === SECONDARY) {
       return props.theme.color.sys.secondary.active;
-    } if (props.isPressed && props.mode === OUTLINE) {
+    }
+    if (props.isPressed && props.mode === OUTLINE) {
       return props.theme.color.global.neutral[100];
     }
 

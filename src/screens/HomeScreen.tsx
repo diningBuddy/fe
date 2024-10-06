@@ -1,9 +1,10 @@
 import React, { useContext, useCallback } from "react";
 import styled, { ThemeContext } from "styled-components/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { StyleSheet, ScrollView } from "react-native";
 
 import { RootStackParamList, RouteNames } from "../utils/routes";
-import { HeadingSemiBold24 } from "../common/Typo";
+import { HeadingSemiBold24 } from "../common/atom/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
@@ -26,25 +27,19 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
+    { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
   ];
 
   return (
-    <Container>
+    <ScrollView contentContainerStyle={styles.container}>
       {buttons.map((item) => (
         <SampleBtn key={item.route} onPress={() => navigateTo(item.route)}>
           <HeadingSemiBold24>{item.label}</HeadingSemiBold24>
         </SampleBtn>
       ))}
-    </Container>
+    </ScrollView>
   );
 }
-
-const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: #fff;
-`;
 
 const SampleBtn = styled.TouchableOpacity`
   padding: 12px 16px;
@@ -53,5 +48,13 @@ const SampleBtn = styled.TouchableOpacity`
   margin-bottom: 12px;
   align-items: center;
 `;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+});
 
 export default HomeScreen;
