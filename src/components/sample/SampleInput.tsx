@@ -1,7 +1,8 @@
 import React from "react";
 import { ScrollView } from "react-native";
-import Input from "../../common/Input";
 import styled from "styled-components/native";
+
+import Input from "../../common/Input";
 
 const SampleInput = () => {
   return (
@@ -17,14 +18,14 @@ const SampleInput = () => {
         label="default + success"
         description="Your message will be copied to the support team."
         placeholder="Type your message here"
-        isSuccess={true}
+        isSuccess
       />
       <Input
         variant="default"
         label="default + disabled"
         description="Your message will be copied to the support team."
         placeholder="Type your message here"
-        isDisabled={true}
+        isDisabled
       />
       <Input
         variant="destructive"

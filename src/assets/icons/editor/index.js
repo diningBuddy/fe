@@ -2,6 +2,5 @@ import ListBullet from "./list-bullet.svg";
 import PencilOutline from "./pencil-outline.svg";
 import PencilSquareOutline from "./pencil-square-outline.svg";
 import PencilSquare from "./pencil-square.svg";
-import Pencil from "./pencil-square.svg";
 
-export { ListBullet, PencilOutline, PencilSquareOutline, PencilSquare, Pencil };
+export { ListBullet, PencilOutline, PencilSquareOutline, PencilSquare };
