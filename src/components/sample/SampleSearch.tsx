@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { ScrollView } from "react-native";
 import React from "react";
 
-import Search from "../../common/Search";
+import Search from "../../common/atom/Search";
 
 const SampleSearch = () => {
   return (
