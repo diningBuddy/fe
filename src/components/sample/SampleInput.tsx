@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 
-import Input from "../../common/Input";
+import Input from "../../common/atom/Input";
 
 const SampleInput = () => {
   return (
