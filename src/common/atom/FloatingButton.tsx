@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { TouchableOpacity, Image } from "react-native";
-import styled from "styled-components/native";
+import { TouchableOpacity, View, StyleSheet } from "react-native";
+
+import { FloatingDefault, FloatingPressed, FloatingSelected } from "../../assets/icons/floating";
 
 interface FloatingButtonProps {
   label: string;
@@ -20,39 +21,51 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ label, onPress }) => {
     setIsSelected(true);
   };
 
-  const getButtonImage = () => {
+  const getFloatingButton = () => {
     if (isSelected) {
-      return require("../../assets/images/floating/floating-selected.png");
+      return <FloatingSelected />;
     } else if (isPressed) {
-      return require("../../assets/images/floating/floating-pressed.png");
+      return <FloatingPressed />;
     } else {
-      return require("../../assets/images/floating/floating-default.png");
+      return <FloatingDefault />;
     }
   };
 
   return (
-    <Container>
-      <StyledButton onPress={onPress} onPressIn={handlePressIn} onPressOut={handlePressOut} accessibilityLabel={label}>
-        <ButtonImage source={getButtonImage()} />
-      </StyledButton>
-    </Container>
+    <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        accessibilityLabel={label}>
+        {getFloatingButton()}
+      </TouchableOpacity>
+    </View>
   );
 };
 
 export default FloatingButton;
 
-const Container = styled.View`
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-`;
+const SHADOW_COLOR = "rgba(0, 0, 0, 0.1)";
 
-const StyledButton = styled(TouchableOpacity)`
-  position: absolute;
-  bottom: 16px;
-  right: 16px;
-`;
-
-const ButtonImage = styled(Image)``;
+const styles = StyleSheet.create({
+  button: {
+    alignItems: "center",
+    bottom: 2,
+    elevation: 10,
+    justifyContent: "center",
+    position: "absolute",
+    right: 2,
+    shadowColor: SHADOW_COLOR,
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 1,
+  },
+  container: {
+    height: "100%",
+    left: 0,
+    position: "absolute",
+    top: 0,
+    width: "100%",
+  },
+});
