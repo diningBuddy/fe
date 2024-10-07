@@ -5,7 +5,7 @@ import React, { useRef, useState } from "react";
 import Toast from "../../common/atom/Toast";
 
 const SampleToast = () => {
-  const toastRef = useRef(null);
+  const toastRef = React.createRef();
   const [toastVariant, setToastVariant] = useState<string | null>(null);
 
   const showToast = (variant: string) => {

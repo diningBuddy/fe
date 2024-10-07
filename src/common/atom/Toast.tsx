@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import React, { forwardRef, useContext, useImperativeHandle, useRef } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
@@ -11,15 +11,16 @@ interface ToastProps {
   isNavigateButton?: boolean;
 }
 
-const Toast: React.FC<ToastProps> = ({ variant = "default", message, isNavigateButton = true }) => {
+const Toast = forwardRef(({ variant = "default", message, isNavigateButton = true }: ToastProps, ref) => {
   const theme = useContext(ThemeContext) || {};
   const windowHeight = Dimensions.get("window").height;
-
   const popAnim = useRef(new Animated.Value(windowHeight)).current;
 
-  useEffect(() => {
-    popIn();
-  }, []);
+  useImperativeHandle(ref, () => ({
+    showToast: () => {
+      popIn();
+    },
+  }));
 
   const popIn = () => {
     Animated.timing(popAnim, {
@@ -80,19 +81,7 @@ const Toast: React.FC<ToastProps> = ({ variant = "default", message, isNavigateB
       {isNavigateButton && <NavigateText theme={theme}>조회</NavigateText>}
     </Animated.View>
   );
-};
-
-const ToastContainer = styled(View)<{ variant: string; theme: DefaultTheme }>`
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  padding: 14px 18px;
-  border: 1px solid ${({ theme }) => theme.color.global.neutral[900]};
-  border-radius: 6px;
-  background-color: ${({ theme }) => {
-    return theme.color.global.neutral[1000];
-  }};
-`;
+});
 
 const IconWrapper = styled(View)`
   margin-right: ${({ variant }) => {
