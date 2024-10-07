@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useImperativeHandle, useRef } from "react";
+import React, { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
@@ -15,14 +15,25 @@ const Toast = forwardRef(({ variant = "default", message, isNavigateButton = tru
   const theme = useContext(ThemeContext) || {};
   const windowHeight = Dimensions.get("window").height;
   const popAnim = useRef(new Animated.Value(windowHeight)).current;
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   useImperativeHandle(ref, () => ({
     showToast: () => {
+      if (isAnimating) {
+        popAnim.stopAnimation();
+      }
+
       popIn();
+
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     },
   }));
 
   const popIn = () => {
+    setIsAnimating(true);
     Animated.timing(popAnim, {
       toValue: windowHeight * 0.75,
       duration: 300,
@@ -33,12 +44,14 @@ const Toast = forwardRef(({ variant = "default", message, isNavigateButton = tru
   };
 
   const popOut = () => {
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       Animated.timing(popAnim, {
         toValue: windowHeight,
         duration: 300,
         useNativeDriver: false,
-      }).start();
+      }).start(() => {
+        setIsAnimating(false);
+      });
     }, 2000);
   };
 
