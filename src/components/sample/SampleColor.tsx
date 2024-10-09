@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled, { ThemeContext, DefaultTheme } from "styled-components/native";
 import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+
 import ThemeStyle from "../../styles/ThemeStyle";
 
 const ColorItem: React.FC<{ color: string; label: string }> = ({ color, label }) => (
