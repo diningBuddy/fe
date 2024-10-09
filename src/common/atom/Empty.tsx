@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 
 import { BodyMedium14, BodySemibold12, BodySemibold14 } from "./Typo";
+import ThemeStyle from "../../styles/ThemeStyle";
 
 interface EmptyProps {
   title?: string;
@@ -20,26 +21,17 @@ const Empty: React.FC<EmptyProps> = ({
   buttonColor,
   mode = "main",
 }) => {
-  const ButtonBgColor = buttonColor || (mode === "main" ? "#FF6B6B" : "#000000");
-
+  const theme = ThemeStyle.color;
+  const ButtonBgColor = buttonColor || (mode === "main" ? theme.sys.primary.default : theme.theme.headingText);
+  const ButtonTextColor = theme.global.neutral[100];
   return (
     <Container>
-      {/**
-       * TODO :
-       * FONT 색상추가, 마진추가,
-       * 버튼 색상 재설정,
-       * 고정텍스트 확인,
-       * container padding값 추가
-       * */}
+      <BodySemibold14 margin="0 0 8px 0">{title}</BodySemibold14>
 
-      {/* BodySemibold14 - mb: 8px */}
-      <BodySemibold14>{title}</BodySemibold14>
-
-      {/* BodyMedium14 - mb: 16px */}
-      {subtitle && <BodyMedium14>{subtitle}</BodyMedium14>}
+      {subtitle && <BodyMedium14 margin="0 0 16px 0">{subtitle}</BodyMedium14>}
       {innerText && onPress && (
         <Button onPress={onPress} buttonColor={ButtonBgColor}>
-          <BodySemibold12>{innerText}</BodySemibold12>
+          <BodySemibold12 color={ButtonTextColor}>{innerText}</BodySemibold12>
         </Button>
       )}
     </Container>
@@ -49,14 +41,17 @@ const Empty: React.FC<EmptyProps> = ({
 export default Empty;
 
 const Container = styled.View`
-  padding: 16px;
   align-items: center;
   justify-content: center;
+
+  padding: 16px 30px;
+
   background-color: transparent;
 `;
 
 const Button = styled.TouchableOpacity<{ buttonColor: string }>`
-  background-color: ${({ buttonColor }) => buttonColor};
   padding: 10px 12px;
+
   border-radius: 4px;
+  background-color: ${({ buttonColor }) => buttonColor};
 `;
