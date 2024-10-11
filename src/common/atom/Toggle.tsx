@@ -7,6 +7,7 @@ import ThemeStyle from "../../styles/ThemeStyle";
 interface ToggleProps {
   isOn: boolean;
   onToggle: () => void;
+  mode?: "main" | "secondary"; // mode 속성 추가
 }
 
 const ToggleWrap = styled.View<{ isOn: boolean; onColor: string; offColor: string }>`
@@ -31,10 +32,22 @@ const ToggleBox = styled(Animated.View)<{ thumbColor: string }>`
   background-color: ${(props) => props.thumbColor};
 `;
 
-const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle }) => {
-  const onColor = ThemeStyle.color.sys.primary.default;
-  const offColor = ThemeStyle.color.sys.tertiary.default;
-  const thumbColor = ThemeStyle.color.global.neutral[100];
+const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle, mode = "main" }) => {
+  // mode에 따라 색상 지정
+  const colors = {
+    main: {
+      onColor: ThemeStyle.color.sys.primary.default,
+      offColor: ThemeStyle.color.sys.tertiary.default,
+      thumbColor: ThemeStyle.color.global.neutral[100],
+    },
+    secondary: {
+      onColor: ThemeStyle.color.sys.primary.disabled,
+      offColor: ThemeStyle.color.sys.secondary.disabled,
+      thumbColor: ThemeStyle.color.global.neutral[100],
+    },
+  };
+
+  const { onColor, offColor, thumbColor } = colors[mode];
 
   const translateX = useRef(new Animated.Value(isOn ? 22 : 2)).current;
 
