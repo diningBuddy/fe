@@ -30,10 +30,11 @@ const ToggleBox = styled(Animated.View)<{ thumbColor: string }>`
 
   border-radius: 12px;
   background-color: ${(props) => props.thumbColor};
+
+  elevation: 3;
 `;
 
 const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle, mode = "main" }) => {
-  // mode에 따라 색상 지정
   const colors = {
     main: {
       onColor: ThemeStyle.color.sys.primary.default,
