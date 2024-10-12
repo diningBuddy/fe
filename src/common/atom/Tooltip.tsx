@@ -32,7 +32,6 @@ const Tooltip: React.FC<TooltipProps> = ({ message, position = "bottomCenter" })
 const styles = StyleSheet.create({
   bottomCenter: {
     alignItems: "center",
-    flexDirection: "column",
   },
   bottomCenterArrow: {
     borderBottomColor: ThemeStyle.color.global.neutral[1000],
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 5,
     borderRightColor: "transparent",
     borderRightWidth: 5,
-    left: "50%",
+    left: "25%",
     marginLeft: -5,
     top: -5,
   },
@@ -109,8 +108,8 @@ const styles = StyleSheet.create({
   tooltipBox: {
     backgroundColor: ThemeStyle.color.global.neutral[1000],
     borderRadius: 8,
-    paddingVertical: 8,
     paddingHorizontal: 12,
+    paddingVertical: 8,
     position: "relative",
     ...Platform.select({
       android: {
@@ -132,7 +131,6 @@ const styles = StyleSheet.create({
   },
   topCenter: {
     alignItems: "center",
-    flexDirection: "column-reverse",
   },
   topCenterArrow: {
     borderLeftColor: "transparent",
@@ -142,12 +140,11 @@ const styles = StyleSheet.create({
     borderTopColor: ThemeStyle.color.global.neutral[1000],
     borderTopWidth: 5,
     bottom: -5,
-    left: "50%",
+    left: "25%",
     marginLeft: -5,
   },
   topLeft: {
     alignItems: "flex-start",
-    flexDirection: "column-reverse",
   },
   topLeftArrow: {
     borderLeftColor: "transparent",
@@ -161,7 +158,6 @@ const styles = StyleSheet.create({
   },
   topRight: {
     alignItems: "flex-end",
-    flexDirection: "column-reverse",
   },
   topRightArrow: {
     borderLeftColor: "transparent",
