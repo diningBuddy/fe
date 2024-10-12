@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 5,
     borderRightColor: "transparent",
     borderRightWidth: 5,
-    left: "25%",
+    left: "20%",
     marginLeft: -5,
     top: -5,
   },
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     borderTopColor: ThemeStyle.color.global.neutral[1000],
     borderTopWidth: 5,
     bottom: -5,
-    left: "25%",
+    left: "20%",
     marginLeft: -5,
   },
   topLeft: {
