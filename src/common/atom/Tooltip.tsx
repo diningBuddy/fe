@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Platform } from "react-native";
+import { View, Text, StyleSheet, Platform, TouchableOpacity } from "react-native";
 
 import { HeroiconsSolidXmark } from "../../assets/icons/shape";
 import ThemeStyle from "../../styles/ThemeStyle";
 
 interface TooltipProps {
   message: string;
-  position?: "top" | "bottom" | "left" | "right";
+  position?: "bottomCenter" | "bottomLeft" | "bottomRight" | "topCenter" | "topLeft" | "topRight" | "right" | "left";
 }
 
-const Tooltip: React.FC<TooltipProps> = ({ message, position = "top" }) => {
+const Tooltip: React.FC<TooltipProps> = ({ message, position = "bottomCenter" }) => {
   const [visible, setVisible] = useState(true);
 
   if (!visible) return null;
@@ -17,27 +17,60 @@ const Tooltip: React.FC<TooltipProps> = ({ message, position = "top" }) => {
   return (
     <View style={[styles.tooltipContainer, styles[position]]}>
       <View style={styles.tooltipBox}>
-        <Text style={styles.tooltipText}>{message}</Text>
-        <TouchableOpacity onPress={() => setVisible(false)}>
-          <HeroiconsSolidXmark />
-        </TouchableOpacity>
+        <View style={styles.tooltipContentRow}>
+          <Text style={styles.tooltipText}>{message}</Text>
+          <TouchableOpacity onPress={() => setVisible(false)}>
+            <HeroiconsSolidXmark />
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.tooltipArrow, styles[`${position}Arrow`]]} />
       </View>
-      <View style={[styles.tooltipArrow, styles[`${position}Arrow`], styles.shadow]} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  bottom: {
+  bottomCenter: {
+    alignItems: "center",
     flexDirection: "column",
   },
-  bottomArrow: {
-    borderBottomColor: ThemeStyle.color.global.neutral[1300],
+  bottomCenterArrow: {
+    borderBottomColor: ThemeStyle.color.global.neutral[1000],
     borderBottomWidth: 5,
     borderLeftColor: "transparent",
     borderLeftWidth: 5,
     borderRightColor: "transparent",
     borderRightWidth: 5,
+    left: "50%",
+    marginLeft: -5,
+    top: -5,
+  },
+  bottomLeft: {
+    alignItems: "flex-start",
+    flexDirection: "column",
+  },
+  bottomLeftArrow: {
+    borderBottomColor: ThemeStyle.color.global.neutral[1000],
+    borderBottomWidth: 5,
+    borderLeftColor: "transparent",
+    borderLeftWidth: 5,
+    borderRightColor: "transparent",
+    borderRightWidth: 5,
+    left: 12,
+    top: -5,
+  },
+  bottomRight: {
+    alignItems: "flex-end",
+    flexDirection: "column",
+  },
+  bottomRightArrow: {
+    borderBottomColor: ThemeStyle.color.global.neutral[1000],
+    borderBottomWidth: 5,
+    borderLeftColor: "transparent",
+    borderLeftWidth: 5,
+    borderRightColor: "transparent",
+    borderRightWidth: 5,
+    right: 15,
     top: -5,
   },
   left: {
@@ -46,11 +79,13 @@ const styles = StyleSheet.create({
   leftArrow: {
     borderBottomColor: "transparent",
     borderBottomWidth: 5,
-    borderLeftColor: "",
+    borderLeftColor: ThemeStyle.color.global.neutral[1000],
     borderLeftWidth: 5,
     borderTopColor: "transparent",
     borderTopWidth: 5,
+    marginTop: 3,
     right: -5,
+    top: "50%",
   },
   right: {
     flexDirection: "row",
@@ -58,59 +93,85 @@ const styles = StyleSheet.create({
   rightArrow: {
     borderBottomColor: "transparent",
     borderBottomWidth: 5,
-    borderRightColor: "",
+    borderRightColor: ThemeStyle.color.global.neutral[1000],
     borderRightWidth: 5,
     borderTopColor: "transparent",
     borderTopWidth: 5,
     left: -5,
+    marginTop: 3,
+    top: "50%",
   },
-  shadow: {
+  tooltipArrow: {
+    height: 0,
+    position: "absolute",
+    width: 0,
+  },
+  tooltipBox: {
+    backgroundColor: ThemeStyle.color.global.neutral[1000],
+    borderRadius: 8,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    position: "relative",
     ...Platform.select({
       android: {
         elevation: 6,
       },
     }),
   },
-  tooltipArrow: {
-    position: "absolute",
-  },
-  tooltipBox: {
-    alignItems: "center",
-    backgroundColor: "",
-    borderRadius: 8,
-    flexDirection: "row",
-    paddingHorizontal: 12,
-    paddingVertical: 9,
-    ...Platform.select({
-      android: {
-        elevation: 3,
-      },
-    }),
-  },
   tooltipContainer: {
+    marginVertical: 10,
+  },
+  tooltipContentRow: {
     alignItems: "center",
-    justifyContent: "center",
-    margin: 10, // 배치되는 위치에 따라 다시 한 번 확인 필요 (추후 수정)
-    position: "relative",
+    flexDirection: "row",
+    gap: 4,
+    justifyContent: "space-between",
   },
   tooltipText: {
     color: ThemeStyle.color.global.neutral[100],
-    fontSize: 11,
-    fontWeight: "600",
-    lineHeight: 14,
-    marginRight: 10,
   },
-  top: {
+  topCenter: {
+    alignItems: "center",
     flexDirection: "column-reverse",
   },
-  topArrow: {
+  topCenterArrow: {
     borderLeftColor: "transparent",
     borderLeftWidth: 5,
     borderRightColor: "transparent",
     borderRightWidth: 5,
-    borderTopColor: "",
+    borderTopColor: ThemeStyle.color.global.neutral[1000],
     borderTopWidth: 5,
     bottom: -5,
+    left: "50%",
+    marginLeft: -5,
+  },
+  topLeft: {
+    alignItems: "flex-start",
+    flexDirection: "column-reverse",
+  },
+  topLeftArrow: {
+    borderLeftColor: "transparent",
+    borderLeftWidth: 5,
+    borderRightColor: "transparent",
+    borderRightWidth: 5,
+    borderTopColor: ThemeStyle.color.global.neutral[1000],
+    borderTopWidth: 5,
+    bottom: -5,
+    left: 12,
+  },
+  topRight: {
+    alignItems: "flex-end",
+    flexDirection: "column-reverse",
+  },
+  topRightArrow: {
+    borderLeftColor: "transparent",
+    borderLeftWidth: 5,
+    borderRightColor: "transparent",
+    borderRightWidth: 5,
+    borderTopColor: ThemeStyle.color.global.neutral[1000],
+    borderTopWidth: 5,
+    bottom: -5,
+    right: 12,
   },
 });
 
