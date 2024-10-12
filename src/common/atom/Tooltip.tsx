@@ -128,6 +128,8 @@ const styles = StyleSheet.create({
   },
   tooltipText: {
     color: ThemeStyle.color.global.neutral[100],
+    fontSize: 11,
+    fontWeight: "600",
   },
   topCenter: {
     alignItems: "center",
