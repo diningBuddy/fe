@@ -22,6 +22,7 @@ import SampleSearch from "./src/components/sample/SampleSearch";
 import SampleChip from "./src/components/sample/SampleChip";
 import SampleCheckbox from "./src/components/sample/SampleCheckbox";
 import SampleTooltip from "./src/components/sample/SampleTooltip";
+import SampleToast from "./src/components/sample/SampleToast";
 
 export type Props = {
   label: string;
@@ -62,6 +63,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
           <Stack.Screen name={RouteNames.SAMPLE_CHECKBOX} component={SampleCheckbox} />
           <Stack.Screen name={RouteNames.SAMPLE_TOOLTIP} component={SampleTooltip} />
+          <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
