@@ -1,18 +1,22 @@
 import styled from "styled-components/native";
 import { Button, ScrollView, View } from "react-native";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import Toast from "../../common/atom/Toast";
 
+interface ToastHandle {
+  showToast: () => void;
+}
+
 const SampleToast = () => {
-  const toastRef = React.createRef();
+  const toastRef = React.createRef<ToastHandle>();
   const [toastVariant, setToastVariant] = useState<string | null>(null);
 
   const showToast = (variant: string) => {
     setToastVariant(variant);
     // Toast 컴포넌트의 애니메이션을 실행
     if (toastRef.current) {
-      (toastRef.current as any).showToast();
+      toastRef.current.showToast();
     }
   };
 

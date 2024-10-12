@@ -1,5 +1,5 @@
 import React, { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
+import styled, { ThemeContext } from "styled-components/native";
 import { Animated, Dimensions, StyleSheet, View } from "react-native";
 
 import { CheckCircleGreen, InformationCircle, Warning } from "../../assets/icons/shape";
@@ -96,13 +96,15 @@ const Toast = forwardRef(({ variant = "default", message, isNavigateButton = tru
   );
 });
 
-const IconWrapper = styled(View)`
+Toast.displayName = "Toast";
+
+const IconWrapper = styled(View)<ToastProps>`
   margin-right: ${({ variant }) => {
     return variant === "default" ? "0px" : "6px";
   }};
 `;
 
-const Message = styled(BodyMedium14)`
+const Message = styled(BodyMedium14)<ToastProps>`
   flex: 1;
   color: ${({ theme, variant }) => {
     if (variant === "destructive") {
