@@ -16,7 +16,11 @@ const SampleEmpty = () => {
 
       <Empty innerText="내 주변 맛집 보러가기" mode="secondary" onPress={handleButtonClick} />
 
-      <Empty subtitle="혹시 다른 검색어로 찾아보시는 건 어떠세요?" mode="secondary" />
+      <Empty
+        title="앗, 찾으시는 결과가 없네요."
+        subtitle="혹시 다른 검색어로 찾아보시는 건 어떠세요?"
+        mode="secondary"
+      />
 
       <Empty
         subtitle="혹시 다른 검색어로 찾아보시는 건 어떠세요?"
