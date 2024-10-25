@@ -31,7 +31,7 @@ const Empty: React.FC<EmptyProps> = ({
       <CircleQuestion width={40} height={40} fill="#595959" />
       <BodySemibold14 margin="8px 0 16px 0">{title}</BodySemibold14>
 
-      {subtitle && <BodyMedium14 margin="0 0 8px 0">{subtitle}</BodyMedium14>}
+      {subtitle && <BodyMedium14 margin="0 0 16px 0">{subtitle}</BodyMedium14>}
       {innerText && onPress && (
         <Button onPress={onPress} buttonColor={ButtonBgColor}>
           <BodySemibold12 color={ButtonTextColor}>{innerText}</BodySemibold12>
