@@ -29,6 +29,7 @@ export type RootStackParamList = {
   [RouteNames.MYPAGE]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
+  [RouteNames.SAMPLE_TAB]: undefined;
   [RouteNames.SAMPLE_BUTTON]: undefined;
   [RouteNames.SAMPLE_INPUT]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
@@ -38,5 +39,4 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_CHECKBOX]: undefined;
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
-  [RouteNames.SAMPLE_TAB]: undefined;
 };
