@@ -30,6 +30,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
   ];
 
   return (
