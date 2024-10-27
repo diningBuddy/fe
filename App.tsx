@@ -55,6 +55,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
           <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
+          <Stack.Screen name={RouteNames.SAMPLE_TAB} component={HomeScreen} />
           <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />

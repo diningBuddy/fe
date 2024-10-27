@@ -21,6 +21,7 @@ function HomeScreen({ navigation }: Props) {
   const buttons = [
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
+    { label: "Sample Tab", route: RouteNames.SAMPLE_TAB },
     { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
     { label: "Sample Input", route: RouteNames.SAMPLE_INPUT },
     { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
