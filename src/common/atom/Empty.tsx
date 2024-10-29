@@ -27,8 +27,7 @@ const Empty: React.FC<EmptyProps> = ({
   const ButtonTextColor = theme.global.neutral[100];
   return (
     <Container>
-      {/* <CircleQuestion width={40} height={40} fillColor={theme.global.neutral[800]} /> */}
-      <CircleQuestion width={40} height={40} fill="#595959" />
+      <CircleQuestion width={40} height={40} fill={theme.global.neutral[800]} />
       <BodySemibold14 margin="8px 0 16px 0">{title}</BodySemibold14>
 
       {subtitle && <BodyMedium14 margin="0 0 16px 0">{subtitle}</BodyMedium14>}
