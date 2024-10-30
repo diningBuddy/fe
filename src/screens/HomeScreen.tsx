@@ -1,7 +1,7 @@
-import React, { useContext, useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import styled, { ThemeContext } from "styled-components/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { StyleSheet, ScrollView } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 
 import { RootStackParamList, RouteNames } from "../utils/routes";
 import { HeadingSemiBold24 } from "../common/atom/Typo";
@@ -29,6 +29,9 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
     { label: "Sample Checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample FloatingButton", route: RouteNames.SAMPLE_FLOATINGBUTTON },
+    { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
+    { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
   ];
 
   return (
