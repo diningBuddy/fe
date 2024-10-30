@@ -1,71 +1,84 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
-import { FloatingDefault, FloatingPressed, FloatingSelected } from "../../assets/icons/floating";
+import { ChevronUp } from "../../assets/icons/arrow/chevron";
+import { PencilEdit } from "../../assets/icons/editor";
 
 interface FloatingButtonProps {
   label: string;
   onPress: () => void;
+  icon: React.ReactNode;
 }
 
-const FloatingButton: React.FC<FloatingButtonProps> = ({ label, onPress }) => {
+const FloatingButton: React.FC<FloatingButtonProps> = ({ label, onPress, icon }) => {
   const [isPressed, setIsPressed] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
-  const handlePressIn = () => {
-    setIsPressed(true);
-  };
-
+  const handlePressIn = () => setIsPressed(true);
   const handlePressOut = () => {
     setIsPressed(false);
-    setIsSelected(true);
+    setIsSelected(!isSelected);
   };
 
-  const getFloatingButton = () => {
-    if (isSelected) {
-      return <FloatingSelected />;
-    } else if (isPressed) {
-      return <FloatingPressed />;
-    } else {
-      return <FloatingDefault />;
-    }
+  const getBackgroundColor = () => {
+    if (isSelected) return "#262626";
+    if (isPressed) return "#F0F0F0";
+    return "#FFF";
+  };
+
+  const renderIcon = () => {
+    return React.cloneElement(icon as React.ReactElement, {
+      fill: isSelected ? "#FFFFFF" : "#000000",
+    });
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.buttonContainer}>
       <TouchableOpacity
-        style={styles.button}
-        onPress={onPress}
+        style={[styles.button, { backgroundColor: getBackgroundColor() }]}
+        onPress={handlePressOut}
         onPressIn={handlePressIn}
-        onPressOut={handlePressOut}
         accessibilityLabel={label}>
-        {getFloatingButton()}
+        {renderIcon()}
       </TouchableOpacity>
+      <Text style={styles.label}>{label}</Text>
     </View>
   );
 };
 
+// Top Scroll Button
+export const TopScrollFloatingButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <FloatingButton label="위로 올라가기" onPress={onPress} icon={<ChevronUp />} />
+);
+
+// Edit Button
+export const EditFloatingButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
+  <FloatingButton label="리뷰 작성" onPress={onPress} icon={<PencilEdit />} />
+);
+
 export default FloatingButton;
 
-const SHADOW_COLOR = "rgba(0, 0, 0, 0.1)";
-
 const styles = StyleSheet.create({
+  buttonContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
   button: {
     alignItems: "center",
-    bottom: 2,
-    elevation: 10,
+    backgroundColor: "#FFF",
+    borderRadius: 28,
+    elevation: 5,
+    height: 56,
     justifyContent: "center",
-    position: "absolute",
-    right: 2,
-    shadowColor: SHADOW_COLOR,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 1,
+    shadowColor: "rgba(0, 0, 0, 0.1)",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    width: 56,
   },
-  container: {
-    height: "100%",
-    left: 0,
-    position: "absolute",
-    top: 0,
-    width: "100%",
+  label: {
+    marginTop: 8,
+    color: "#555",
+    textAlign: "center",
   },
 });

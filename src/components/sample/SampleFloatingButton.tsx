@@ -1,45 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 
-import FloatingButton from "../../common/atom/FloatingButton";
+import { EditFloatingButton, TopScrollFloatingButton } from "../../common/atom/FloatingButton";
 
-const FloatingButtonExample = () => {
+const FloatingButtonSample = () => {
   const [message, setMessage] = useState("");
+  const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleButtonClick = () => {
-    setMessage("floating 버튼 누름");
+  const handleTopScrollClick = () => {
+    setMessage("TopScroll 버튼 누름");
+    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+  };
+
+  const handleEditClick = () => {
+    setMessage("Edit 버튼 누름");
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.content}>
-        <Text style={styles.title}>FloatingButton Example</Text>
-        <Text style={styles.message}>{message}</Text>
+    <ScrollView ref={scrollViewRef} contentContainerStyle={styles.container}>
+      <View style={styles.content}>{message ? <Text style={styles.message}>{message}</Text> : null}</View>
+      <View style={styles.buttonContainer}>
+        <TopScrollFloatingButton onPress={handleTopScrollClick} />
+        <EditFloatingButton onPress={handleEditClick} />
       </View>
-
-      <FloatingButton label="작성" onPress={handleButtonClick} />
     </ScrollView>
   );
 };
 
-export default FloatingButtonExample;
+export default FloatingButtonSample;
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: 20,
+    width: "100%",
+  },
   container: {
     alignItems: "center",
-    flex: 1,
+    flexGrow: 1,
     justifyContent: "center",
     padding: 16,
   },
   content: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 40,
   },
-  message: {},
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 16,
+  message: {
+    color: "#333",
+    fontSize: 16,
+    padding: 10,
+    textAlign: "center",
   },
 });
