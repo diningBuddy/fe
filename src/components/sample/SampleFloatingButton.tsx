@@ -1,29 +1,27 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 
 import { EditFloatingButton, TopScrollFloatingButton } from "../../common/atom/FloatingButton";
 
 const FloatingButtonSample = () => {
-  const [message, setMessage] = useState("");
   const scrollViewRef = useRef<ScrollView>(null);
 
-  const handleTopScrollClick = () => {
-    setMessage("TopScroll 버튼 누름");
-    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-  };
-
   const handleEditClick = () => {
-    setMessage("Edit 버튼 누름");
+    alert("수정 버튼 클릭");
   };
 
   return (
-    <ScrollView ref={scrollViewRef} contentContainerStyle={styles.container}>
-      <View style={styles.content}>{message ? <Text style={styles.message}>{message}</Text> : null}</View>
+    <View style={styles.container}>
+      <ScrollView ref={scrollViewRef} contentContainerStyle={styles.content} scrollEventThrottle={16}>
+        {Array.from({ length: 100 }).map((_, index) => (
+          <Text key={index}>스크롤 내린 후 버튼클릭</Text>
+        ))}
+      </ScrollView>
       <View style={styles.buttonContainer}>
-        <TopScrollFloatingButton onPress={handleTopScrollClick} />
+        <TopScrollFloatingButton scrollViewRef={scrollViewRef} />
         <EditFloatingButton onPress={handleEditClick} />
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -31,25 +29,17 @@ export default FloatingButtonSample;
 
 const styles = StyleSheet.create({
   buttonContainer: {
+    bottom: 20,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    marginTop: 20,
+    position: "absolute",
     width: "100%",
   },
   container: {
-    alignItems: "center",
-    flexGrow: 1,
-    justifyContent: "center",
-    padding: 16,
+    flex: 1,
   },
   content: {
     alignItems: "center",
-    justifyContent: "center",
-  },
-  message: {
-    color: "#333",
-    fontSize: 16,
-    padding: 10,
-    textAlign: "center",
+    paddingVertical: 16,
   },
 });
