@@ -1,17 +1,41 @@
-import styled from "styled-components/native";
-import {ScrollView} from "react-native";
+import {SafeAreaView, StatusBar, StyleSheet} from "react-native";
+import {Appbar} from 'react-native-paper';
+import React from "react";
 
 
-const SampleModal = () => {
+const SampleModal = ({navigation}) => {
+    const styles = StyleSheet.create({
+        title: {
+            textAlign: 'center',
+            fontSize: 20,
+            fontStyle: "normal",
+            fontWeight: 700,
+            lineHeight: 28,
+        },
+    });
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            headerShown: false, // 기본 헤더 숨기기
+        });
+    }, [navigation]);
+
     return (
-        <ScrollViewContainer keyboardShouldPersistTaps="handled">
-        </ScrollViewContainer>
-    )
-}
+        <SafeAreaView style={{flex: 1, backgroundColor: "#ffffff"}}>
+            <StatusBar backgroundColor="#ffffff" barStyle="dark-content"/>
+            <Appbar.Header>
+                <Appbar.Action icon="menu" onPress={() => {
+                }}/>
+                <Appbar.Content
+                    title="Title"
+                    titleStyle={styles.title}
+                />
+                <Appbar.Action icon="dots-vertical" onPress={() => {
+                }}/>
+            </Appbar.Header>
+        </SafeAreaView>
+    );
+};
 
-const ScrollViewContainer = styled(ScrollView)`
-    padding: 20px;
-    background-color: #ffffff;
-`;
 
 export default SampleModal;
