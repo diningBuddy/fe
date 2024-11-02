@@ -49,6 +49,7 @@
     "react/jsx-props-no-spreading": "off",
     "react-native/no-raw-text": "off",
     "no-nested-ternary": "off", //추후 error로
-    "react/destructuring-assignment": "off" //추후 warn로
+    "react/destructuring-assignment": "off", //추후 warn로
+    "no-else-return": "off"
   }
 }
