@@ -27,6 +27,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
+    { label: "Sample Divider", route: RouteNames.SAMPLE_DIVIDER },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
