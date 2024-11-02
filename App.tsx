@@ -23,6 +23,7 @@ import SampleChip from "./src/components/sample/SampleChip";
 import SampleCheckbox from "./src/components/sample/SampleCheckbox";
 import SampleTooltip from "./src/components/sample/SampleTooltip";
 import SampleToast from "./src/components/sample/SampleToast";
+import SampleModal from "./src/components/sample/SampleModal";
 
 export type Props = {
   label: string;
@@ -53,6 +54,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
         <Stack.Navigator>
           <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
           <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
+          <Stack.Screen name={RouteNames.SAMPLE_MODAL} component={SampleModal} />
           <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
           <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
