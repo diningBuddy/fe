@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Pressable } from "react-native";
 
 import ThemeStyle from "../../styles/ThemeStyle";
 import { ChevronUp } from "../../assets/icons/arrow/chevron";
@@ -36,12 +36,12 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ onPress, icon, isSelect
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity
+      <Pressable
         style={[styles.button, { backgroundColor: getBackgroundColor() }]}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}>
         {renderIcon()}
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
