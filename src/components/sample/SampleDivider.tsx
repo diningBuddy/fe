@@ -1,6 +1,7 @@
 import { ScrollView, Text } from "react-native";
 import styled from "styled-components/native";
 import React from "react";
+
 import Divider from "../../common/atom/Divier";
 
 const SampleDivider = () => {
@@ -27,13 +28,11 @@ const SampleDivider = () => {
     );
 };
 
-// ScrollView 스타일 설정
 const ScrollViewContainer = styled(ScrollView)`
     padding: 20px;
     background-color: #ffffff;
 `;
 
-// 설명 텍스트 스타일 설정
 const Description = styled(Text)`
     margin-bottom: 8px;
     font-size: 14px;
