@@ -15,6 +15,7 @@ export const RouteNames = {
   SAMPLE_SEARCH: "sample-search" as const,
   SAMPLE_CHIP: "sample-chip" as const,
   SAMPLE_CHECKBOX: "sample-checkbox" as const,
+  SAMPLE_TOGGLE: "sample-toggle" as const,
   SAMPLE_TOOLTIP: "sample-tooltip" as const,
   SAMPLE_TOAST: "sample-toast" as const,
 };
@@ -35,6 +36,7 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_SEARCH]: undefined;
   [RouteNames.SAMPLE_CHIP]: undefined;
   [RouteNames.SAMPLE_CHECKBOX]: undefined;
+  [RouteNames.SAMPLE_TOGGLE]: undefined;
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
 };
