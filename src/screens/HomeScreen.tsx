@@ -28,6 +28,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
     { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
