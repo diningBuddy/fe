@@ -32,6 +32,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
   ];
 
   return (
