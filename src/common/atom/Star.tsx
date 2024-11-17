@@ -24,7 +24,6 @@ const Star: React.FC<StarProps> = ({ size = "lg", star = 0, onChange }) => {
     <Container>
       {[...Array(maxStars)].map((_, index) => {
         const filled = rating >= index + 1; // 채워진 상태인지 확인
-        const halfFilled = rating > index && rating < index + 1;
 
         return (
           <TouchableStar key={index} onPress={() => handleStarPress(index)}>

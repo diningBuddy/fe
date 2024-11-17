@@ -1,5 +1,5 @@
 import React from "react";
-import Svg, { Path, Defs, ClipPath, Rect, G } from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
 
 interface StarIconProps {
   size: "sm" | "lg";
