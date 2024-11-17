@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
-import { TextInput, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 import { BodyMedium14, BodyRegular12 } from "./Typo";
 import { ChevronDown } from "../../assets/icons/arrow/chevron";
@@ -9,8 +9,11 @@ interface DropdownProps {
   variant?: "default" | "destructive";
   label?: string;
   description?: string;
-  placeholder?: string;
+  placeholder: string;
+  selectedValue?: string;
   isDisabled?: boolean;
+  onPress?: () => void;
+  isFocused?: boolean;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -18,10 +21,12 @@ const Dropdown: React.FC<DropdownProps> = ({
   label = "",
   description = "",
   placeholder = "Type your message here",
+  selectedValue = "",
   isDisabled = false,
+  onPress,
+  isFocused = false,
 }) => {
   const theme = useContext(ThemeContext);
-  const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
     isDisabled ? "disabled" : "initial"
   );
@@ -29,30 +34,39 @@ const Dropdown: React.FC<DropdownProps> = ({
   useEffect(() => {
     if (isDisabled) {
       setState("disabled");
-    } else if (value) {
+    } else if (selectedValue) {
       setState("filled");
-    } else if (!value && state === "filled") {
+    } else if (!selectedValue && state === "filled") {
       setState("initial");
     }
-  }, [value, isDisabled]);
+  }, [selectedValue, isDisabled]);
+
+  useEffect(() => {
+    if (isFocused) {
+      setState("focused");
+    } else if (state === "focused" && !selectedValue) {
+      setState("initial");
+    } else if (state === "focused" && selectedValue) {
+      setState("filled");
+    }
+  }, [isFocused, selectedValue]);
+
+  const handlePress = () => {
+    if (!isDisabled && onPress) {
+      setState("focused");
+      onPress();
+    }
+  };
 
   return (
     <DropdownRow>
       {label && <Label theme={theme}>{label}</Label>}
-      <DropdownWrapper variant={variant} state={state} theme={theme}>
+      <DropdownWrapper onPress={handlePress} variant={variant} state={state} theme={theme}>
         <DropdownContainer variant={variant} state={state} theme={theme}>
-          <StyledDropdown
-            theme={theme}
-            placeholder={placeholder}
-            value={value}
-            onFocus={() => !isDisabled && setState("focused")}
-            onBlur={() => {
-              if (!value && !isDisabled) setState("initial");
-            }}
-            onChangeText={setValue}
-            editable={!isDisabled}
-          />
-          <DownButton>
+          <PlaceholderText theme={theme} state={state}>
+            {selectedValue || placeholder}
+          </PlaceholderText>
+          <DownButton onPress={handlePress}>
             <ChevronDown />
           </DownButton>
         </DropdownContainer>
@@ -76,7 +90,7 @@ const Label = styled(BodyMedium14).attrs(({ theme }: { theme: DefaultTheme }) =>
   margin: 0 0 6px 3px;
 `;
 
-const DropdownWrapper = styled.View<DropdownProps & { theme: DefaultTheme }>`
+const DropdownWrapper = styled(TouchableOpacity)<DropdownProps & { theme: DefaultTheme }>`
   border: 1px solid
     ${({ variant, state, theme }) => {
       if (variant === "default") {
@@ -128,15 +142,11 @@ const DropdownContainer = styled.View<DropdownProps & { theme: DefaultTheme }>`
   }};
 `;
 
-const StyledDropdown = styled(TextInput).attrs(({ theme }: { theme: DefaultTheme }) => ({
-  placeholderTextColor: theme.color.theme.disabled,
-}))`
+const PlaceholderText = styled.Text<DropdownProps & { theme: DefaultTheme }>`
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16.94px;
-
-  color: ${({ theme }) => theme.color.global.neutral[900]};
+  color: ${({ state, theme }) => {
+    return state === "focused" || state === "filled" ? theme.color.global.neutral[900] : theme.color.theme.disabled;
+  }};
 `;
 
 const DownButton = styled(TouchableOpacity)``;
