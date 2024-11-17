@@ -25,6 +25,7 @@ import SampleEmpty from "./src/components/sample/SampleEmpty";
 import SampleToggle from "./src/components/sample/SampleToggle";
 import SampleTooltip from "./src/components/sample/SampleTooltip";
 import SampleToast from "./src/components/sample/SampleToast";
+import SampleDropdown from "./src/components/sample/SampleDropdown";
 
 export type Props = {
   label: string;
@@ -59,6 +60,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
           <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
+          <Stack.Screen name={RouteNames.SAMPLE_DROPDOWN} component={SampleDropdown} />
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
           <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />

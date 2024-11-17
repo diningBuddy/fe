@@ -23,6 +23,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
     { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
     { label: "Sample Input", route: RouteNames.SAMPLE_INPUT },
+    { label: "Sample Dropdown", route: RouteNames.SAMPLE_DROPDOWN },
     { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
