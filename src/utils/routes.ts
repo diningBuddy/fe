@@ -6,6 +6,7 @@ export const RouteNames = {
   MYPAGE: "mypage" as const,
   BROWSER: "browser" as const,
 
+  SAMPLE_MODAL: "sample-modal" as const,
   SAMPLE_FONT: "sample-font" as const,
   SAMPLE_COLOR: "sample-color" as const,
   SAMPLE_BUTTON: "sample-button" as const,
@@ -29,6 +30,7 @@ export type RootStackParamList = {
   [RouteNames.MAP]: undefined;
   [RouteNames.LIST]: undefined;
   [RouteNames.MYPAGE]: undefined;
+  [RouteNames.SAMPLE_MODAL]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
   [RouteNames.SAMPLE_BUTTON]: undefined;
