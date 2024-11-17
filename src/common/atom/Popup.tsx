@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dimensions, Image, Modal, View } from "react-native";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
@@ -24,6 +24,18 @@ const Popup: React.FC<PopupProps> = ({
   const windowWidth = Dimensions.get("window").width;
   const theme = useContext(ThemeContext) || {};
   const [imageError, setImageError] = useState(false);
+  const [imageVisible, setImageVisible] = useState(false);
+  const CONFIRM_TEXT = "알겠어요";
+
+  // 이미지 상태 관리 로직
+  useEffect(() => {
+    if (imageUrl) {
+      setImageError(false); // 이미지 에러 초기화
+      setImageVisible(true); // 이미지 표시
+    } else {
+      setImageVisible(false); // 이미지 숨김
+    }
+  }, [imageUrl]);
 
   return (
     <Modal transparent visible={visible} animationType="fade" onRequestClose={onClose}>
@@ -31,7 +43,7 @@ const Popup: React.FC<PopupProps> = ({
         <PopupContainer style={{ width: windowWidth * 0.85 }}>
           {isShowImage && (
             <ImageContainer>
-              {!imageError && imageUrl ? (
+              {!imageError ? (
                 <StyledImage source={{ uri: imageUrl }} onError={() => setImageError(true)} />
               ) : (
                 <PlaceholderView theme={theme} />
@@ -52,14 +64,14 @@ const Popup: React.FC<PopupProps> = ({
                 </CancelButton>
                 <ConfirmButton onPress={onClose} theme={theme} isSimple={isSimple}>
                   <ConfirmText theme={theme} isSimple={isSimple}>
-                    알겠어요
+                    {CONFIRM_TEXT}
                   </ConfirmText>
                 </ConfirmButton>
               </>
             ) : (
               <CancelButton onPress={onClose} theme={theme} isSimple>
                 <CancelText theme={theme} isSimple>
-                  알겠어요
+                  {CONFIRM_TEXT}
                 </CancelText>
               </CancelButton>
             )}
