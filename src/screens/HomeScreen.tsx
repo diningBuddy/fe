@@ -26,6 +26,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
+    { label: "Sample Star", route: RouteNames.SAMPLE_STAR },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
