@@ -19,6 +19,7 @@ function HomeScreen({ navigation }: Props) {
   );
 
   const buttons = [
+    { label: "Sample Modal", route: RouteNames.SAMPLE_MODAL },
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
     { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
@@ -28,8 +29,11 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
+    { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
   ];
 
   return (
