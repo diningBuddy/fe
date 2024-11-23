@@ -25,6 +25,7 @@ import SampleEmpty from "./src/components/sample/SampleEmpty";
 import SampleToggle from "./src/components/sample/SampleToggle";
 import SampleTooltip from "./src/components/sample/SampleTooltip";
 import SampleToast from "./src/components/sample/SampleToast";
+import SampleDivider from "./src/components/sample/SampleDivider";
 import SampleStar from "./src/components/sample/SampleStar";
 import SampleDropdown from "./src/components/sample/SampleDropdown";
 import SampleModal from "./src/components/sample/SampleModal";
@@ -70,6 +71,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
           <Stack.Screen name={RouteNames.SAMPLE_STAR} component={SampleStar} />
           <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
+          <Stack.Screen name={RouteNames.SAMPLE_DIVIDER} component={SampleDivider} />
           <Stack.Screen name={RouteNames.SAMPLE_CHECKBOX} component={SampleCheckbox} />
           <Stack.Screen name={RouteNames.SAMPLE_EMPTY} component={SampleEmpty} />
           <Stack.Screen name={RouteNames.SAMPLE_TOGGLE} component={SampleToggle} />
