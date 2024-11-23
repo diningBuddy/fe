@@ -6,10 +6,12 @@ export const RouteNames = {
   MYPAGE: "mypage" as const,
   BROWSER: "browser" as const,
 
+  SAMPLE_MODAL: "sample-modal" as const,
   SAMPLE_FONT: "sample-font" as const,
   SAMPLE_COLOR: "sample-color" as const,
   SAMPLE_BUTTON: "sample-button" as const,
   SAMPLE_INPUT: "sample-input" as const,
+  SAMPLE_DROPDOWN: "sample-dropdown" as const,
   SAMPLE_TEXTAREA: "sample-textarea" as const,
   SAMPLE_TAG: "sample-tag" as const,
   SAMPLE_SEARCH: "sample-search" as const,
@@ -20,6 +22,7 @@ export const RouteNames = {
   SAMPLE_TOGGLE: "sample-toggle" as const,
   SAMPLE_TOOLTIP: "sample-tooltip" as const,
   SAMPLE_TOAST: "sample-toast" as const,
+  SAMPLE_POPUP: "sample-popup" as const,
 };
 
 export type RootStackParamList = {
@@ -29,10 +32,12 @@ export type RootStackParamList = {
   [RouteNames.MAP]: undefined;
   [RouteNames.LIST]: undefined;
   [RouteNames.MYPAGE]: undefined;
+  [RouteNames.SAMPLE_MODAL]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
   [RouteNames.SAMPLE_BUTTON]: undefined;
   [RouteNames.SAMPLE_INPUT]: undefined;
+  [RouteNames.SAMPLE_DROPDOWN]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
   [RouteNames.SAMPLE_TAG]: undefined;
   [RouteNames.SAMPLE_SEARCH]: undefined;
@@ -43,4 +48,5 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_TOGGLE]: undefined;
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
+  [RouteNames.SAMPLE_POPUP]: undefined;
 };
