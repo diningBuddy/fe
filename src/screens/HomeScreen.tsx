@@ -19,6 +19,7 @@ function HomeScreen({ navigation }: Props) {
   );
 
   const buttons = [
+    { label: "Sample Modal", route: RouteNames.SAMPLE_MODAL },
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
     { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
@@ -33,6 +34,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
   ];
 
   return (
