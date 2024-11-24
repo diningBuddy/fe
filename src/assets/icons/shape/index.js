@@ -10,12 +10,12 @@ import InformationCircle from "./information-circle.svg";
 
 export {
   CircleClose,
-    CheckboxOff1,
-    CheckboxOff2,
-    CheckboxSquare1,
-    CheckboxSquare2,
-    CheckCircleGreen,
-    Warning,
-    InformationCircle,
-    HeroiconsSolidXmark
+  CheckboxOff1,
+  CheckboxOff2,
+  CheckboxSquare1,
+  CheckboxSquare2,
+  CheckCircleGreen,
+  Warning,
+  InformationCircle,
+  HeroiconsSolidXmark,
 };

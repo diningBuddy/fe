@@ -95,16 +95,16 @@ const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
     ${({ variant, state, theme }) => {
       if (variant === "default") {
         return state === "focused" ? "transparent" : theme.color.theme.border;
-      } if (variant === "destructive") {
+      }
+      if (variant === "destructive") {
         return state === "focused" ? "transparent" : theme.color.sys.destructive.default;
       }
     }};
   border-radius: ${({ variant, state, theme }) => {
     if (state === "focused") {
       return "10px";
-    } 
-      return "6px";
-    
+    }
+    return "6px";
   }};
   padding: ${({ state }) => {
     return state === "focused" ? "4px" : "0px";
@@ -112,13 +112,11 @@ const InputWrapper = styled.View<TextAreaProps & { theme: DefaultTheme }>`
   background-color: ${({ variant, state, theme }) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
-    } 
-      if (variant === "default") {
-        return theme.color.sys.secondary.disabled;
-      } 
-        return theme.color.sys.destructive.disabled;
-      
-    
+    }
+    if (variant === "default") {
+      return theme.color.sys.secondary.disabled;
+    }
+    return theme.color.sys.destructive.disabled;
   }};
 `;
 
@@ -134,9 +132,8 @@ const TextAreaContainer = styled.View<TextAreaProps & { theme: DefaultTheme }>`
       return `1px solid ${
         variant === "default" ? theme.color.sys.secondary.default : theme.color.sys.destructive.default
       }`;
-    } 
-      return "none";
-    
+    }
+    return "none";
   }};
   border-radius: 6px;
   background-color: ${({ variant, state, theme }) => {
