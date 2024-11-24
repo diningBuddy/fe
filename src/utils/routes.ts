@@ -24,6 +24,7 @@ export const RouteNames = {
   SAMPLE_TOOLTIP: "sample-tooltip" as const,
   SAMPLE_TOAST: "sample-toast" as const,
   SAMPLE_POPUP: "sample-popup" as const,
+  SAMPLE_AVATAR: "sample-avatar" as const,
 };
 
 export type RootStackParamList = {
@@ -51,4 +52,5 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
   [RouteNames.SAMPLE_POPUP]: undefined;
+  [RouteNames.SAMPLE_AVATAR]: undefined;
 };
