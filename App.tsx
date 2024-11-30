@@ -31,6 +31,7 @@ import SampleDropdown from "./src/components/sample/SampleDropdown";
 import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
+import SampleSpinner from "./src/components/sample/SampleSpinner";
 
 export type Props = {
   label: string;
@@ -80,6 +81,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
           <Stack.Screen name={RouteNames.SAMPLE_POPUP} component={SamplePopup} />
           <Stack.Screen name={RouteNames.SAMPLE_PROGRESS} component={SampleProgress} />
+          <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
