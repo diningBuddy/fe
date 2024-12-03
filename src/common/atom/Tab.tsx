@@ -1,100 +1,78 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import { ScrollView, TouchableOpacity, View } from "react-native";
 
-// Define tab item interface
-interface TabItem {
-    label: string;
+interface TabContentProps {
+  label: string;
+  value: string;
+  recentAlarm?: string | React.ReactNode;
 }
 
-// Define component properties
-interface TabProps {
-    items: TabItem[];
-    onSelect: (index: number) => void;
-    isScrollable?: boolean;
+interface TabsProps {
+  tabs: TabContentProps[];
+  children: React.ReactNode[];
 }
 
-// Main Tab Component
-const Tab: React.FC<TabProps> = ({
-                                     items,
-                                     onSelect,
-                                     isScrollable = false,
-                                 }) => {
-    const [selectedIndex, setSelectedIndex] = useState(0); // 첫 번째 탭 기본 선택
+const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
+  const [currentTab, setCurrentTab] = useState<string>(tabs[0]?.value);
 
-    const handleSelect = (index: number) => {
-        setSelectedIndex(index); // 현재 선택된 인덱스로 업데이트
-        onSelect(index); // 부모 컴포넌트로 onSelect 호출
-    };
+  const handleTabChange = (value: string) => {
+    setCurrentTab(value);
+  };
 
-    return (
-        <TabContainer isScrollable={isScrollable}>
-            {isScrollable ? (
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <TabList
-                        items={items}
-                        onSelect={handleSelect}
-                        selectedIndex={selectedIndex}
-                        isScrollable={true}
-                    />
-                </ScrollView>
-            ) : (
-                <TabList
-                    items={items}
-                    onSelect={handleSelect}
-                    selectedIndex={selectedIndex}
-                    isScrollable={false}
-                />
-            )}
-        </TabContainer>
-    );
-};
+  const Container = styled.View`
+    flex: 1;
+    background-color: #ffffff;
+  `;
 
-// Render individual tabs
-const TabList: React.FC<TabProps & { selectedIndex: number }> = ({
-                                                                     items,
-                                                                     onSelect,
-                                                                     selectedIndex,
-                                                                     isScrollable,
-                                                                 }) => {
-    return (
-        <>
-            {items.map((item, index) => (
-                <TabItem
-                    key={index}
-                    isSelected={index === selectedIndex}
-                    onPress={() => onSelect(index)}
-                    isScrollable={isScrollable}
-                >
-                    <TabLabel isSelected={index === selectedIndex}>
-                        {item.label}
-                    </TabLabel>
-                </TabItem>
-            ))}
-        </>
-    );
-};
-
-// Styled Components
-const TabContainer = styled(View)<{ isScrollable: boolean }>`
+  const TabList = styled.View`
     flex-direction: row;
-    justify-content: ${({ isScrollable }) => (isScrollable ? "flex-start" : "space-around")};
-    margin: 10px 0;
-`;
+    border-bottom-color: grey;
+  `;
 
-const TabItem = styled(TouchableOpacity)<{ isSelected: boolean; isScrollable: boolean }>`
-    flex: ${({isScrollable}) => (isScrollable ? "none" : "1")};
-    padding: 14px 16px 12px 16px;
-    border-bottom-width: 2px;
-    border-bottom-color: ${({isSelected, theme}) =>
-            isSelected ? theme.color.sys.secondary.default : theme.color.theme.border};
-`;
+  const TabButton = styled.TouchableOpacity<{ isActive: boolean }>`
+    flex: 1;
+    align-items: center;
+    padding: 12px 0;
+    background-color: ${({ isActive }) => (isActive ? "transparent" : "#fff")};
+  `;
 
-const TabLabel = styled.Text<{ isSelected: boolean }>`
+  const TabLabel = styled.Text<{ isActive: boolean }>`
+    padding: 14px 16px;
+    border-bottom-width: ${({ isActive }) => (isActive ? "2px" : "0px")};
+    font-weight: 600;
     font-size: 14px;
-    color: ${({ isSelected, theme }) =>
-            isSelected ? theme.color.sys.secondary.default : theme.color.theme.disabled};
-    font-weight: ${({ isSelected }) => (isSelected ? "bold" : "normal")};
-`;
+    color: ${({ isActive }) => (isActive ? "#262626" : "grey")};
+  `;
 
-export default Tab;
+  // TODO: 최종결정 시 추가
+  const TabAlarm = styled.Text`
+    color: #ff6d59;
+  `;
+
+  const TabContent = styled.View`
+    flex: 1;
+    padding: 16px;
+  `;
+
+  const TabPanel = styled.View`
+    flex: 1;
+  `;
+
+  return (
+    <Container>
+      <TabList>
+        {tabs.map((tab) => (
+          <TabButton key={tab.value} isActive={tab.value === currentTab} onPress={() => handleTabChange(tab.value)}>
+            <TabLabel isActive={tab.value === currentTab}>{tab.label}</TabLabel>
+            {/* {tab.recentAlarm && <TabAlarm>{tab.recentAlarm}</TabAlarm>} */}
+          </TabButton>
+        ))}
+      </TabList>
+      <TabContent>
+        {tabs.map((tab, index) => tab.value === currentTab && <TabPanel key={tab.value}>{children[index]}</TabPanel>)}
+      </TabContent>
+    </Container>
+  );
+};
+
+export default Tabs;
