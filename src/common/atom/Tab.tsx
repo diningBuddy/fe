@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 
+import { color } from "../../styles/ThemeStyle";
+import { BodySemibold14 } from "./Typo";
+
 interface TabContentProps {
   label: string;
   value: string;
@@ -21,7 +24,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 
   const Container = styled.View`
     flex: 1;
-    background-color: #ffffff;
+    background-color: ${color.global.neutral[100]};
   `;
 
   const TabList = styled.View`
@@ -33,20 +36,18 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
     flex: 1;
     align-items: center;
     padding: 12px 0;
-    background-color: ${({ isActive }) => (isActive ? "transparent" : "#fff")};
+    background-color: ${({ isActive }) => (isActive ? "transparent" : color.global.neutral[100])};
   `;
 
   const TabLabel = styled.Text<{ isActive: boolean }>`
     padding: 14px 16px;
     border-bottom-width: ${({ isActive }) => (isActive ? "2px" : "0px")};
-    font-weight: 600;
-    font-size: 14px;
-    color: ${({ isActive }) => (isActive ? "#262626" : "grey")};
+    color: ${({ isActive }) => (isActive ? color.sys.secondary.default : color.global.neutral[600])};
   `;
 
   // TODO: 최종결정 시 추가
   const TabAlarm = styled.Text`
-    color: #ff6d59;
+    color: ${color.global.orange[500]};
   `;
 
   const TabContent = styled.View`
@@ -63,7 +64,9 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
       <TabList>
         {tabs.map((tab) => (
           <TabButton key={tab.value} isActive={tab.value === currentTab} onPress={() => handleTabChange(tab.value)}>
-            <TabLabel isActive={tab.value === currentTab}>{tab.label}</TabLabel>
+            <TabLabel isActive={tab.value === currentTab}>
+              <BodySemibold14>{tab.label}</BodySemibold14>
+            </TabLabel>
             {/* {tab.recentAlarm && <TabAlarm>{tab.recentAlarm}</TabAlarm>} */}
           </TabButton>
         ))}
