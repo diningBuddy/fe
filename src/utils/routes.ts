@@ -6,18 +6,26 @@ export const RouteNames = {
   MYPAGE: "mypage" as const,
   BROWSER: "browser" as const,
 
+  SAMPLE_MODAL: "sample-modal" as const,
   SAMPLE_FONT: "sample-font" as const,
   SAMPLE_COLOR: "sample-color" as const,
   SAMPLE_TAB: "sample-tab" as const,
   SAMPLE_BUTTON: "sample-button" as const,
   SAMPLE_INPUT: "sample-input" as const,
+  SAMPLE_DROPDOWN: "sample-dropdown" as const,
   SAMPLE_TEXTAREA: "sample-textarea" as const,
   SAMPLE_TAG: "sample-tag" as const,
   SAMPLE_SEARCH: "sample-search" as const,
+  SAMPLE_STAR: "sample-star" as const,
   SAMPLE_CHIP: "sample-chip" as const,
+  SAMPLE_DIVIDER: "sample-divider" as const,
   SAMPLE_CHECKBOX: "sample-checkbox" as const,
+  SAMPLE_EMPTY: "sample-empty" as const,
+  SAMPLE_TOGGLE: "sample-toggle" as const,
   SAMPLE_TOOLTIP: "sample-tooltip" as const,
   SAMPLE_TOAST: "sample-toast" as const,
+  SAMPLE_POPUP: "sample-popup" as const,
+  SAMPLE_PROGRESS: "sample-progress" as const,
 };
 
 export type RootStackParamList = {
@@ -27,16 +35,24 @@ export type RootStackParamList = {
   [RouteNames.MAP]: undefined;
   [RouteNames.LIST]: undefined;
   [RouteNames.MYPAGE]: undefined;
+  [RouteNames.SAMPLE_MODAL]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
   [RouteNames.SAMPLE_TAB]: undefined;
   [RouteNames.SAMPLE_BUTTON]: undefined;
   [RouteNames.SAMPLE_INPUT]: undefined;
+  [RouteNames.SAMPLE_DROPDOWN]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
   [RouteNames.SAMPLE_TAG]: undefined;
   [RouteNames.SAMPLE_SEARCH]: undefined;
+  [RouteNames.SAMPLE_STAR]: undefined;
   [RouteNames.SAMPLE_CHIP]: undefined;
+  [RouteNames.SAMPLE_DIVIDER]: undefined;
   [RouteNames.SAMPLE_CHECKBOX]: undefined;
+  [RouteNames.SAMPLE_EMPTY]: undefined;
+  [RouteNames.SAMPLE_TOGGLE]: undefined;
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
+  [RouteNames.SAMPLE_POPUP]: undefined;
+  [RouteNames.SAMPLE_PROGRESS]: undefined;
 };
