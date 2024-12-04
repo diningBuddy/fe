@@ -29,25 +29,25 @@ const Tabs: React.FC<TabsProps> = ({ tabs, children }) => {
 
   const TabList = styled.View`
     flex-direction: row;
-    border-bottom-color: grey;
+    border-bottom-width: 1px;
+    border-bottom-color: ${color.global.neutral[400]};
   `;
 
   const TabButton = styled.TouchableOpacity<{ isActive: boolean }>`
     flex: 1;
     align-items: center;
-    padding: 12px 0;
-    background-color: ${({ isActive }) => (isActive ? "transparent" : color.global.neutral[100])};
+    padding-top: 12px;
+    background-color: ${({ isActive }: { isActive: boolean }) =>
+      isActive ? "transparent" : color.global.neutral[100]};
   `;
 
   const TabLabel = styled.Text<{ isActive: boolean }>`
     padding: 14px 16px;
-    border-bottom-width: ${({ isActive }) => (isActive ? "2px" : "0px")};
-    color: ${({ isActive }) => (isActive ? color.sys.secondary.default : color.global.neutral[600])};
-  `;
-
-  // TODO: 최종결정 시 추가
-  const TabAlarm = styled.Text`
-    color: ${color.global.orange[500]};
+    border-bottom-width: ${({ isActive }: { isActive: boolean }) => (isActive ? "2px" : "0px")};
+    border-bottom-color: ${({ isActive }: { isActive: boolean }) =>
+      isActive ? color.sys.secondary.default : color.global.neutral[400]};
+    color: ${({ isActive }: { isActive: boolean }) =>
+      isActive ? color.sys.secondary.default : color.global.neutral[600]};
   `;
 
   const TabContent = styled.View`
