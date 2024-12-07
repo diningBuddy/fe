@@ -1,71 +1,63 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "styled-components/native";
+import { TouchableOpacity, Text } from "react-native";
 
-const zoomIn = keyframes`
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.2);
-  }
-`;
+interface RadioProps {
+  children: React.ReactNode;
+  id: string;
+  name: string;
+  value: string;
+  checked?: boolean;
+  mode?: "main" | "secondary";
+  onChange: (value: string) => void;
+}
 
-const zoomOut = keyframes`
-  from {
-    transform: scale(1.2);
-  }
-  to {
-    transform: scale(1);
-  }
-`;
-
-const RadioContainer = styled.div`
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-`;
-
-const Radio = styled.label<{ selected: boolean }>`
-  width: 60px;
-  height: 60px;
-  border-radius: 30px;
-  border: 3px solid ${(props) => (props.selected ? "#FF5E68" : "#ccc")};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: border-color 0.3s ease-in-out;
-  animation: ${(props) => (props.selected ? zoomIn : zoomOut)} 0.3s forwards;
-`;
-
-const HiddenRadio = styled.input`
-  opacity: 0;
-  position: absolute;
-`;
-
-const InnerCircle = styled.div<{ selected: boolean }>`
-  width: ${(props) => (props.selected ? "30px" : "0px")};
-  height: ${(props) => (props.selected ? "30px" : "0px")};
-  border-radius: 15px;
-  background-color: ${(props) => (props.selected ? "#FF5E68" : "transparent")};
-  transition:
-    width 0.3s ease-in-out,
-    height 0.3s ease-in-out;
-`;
-
-const RadioButtons = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+export default function Radio({ children, id, name, value, checked = false, mode = "main", onChange }: RadioProps) {
+  const handlePress = () => {
+    onChange(value);
+  };
 
   return (
-    <RadioContainer>
-      {[1, 2, 3, 4].map((_, index) => (
-        <Radio key={index} selected={selectedIndex === index} onClick={() => setSelectedIndex(index)}>
-          <HiddenRadio type="radio" checked={selectedIndex === index} onChange={() => setSelectedIndex(index)} />
-          <InnerCircle selected={selectedIndex === index} />
-        </Radio>
-      ))}
-    </RadioContainer>
+    <Container>
+      <RadioCircle
+        checked={checked}
+        mode={mode}
+        onPress={handlePress}
+        accessibilityRole="radio"
+        accessibilityState={{ selected: checked }}>
+        {checked && <InnerCircle mode={mode} />}
+      </RadioCircle>
+      <Label>{children}</Label>
+    </Container>
   );
-};
+}
 
-export default RadioButtons;
+const Container = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+`;
+
+const RadioCircle = styled(TouchableOpacity)<{ checked: boolean; mode: "main" | "secondary" }>`
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  border-width: ${({ mode }) => (mode === "main" ? "2px" : "1px")};
+  border-color: ${({ checked, mode }) =>
+    checked ? (mode === "main" ? "#FF4D4F" : "#BFBFBF") : mode === "main" ? "#595959" : "#D9D9D9"};
+  background-color: ${({ checked, mode }) => (checked ? (mode === "main" ? "#FF4D4F" : "#BFBFBF") : "transparent")};
+  align-items: center;
+  justify-content: center;
+`;
+
+const InnerCircle = styled.View<{ mode: "main" | "secondary" }>`
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: ${({ mode }) => (mode === "main" ? "white" : "#D9D9D9")};
+`;
+
+const Label = styled(Text)`
+  font-size: 14px;
+  color: #333;
+`;
