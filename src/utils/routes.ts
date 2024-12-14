@@ -9,6 +9,7 @@ export const RouteNames = {
   SAMPLE_MODAL: "sample-modal" as const,
   SAMPLE_FONT: "sample-font" as const,
   SAMPLE_COLOR: "sample-color" as const,
+  SAMPLE_TAB: "sample-tab" as const,
   SAMPLE_BUTTON: "sample-button" as const,
   SAMPLE_INPUT: "sample-input" as const,
   SAMPLE_DROPDOWN: "sample-dropdown" as const,
@@ -37,6 +38,7 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_MODAL]: undefined;
   [RouteNames.SAMPLE_FONT]: undefined;
   [RouteNames.SAMPLE_COLOR]: undefined;
+  [RouteNames.SAMPLE_TAB]: undefined;
   [RouteNames.SAMPLE_BUTTON]: undefined;
   [RouteNames.SAMPLE_INPUT]: undefined;
   [RouteNames.SAMPLE_DROPDOWN]: undefined;
