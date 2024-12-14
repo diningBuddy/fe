@@ -19,19 +19,28 @@ function HomeScreen({ navigation }: Props) {
   );
 
   const buttons = [
+    { label: "Sample Modal", route: RouteNames.SAMPLE_MODAL },
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
+    { label: "Sample Tab", route: RouteNames.SAMPLE_TAB },
     { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
     { label: "Sample Input", route: RouteNames.SAMPLE_INPUT },
+    { label: "Sample Dropdown", route: RouteNames.SAMPLE_DROPDOWN },
     { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
     { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
+    { label: "Sample Star", route: RouteNames.SAMPLE_STAR },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
     { label: "Sample Checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample FloatingButton", route: RouteNames.SAMPLE_FLOATINGBUTTON },
+    { label: "Sample Divider", route: RouteNames.SAMPLE_DIVIDER },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
+    { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
     { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
+    { label: "Sample Progress", route: RouteNames.SAMPLE_PROGRESS },
   ];
 
   return (
