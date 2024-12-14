@@ -21,6 +21,7 @@ import SampleTag from "./src/components/sample/SampleTag";
 import SampleSearch from "./src/components/sample/SampleSearch";
 import SampleChip from "./src/components/sample/SampleChip";
 import SampleCheckbox from "./src/components/sample/SampleCheckbox";
+import SampleFloatingButton from "./src/components/sample/SampleFloatingButton";
 import SampleEmpty from "./src/components/sample/SampleEmpty";
 import SampleToggle from "./src/components/sample/SampleToggle";
 import SampleTooltip from "./src/components/sample/SampleTooltip";
@@ -76,6 +77,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
           <Stack.Screen name={RouteNames.SAMPLE_DIVIDER} component={SampleDivider} />
           <Stack.Screen name={RouteNames.SAMPLE_CHECKBOX} component={SampleCheckbox} />
+          <Stack.Screen name={RouteNames.SAMPLE_FLOATINGBUTTON} component={SampleFloatingButton} />
           <Stack.Screen name={RouteNames.SAMPLE_EMPTY} component={SampleEmpty} />
           <Stack.Screen name={RouteNames.SAMPLE_TOGGLE} component={SampleToggle} />
           <Stack.Screen name={RouteNames.SAMPLE_TOOLTIP} component={SampleTooltip} />
