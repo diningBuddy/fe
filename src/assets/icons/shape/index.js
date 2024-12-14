@@ -11,6 +11,7 @@ import HeartFill from "./heart-fill.svg";
 import HeartBlank from "./heart-blank.svg";
 import Kebob from "./kebob.svg";
 import Coin from "./coin.svg";
+import StarPink from "./star-pink.svg";
 
 export {
   CircleClose,
@@ -26,4 +27,5 @@ export {
   HeartBlank,
   Kebob,
   Coin,
+  StarPink,
 };
