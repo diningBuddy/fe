@@ -6,6 +6,7 @@ export const reviewContent: ReviewProps = {
   title: "타코벨",
   catgegory: "멕시칸・패스트캐쥬얼",
   img: <SampleReviewImg />,
+  isLike: true,
 };
 
 export default reviewContent;

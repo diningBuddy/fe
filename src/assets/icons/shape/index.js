@@ -9,6 +9,8 @@ import Warning from "./warning.svg";
 import InformationCircle from "./information-circle.svg";
 import HeartFill from "./heart-fill.svg";
 import HeartBlank from "./heart-blank.svg";
+import Kebob from "./kebob.svg";
+import Coin from "./coin.svg";
 
 export {
   CircleClose,
@@ -22,4 +24,6 @@ export {
   HeroiconsSolidXmark,
   HeartFill,
   HeartBlank,
+  Kebob,
+  Coin,
 };

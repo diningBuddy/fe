@@ -1,19 +1,26 @@
 import { Button, View } from "react-native";
 
-import userInfo from "../../../../mock/MypageMockData";
 import { ChevronRight } from "../../../../assets/icons/arrow/chevron";
 import Toast from "../../../../common/atom/Toast";
 import { ButtonText } from "../../../../common/atom/Button";
+import Tag from "../../../../common/atom/Tag";
+import { BodyMedium14, BodySemibold16 } from "../../../../common/atom/Typo";
+import { Coin } from "../../../../assets/icons/shape";
+import { userInfo } from "../../../../mock/MypageMockData";
 
 export const MypageHeader = () => {
   return (
     <View>
       {/* <FlexBox> */}
       {/* <Profile /> */}
+
       {/* <FlexBox> */}
-      {/* #000000D9 600 16px */}
-      <span>{userInfo.nick}</span>
-      <span>{userInfo.point}</span>
+      <BodySemibold16>{userInfo.nick}</BodySemibold16>
+      <Tag mode="primary" outline label="성균관대" height="sm" />
+      {/* <FlexBox> */}
+      <Coin />
+      <BodyMedium14>{userInfo.point}</BodyMedium14>
+      {/* </FlexBox> */}
       {/* </FlexBox> */}
       <ChevronRight />
       {/* </FlexBox> */}

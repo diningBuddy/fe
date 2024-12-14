@@ -3,4 +3,5 @@ export interface ReviewProps {
   title: string;
   catgegory: string;
   img: JSX.Element;
+  isLike: boolean;
 }
