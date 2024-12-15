@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import Spinner from "../../common/atom/Spinner"; // Spinner 컴포넌트 import
 
 const SampleSpinner = () => {
-  const [loadingSmallWhite, setLoadingSmallWhite] = useState(false);
+  const [loadingSmallBlack, setLoadingSmallBlack] = useState(false);
   const [loadingSmallPrimary, setLoadingLargePrimary] = useState(false);
 
   const handleSpinner = (setLoading: React.Dispatch<React.SetStateAction<boolean>>) => {
@@ -19,7 +19,7 @@ const SampleSpinner = () => {
     <Container>
       <ScrollViewContainer keyboardShouldPersistTaps="handled">
         <View>
-          <Button title="Show Small White Spinner" onPress={() => handleSpinner(setLoadingSmallWhite)} />
+          <Button title="Show Small Black Spinner" onPress={() => handleSpinner(setLoadingSmallBlack)} />
         </View>
 
         <View style={{ marginTop: 20 }}>
@@ -28,7 +28,7 @@ const SampleSpinner = () => {
       </ScrollViewContainer>
 
       {/* Spinner 컴포넌트는 화면 전체를 덮을 수 있도록 */}
-      {loadingSmallWhite && <Spinner size="small" color="white" />}
+      {loadingSmallBlack && <Spinner size="small" color="black" />}
       {loadingSmallPrimary && <Spinner size="large" color="primary" />}
     </Container>
   );

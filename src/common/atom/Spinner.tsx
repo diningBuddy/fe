@@ -1,13 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { Animated, View, Dimensions } from "react-native";
+import { DefaultTheme, ThemeContext } from "styled-components/native";
+
+import ThemeStyle from "../../styles/ThemeStyle";
 
 interface SpinnerProps {
   size: "small" | "large"; // 크기
-  color: "white" | "primary"; // 색상
+  color: "black" | "primary"; // 색상
 }
 
 const Spinner: React.FC<SpinnerProps> = ({ size, color }) => {
   const spinValue = useRef(new Animated.Value(0)).current; // 회전 애니메이션을 위한 Animated.Value
+  const theme = (useContext(ThemeContext) as DefaultTheme) || ThemeStyle;
 
   // 애니메이션 설정
   const spin = spinValue.interpolate({
@@ -43,19 +47,22 @@ const Spinner: React.FC<SpinnerProps> = ({ size, color }) => {
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.5)", // 반투명 배경
+        backgroundColor: theme.color.global.alpha.alphaWhite[800], // 반투명 배경
         justifyContent: "center",
         alignItems: "center",
         zIndex: 9999, // 다른 UI 위로 올라가도록 설정
       }}>
       <Animated.View
         style={{
-          width: size === "small" ? 40 : 80,
-          height: size === "small" ? 40 : 80,
-          borderRadius: 50,
-          borderWidth: 5,
-          backgroundColor: "#fff", // 회전하는 부분은 흰색
-          borderTopColor: color === "white" ? "#fff" : "#FFA500",
+          width: size === "small" ? 24 : 48,
+          height: size === "small" ? 24 : 48,
+          borderRadius: size === "small" ? 12 : 24,
+          borderWidth: size === "small" ? 4 : 6,
+          backgroundColor: "none",
+          borderRightColor: color === "black" ? theme.color.sys.secondary.default : theme.color.sys.primary.default,
+          borderBottomColor: color === "black" ? theme.color.sys.secondary.default : theme.color.sys.primary.default,
+          borderLeftColor: color === "black" ? theme.color.sys.secondary.default : theme.color.sys.primary.default,
+          borderTopColor: theme.color.global.alpha.alphaWhite[800],
           transform: [{ rotate: spin }],
         }}
       />
