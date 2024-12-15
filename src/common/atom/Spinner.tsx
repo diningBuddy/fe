@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { Animated, View, Dimensions } from "react-native";
+import { Animated, View } from "react-native";
 import { DefaultTheme, ThemeContext } from "styled-components/native";
 
 import ThemeStyle from "../../styles/ThemeStyle";
