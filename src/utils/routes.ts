@@ -27,6 +27,7 @@ export const RouteNames = {
   SAMPLE_TOAST: "sample-toast" as const,
   SAMPLE_POPUP: "sample-popup" as const,
   SAMPLE_PROGRESS: "sample-progress" as const,
+  SAMPLE_SPINNER: "sample-spinner" as const,
 };
 
 export type RootStackParamList = {
@@ -57,4 +58,5 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_TOAST]: undefined;
   [RouteNames.SAMPLE_POPUP]: undefined;
   [RouteNames.SAMPLE_PROGRESS]: undefined;
+  [RouteNames.SAMPLE_SPINNER]: undefined;
 };
