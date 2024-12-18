@@ -17,7 +17,7 @@ import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
-import SampleRadio from "./src/components/sample/SampleRadio";
+import SampleRadioGroup from "./src/components/sample/SampleRadioGroup";
 
 export type Props = {
   label: string;
@@ -53,7 +53,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
-          <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadio} />
+          <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadioGroup} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
