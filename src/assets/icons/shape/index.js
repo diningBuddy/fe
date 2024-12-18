@@ -22,7 +22,6 @@ export {
   Warning,
   InformationCircle,
   HeroiconsSolidXmark,
-  CircleClose,
   RadioFillOne,
   RadioOutlineOne,
   RadioFillTwo,
