@@ -1,28 +1,32 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
-import { TextInput, TouchableOpacity } from "react-native";
-import { BodyMedium14, BodyRegular12 } from "./Typo";
-import { CircleClose } from "../assets/icons/shape";
+import { TouchableOpacity } from "react-native";
 
-interface InputProps {
+import { BodyMedium14, BodyRegular12 } from "./Typo";
+import { ChevronDown } from "../../assets/icons/arrow/chevron";
+
+interface DropdownProps {
   variant?: "default" | "destructive";
   label?: string;
   description?: string;
-  placeholder?: string;
+  placeholder: string;
+  selectedValue?: string;
   isDisabled?: boolean;
-  isSuccess?: boolean;
+  onPress?: () => void;
+  isFocused?: boolean;
 }
 
-const Input: React.FC<InputProps> = ({
+const Dropdown: React.FC<DropdownProps> = ({
   variant = "default",
   label = "",
   description = "",
   placeholder = "Type your message here",
+  selectedValue = "",
   isDisabled = false,
-  isSuccess = false,
+  onPress,
+  isFocused = false,
 }) => {
   const theme = useContext(ThemeContext);
-  const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
     isDisabled ? "disabled" : "initial"
   );
@@ -30,44 +34,53 @@ const Input: React.FC<InputProps> = ({
   useEffect(() => {
     if (isDisabled) {
       setState("disabled");
-    } else if (value) {
+    } else if (selectedValue) {
       setState("filled");
-    } else if (!value && state === "filled") {
+    } else if (!selectedValue && state === "filled") {
       setState("initial");
     }
-  }, [value, isDisabled]);
+  }, [selectedValue, isDisabled]);
+
+  useEffect(() => {
+    if (isFocused) {
+      setState("focused");
+    } else if (state === "focused" && !selectedValue) {
+      setState("initial");
+    } else if (state === "focused" && selectedValue) {
+      setState("filled");
+    }
+  }, [isFocused, selectedValue]);
+
+  const handlePress = () => {
+    if (!isDisabled && onPress) {
+      setState("focused");
+      onPress();
+    }
+  };
 
   return (
-    <InputRow>
+    <DropdownRow>
       {label && <Label theme={theme}>{label}</Label>}
-      <InputWrapper variant={variant} state={state} theme={theme}>
-        <InputContainer variant={variant} state={state} theme={theme}>
-          <StyledInput
-            theme={theme}
-            placeholder={placeholder}
-            value={value}
-            onFocus={() => !isDisabled && setState("focused")}
-            onBlur={() => {
-              if (!value && !isDisabled) setState("initial");
-            }}
-            onChangeText={setValue}
-            editable={!isDisabled}
-          />
-          <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
-            <CircleClose />
-          </CloseButton>
-        </InputContainer>
-      </InputWrapper>
+      <DropdownWrapper onPress={handlePress} variant={variant} state={state} theme={theme}>
+        <DropdownContainer variant={variant} state={state} theme={theme}>
+          <PlaceholderText theme={theme} state={state}>
+            {selectedValue || placeholder}
+          </PlaceholderText>
+          <DownButton onPress={handlePress}>
+            <ChevronDown />
+          </DownButton>
+        </DropdownContainer>
+      </DropdownWrapper>
       {description && (
-        <DescriptionText variant={variant} theme={theme} isSuccess={isSuccess}>
+        <DescriptionText variant={variant} theme={theme}>
           {description}
         </DescriptionText>
       )}
-    </InputRow>
+    </DropdownRow>
   );
 };
 
-const InputRow = styled.View`
+const DropdownRow = styled.View`
   margin-bottom: 24px;
 `;
 
@@ -77,21 +90,21 @@ const Label = styled(BodyMedium14).attrs(({ theme }: { theme: DefaultTheme }) =>
   margin: 0 0 6px 3px;
 `;
 
-const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
+const DropdownWrapper = styled(TouchableOpacity)<DropdownProps & { theme: DefaultTheme }>`
   border: 1px solid
     ${({ variant, state, theme }) => {
       if (variant === "default") {
         return state === "focused" ? "transparent" : theme.color.theme.border;
-      } else if (variant === "destructive") {
+      }
+      if (variant === "destructive") {
         return state === "focused" ? "transparent" : theme.color.sys.destructive.default;
       }
     }};
   border-radius: ${({ variant, state, theme }) => {
     if (state === "focused") {
       return "10px";
-    } else {
-      return "6px";
     }
+    return "6px";
   }};
   padding: ${({ state }) => {
     return state === "focused" ? "4px" : "0px";
@@ -99,17 +112,15 @@ const InputWrapper = styled.View<InputProps & { theme: DefaultTheme }>`
   background-color: ${({ variant, state, theme }) => {
     if (state === "disabled") {
       return theme.color.global.neutral[300];
-    } else {
-      if (variant === "default") {
-        return theme.color.sys.secondary.disabled;
-      } else {
-        return theme.color.sys.destructive.disabled;
-      }
     }
+    if (variant === "default") {
+      return theme.color.sys.secondary.disabled;
+    }
+    return theme.color.sys.destructive.disabled;
   }};
 `;
 
-const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
+const DropdownContainer = styled.View<DropdownProps & { theme: DefaultTheme }>`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -121,9 +132,8 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
       return `1px solid ${
         variant === "default" ? theme.color.sys.secondary.default : theme.color.sys.destructive.default
       }`;
-    } else {
-      return "none";
     }
+    return "none";
   }};
 
   border-radius: 6px;
@@ -132,31 +142,23 @@ const InputContainer = styled.View<InputProps & { theme: DefaultTheme }>`
   }};
 `;
 
-const StyledInput = styled(TextInput).attrs(({ theme }: { theme: DefaultTheme }) => ({
-  placeholderTextColor: theme.color.theme.disabled,
-}))`
+const PlaceholderText = styled.Text<DropdownProps & { theme: DefaultTheme }>`
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 16.94px;
-
-  color: ${({ theme }) => theme.color.global.neutral[900]};
+  color: ${({ state, theme }) => {
+    return state === "focused" || state === "filled" ? theme.color.global.neutral[900] : theme.color.theme.disabled;
+  }};
 `;
 
-const CloseButton = styled(TouchableOpacity)``;
+const DownButton = styled(TouchableOpacity)``;
 
-const DescriptionText = styled(BodyRegular12)<InputProps & { theme: DefaultTheme }>`
+const DescriptionText = styled(BodyRegular12)<DropdownProps & { theme: DefaultTheme }>`
   margin-left: 3px;
   margin-top: 5px;
 
   font-style: normal;
   font-weight: 400;
-  color: ${({ isSuccess, variant, theme }) =>
-    isSuccess
-      ? theme.color.global.green[600]
-      : variant === "destructive"
-        ? theme.color.sys.destructive.default
-        : theme.color.global.neutral[700]};
+  color: ${({ variant, theme }) =>
+    variant === "destructive" ? theme.color.sys.destructive.default : theme.color.global.neutral[700]};
 `;
 
-export default Input;
+export default Dropdown;

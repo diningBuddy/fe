@@ -1,76 +1,75 @@
-import React, { useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import styled, { ThemeContext } from "styled-components/native";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { ScrollView, StyleSheet } from "react-native";
 
-import ThemeStyle from "../styles/ThemeStyle";
 import { RootStackParamList, RouteNames } from "../utils/routes";
-import { HeadingSemiBold24 } from "../common/Typo";
+import { HeadingSemiBold24 } from "../common/atom/Typo";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
-const HomeScreen = ({ navigation }: Props) => {
-  const theme = useContext(ThemeContext) || ThemeStyle;
-  return (
-    <View style={styles.container}>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_COLOR);
-        }}>
-        <HeadingSemiBold24>Sample Color</HeadingSemiBold24>
-      </SampleBtn>
+function HomeScreen({ navigation }: Props) {
+  const theme = useContext(ThemeContext) || {};
 
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_FONT);
-        }}>
-        <HeadingSemiBold24>Sample Font</HeadingSemiBold24>
-      </SampleBtn>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_BUTTON);
-        }}>
-        <HeadingSemiBold24>Sample Button</HeadingSemiBold24>
-      </SampleBtn>
-
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_INPUT);
-        }}>
-        <HeadingSemiBold24>Sample Input</HeadingSemiBold24>
-      </SampleBtn>
-
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_TEXTAREA);
-        }}>
-        <HeadingSemiBold24>Sample Textarea</HeadingSemiBold24>
-      </SampleBtn>
-      <SampleBtn
-        onPress={() => {
-          navigation.navigate(RouteNames.SAMPLE_RADIO);
-        }}>
-        <HeadingSemiBold24>Sample Radio</HeadingSemiBold24>
-      </SampleBtn>
-    </View>
+  const navigateTo = useCallback(
+    (route: keyof RootStackParamList) => {
+      navigation.navigate(route);
+    },
+    [navigation]
   );
-};
 
-const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    backgroundColor: "#fff",
-    flex: 1,
-    justifyContent: "center",
-  },
-});
+  const buttons = [
+    { label: "Sample Modal", route: RouteNames.SAMPLE_MODAL },
+    { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
+    { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
+    { label: "Sample Tab", route: RouteNames.SAMPLE_TAB },
+    { label: "Sample Button", route: RouteNames.SAMPLE_BUTTON },
+    { label: "Sample Input", route: RouteNames.SAMPLE_INPUT },
+    { label: "Sample Dropdown", route: RouteNames.SAMPLE_DROPDOWN },
+    { label: "Sample Textarea", route: RouteNames.SAMPLE_TEXTAREA },
+    { label: "Sample Tag", route: RouteNames.SAMPLE_TAG },
+    { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
+    { label: "Sample Star", route: RouteNames.SAMPLE_STAR },
+    { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
+    { label: "Sample Checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample FloatingButton", route: RouteNames.SAMPLE_FLOATINGBUTTON },
+    { label: "Sample Divider", route: RouteNames.SAMPLE_DIVIDER },
+    { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
+    { label: "Sample toggle", route: RouteNames.SAMPLE_TOGGLE },
+    { label: "Sample tooltip", route: RouteNames.SAMPLE_TOOLTIP },
+    { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
+    { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
+    { label: "Sample Progress", route: RouteNames.SAMPLE_PROGRESS },
+    { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
+    { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
+  ];
 
-const SampleBtn = styled(TouchableOpacity)`
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      {buttons.map((item) => (
+        <SampleBtn key={item.route} onPress={() => navigateTo(item.route)}>
+          <HeadingSemiBold24>{item.label}</HeadingSemiBold24>
+        </SampleBtn>
+      ))}
+    </ScrollView>
+  );
+}
+
+const SampleBtn = styled.TouchableOpacity`
   padding: 12px 16px;
-  background-color: ${({ theme }) => theme.color.sys.primary.default};
+  background-color: ${({ theme }) => theme.color?.sys?.primary?.default || "#000"};
   border-radius: 8px;
   margin-bottom: 12px;
   align-items: center;
 `;
+
+const styles = StyleSheet.create({
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+  },
+});
 
 export default HomeScreen;

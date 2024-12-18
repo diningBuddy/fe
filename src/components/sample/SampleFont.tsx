@@ -21,7 +21,7 @@ import {
   HeadingSemiBold32,
   HeadingSemiBold40,
   HeadingSemiBold44,
-} from "../../common/Typo";
+} from "../../common/atom/Typo";
 
 const SampleFont = () => {
   const theme = useContext(ThemeContext) || ThemeStyle;
@@ -51,9 +51,9 @@ const SampleFont = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
+    backgroundColor: "#fff",
+    flex: 1,
     justifyContent: "center",
   },
 });

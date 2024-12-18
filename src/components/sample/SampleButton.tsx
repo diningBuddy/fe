@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
-import { Button, ButtonText } from "../../common/Button";
+
+// eslint-disable-next-line import/namespace
+import { Button, ButtonText } from "../../common/atom/Button";
 import { ChevronRight } from "../../assets/icons/arrow/chevron";
 
 const SampleButton = () => {
@@ -18,25 +20,19 @@ const SampleButton = () => {
         <Button height="lg">
           <ButtonText fontSize="lg">LARGE</ButtonText>
         </Button>
-        <Button height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
-        </Button>
       </View>
 
-      {/* Primary + icon*/}
+      {/* Primary + icon */}
       <View style={styles.buttonGroup}>
-        <Button height="sm">
-          <ButtonText fontSize="sm">SMALL</ButtonText>
+        <Button height="sm" isDisabled>
+          <ButtonText fontSize="sm" isDisabled>
+            SMALL
+          </ButtonText>
         </Button>
-        <Button isPressed={isPressed} iconL={ChevronRight} iconColor="#ffffff">
-          <ButtonText>MEDIUM</ButtonText>
+        <Button isPressed={isPressed} iconL={ChevronRight} iconColor="#ffffff" isDisabled>
+          <ButtonText isDisabled>MEDIUM</ButtonText>
         </Button>
-        <Button height="lg">
-          <ButtonText fontSize="lg">LARGE</ButtonText>
-        </Button>
-        <Button height="lg" isDisabled iconL={ChevronRight} iconColor="#ffffff">
+        <Button height="lg" isDisabled>
           <ButtonText fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
@@ -54,34 +50,6 @@ const SampleButton = () => {
         </Button>
         <Button mode="secondary" height="lg">
           <ButtonText>LARGE</ButtonText>
-        </Button>
-
-        {/* isDisabled */}
-        <Button height="lg" isDisabled iconL={ChevronRight}>
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
-        </Button>
-      </View>
-
-      {/* Secondary + icon*/}
-      <View style={styles.buttonGroup}>
-        <Button mode="secondary" height="sm">
-          <ButtonText fontSize="sm">SMALL</ButtonText>
-        </Button>
-
-        <Button mode="secondary">
-          <ButtonText>MEDIUM</ButtonText>
-        </Button>
-        <Button mode="secondary" height="lg" iconL={ChevronRight}>
-          <ButtonText>LARGE</ButtonText>
-        </Button>
-
-        {/* isDisabled */}
-        <Button height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
         </Button>
       </View>
 
@@ -101,35 +69,23 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
-
-        {/* isDisabled */}
-        <Button height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
-        </Button>
       </View>
 
-      {/* OUTLINE_RED Border none, only Text */}
+      {/* Outline */}
       <View style={styles.buttonGroup}>
-        <Button mode="text" height="sm">
-          <ButtonText mode="outlineRed" fontSize="sm">
+        <Button mode="outline" height="sm" isDisabled>
+          <ButtonText mode="outline" fontSize="sm" isDisabled>
             SMALL
           </ButtonText>
         </Button>
 
-        <Button mode="text">
-          <ButtonText mode="outlineRed">MEDIUM</ButtonText>
-        </Button>
-        <Button mode="text" height="lg">
-          <ButtonText mode="outlineRed" fontSize="lg">
-            LARGE
+        <Button mode="outline" isDisabled>
+          <ButtonText mode="outline" isDisabled>
+            MEDIUM
           </ButtonText>
         </Button>
-
-        {/* isDisabled */}
-        <Button mode="text" height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
+        <Button mode="outline" height="lg" isDisabled>
+          <ButtonText mode="outline" fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
         </Button>
@@ -153,35 +109,23 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
-
-        {/* isDisabled */}
-        <Button height="lg" isDisabled mode="text">
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
-        </Button>
       </View>
 
       {/* Border none, only Text */}
       <View style={styles.buttonGroup}>
-        <Button mode="text" height="sm">
-          <ButtonText mode="outline" fontSize="sm">
+        <Button mode="text" height="sm" isDisabled>
+          <ButtonText mode="outline" fontSize="sm" isDisabled>
             SMALL
           </ButtonText>
         </Button>
 
-        <Button mode="text">
-          <ButtonText mode="outline">MEDIUM</ButtonText>
-        </Button>
-        <Button mode="text" height="lg">
-          <ButtonText mode="outline" fontSize="lg">
-            LARGE
+        <Button mode="text" isDisabled>
+          <ButtonText mode="outline" isDisabled>
+            MEDIUM
           </ButtonText>
         </Button>
-
-        {/* isDisabled */}
         <Button mode="text" height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
+          <ButtonText mode="outline" fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
         </Button>
@@ -205,13 +149,6 @@ const SampleButton = () => {
             LARGE
           </ButtonText>
         </Button>
-
-        {/* isDisabled */}
-        <Button mode="text" height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
-            LARGE
-          </ButtonText>
-        </Button>
       </View>
 
       {/* OUTLINE_GRAY Border none, only Text underline */}
@@ -229,13 +166,6 @@ const SampleButton = () => {
         </Button>
         <Button mode="text" height="lg">
           <ButtonText mode="outlineGray" fontSize="lg" isUnderLine>
-            LARGE
-          </ButtonText>
-        </Button>
-
-        {/* isDisabled */}
-        <Button mode="text" height="lg" isDisabled>
-          <ButtonText fontSize="lg" isDisabled>
             LARGE
           </ButtonText>
         </Button>
@@ -316,15 +246,15 @@ const SampleButton = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 24,
-  },
   buttonGroup: {
     flexDirection: "row",
-    margin: 8,
     gap: 12,
+    margin: 8,
+  },
+  container: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
   },
 });
 
