@@ -42,6 +42,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
     { label: "Sample Progress", route: RouteNames.SAMPLE_PROGRESS },
     { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
+    { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
   ];
 
   return (

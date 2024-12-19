@@ -1,4 +1,8 @@
 import CircleClose from "./circle-close.svg";
+import RadioFillOne from "./radio-fillOne.svg";
+import RadioOutlineOne from "./radio-OutlineOne.svg";
+import RadioOutlineTwo from "./radio-outlineTwo.svg";
+import RadioFillTwo from "./radio-fillTwo.svg";
 import HeroiconsSolidXmark from "./heroicons-solid-x-mark.svg";
 import CheckboxOff1 from "./checkbox-off1.svg";
 import CheckboxOff2 from "./checkbox-off2.svg";
@@ -18,4 +22,8 @@ export {
   Warning,
   InformationCircle,
   HeroiconsSolidXmark,
+  RadioFillOne,
+  RadioOutlineOne,
+  RadioFillTwo,
+  RadioOutlineTwo,
 };

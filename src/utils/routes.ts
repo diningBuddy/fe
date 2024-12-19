@@ -14,6 +14,7 @@ export const RouteNames = {
   SAMPLE_INPUT: "sample-input" as const,
   SAMPLE_DROPDOWN: "sample-dropdown" as const,
   SAMPLE_TEXTAREA: "sample-textarea" as const,
+  SAMPLE_RADIO: "sample-radio" as const,
   SAMPLE_TAG: "sample-tag" as const,
   SAMPLE_SEARCH: "sample-search" as const,
   SAMPLE_STAR: "sample-star" as const,
@@ -45,6 +46,7 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_INPUT]: undefined;
   [RouteNames.SAMPLE_DROPDOWN]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
+  [RouteNames.SAMPLE_RADIO]: undefined;
   [RouteNames.SAMPLE_TAG]: undefined;
   [RouteNames.SAMPLE_SEARCH]: undefined;
   [RouteNames.SAMPLE_STAR]: undefined;

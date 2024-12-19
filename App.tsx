@@ -17,6 +17,7 @@ import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
+import SampleRadioGroup from "./src/components/sample/SampleRadioGroup";
 import SampleTag from "./src/components/sample/SampleTag";
 import SampleSearch from "./src/components/sample/SampleSearch";
 import SampleChip from "./src/components/sample/SampleChip";
@@ -72,6 +73,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
           <Stack.Screen name={RouteNames.SAMPLE_DROPDOWN} component={SampleDropdown} />
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
+          <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadioGroup} />
           <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
           <Stack.Screen name={RouteNames.SAMPLE_STAR} component={SampleStar} />
