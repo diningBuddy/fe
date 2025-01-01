@@ -10,25 +10,35 @@ interface AvatarProps {
 
 const Avatar: React.FC<AvatarProps> = ({ size = "md", image, showNotification = false, showBadge = false }) => {
   // 크기별 스타일 정의
-  const sizeMap = {
-    xs: 12,
-    sm: 18.545,
-    md: 26.182,
-    lg: 34.909,
+  const centerSizeMap = {
+    xs: 22,
+    sm: 34,
+    md: 48,
+    lg: 64,
   };
 
-  const avatarSize = sizeMap[size];
+  const avatarSize = centerSizeMap[size];
 
   return (
     <AvatarContainer>
       <AvatarWrapper size={avatarSize}>
-        {image ? <AvatarImage source={{ uri: image }} size={avatarSize} /> : <Placeholder size={avatarSize} />}
-        {showNotification && <NotificationDot />}
-        {showBadge && <BadgeIcon />}
+        <Circle size={avatarSize}>{image ? <AvatarImage source={{ uri: image }} size={centerSizeMap} /> : null}</Circle>
+        {showNotification && <NotificationDot size={size} />}
+        {showBadge && <BadgeIcon size={size} />}
       </AvatarWrapper>
     </AvatarContainer>
   );
 };
+
+const Circle = styled.View<{ size: number }>`
+  width: 100%;
+  height: 100%;
+  border-radius: ${({ size }) => size / 2}px;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0; /* 기본 배경 */
+`;
 
 const AvatarContainer = styled.View`
   justify-content: center;
@@ -36,46 +46,141 @@ const AvatarContainer = styled.View`
 `;
 
 const AvatarWrapper = styled.View<{ size: number }>`
-  width: ${({ size }) => size}px;
-  height: ${({ size }) => size}px;
+  width: ${({ size }) => `${size}px`};
+  height: ${({ size }) => `${size}px`};
   border-radius: ${({ size }) => size / 2}px;
   position: relative;
-  overflow: hidden;
+  overflow: visible; /* 배지와 알림이 잘리지 않도록 */
 `;
 
 const AvatarImage = styled.Image<{ size: number }>`
   width: 100%;
   height: 100%;
-  border-radius: ${({ size }) => size / 2}px;
+  resize-mode: contain;
 `;
 
-const Placeholder = styled.View<{ size: number }>`
-  width: 100%;
-  height: 100%;
-  border-radius: ${({ size }) => size / 2}px;
-  background-color: #e0e0e0;
-  justify-content: center;
-  align-items: center;
-`;
-
-const NotificationDot = styled.View`
+const NotificationDot = styled.View<{ size: string }>`
   position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 8px;
-  height: 8px;
+  top: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "2px";
+      case "sm":
+        return "4px";
+      case "md":
+        return "5px";
+      case "lg":
+        return "6px";
+      default:
+        return "6px";
+    }
+  }};
+  right: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "0";
+      case "sm":
+        return "0";
+      case "md":
+        return "2px";
+      case "lg":
+        return "4px";
+      default:
+        return "4px";
+    }
+  }};
+  width: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "5px";
+      case "sm":
+        return "6px";
+      case "md":
+        return "6px";
+      case "lg":
+        return "8px";
+      default:
+        return "8px";
+    }
+  }};
+  height: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "5px";
+      case "sm":
+        return "6px";
+      case "md":
+        return "6px";
+      case "lg":
+        return "8px";
+      default:
+        return "8px";
+    }
+  }};
   background-color: red;
-  border-radius: 4px;
+  border-radius: 50px;
 `;
 
-const BadgeIcon = styled.View`
+const BadgeIcon = styled.View<{ size: string }>`
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 16px;
-  height: 16px;
+  bottom: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "2px";
+      case "sm":
+        return "2px";
+      case "md":
+        return "0";
+      case "lg":
+        return "0";
+      default:
+        return "0";
+    }
+  }};
+  left: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "24px";
+      case "sm":
+        return "24px";
+      case "md":
+        return "34px";
+      case "lg":
+        return "46px";
+      default:
+        return "46px";
+    }
+  }};
+  width: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "16px";
+      case "sm":
+        return "16px";
+      case "md":
+        return "16px";
+      case "lg":
+        return "20px";
+      default:
+        return "20px";
+    }
+  }};
+  height: ${({ size }) => {
+    switch (size) {
+      case "xs":
+        return "16px";
+      case "sm":
+        return "16px";
+      case "md":
+        return "16px";
+      case "lg":
+        return "20px";
+      default:
+        return "20px";
+    }
+  }};
   background-color: #5cb85c;
-  border-radius: 8px;
+  border-radius: 50px;
   justify-content: center;
   align-items: center;
 `;
