@@ -32,6 +32,12 @@ import SampleDropdown from "./src/components/sample/SampleDropdown";
 import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
+import SignIn from "./src/screens/auth/signIn";
+import SignUp from "./src/screens/auth/signUp";
+import VerifyPhone from "./src/screens/auth/VerifyPhone";
+import InsertInfo from "./src/screens/auth/signUp/InsertInfo";
+import AccessRights from "./src/screens/auth/signUp/AccessRights";
+import Inquiry from "./src/screens/auth/Inquiry";
 
 export type Props = {
   label: string;
@@ -59,6 +65,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
   return (
     <ThemeProvider theme={ThemeStyle}>
       <NavigationContainer>
+        {/* TODO: initialRouteName="SignIn" */}
         <Stack.Navigator>
           <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
           <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
@@ -82,6 +89,12 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
           <Stack.Screen name={RouteNames.SAMPLE_POPUP} component={SamplePopup} />
           <Stack.Screen name={RouteNames.SAMPLE_PROGRESS} component={SampleProgress} />
+          <Stack.Screen name={RouteNames.SIGNIN} component={SignIn} options={{ headerShown: false }} />
+          <Stack.Screen name={RouteNames.SIGNUP} component={SignUp} />
+          <Stack.Screen name={RouteNames.VERIFY_PHONE} component={VerifyPhone} />
+          <Stack.Screen name={RouteNames.INSERT_INFO} component={InsertInfo} />
+          <Stack.Screen name={RouteNames.ACCESS_RIGHTS} component={AccessRights} />
+          <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
