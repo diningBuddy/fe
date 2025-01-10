@@ -14,12 +14,14 @@ export const RouteNames = {
   SAMPLE_INPUT: "sample-input" as const,
   SAMPLE_DROPDOWN: "sample-dropdown" as const,
   SAMPLE_TEXTAREA: "sample-textarea" as const,
+  SAMPLE_RADIO: "sample-radio" as const,
   SAMPLE_TAG: "sample-tag" as const,
   SAMPLE_SEARCH: "sample-search" as const,
   SAMPLE_STAR: "sample-star" as const,
   SAMPLE_CHIP: "sample-chip" as const,
   SAMPLE_DIVIDER: "sample-divider" as const,
   SAMPLE_CHECKBOX: "sample-checkbox" as const,
+  SAMPLE_FLOATINGBUTTON: "sample-floatingButton" as const,
   SAMPLE_EMPTY: "sample-empty" as const,
   SAMPLE_TOGGLE: "sample-toggle" as const,
   SAMPLE_TOOLTIP: "sample-tooltip" as const,
@@ -32,6 +34,7 @@ export const RouteNames = {
   INSERT_INFO: "InsertInfo" as const,
   ACCESS_RIGHTS: "AccessRights" as const,
   INQUIRY: "Inquiry" as const,
+  SAMPLE_SPINNER: "sample-spinner" as const,
 };
 
 export type RootStackParamList = {
@@ -49,22 +52,24 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_INPUT]: undefined;
   [RouteNames.SAMPLE_DROPDOWN]: undefined;
   [RouteNames.SAMPLE_TEXTAREA]: undefined;
+  [RouteNames.SAMPLE_RADIO]: undefined;
   [RouteNames.SAMPLE_TAG]: undefined;
   [RouteNames.SAMPLE_SEARCH]: undefined;
   [RouteNames.SAMPLE_STAR]: undefined;
   [RouteNames.SAMPLE_CHIP]: undefined;
   [RouteNames.SAMPLE_DIVIDER]: undefined;
   [RouteNames.SAMPLE_CHECKBOX]: undefined;
+  [RouteNames.SAMPLE_FLOATINGBUTTON]: undefined;
   [RouteNames.SAMPLE_EMPTY]: undefined;
   [RouteNames.SAMPLE_TOGGLE]: undefined;
   [RouteNames.SAMPLE_TOOLTIP]: undefined;
   [RouteNames.SAMPLE_TOAST]: undefined;
   [RouteNames.SAMPLE_POPUP]: undefined;
   [RouteNames.SAMPLE_PROGRESS]: undefined;
-
   [RouteNames.SIGNIN]: undefined;
   [RouteNames.SIGNUP]: undefined;
   [RouteNames.VERIFY_PHONE]: undefined;
   [RouteNames.INSERT_INFO]: undefined;
   [RouteNames.ACCESS_RIGHTS]: undefined;
+  [RouteNames.SAMPLE_SPINNER]: undefined;
 };

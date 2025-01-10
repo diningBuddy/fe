@@ -31,6 +31,8 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Search", route: RouteNames.SAMPLE_SEARCH },
     { label: "Sample Star", route: RouteNames.SAMPLE_STAR },
     { label: "Sample Chip", route: RouteNames.SAMPLE_CHIP },
+    { label: "Sample Checkbox", route: RouteNames.SAMPLE_CHECKBOX },
+    { label: "Sample FloatingButton", route: RouteNames.SAMPLE_FLOATINGBUTTON },
     { label: "Sample Divider", route: RouteNames.SAMPLE_DIVIDER },
     { label: "Sample checkbox", route: RouteNames.SAMPLE_CHECKBOX },
     { label: "Sample empty", route: RouteNames.SAMPLE_EMPTY },
@@ -39,13 +41,14 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
     { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
     { label: "Sample Progress", route: RouteNames.SAMPLE_PROGRESS },
-
     { label: "signIn", route: RouteNames.SIGNIN },
     { label: "signUp", route: RouteNames.SIGNUP },
     { label: "VerifyPhone", route: RouteNames.VERIFY_PHONE },
     { label: "InsertInfo", route: RouteNames.INSERT_INFO },
     { label: "AccessRights", route: RouteNames.ACCESS_RIGHTS },
     { label: "Inquiry", route: RouteNames.INQUIRY },
+    { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
+    { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
   ];
 
   return (
