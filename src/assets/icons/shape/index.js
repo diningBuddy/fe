@@ -11,6 +11,11 @@ import CheckboxSquare2 from "./checkbox-square2.svg";
 import CheckCircleGreen from "./check-circle-green.svg";
 import Warning from "./warning.svg";
 import InformationCircle from "./information-circle.svg";
+import HeartFill from "./heart-fill.svg";
+import HeartBlank from "./heart-blank.svg";
+import Kebob from "./kebob.svg";
+import Coin from "./coin.svg";
+import StarPink from "./star-pink.svg";
 
 export {
   CircleClose,
@@ -22,6 +27,11 @@ export {
   Warning,
   InformationCircle,
   HeroiconsSolidXmark,
+  HeartFill,
+  HeartBlank,
+  Kebob,
+  Coin,
+  StarPink,
   RadioFillOne,
   RadioOutlineOne,
   RadioFillTwo,

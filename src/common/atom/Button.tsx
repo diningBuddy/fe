@@ -21,6 +21,7 @@ interface ButtonStyle {
   iconR?: React.ComponentType<SvgProps>;
   iconL?: React.ComponentType<SvgProps>;
   iconColor?: string;
+  onPress?: () => void;
 }
 
 const MAIN = "main";
