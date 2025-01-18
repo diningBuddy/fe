@@ -7,10 +7,10 @@ import ThemeStyle from "../../styles/ThemeStyle";
 interface ToggleProps {
   isOn: boolean;
   onToggle: () => void;
-  mode?: "main" | "secondary"; // mode 속성 추가
+  isDisabled?: boolean;
 }
 
-const ToggleWrap = styled.View<{ isOn: boolean; onColor: string; offColor: string }>`
+const ToggleWrap = styled.View<{ isOn: boolean; onColor: string; offColor: string; isDisabled: boolean }>`
   position: relative;
   width: 44px;
   height: 24px;
@@ -20,7 +20,8 @@ const ToggleWrap = styled.View<{ isOn: boolean; onColor: string; offColor: strin
   padding: 2px;
 
   border-radius: 50px;
-  background-color: ${(props) => (props.isOn ? props.onColor : props.offColor)};
+  background-color: ${(props) =>
+    props.isDisabled ? ThemeStyle.color.sys.primary.disabled : props.isOn ? props.onColor : props.offColor};
 `;
 
 const ToggleBox = styled(Animated.View)<{ thumbColor: string }>`
@@ -34,21 +35,14 @@ const ToggleBox = styled(Animated.View)<{ thumbColor: string }>`
   elevation: 3;
 `;
 
-const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle, mode = "main" }) => {
+const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle, isDisabled = false }) => {
   const colors = {
-    main: {
-      onColor: ThemeStyle.color.sys.primary.default,
-      offColor: ThemeStyle.color.sys.tertiary.default,
-      thumbColor: ThemeStyle.color.global.neutral[100],
-    },
-    secondary: {
-      onColor: ThemeStyle.color.sys.primary.disabled,
-      offColor: ThemeStyle.color.sys.secondary.disabled,
-      thumbColor: ThemeStyle.color.global.neutral[100],
-    },
+    onColor: ThemeStyle.color.sys.primary.default,
+    offColor: ThemeStyle.color.sys.tertiary.default,
+    thumbColor: ThemeStyle.color.global.neutral[100],
   };
 
-  const { onColor, offColor, thumbColor } = colors[mode];
+  const { onColor, offColor, thumbColor } = colors;
 
   const translateX = useRef(new Animated.Value(isOn ? 22 : 2)).current;
 
@@ -61,8 +55,8 @@ const Toggle: React.FC<ToggleProps> = ({ isOn, onToggle, mode = "main" }) => {
   }, [isOn]);
 
   return (
-    <TouchableWithoutFeedback onPress={onToggle}>
-      <ToggleWrap isOn={isOn} onColor={onColor} offColor={offColor}>
+    <TouchableWithoutFeedback onPress={!isDisabled ? onToggle : undefined}>
+      <ToggleWrap isOn={isOn} onColor={onColor} offColor={offColor} isDisabled={isDisabled}>
         <ToggleBox style={{ transform: [{ translateX }] }} thumbColor={thumbColor} />
       </ToggleWrap>
     </TouchableWithoutFeedback>

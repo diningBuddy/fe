@@ -35,10 +35,10 @@ import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
 import SignIn from "./src/screens/auth/signIn";
-import SignUp from "./src/screens/auth/signUp";
+import SignUp from "./src/screens/auth/signup";
 import VerifyPhone from "./src/screens/auth/VerifyPhone";
-import InsertInfo from "./src/screens/auth/signUp/InsertInfo";
-import AccessRights from "./src/screens/auth/signUp/AccessRights";
+import InsertInfo from "./src/screens/auth/signup/InsertInfo";
+import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
 import SampleSpinner from "./src/components/sample/SampleSpinner";
 

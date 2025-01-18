@@ -13,11 +13,31 @@ const OnboardingPage = () => {
 };
 
 const styles = StyleSheet.create({
+  chipContainer: {
+    marginBottom: 10,
+  },
   container: {
     alignItems: "center",
     backgroundColor: "#ffffff",
     justifyContent: "center",
     padding: 18,
+  },
+  headerText: {
+    color: "#595959",
+    fontSize: 12,
+    fontWeight: "500",
+    textAlign: "center",
+  },
+  mainContent: {
+    marginTop: 20,
+    width: "100%",
+  },
+  sectionTitle: {
+    color: "#000000",
+    fontSize: 17,
+    fontWeight: "600",
+    marginBottom: 10,
+    marginTop: 20,
   },
 });
 
