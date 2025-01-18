@@ -41,6 +41,7 @@ import InsertInfo from "./src/screens/auth/signup/InsertInfo";
 import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
 import SampleSpinner from "./src/components/sample/SampleSpinner";
+import RankingList from "./src/screens/dining/RankingList";
 
 export type Props = {
   label: string;
@@ -101,6 +102,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.ACCESS_RIGHTS} component={AccessRights} />
           <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
           <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
+          <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
