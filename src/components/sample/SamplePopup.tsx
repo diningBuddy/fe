@@ -10,10 +10,12 @@ const SamplePopup = () => {
     isSimple: false,
     isTwoButton: false,
     isShowImage: false,
+    title: "성공적으로 인증되었어요!",
+    description: "",
   });
 
-  const showPopup = (isSimple: boolean, isTwoButton: boolean, isShowImage: boolean) => {
-    setPopupProps({ isSimple, isTwoButton, isShowImage });
+  const showPopup = (isSimple: boolean, isTwoButton: boolean, isShowImage: boolean, title: "", description: "") => {
+    setPopupProps({ isSimple, isTwoButton, isShowImage, title, description });
     setVisible(true);
   };
 
@@ -28,10 +30,7 @@ const SamplePopup = () => {
       {/*    title="Show Popup: Simple true, TwoButton false, ShowImage false" */}
       {/*    onPress={() => showPopup(true, false, false)} */}
       {/* /> */}
-      <Button
-        title="Show Popup: Simple false, TwoButton true, ShowImage false"
-        onPress={() => showPopup(false, true, false)}
-      />
+      <Button title="Show Popup: Simple   , ShowImage false" onPress={() => showPopup(false, true, false)} />
       <Button
         title="Show Popup: Simple true, TwoButton true, ShowImage false"
         onPress={() => showPopup(true, true, false)}
@@ -60,6 +59,8 @@ const SamplePopup = () => {
         isSimple={popupProps.isSimple}
         isTwoButton={popupProps.isTwoButton}
         isShowImage={popupProps.isShowImage}
+        title={popupProps.title}
+        description={popupProps.description}
       />
     </ScrollViewContainer>
   );

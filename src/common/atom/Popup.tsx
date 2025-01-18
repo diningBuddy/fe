@@ -11,6 +11,8 @@ interface PopupProps {
   isTwoButton: boolean;
   isShowImage: boolean;
   imageUrl?: string;
+  title: string;
+  description: string;
 }
 
 const Popup: React.FC<PopupProps> = ({
@@ -20,6 +22,8 @@ const Popup: React.FC<PopupProps> = ({
   isTwoButton = true,
   isShowImage = false,
   imageUrl,
+  title = "다음부터 자동으로 로그인됩니다",
+  description = "비밀번호 설정 이후, 디바이스가 바뀌지 않으면 자동 로그인 됩니다.",
 }) => {
   const windowWidth = Dimensions.get("window").width;
   const theme = useContext(ThemeContext) || {};
@@ -51,8 +55,8 @@ const Popup: React.FC<PopupProps> = ({
             </ImageContainer>
           )}
           <PopupContent>
-            <Title>다음부터 자동으로 로그인됩니다</Title>
-            <Description>비밀번호 설정 이후, 디바이스가 바뀌지 않으면 자동 로그인 됩니다.</Description>
+            <Title>{title}</Title>
+            <Description>{description}</Description>
           </PopupContent>
           <ButtonContainer>
             {isTwoButton ? (

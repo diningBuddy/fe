@@ -17,6 +17,7 @@ import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
 import SampleInput from "./src/components/sample/SampleInput";
 import SampleTextArea from "./src/components/sample/SampleTextArea";
+import SampleRadioGroup from "./src/components/sample/SampleRadioGroup";
 import SampleTag from "./src/components/sample/SampleTag";
 import SampleSearch from "./src/components/sample/SampleSearch";
 import SampleChip from "./src/components/sample/SampleChip";
@@ -33,6 +34,12 @@ import SampleDropdown from "./src/components/sample/SampleDropdown";
 import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
+import SignIn from "./src/screens/auth/signIn";
+import SignUp from "./src/screens/auth/signup";
+import VerifyPhone from "./src/screens/auth/VerifyPhone";
+import InsertInfo from "./src/screens/auth/signup/InsertInfo";
+import AccessRights from "./src/screens/auth/signup/AccessRights";
+import Inquiry from "./src/screens/auth/Inquiry";
 import SampleSpinner from "./src/components/sample/SampleSpinner";
 
 export type Props = {
@@ -61,6 +68,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
   return (
     <ThemeProvider theme={ThemeStyle}>
       <NavigationContainer>
+        {/* TODO: initialRouteName="SignIn" */}
         <Stack.Navigator>
           <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
           <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
@@ -72,6 +80,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
           <Stack.Screen name={RouteNames.SAMPLE_DROPDOWN} component={SampleDropdown} />
           <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
+          <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadioGroup} />
           <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
           <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
           <Stack.Screen name={RouteNames.SAMPLE_STAR} component={SampleStar} />
@@ -85,6 +94,12 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
           <Stack.Screen name={RouteNames.SAMPLE_POPUP} component={SamplePopup} />
           <Stack.Screen name={RouteNames.SAMPLE_PROGRESS} component={SampleProgress} />
+          <Stack.Screen name={RouteNames.SIGNIN} component={SignIn} options={{ headerShown: false }} />
+          <Stack.Screen name={RouteNames.SIGNUP} component={SignUp} />
+          <Stack.Screen name={RouteNames.VERIFY_PHONE} component={VerifyPhone} />
+          <Stack.Screen name={RouteNames.INSERT_INFO} component={InsertInfo} />
+          <Stack.Screen name={RouteNames.ACCESS_RIGHTS} component={AccessRights} />
+          <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
           <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
         </Stack.Navigator>
       </NavigationContainer>

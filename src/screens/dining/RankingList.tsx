@@ -96,12 +96,12 @@ export const DiningPage = () => {
 
         {/* TODO： <Card /> 추가 */}
         {midnightMeal.map((item) => (
-          <div>
-            <BodySemibold16>{item.title}</BodySemibold16>
-            {/* <star />  TODO: icon 추가 */}
-            <BodySemibold14>{item.grade}</BodySemibold14>
-            <p>{item.adress}</p>
-          </div>
+          // <div>
+          //   <BodySemibold16>{item.title}</BodySemibold16>
+          //   {/* <star />  TODO: icon 추가 */}
+          //   <BodySemibold14>{item.grade}</BodySemibold14>
+          //   <p>{item.adress}</p>
+          // </div>
         ))}
       </View>
 

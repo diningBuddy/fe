@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View } from "react-native";
 
 import { categoryList } from "../../../../mock/DiningMockData";
 
-export const DiningPage = () => {
+export const DiningHeader = () => {
   return (
     <>
       {/* Banner Container */}
@@ -16,4 +16,4 @@ export const DiningPage = () => {
   );
 };
 
-export default DiningPage;
+export default DiningHeader;

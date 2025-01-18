@@ -1,14 +1,13 @@
 import { StyleSheet, ScrollView } from "react-native";
 
-import SearchHeader from "./components/templates/SearchHeader";
-import SearchMain from "./components/templates/SearchMain";
+import { MypageMain } from "./components/templates/MypageMain";
+import { MypageHeader } from "./components/templates/MypageHeader";
 
-const SearchPage = () => {
+const MyPage = () => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* <NavigationHeader  />  */}
-      <SearchHeader />
-      <SearchMain />
+      <MypageHeader />
+      <MypageMain />
     </ScrollView>
   );
 };
@@ -20,4 +19,4 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 });
-export default SearchPage;
+export default MyPage;

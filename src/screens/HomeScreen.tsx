@@ -41,7 +41,14 @@ function HomeScreen({ navigation }: Props) {
     { label: "Sample Toast", route: RouteNames.SAMPLE_TOAST },
     { label: "Sample Popup", route: RouteNames.SAMPLE_POPUP },
     { label: "Sample Progress", route: RouteNames.SAMPLE_PROGRESS },
+    { label: "signIn", route: RouteNames.SIGNIN },
+    { label: "signUp", route: RouteNames.SIGNUP },
+    { label: "VerifyPhone", route: RouteNames.VERIFY_PHONE },
+    { label: "InsertInfo", route: RouteNames.INSERT_INFO },
+    { label: "AccessRights", route: RouteNames.ACCESS_RIGHTS },
+    { label: "Inquiry", route: RouteNames.INQUIRY },
     { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
+    { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
   ];
 
   return (
