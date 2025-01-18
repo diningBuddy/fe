@@ -5,7 +5,7 @@ import Toggle from "../../common/atom/Toggle";
 
 export default function SampleToggle() {
   const [isOnMain, setIsOnMain] = useState(false);
-  const [isOnSecondary, setIsOnSecondary] = useState(false);
+  const [isOnSecondary, setIsOnSecondary] = useState(true);
 
   const handleToggleMain = () => {
     setIsOnMain((prev) => !prev);
@@ -18,7 +18,7 @@ export default function SampleToggle() {
   return (
     <SafeAreaView style={styles.container}>
       <Toggle isOn={isOnMain} onToggle={handleToggleMain} />
-      <Toggle isOn={isOnSecondary} mode="secondary" onToggle={handleToggleSecondary} />
+      <Toggle isOn={isOnSecondary} isDisabled onToggle={handleToggleSecondary} />
     </SafeAreaView>
   );
 }
