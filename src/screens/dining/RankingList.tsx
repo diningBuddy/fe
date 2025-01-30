@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, FlatList, Text, Alert } from "react-native";
+import { ScrollView, StyleSheet, FlatList, Text, Alert, View, ImageBackground } from "react-native";
 
 import Tabs from "../../common/atom/Tab";
 import { Filter } from "../../assets/icons/time";
@@ -8,6 +8,8 @@ import Card from "../../common/atom/Card";
 import { lunchToday } from "../../mock/DiningMockData";
 import { FlexBox } from "../../common/FlexBox";
 import getRankColor from "../../utils/getRankColor";
+import RankingListBanner from "../../assets/images/sample/rankingList-banner.png";
+// import { LinearGradient } from "expo-linear-gradient";
 
 const RankingList = () => {
   const [pressed, setPressed] = useState<string[]>([]);
@@ -38,65 +40,93 @@ const RankingList = () => {
   };
 
   return (
-    <Tabs tabs={tabs}>
-      <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
-        <FlexBox justifyContent="space-between" gap={8} marginBottom={16}>
+    <View style={styles.container}>
+      <ImageBackground source={RankingListBanner} style={styles.banner}>
+        {/* <LinearGradient
+                 colors={["transparent", "rgba(255,255,255,0.8)", "rgba(255,255,255,1)"]} 
+              style={styles.gradientOverlay}
+               /> */}
+
+        <Text style={styles.headerTitle}>성균관대 추천 순위</Text>
+      </ImageBackground>
+      <Tabs tabs={tabs}>
+        <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+          <FlexBox justifyContent="space-between" gap={8} marginBottom={16}>
+            <FlatList
+              data={itemList}
+              horizontal
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+                  {item.title}
+                </OutlineChip>
+              )}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.chipGroupList}
+              scrollEnabled={false}
+            />
+            <Filter />
+          </FlexBox>
+
           <FlatList
-            data={itemList}
-            horizontal
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
-                {item.title}
-              </OutlineChip>
-            )}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.chipGroupList}
-            scrollEnabled={false}
+            data={lunchToday.slice(0, 20)}
+            keyExtractor={(item, index) => `${item.id}-${index}`}
+            renderItem={({ item, index }) => {
+              const rankColor = getRankColor(index);
+              return (
+                <FlexBox gap={12} marginLeft={16} justifyContent="flex-start">
+                  <Text style={[styles.rankText, { color: rankColor }]}>{index + 1}</Text>
+                  <Card
+                    data={[
+                      {
+                        ...item,
+                        onPress: () => Alert.alert("클릭 시 상세페이지"),
+                      },
+                    ]}
+                  />
+                </FlexBox>
+              );
+            }}
           />
-          <Filter />
-        </FlexBox>
+        </ScrollView>
 
-        <FlatList
-          data={lunchToday.slice(0, 20)}
-          keyExtractor={(item, index) => index.toString()}
-          renderItem={({ item, index }) => {
-            const rankColor = getRankColor(index);
-            return (
-              <FlexBox gap={12} marginLeft={16} justifyContent="flex-start">
-                <Text style={[styles.rankText, { color: rankColor }]}>{index + 1}</Text>
-                <Card
-                  data={[
-                    {
-                      ...item,
-                      onPress: () => Alert.alert("클릭 시 상세페이지"),
-                    },
-                  ]}
-                />
-              </FlexBox>
-            );
-          }}
-        />
-      </ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 2 한식</Text>
+        </ScrollView>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Text>Tab 2 한식</Text>
-      </ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 3 중식</Text>
+        </ScrollView>
 
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Text>Tab 3 중식</Text>
-      </ScrollView>
-
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        <Text>Tab 4 일식</Text>
-      </ScrollView>
-    </Tabs>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 4 일식</Text>
+        </ScrollView>
+      </Tabs>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  banner: {
+    justifyContent: "flex-end",
+    minHeight: 180,
+    position: "relative",
+    width: "100%",
+  },
   chipGroupList: {
     gap: 8,
+  },
+  container: {
+    backgroundColor: "#fff",
+    flex: 1,
+  },
+  headerTitle: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "700",
+    position: "absolute",
+    right: 130,
+    top: 50,
   },
   rankText: {
     fontSize: 17,
