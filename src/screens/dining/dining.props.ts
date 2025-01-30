@@ -4,4 +4,5 @@ export interface DiningProps {
   img: string;
   grade: string;
   adress: string;
+  count: number;
 }
