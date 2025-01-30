@@ -7,6 +7,7 @@ import { OutlineChip } from "../../common/atom/Chip";
 import Card from "../../common/atom/Card";
 import { lunchToday } from "../../mock/DiningMockData";
 import { FlexBox } from "../../common/FlexBox";
+import getRankColor from "../../utils/getRankColor";
 
 const RankingList = () => {
   const [pressed, setPressed] = useState<string[]>([]);
@@ -55,11 +56,26 @@ const RankingList = () => {
           />
           <Filter />
         </FlexBox>
-        <Card
-          data={lunchToday.map((item) => ({
-            ...item,
-            onPress: () => Alert.alert("가로형 카드 컴포넌트"),
-          }))}
+
+        <FlatList
+          data={lunchToday.slice(0, 20)}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={({ item, index }) => {
+            const rankColor = getRankColor(index);
+            return (
+              <FlexBox gap={12} marginLeft={16} justifyContent="flex-start">
+                <Text style={[styles.rankText, { color: rankColor }]}>{index + 1}</Text>
+                <Card
+                  data={[
+                    {
+                      ...item,
+                      onPress: () => Alert.alert("클릭 시 상세페이지"),
+                    },
+                  ]}
+                />
+              </FlexBox>
+            );
+          }}
         />
       </ScrollView>
 
@@ -81,6 +97,10 @@ const RankingList = () => {
 const styles = StyleSheet.create({
   chipGroupList: {
     gap: 8,
+  },
+  rankText: {
+    fontSize: 17,
+    fontWeight: 600,
   },
   scrollContainer: {
     flexGrow: 1,
