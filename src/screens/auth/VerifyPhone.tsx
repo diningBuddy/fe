@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 
 import Input from "../../common/atom/Input";
 import Toast from "../../common/atom/Toast";
@@ -9,8 +9,13 @@ export const VerifyPhone = () => {
   const [isVerifyRequested, setVerifyRequested] = useState(false);
   const [isSendNumber, setIsSendNumber] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [verifyNumber, setVerifyNumber] = useState("");
 
-  const handleRequestVerify = async () => {
+  if (isSendNumber && isVerifyRequested) {
+    Alert.alert("인증 완료", "휴대폰 인증이 완료되었습니다.");
+  }
+
+  const handleRequestSend = async () => {
     if (!phoneNumber) {
       Alert.alert("오류", "휴대폰 번호를 입력해주세요.");
       return;
@@ -28,8 +33,34 @@ export const VerifyPhone = () => {
       const data = await response.json();
 
       if (response.ok) {
-        setVerifyRequested(true);
         setIsSendNumber(true);
+      } else {
+        Alert.alert("오류", data.message || "인증 요청에 실패했습니다.");
+      }
+    } catch (error) {
+      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
+    }
+  };
+
+  const handleRequestVerify = async () => {
+    if (!verifyNumber) {
+      Alert.alert("오류", "휴대폰 번호를 입력해주세요.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://144.24.70.249/v1/sms/verify-certification-number", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneNumber, certificationNumber: verifyNumber }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setVerifyRequested(true);
       } else {
         Alert.alert("오류", data.message || "인증 요청에 실패했습니다.");
       }
@@ -51,15 +82,23 @@ export const VerifyPhone = () => {
           value={phoneNumber}
           onChangeText={setPhoneNumber}
         />
-        <Button onPress={handleRequestVerify} height="lg">
+        <Button onPress={handleRequestSend} height="lg">
           인증요청
         </Button>
       </View>
 
-      {isVerifyRequested && (
+      {isSendNumber && (
         <View style={styles.inputContainer}>
-          <Input variant="default" label="인증코드" placeholder="인증코드를 입력해 주세요" />
-          <Button height="lg">확인</Button>
+          <Input
+            variant="default"
+            label="인증코드"
+            placeholder="인증코드를 입력해 주세요"
+            value={verifyNumber}
+            onChangeText={setVerifyNumber}
+          />
+          <Button height="lg" onPress={handleRequestVerify}>
+            확인
+          </Button>
         </View>
       )}
       {isSendNumber && <Toast message="인증번호가 전송되었어요!" />}
