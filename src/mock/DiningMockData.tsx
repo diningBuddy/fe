@@ -28,120 +28,19 @@ export const categoryList = categoryItems.map((item, index) => ({
   ...item,
 }));
 
-export const lunchToday: DiningProps[] = [
-  {
-    id: 0,
-    title: "한식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 1,
-    title: "양식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 2,
-    title: "일식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 3,
-    title: "중식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 4,
-    title: "분식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 5,
-    title: "치킨",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 6,
-    title: "피자",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 7,
-    title: "버거",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-];
+const titles = ["한식", "양식", "일식", "중식", "분식", "아시안", "치킨", "피자", "버거", "보쌈"];
 
-export const midnightMeal: DiningProps[] = [
-  {
-    id: 0,
-    title: "한식",
+const generateDiningData = (): DiningProps[] => {
+  return titles.map((title, index) => ({
+    id: index,
+    title,
     img: "",
     grade: "4.8",
     adress: "서울시 강남구 15m",
-  },
-  {
-    id: 1,
-    title: "양식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 2,
-    title: "일식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 3,
-    title: "중식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 4,
-    title: "분식",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 5,
-    title: "치킨",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 6,
-    title: "피자",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-  {
-    id: 7,
-    title: "버거",
-    img: "",
-    grade: "4.8",
-    adress: "서울시 강남구 15m",
-  },
-];
+    count: 9999,
+  }));
+};
+
+export const lunchToday: DiningProps[] = generateDiningData();
+
+export const midnightMeal: DiningProps[] = [...lunchToday];

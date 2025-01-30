@@ -35,6 +35,7 @@ export const RouteNames = {
   ACCESS_RIGHTS: "AccessRights" as const,
   INQUIRY: "Inquiry" as const,
   SAMPLE_SPINNER: "sample-spinner" as const,
+  SAMPLE_CARD: "sample-card" as const,
 };
 
 export type RootStackParamList = {
@@ -72,4 +73,5 @@ export type RootStackParamList = {
   [RouteNames.INSERT_INFO]: undefined;
   [RouteNames.ACCESS_RIGHTS]: undefined;
   [RouteNames.SAMPLE_SPINNER]: undefined;
+  [RouteNames.SAMPLE_CARD]: undefined;
 };
