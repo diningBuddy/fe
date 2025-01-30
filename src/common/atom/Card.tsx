@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   verticalImg: {
-    height: 150,
-    width: 150,
+    height: 158,
+    width: 158,
   },
   verticalWrapper: {
     flexDirection: "row",

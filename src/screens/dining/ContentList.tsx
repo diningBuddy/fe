@@ -1,28 +1,19 @@
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { StyleSheet, ScrollView, Alert } from "react-native";
 
-import { BodySemibold14, BodySemibold16 } from "../../common/atom/Typo";
-import contentList from "../../mock/ContentListMockData";
+import Card from "../../common/atom/Card";
+import { lunchToday } from "../../mock/DiningMockData";
 
 export const ContentListPage = () => {
   return (
     <ScrollView contentContainerStyle={styles.gridContainer}>
-      <View>
-        {/* <NavigationHeader title: 점심 맛집 정복, 오늘은 뭐 먹지? , 야식의 성지 새벽까지 든든하게/>  */}
-
-        {/* TODO： <Card /> 추가 */}
-        {contentList.map((item) => (
-          <View key={item.id} style={styles.card}>
-            {/* <Image source={item.img} style={styles.cardImage} /> */}
-            <View style={styles.cardContent}>
-              <BodySemibold16>{item.title}</BodySemibold16>
-              <BodySemibold14>
-                {/* <star />  TODO: icon 추가 */} {item.grade}
-              </BodySemibold14>
-              <Text style={styles.cardAddress}>{item.adress}</Text>
-            </View>
-          </View>
-        ))}
-      </View>
+      {/* <NavigationHeader title: 점심 맛집 정복, 오늘은 뭐 먹지? , 야식의 성지 새벽까지 든든하게/>  */}
+      <Card
+        data={lunchToday.map((item) => ({
+          ...item,
+          onPress: () => Alert.alert("세로형 카드 컴포넌트"),
+        }))}
+        isHorizontal={false}
+      />
     </ScrollView>
   );
 };
