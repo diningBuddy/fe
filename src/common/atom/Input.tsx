@@ -12,6 +12,8 @@ interface InputProps {
   placeholder?: string;
   isDisabled?: boolean;
   isSuccess?: boolean;
+  value: string;
+  onChangeText: (text: string) => void;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -21,9 +23,10 @@ const Input: React.FC<InputProps> = ({
   placeholder = "Type your message here",
   isDisabled = false,
   isSuccess = false,
+  value,
+  onChangeText,
 }) => {
   const theme = useContext(ThemeContext);
-  const [value, setValue] = useState("");
   const [state, setState] = useState<"initial" | "focused" | "filled" | "disabled">(
     isDisabled ? "disabled" : "initial"
   );
@@ -51,10 +54,10 @@ const Input: React.FC<InputProps> = ({
             onBlur={() => {
               if (!value && !isDisabled) setState("initial");
             }}
-            onChangeText={setValue}
+            onChangeText={onChangeText}
             editable={!isDisabled}
           />
-          <CloseButton onPress={() => setValue("")} disabled={state === "disabled"}>
+          <CloseButton onPress={() => onChangeText("")} disabled={state === "disabled"}>
             <CircleClose />
           </CloseButton>
         </InputContainer>

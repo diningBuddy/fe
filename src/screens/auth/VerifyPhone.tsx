@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { Alert, StyleSheet, Text, View } from "react-native";
 
 import Input from "../../common/atom/Input";
 import Toast from "../../common/atom/Toast";
@@ -8,71 +8,126 @@ import { Button } from "../../common/atom/Button";
 export const VerifyPhone = () => {
   const [isVerifyRequested, setVerifyRequested] = useState(false);
   const [isSendNumber, setIsSendNumber] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [verifyNumber, setVerifyNumber] = useState("");
 
-  const handleRequestVerify = () => {
-    setVerifyRequested(true);
-    setIsSendNumber(true);
+  if (isSendNumber && isVerifyRequested) {
+    Alert.alert("인증 완료", "휴대폰 인증이 완료되었습니다.");
+  }
+
+  const handleRequestSend = async () => {
+    if (!phoneNumber) {
+      Alert.alert("오류", "휴대폰 번호를 입력해주세요.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://144.24.70.249/v1/sms/send-certification-number", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneNumber }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsSendNumber(true);
+      } else {
+        Alert.alert("오류", data.message || "인증 요청에 실패했습니다.");
+      }
+    } catch (error) {
+      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
+    }
+  };
+
+  const handleRequestVerify = async () => {
+    if (!verifyNumber) {
+      Alert.alert("오류", "휴대폰 번호를 입력해주세요.");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://144.24.70.249/v1/sms/verify-certification-number", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ phoneNumber, certificationNumber: verifyNumber }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setVerifyRequested(true);
+      } else {
+        Alert.alert("오류", data.message || "인증 요청에 실패했습니다.");
+      }
+    } catch (error) {
+      Alert.alert("오류", "서버와의 통신 중 문제가 발생했습니다.");
+    }
   };
 
   return (
-    // TODO: input + button 형태 컴포넌트 작업
-    // Button 인증 전송 후 시간 초 작업
     <View style={styles.container}>
-      {/* fw: 700, fs: 20px, color: #434343 */}
       <Text style={styles.title}>휴대폰 번호 인증하기</Text>
       <Text style={styles.infoContent}>가입을 위해 휴대폰 인증을 진행해 주세요</Text>
 
-      {/* 휴대폰 입력 필드 */}
       <View style={styles.inputContainer}>
-        <Input variant="default" label="휴대폰 번호" placeholder="- 제외하고 숫자만 입력" style={styles.input} />
-        <Button onPress={handleRequestVerify} height="lg">
+        <Input
+          variant="default"
+          label="휴대폰 번호"
+          placeholder="- 제외하고 숫자만 입력"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
+        />
+        <Button onPress={handleRequestSend} height="lg">
           인증요청
         </Button>
       </View>
 
-      {isVerifyRequested && (
+      {isSendNumber && (
         <View style={styles.inputContainer}>
-          <Input variant="default" label="인증코드" placeholder="인증코드를 입력해 주세요" />
-          <Button height="lg">확인</Button>
+          <Input
+            variant="default"
+            label="인증코드"
+            placeholder="인증코드를 입력해 주세요"
+            value={verifyNumber}
+            onChangeText={setVerifyNumber}
+          />
+          <Button height="lg" onPress={handleRequestVerify}>
+            확인
+          </Button>
         </View>
       )}
       {isSendNumber && <Toast message="인증번호가 전송되었어요!" />}
-
-      {/* <Popup
-        visible={visible}
-        onClose={() => setVisible(false)}
-        isSimple={popupProps.isSimple}
-        isTwoButton={popupProps.isTwoButton}
-        isShowImage={popupProps.isShowImage}
-        title={popupProps.title}
-        description={popupProps.description}
-      /> */}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
+    flex: 1,
     padding: 24,
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#434343",
-    marginBottom: 16,
-  },
   infoContent: {
-    fontSize: 14,
     color: "#555",
+    fontSize: 14,
     marginBottom: 40,
   },
   inputContainer: {
-    flexDirection: "row",
     alignItems: "center",
-    marginBottom: 16,
+    flexDirection: "row",
     gap: 8,
+    marginBottom: 16,
+  },
+  title: {
+    color: "#434343",
+    fontSize: 20,
+    fontWeight: "700",
+    marginBottom: 16,
   },
 });
 
