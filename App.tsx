@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { TouchableOpacityProps } from "react-native";
+import { TouchableOpacityProps, ScrollView, StyleSheet } from "react-native";
 import { ThemeContext, ThemeProvider } from "styled-components/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -70,45 +70,67 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
   return (
     <ThemeProvider theme={ThemeStyle}>
       <NavigationContainer>
-        {/* TODO: initialRouteName="SignIn" */}
-        <Stack.Navigator>
-          <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
-          <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
-          <Stack.Screen name={RouteNames.SAMPLE_MODAL} component={SampleModal} />
-          <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
-          <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
-          <Stack.Screen name={RouteNames.SAMPLE_TAB} component={SampleTab} />
-          <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
-          <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
-          <Stack.Screen name={RouteNames.SAMPLE_DROPDOWN} component={SampleDropdown} />
-          <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
-          <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadioGroup} />
-          <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
-          <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
-          <Stack.Screen name={RouteNames.SAMPLE_STAR} component={SampleStar} />
-          <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
-          <Stack.Screen name={RouteNames.SAMPLE_DIVIDER} component={SampleDivider} />
-          <Stack.Screen name={RouteNames.SAMPLE_CHECKBOX} component={SampleCheckbox} />
-          <Stack.Screen name={RouteNames.SAMPLE_FLOATINGBUTTON} component={SampleFloatingButton} />
-          <Stack.Screen name={RouteNames.SAMPLE_EMPTY} component={SampleEmpty} />
-          <Stack.Screen name={RouteNames.SAMPLE_TOGGLE} component={SampleToggle} />
-          <Stack.Screen name={RouteNames.SAMPLE_TOOLTIP} component={SampleTooltip} />
-          <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
-          <Stack.Screen name={RouteNames.SAMPLE_POPUP} component={SamplePopup} />
-          <Stack.Screen name={RouteNames.SAMPLE_PROGRESS} component={SampleProgress} />
-          <Stack.Screen name={RouteNames.SIGNIN} component={SignIn} options={{ headerShown: false }} />
-          <Stack.Screen name={RouteNames.SIGNUP} component={SignUp} />
-          <Stack.Screen name={RouteNames.VERIFY_PHONE} component={VerifyPhone} />
-          <Stack.Screen name={RouteNames.INSERT_INFO} component={InsertInfo} />
-          <Stack.Screen name={RouteNames.ACCESS_RIGHTS} component={AccessRights} />
-          <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
-          <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
-          <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
-          <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
-        </Stack.Navigator>
+        <ScrollView
+          style={styles.scrollContainer}
+          contentContainerStyle={styles.contentContainer}
+          keyboardShouldPersistTaps="handled">
+          <Stack.Navigator
+            screenOptions={{
+              contentStyle: styles.container,
+              headerShown: false,
+            }}>
+            {/* TODO: initialRouteName="SignIn" */}
+            <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
+            <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
+            <Stack.Screen name={RouteNames.SAMPLE_MODAL} component={SampleModal} />
+            <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
+            <Stack.Screen name={RouteNames.SAMPLE_FONT} component={SampleFont} />
+            <Stack.Screen name={RouteNames.SAMPLE_TAB} component={SampleTab} />
+            <Stack.Screen name={RouteNames.SAMPLE_BUTTON} component={SampleButton} />
+            <Stack.Screen name={RouteNames.SAMPLE_INPUT} component={SampleInput} />
+            <Stack.Screen name={RouteNames.SAMPLE_DROPDOWN} component={SampleDropdown} />
+            <Stack.Screen name={RouteNames.SAMPLE_TEXTAREA} component={SampleTextArea} />
+            <Stack.Screen name={RouteNames.SAMPLE_RADIO} component={SampleRadioGroup} />
+            <Stack.Screen name={RouteNames.SAMPLE_TAG} component={SampleTag} />
+            <Stack.Screen name={RouteNames.SAMPLE_SEARCH} component={SampleSearch} />
+            <Stack.Screen name={RouteNames.SAMPLE_STAR} component={SampleStar} />
+            <Stack.Screen name={RouteNames.SAMPLE_CHIP} component={SampleChip} />
+            <Stack.Screen name={RouteNames.SAMPLE_DIVIDER} component={SampleDivider} />
+            <Stack.Screen name={RouteNames.SAMPLE_CHECKBOX} component={SampleCheckbox} />
+            <Stack.Screen name={RouteNames.SAMPLE_FLOATINGBUTTON} component={SampleFloatingButton} />
+            <Stack.Screen name={RouteNames.SAMPLE_EMPTY} component={SampleEmpty} />
+            <Stack.Screen name={RouteNames.SAMPLE_TOGGLE} component={SampleToggle} />
+            <Stack.Screen name={RouteNames.SAMPLE_TOOLTIP} component={SampleTooltip} />
+            <Stack.Screen name={RouteNames.SAMPLE_TOAST} component={SampleToast} />
+            <Stack.Screen name={RouteNames.SAMPLE_POPUP} component={SamplePopup} />
+            <Stack.Screen name={RouteNames.SAMPLE_PROGRESS} component={SampleProgress} />
+            <Stack.Screen name={RouteNames.SIGNIN} component={SignIn} options={{ headerShown: false }} />
+            <Stack.Screen name={RouteNames.SIGNUP} component={SignUp} />
+            <Stack.Screen name={RouteNames.VERIFY_PHONE} component={VerifyPhone} />
+            <Stack.Screen name={RouteNames.INSERT_INFO} component={InsertInfo} />
+            <Stack.Screen name={RouteNames.ACCESS_RIGHTS} component={AccessRights} />
+            <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
+            <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
+            <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
+            <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
+          </Stack.Navigator>
+        </ScrollView>
       </NavigationContainer>
     </ThemeProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
+    paddingBottom: 20,
+  },
+  scrollContainer: {
+    flex: 1,
+  },
+});
 
 export default App;
