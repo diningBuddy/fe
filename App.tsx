@@ -34,13 +34,14 @@ import SampleDropdown from "./src/components/sample/SampleDropdown";
 import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
+import SampleCard from "./src/components/sample/SampleCard";
+import SampleSpinner from "./src/components/sample/SampleSpinner";
 import SignIn from "./src/screens/auth/signIn";
 import SignUp from "./src/screens/auth/signup";
 import VerifyPhone from "./src/screens/auth/VerifyPhone";
 import InsertInfo from "./src/screens/auth/signup/InsertInfo";
 import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
-import SampleSpinner from "./src/components/sample/SampleSpinner";
 import RankingList from "./src/screens/dining/RankingList";
 
 export type Props = {
@@ -103,6 +104,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
           <Stack.Screen name={RouteNames.INQUIRY} component={Inquiry} />
           <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
           <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
+          <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

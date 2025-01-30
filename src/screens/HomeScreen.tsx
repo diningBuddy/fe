@@ -19,7 +19,8 @@ function HomeScreen({ navigation }: Props) {
   );
 
   const buttons = [
-    { label: "Sample Modal", route: RouteNames.SAMPLE_MODAL },
+    { label: "RankingList", route: RouteNames.RANKINGLIST },
+    { label: "Sample Card", route: RouteNames.SAMPLE_CARD },
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },
     { label: "Sample Font", route: RouteNames.SAMPLE_FONT },
     { label: "Sample Tab", route: RouteNames.SAMPLE_TAB },
@@ -49,7 +50,6 @@ function HomeScreen({ navigation }: Props) {
     { label: "Inquiry", route: RouteNames.INQUIRY },
     { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
     { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
-    { label: "RankingList", route: RouteNames.RANKINGLIST },
   ];
 
   return (
