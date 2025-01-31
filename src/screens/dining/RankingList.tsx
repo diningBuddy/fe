@@ -1,137 +1,141 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Button } from "react-native";
+import { ScrollView, StyleSheet, FlatList, Text, Alert, View, ImageBackground } from "react-native";
 
-import { HeadingRegular20 } from "../../common/atom/Typo";
-import { ButtonText } from "../../common/atom/Button";
-import Toast from "../../common/atom/Toast";
+import Tabs from "../../common/atom/Tab";
+import { Filter } from "../../assets/icons/time";
+import { OutlineChip } from "../../common/atom/Chip";
+import Card from "../../common/atom/Card";
+import { lunchToday } from "../../mock/DiningMockData";
+import { FlexBox } from "../../common/FlexBox";
+import getRankColor from "../../utils/getRankColor";
+import RankingListBanner from "../../assets/images/sample/rankingList-banner.png";
+// import { LinearGradient } from "expo-linear-gradient";
 
-interface ToastHandle {
-  showToast: () => void;
-}
-export const DiningPage = () => {
-  const toastRef = React.createRef<ToastHandle>();
+const RankingList = () => {
   const [pressed, setPressed] = useState<string[]>([]);
-  const [toastVariant, setToastVariant] = useState<string | null>(null);
 
-  const categoryItems = [
-    { id: 0, title: "한식", icon: "" },
-    { id: 1, title: "양식", icon: "" },
-    { id: 2, title: "일식", icon: "" },
-    { id: 3, title: "중식", icon: "" },
-    { id: 4, title: "분식", icon: "" },
-    { id: 5, title: "치킨", icon: "" },
-    { id: 6, title: "피자", icon: "" },
-    { id: 7, title: "버거", icon: "" },
-    { id: 8, title: "아시안", icon: "" },
-    { id: 9, title: "카페", icon: "" },
+  const tabs = [
+    { label: "전체", value: "total" },
+    { label: "한식", value: "korean" },
+    { label: "양식", value: "western" },
+    { label: "일식", value: "japanese" },
+    { label: "중식", value: "chinese" },
+    { label: "분식", value: "snack" },
   ];
 
-  const lunchToday = [
-    { id: 0, title: "한식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 1, title: "양식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 2, title: "일식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 3, title: "중식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 4, title: "분식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 5, title: "치킨", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 6, title: "피자", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 7, title: "버거", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
+  const itemList = [
+    { id: 0, title: "동물출입" },
+    { id: 1, title: "WIFI" },
+    { id: 2, title: "놀이방" },
+    { id: 3, title: "흡연실" },
+    { id: 4, title: "주차장" },
+    { id: 5, title: "휠체어사용" },
+    { id: 6, title: "자전거" },
   ];
 
-  const midnightMeal = [
-    { id: 0, title: "한식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 1, title: "양식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 2, title: "일식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 3, title: "중식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 4, title: "분식", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 5, title: "치킨", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 6, title: "피자", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-    { id: 7, title: "버거", icon: "", grade: "4.8", adress: "서울시 강남구 15m" },
-  ];
+  const isIncludes = (chipId: string): boolean => pressed.includes(chipId);
+
+  const handleChipList = (value: string) => {
+    setPressed((prev) => (prev.includes(value) ? prev.filter((el) => el !== value) : [...prev, value]));
+  };
 
   return (
-    // DOTO : 스크롤 공통 스타일 적용
-    <ScrollView contentContainerStyle={styles.container}>
-      <View>
-        {categoryItems.map((item) => (
-          <View key={item.id}>{item.title}</View>
-        ))}
-      </View>
+    <View style={styles.container}>
+      <ImageBackground source={RankingListBanner} style={styles.banner}>
+        {/* <LinearGradient
+                 colors={["transparent", "rgba(255,255,255,0.8)", "rgba(255,255,255,1)"]} 
+              style={styles.gradientOverlay}
+               /> */}
 
-      {/* <Divider /> */}
+        <Text style={styles.headerTitle}>성균관대 추천 순위</Text>
+      </ImageBackground>
+      <Tabs tabs={tabs}>
+        <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+          <FlexBox justifyContent="space-between" gap={8} marginBottom={16}>
+            <FlatList
+              data={itemList}
+              horizontal
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={({ item }) => (
+                <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+                  {item.title}
+                </OutlineChip>
+              )}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.chipGroupList}
+              scrollEnabled={false}
+            />
+            <Filter />
+          </FlexBox>
 
-      <View>
-        {/* TODO: <FlexBox>  common style 추가 */}
-        <HeadingRegular20>점심 맛집 정복, 오늘은 뭐 먹지?</HeadingRegular20>
+          <FlatList
+            data={lunchToday.slice(0, 20)}
+            keyExtractor={(item, index) => `${item.id}-${index}`}
+            renderItem={({ item, index }) => {
+              const rankColor = getRankColor(index);
+              return (
+                <FlexBox gap={12} marginLeft={16} justifyContent="flex-start">
+                  <Text style={[styles.rankText, { color: rankColor }]}>{index + 1}</Text>
+                  <Card
+                    data={[
+                      {
+                        ...item,
+                        onPress: () => Alert.alert("클릭 시 상세페이지"),
+                      },
+                    ]}
+                  />
+                </FlexBox>
+              );
+            }}
+          />
+        </ScrollView>
 
-        {/* TODO: <ButtonText>를 Button 컴포넌트에 적용 */}
-        <Button mode="text" height="sm" isDisabled>
-          <ButtonText mode="outline" fontSize="sm" isDisabled>
-            전체보기
-          </ButtonText>
-        </Button>
-        {/* </FlexBox> */}
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 2 한식</Text>
+        </ScrollView>
 
-        {/* TODO： <Card /> 추가 */}
-        {lunchToday.map((item) => (
-          <div>
-            <BodySemibold16>{item.title}</BodySemibold16>
-            {/* <star />  TODO: icon 추가 */}
-            <BodySemibold14>{item.grade}</BodySemibold14>
-            <p>{item.adress}</p>
-          </div>
-        ))}
-      </View>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 3 중식</Text>
+        </ScrollView>
 
-      <View>
-        {/* TODO: <FlexBox>  common style 추가 */}
-        <HeadingRegular20>야식의 성지 새벽까지 든든하게 </HeadingRegular20>
-
-        {/* TODO: <ButtonText>를 Button 컴포넌트에 적용 */}
-        <Button mode="text" height="sm" isDisabled>
-          <ButtonText mode="outline" fontSize="sm" isDisabled>
-            전체보기
-          </ButtonText>
-        </Button>
-        {/* </FlexBox> */}
-
-        {/* TODO： <Card /> 추가 */}
-        {midnightMeal.map((item) => (
-          // <div>
-          //   <BodySemibold16>{item.title}</BodySemibold16>
-          //   {/* <star />  TODO: icon 추가 */}
-          //   <BodySemibold14>{item.grade}</BodySemibold14>
-          //   <p>{item.adress}</p>
-          // </div>
-        ))}
-      </View>
-
-      <Toast ref={toastRef} message="안녕하세요, {닉네임}님!" variant={toastVariant} />
-    </ScrollView>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Text>Tab 4 일식</Text>
+        </ScrollView>
+      </Tabs>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonGroup: {
-    gap: 12,
-    margin: 8,
+  banner: {
+    justifyContent: "flex-end",
+    minHeight: 180,
+    position: "relative",
+    width: "100%",
   },
   chipGroupList: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 12,
-    margin: 8,
-  },
-  chipGroupWrap: {
-    flexDirection: "row",
-    gap: 12,
-    padding: 12,
+    gap: 8,
   },
   container: {
-    alignItems: "center",
-    backgroundColor: "#ffffff",
-    justifyContent: "center",
-    padding: 18,
+    backgroundColor: "#fff",
+    flex: 1,
+  },
+  headerTitle: {
+    color: "#fff",
+    fontSize: 20,
+    fontWeight: "700",
+    position: "absolute",
+    right: 130,
+    top: 50,
+  },
+  rankText: {
+    fontSize: 17,
+    fontWeight: 600,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    paddingBottom: 20,
   },
 });
 
-export default DiningPage;
+export default RankingList;

@@ -35,6 +35,7 @@ export const RouteNames = {
   ACCESS_RIGHTS: "AccessRights" as const,
   INQUIRY: "Inquiry" as const,
   SAMPLE_SPINNER: "sample-spinner" as const,
+  RANKINGLIST: "rankingList" as const,
   SAMPLE_CARD: "sample-card" as const,
 };
 
@@ -67,11 +68,12 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_TOAST]: undefined;
   [RouteNames.SAMPLE_POPUP]: undefined;
   [RouteNames.SAMPLE_PROGRESS]: undefined;
+  [RouteNames.SAMPLE_CARD]: undefined;
+  [RouteNames.SAMPLE_SPINNER]: undefined;
   [RouteNames.SIGNIN]: undefined;
   [RouteNames.SIGNUP]: undefined;
   [RouteNames.VERIFY_PHONE]: undefined;
   [RouteNames.INSERT_INFO]: undefined;
   [RouteNames.ACCESS_RIGHTS]: undefined;
-  [RouteNames.SAMPLE_SPINNER]: undefined;
-  [RouteNames.SAMPLE_CARD]: undefined;
+  [RouteNames.RANKINGLIST]: undefined;
 };
