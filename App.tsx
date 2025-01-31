@@ -42,6 +42,7 @@ import VerifyPhone from "./src/screens/auth/VerifyPhone";
 import InsertInfo from "./src/screens/auth/signup/InsertInfo";
 import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
+import ContentList from "./src/screens/dining/ContentList";
 import RankingList from "./src/screens/dining/RankingList";
 
 export type Props = {
@@ -113,6 +114,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
             <Stack.Screen name={RouteNames.SAMPLE_SPINNER} component={SampleSpinner} />
             <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
             <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
+            <Stack.Screen name={RouteNames.CONTENT_LIST} component={ContentList} />
           </Stack.Navigator>
         </ScrollView>
       </NavigationContainer>
