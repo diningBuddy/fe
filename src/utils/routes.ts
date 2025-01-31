@@ -37,6 +37,7 @@ export const RouteNames = {
   SAMPLE_SPINNER: "sample-spinner" as const,
   RANKINGLIST: "rankingList" as const,
   SAMPLE_CARD: "sample-card" as const,
+  CONTENT_LIST: "content-list" as const,
 };
 
 export type RootStackParamList = {
@@ -75,5 +76,8 @@ export type RootStackParamList = {
   [RouteNames.VERIFY_PHONE]: undefined;
   [RouteNames.INSERT_INFO]: undefined;
   [RouteNames.ACCESS_RIGHTS]: undefined;
+  [RouteNames.SAMPLE_SPINNER]: undefined;
+  [RouteNames.SAMPLE_CARD]: undefined;
+  [RouteNames.CONTENT_LIST]: undefined;
   [RouteNames.RANKINGLIST]: undefined;
 };

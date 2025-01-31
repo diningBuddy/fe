@@ -50,6 +50,7 @@ function HomeScreen({ navigation }: Props) {
     { label: "Inquiry", route: RouteNames.INQUIRY },
     { label: "Sample Spinner", route: RouteNames.SAMPLE_SPINNER },
     { label: "Sample radio", route: RouteNames.SAMPLE_RADIO },
+    { label: "Content List", route: RouteNames.CONTENT_LIST },
   ];
 
   return (
