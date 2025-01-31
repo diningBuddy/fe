@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 
-import ThemeStyle from "../../styles/ThemeStyle";
-
 interface ChipProps {
   children: React.ReactNode;
   mode?: "outline" | "noOutline";

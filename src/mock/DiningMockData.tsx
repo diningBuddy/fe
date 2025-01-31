@@ -23,6 +23,8 @@ const categoryItems = [
   { title: "카페", icon: CoffeeIcon },
 ];
 
+const foodImage = require("../assets/images/sample/horizontal-food.png");
+
 export const categoryList = categoryItems.map((item, index) => ({
   id: index,
   ...item,
@@ -34,7 +36,7 @@ const generateDiningData = (): DiningProps[] => {
   return titles.map((title, index) => ({
     id: index,
     title,
-    img: "",
+    img: foodImage,
     grade: "4.8",
     adress: "서울시 강남구 15m",
     count: 9999,

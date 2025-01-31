@@ -28,7 +28,10 @@ const Card: React.FC<CardProps> = ({ data, isHorizontal = true }) => {
           onPress={item.onPress}
           activeOpacity={0.7}
           style={[styles.cardContainer, !isHorizontal && styles.verticalCard]}>
-          <Image source={{ uri: item.img }} style={[styles.horizontalImg, !isHorizontal && styles.verticalImg]} />
+          <Image
+            source={typeof item.img === "string" ? { uri: item.img } : item.img}
+            style={[styles.horizontalImg, !isHorizontal && styles.verticalImg]}
+          />
 
           <FlexBox direction="column" alignItems="flex-start" gap={4}>
             <BodySemibold16>{item.title}</BodySemibold16>
