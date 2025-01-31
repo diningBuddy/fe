@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   verticalImg: {
     height: 158,
-    width: 158,
+    width: "100%",
   },
   verticalWrapper: {
     flexDirection: "row",

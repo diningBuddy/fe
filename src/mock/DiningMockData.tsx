@@ -23,7 +23,9 @@ const categoryItems = [
   { title: "카페", icon: CoffeeIcon },
 ];
 
-const foodImage = require("../assets/images/sample/horizontal-food.png");
+const horizontalFoodImage = require("../assets/images/sample/horizontal-food.png");
+
+const verticalFoodImage = require("../assets/images/sample/vertical-food.png");
 
 export const categoryList = categoryItems.map((item, index) => ({
   id: index,
@@ -36,7 +38,18 @@ const generateDiningData = (): DiningProps[] => {
   return titles.map((title, index) => ({
     id: index,
     title,
-    img: foodImage,
+    img: horizontalFoodImage,
+    grade: "4.8",
+    adress: "서울시 강남구 15m",
+    count: 9999,
+  }));
+};
+
+const midnightMealData = (): DiningProps[] => {
+  return titles.map((title, index) => ({
+    id: index,
+    title,
+    img: verticalFoodImage,
     grade: "4.8",
     adress: "서울시 강남구 15m",
     count: 9999,
@@ -45,4 +58,4 @@ const generateDiningData = (): DiningProps[] => {
 
 export const lunchToday: DiningProps[] = generateDiningData();
 
-export const midnightMeal: DiningProps[] = [...lunchToday];
+export const midnightMeal: DiningProps[] = midnightMealData();

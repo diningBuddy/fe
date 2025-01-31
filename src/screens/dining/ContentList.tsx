@@ -1,14 +1,14 @@
 import { StyleSheet, ScrollView, Alert } from "react-native";
 
 import Card from "../../common/atom/Card";
-import { lunchToday } from "../../mock/DiningMockData";
+import { midnightMeal } from "../../mock/DiningMockData";
 
 export const ContentListPage = () => {
   return (
     <ScrollView contentContainerStyle={styles.gridContainer}>
       {/* <NavigationHeader title: 점심 맛집 정복, 오늘은 뭐 먹지? , 야식의 성지 새벽까지 든든하게/>  */}
       <Card
-        data={lunchToday.map((item) => ({
+        data={midnightMeal.map((item) => ({
           ...item,
           onPress: () => Alert.alert("세로형 카드 컴포넌트"),
         }))}
