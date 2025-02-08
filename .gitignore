@@ -43,3 +43,6 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 /.run/**
+
+### android
+android/**
