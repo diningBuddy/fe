@@ -1,3 +1,7 @@
+import React from "react";
+import { ScrollView, StyleSheet, ImageBackground, Text, View, FlatList } from "react-native";
+
+// 아이콘 리스트
 import BibimbapIcon from "../assets/icons/diningCategory/bibimbap.svg";
 import PastaIcon from "../assets/icons/diningCategory/pasta.svg";
 import OriginiIcon from "../assets/icons/diningCategory/origini.svg";
@@ -10,7 +14,8 @@ import TacoIcon from "../assets/icons/diningCategory/taco.svg";
 import CoffeeIcon from "../assets/icons/diningCategory/coffee.svg";
 import { DiningProps } from "../screens/dining/dining.props";
 
-const categoryItems = [
+// 카테고리 리스트
+export const categoryItems = [
   { title: "한식", icon: BibimbapIcon },
   { title: "양식", icon: PastaIcon },
   { title: "일식", icon: OriginiIcon },

@@ -44,6 +44,7 @@ import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
 import ContentList from "./src/screens/dining/ContentList";
 import RankingList from "./src/screens/dining/RankingList";
+import MainScreen from "./src/screens/MainScreen";
 
 export type Props = {
   label: string;
@@ -115,6 +116,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
             <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
             <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
             <Stack.Screen name={RouteNames.CONTENT_LIST} component={ContentList} />
+            <Stack.Screen name={RouteNames.MAIN_SCREEN} component={MainScreen} />
           </Stack.Navigator>
         </ScrollView>
       </NavigationContainer>
