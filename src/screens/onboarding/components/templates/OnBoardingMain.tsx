@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { facilityList, modeList } from "../../../../mock/OnboardingMockData";
 import { OutlineChip } from "../../../../common/atom/Chip";
@@ -16,26 +16,50 @@ const OnboardingMain = () => {
   };
 
   return (
-    <View style={styles.mainContent}>
-      {/* 17px 600 #000000 */}
-      <Text style={styles.sectionTitle}>시설</Text>
-      {facilityList.map((item) => (
-        <View key={item.id} style={styles.chipContainer}>
-          <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
-            {item.title}
-          </OutlineChip>
+    <>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.chipGroupList}>
+          {facilityList.map((item) => (
+            <View key={item.id}>
+              <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+                {item.title}
+              </OutlineChip>
+            </View>
+          ))}
         </View>
-      ))}
 
-      <Text style={styles.sectionTitle}>분위기</Text>
-      {modeList.map((item) => (
-        <View key={item.id} style={styles.chipContainer}>
-          <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
-            {item.title}
-          </OutlineChip>
-        </View>
-      ))}
-    </View>
+        {/* <View style={styles.chipGroupList}>
+          {modeList.map((item) => (
+            <View key={item.id}>
+              <TextChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+                {item.title}
+              </TextChip>
+            </View>
+          ))}
+        </View> */}
+      </ScrollView>
+
+      <View style={styles.mainContent}>
+        {/* 17px 600 #000000 */}
+        <Text style={styles.sectionTitle}>시설</Text>
+        {facilityList.map((item) => (
+          <View key={item.id} style={styles.chipContainer}>
+            <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+              {item.title}
+            </OutlineChip>
+          </View>
+        ))}
+
+        <Text style={styles.sectionTitle}>분위기</Text>
+        {modeList.map((item) => (
+          <View key={item.id} style={styles.chipContainer}>
+            <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+              {item.title}
+            </OutlineChip>
+          </View>
+        ))}
+      </View>
+    </>
   );
 };
 
@@ -43,13 +67,19 @@ const styles = StyleSheet.create({
   chipContainer: {
     marginBottom: 10,
   },
+  chipGroupList: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+    margin: 8,
+  },
+
   container: {
     alignItems: "center",
     backgroundColor: "#ffffff",
     justifyContent: "center",
     padding: 18,
   },
-
   mainContent: {
     marginTop: 20,
     width: "100%",

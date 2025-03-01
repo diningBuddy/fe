@@ -38,6 +38,9 @@ export const RouteNames = {
   RANKINGLIST: "rankingList" as const,
   SAMPLE_CARD: "sample-card" as const,
   CONTENT_LIST: "content-list" as const,
+  MAIN_SCREEN: "main-screen" as const,
+  ONBOARDING: "onboarding" as const,
+  REVIEWPAGE: "review" as const,
 };
 
 export type RootStackParamList = {
@@ -80,4 +83,6 @@ export type RootStackParamList = {
   [RouteNames.SAMPLE_CARD]: undefined;
   [RouteNames.CONTENT_LIST]: undefined;
   [RouteNames.RANKINGLIST]: undefined;
+  [RouteNames.MAIN_SCREEN]: undefined;
+  [RouteNames.ONBOARDING]: undefined;
 };

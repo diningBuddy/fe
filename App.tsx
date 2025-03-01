@@ -44,6 +44,9 @@ import AccessRights from "./src/screens/auth/signup/AccessRights";
 import Inquiry from "./src/screens/auth/Inquiry";
 import ContentList from "./src/screens/dining/ContentList";
 import RankingList from "./src/screens/dining/RankingList";
+import MainScreen from "./src/screens/MainScreen";
+import OnboardingPage from "./src/screens/onboarding";
+import ReviewPage from "./src/screens/review";
 
 export type Props = {
   label: string;
@@ -82,6 +85,8 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
             }}>
             {/* TODO: initialRouteName="SignIn" */}
             <Stack.Screen name={RouteNames.HOME_TAB} component={HomeTab} options={{ headerShown: false }} />
+            <Stack.Screen name={RouteNames.REVIEWPAGE} component={ReviewPage} options={{ headerShown: false }} />
+            <Stack.Screen name={RouteNames.ONBOARDING} component={OnboardingPage} options={{ headerShown: false }} />
             <Stack.Screen name={RouteNames.BROWSER} component={BrowserScreen} />
             <Stack.Screen name={RouteNames.SAMPLE_MODAL} component={SampleModal} />
             <Stack.Screen name={RouteNames.SAMPLE_COLOR} component={SampleColor} />
@@ -115,6 +120,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
             <Stack.Screen name={RouteNames.RANKINGLIST} component={RankingList} />
             <Stack.Screen name={RouteNames.SAMPLE_CARD} component={SampleCard} />
             <Stack.Screen name={RouteNames.CONTENT_LIST} component={ContentList} />
+            <Stack.Screen name={RouteNames.MAIN_SCREEN} component={MainScreen} />
           </Stack.Navigator>
         </ScrollView>
       </NavigationContainer>
