@@ -11,12 +11,13 @@ import { categoryItems, lunchToday } from "../mock/DiningMockData";
 
 import Card from "../common/atom/Card";
 import { FlexBox } from "../common/FlexBox";
+import BannerCarousel from "../components/Carousel/BannerCarousel";
 
 function MainScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      {/* 배너 영역 */}
       <View style={styles.bannerContainer}>
+        {/* <BannerCarousel /> */}
         <ImageBackground source={CarouselBanner} style={styles.bannerWrap} imageStyle={styles.bannerImage}>
           {/* 아래쪽 그라데이션 효과 */}
           {/* <LinearGradient colors={["transparent", "rgba(0,0,0,0.6)"]} style={styles.gradientOverlay} /> */}
