@@ -2,43 +2,47 @@ import styled from "styled-components/native";
 import { ScrollView } from "react-native";
 
 import TextArea from "../../common/atom/TextAre";
+import NavigationHeader from "../../common/atom/NavigationHeader";
 
 const SampleTextArea = () => {
   return (
-    <ScrollViewContainer>
-      <TextArea
-        variant="default"
-        label="default"
-        description="Your message will be copied to the support team."
-        placeholder="Type your message here"
-      />
-      <TextArea
-        variant="default"
-        label="default"
-        description="Your message will be copied to the support team."
-        placeholder="Type your message here"
-        isSuccess
-      />
-      <TextArea
-        variant="default"
-        label="default + disabled"
-        description="Your message will be copied to the support team."
-        placeholder="Type your message here"
-        isDisabled
-      />
-      <TextArea
-        variant="destructive"
-        label="destructive"
-        description="Your message will be copied to the support team."
-        placeholder="Type your message here"
-      />
-      <TextArea
-        variant="default"
-        description="Your message will be copied to the support team."
-        placeholder="Type your message here"
-      />
-      <TextArea variant="default" label="no description" placeholder="Type your message here" />
-    </ScrollViewContainer>
+    <>
+      <NavigationHeader title="SampleTextArea" isGoBackButton />
+      <ScrollViewContainer>
+        <TextArea
+          variant="default"
+          label="default"
+          description="Your message will be copied to the support team."
+          placeholder="Type your message here"
+        />
+        <TextArea
+          variant="default"
+          label="default"
+          description="Your message will be copied to the support team."
+          placeholder="Type your message here"
+          isSuccess
+        />
+        <TextArea
+          variant="default"
+          label="default + disabled"
+          description="Your message will be copied to the support team."
+          placeholder="Type your message here"
+          isDisabled
+        />
+        <TextArea
+          variant="destructive"
+          label="destructive"
+          description="Your message will be copied to the support team."
+          placeholder="Type your message here"
+        />
+        <TextArea
+          variant="default"
+          description="Your message will be copied to the support team."
+          placeholder="Type your message here"
+        />
+        <TextArea variant="default" label="no description" placeholder="Type your message here" />
+      </ScrollViewContainer>
+    </>
   );
 };
 

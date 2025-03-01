@@ -19,6 +19,9 @@ function HomeScreen({ navigation }: Props) {
   );
 
   const buttons = [
+    { label: "MainScreen", route: RouteNames.MAIN_SCREEN },
+    { label: "Onboarding", route: RouteNames.ONBOARDING },
+    { label: "Review", route: RouteNames.REVIEWPAGE },
     { label: "RankingList", route: RouteNames.RANKINGLIST },
     { label: "Sample Card", route: RouteNames.SAMPLE_CARD },
     { label: "Sample Color", route: RouteNames.SAMPLE_COLOR },

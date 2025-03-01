@@ -1,28 +1,54 @@
 import React from "react";
-import { View, Button } from "react-native";
-
-import { ButtonText } from "../../../../common/atom/Button";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import reviewContent from "../../../../mock/ReviewMockData";
+import NavigationHeader from "../../../../common/atom/NavigationHeader";
+import { Button, ButtonText } from "../../../../common/atom/Button";
+import { FlexBox } from "../../../../common/FlexBox";
 
 export const ReviewHeader = () => {
   return (
-    <>
-      {/* Banner Container */}
-      <View>
-        {/* <img src={} alt="review-img" /> */}
-        <div>
-          {/* #000000D9 400 12px */}
-          <span>{reviewContent.catgegory}</span>
-          <span>{reviewContent.title}</span>
-        </div>
-        <Button mode="text" height="sm">
-          <ButtonText mode="outlineGray" fontSize="sm" isUnderLine>
+    <View>
+      <NavigationHeader title="리뷰쓰기" isGoBackButton />
+
+      {/* 배너 이미지 */}
+      {/* <Image source={{ uri: reviewContent.imageUrl }} style={styles.image} resizeMode="cover" /> */}
+      {/* 텍스트 영역 */}
+
+      <FlexBox justifyContent="space-between" marginBottom={16}>
+        <View style={styles.textContainer}>
+          <Text style={styles.titleText}>{reviewContent.title}</Text>
+        </View>
+        {/* 버튼 */}
+        <Button mode="outline" height="sm">
+          <ButtonText mode="outline" fontSize="sm">
             식당 변경
           </ButtonText>
         </Button>
-      </View>
-    </>
+      </FlexBox>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  image: {
+    width: "100%",
+    height: 200,
+    borderRadius: 12,
+  },
+  textContainer: {
+    marginTop: 12,
+    alignItems: "center",
+  },
+  categoryText: {
+    fontSize: 12,
+    fontWeight: "400",
+    color: "#000000D9",
+  },
+  titleText: {
+    fontSize: 18,
+    fontWeight: "700",
+    color: "#000",
+  },
+});
 
 export default ReviewHeader;

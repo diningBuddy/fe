@@ -9,6 +9,7 @@ import { lunchToday } from "../../mock/DiningMockData";
 import { FlexBox } from "../../common/FlexBox";
 import getRankColor from "../../utils/getRankColor";
 import RankingListBanner from "../../assets/images/sample/rankingList-banner.png";
+import NavigationHeader from "../../common/atom/NavigationHeader";
 // import { LinearGradient } from "expo-linear-gradient";
 
 const RankingList = () => {
@@ -47,7 +48,11 @@ const RankingList = () => {
               style={styles.gradientOverlay}
                /> */}
 
-        <Text style={styles.headerTitle}>성균관대 추천 순위</Text>
+        <View style={styles.headerTitle}>
+          <NavigationHeader title="성균관대 추천 순위" isOpacity isGoBackButton />
+        </View>
+
+        {/* <Text style={styles.headerTitle}>성균관대 추천 순위</Text> */}
       </ImageBackground>
       <Tabs tabs={tabs}>
         <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
@@ -121,12 +126,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   headerTitle: {
-    color: "#fff",
-    fontSize: 20,
-    fontWeight: "700",
     position: "absolute",
-    right: 130,
-    top: 50,
+    // right: 130,
+    top: 0,
   },
   rankText: {
     fontSize: 17,
