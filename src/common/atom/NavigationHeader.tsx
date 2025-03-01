@@ -5,9 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 import { FlexBox } from "../FlexBox";
 
 interface NavigationHeaderProps {
-  title: string;
+  title?: string;
   isGoBackButton?: boolean;
   isSearchButton?: boolean;
+  isOpacity?: boolean;
   rightIconName?: keyof typeof Ionicons.glyphMap;
   onRightIconPress?: () => void;
 }
@@ -17,9 +18,12 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
   isGoBackButton = false,
   isSearchButton = false,
   rightIconName = "search",
+  isOpacity = false,
   onRightIconPress,
 }) => {
   const navigation = useNavigation();
+  const iconColor = isOpacity ? "#fff" : "#000";
+  const textColor = isOpacity ? "#fff" : "#000";
 
   return (
     <View style={styles.headerBarContainer}>
@@ -28,17 +32,17 @@ const NavigationHeader: React.FC<NavigationHeaderProps> = ({
           {/* left goback icon or close icon */}
           {isGoBackButton && (
             <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>
-              <Ionicons name="arrow-back" size={24} color="black" />
+              <Ionicons name="arrow-back" size={24} color={iconColor} />
             </TouchableOpacity>
           )}
 
-          <Text style={styles.title}>{title}</Text>
+          <Text style={(styles.title, { color: textColor })}>{title}</Text>
         </FlexBox>
 
         {/* right icon search */}
         {isSearchButton && (
           <TouchableOpacity onPress={onRightIconPress} style={styles.iconButton}>
-            <Ionicons name={rightIconName} size={24} color="black" />
+            <Ionicons name={rightIconName} size={24} color={iconColor} />
           </TouchableOpacity>
         )}
       </View>
@@ -57,10 +61,14 @@ const styles = StyleSheet.create({
   headerBarWrap: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 8,
+    // paddingVertical: 8,
   },
   iconButton: {
     padding: 8,
+  },
+  leftIconButton: {
+    padding: 8,
+    textAlign: "left",
   },
   title: {
     fontSize: 20,

@@ -6,7 +6,7 @@ const EditProfile = () => {
       {/* <NavigationHeader />  */}
       {/* <Profile /> */}
 
-      <p>프로필</p>
+      {/* <p>프로필</p> */}
     </ScrollView>
   );
 };

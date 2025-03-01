@@ -3,6 +3,7 @@ import { Alert, ScrollView, StyleSheet } from "react-native";
 
 import { lunchToday } from "../../mock/DiningMockData";
 import Card from "../../common/atom/Card";
+import NavigationHeader from "../../common/atom/NavigationHeader";
 
 const SampleCard = () => {
   return (
@@ -10,6 +11,8 @@ const SampleCard = () => {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
       keyboardShouldPersistTaps="handled">
+      <NavigationHeader title="샘플 버튼" isGoBackButton />
+
       <Card
         data={lunchToday.map((item) => ({
           ...item,

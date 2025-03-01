@@ -61,6 +61,14 @@ const midnightMealData = (): DiningProps[] => {
   }));
 };
 
+export const reViewData = {
+  id: 1,
+  title: "타코벨",
+  category: "멕시칸・패스트캐쥬얼",
+  img: "/",
+  isLike: true,
+};
+
 export const lunchToday: DiningProps[] = generateDiningData();
 
 export const midnightMeal: DiningProps[] = midnightMealData();
