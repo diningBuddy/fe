@@ -31,34 +31,6 @@
         "projectId": "22f005d7-35ba-4816-bab5-519e216b3ae9"
       }
     },
-    "owner": "meokguskku",
-    "plugins": [
-      [
-        "expo-build-properties",
-        {
-          "android": {
-            "extraMavenRepos": [
-              "https://devrepo.kakao.com/nexus/content/groups/public/"
-            ],
-            "newArchEnabled": true
-          },
-          "ios": {
-            "newArchEnabled": true
-          }
-        }
-      ],
-      [
-        "@react-native-kakao/core",
-        {
-          "nativeAppKey": "f448dfdb8b369869e7242ba52f05f825",
-          "android": {
-            "authCodeHandlerActivity": true
-          },
-          "ios": {
-            "handleKakaoOpenUrl": true
-          }
-        }
-      ]
-    ]
+    "owner": "meokguskku"
   }
 }

@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
-import { Image, TouchableOpacity } from "react-native";
+import React from "react";
+import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
-import { login } from "@react-native-kakao/user";
-import { initializeKakaoSDK } from "@react-native-kakao/core";
 
-import { Kakao } from "../../../assets/icons/sns";
+import { Apple, Kakao } from "../../../assets/icons/sns";
 import { Logo } from "../../../assets/icons/common";
 
 export const SignIn = () => {
@@ -17,21 +15,6 @@ export const SignIn = () => {
 
   const handlePhoneSignIn = () => {
     navigation.navigate("VerifyPhone");
-  };
-
-  useEffect(() => {
-    initializeKakaoSDK("f448dfdb8b369869e7242ba52f05f825");
-  }, []);
-
-  const handleKakaoLogin = async () => {
-    try {
-      // 카카오 로그인 실행, 토큰 등의 정보를 반환합니다.
-      login().then(console.log);
-      console.log("Kakao login token: ");
-      // 여기서 백엔드 서버로 토큰을 전달하거나 추가 로직을 구현하면 됩니다.
-    } catch (error) {
-      console.error("Kakao login error: ", error);
-    }
   };
 
   return (
@@ -48,9 +31,8 @@ export const SignIn = () => {
       <Image source={require("../../../assets/images/signIn/kakao-login.png")} />
       {/* <Image source={require("../../../assets/images/signIn/apple-login.png")} /> */}
       <LoginButtonGroup>
-        <TouchableOpacity onPress={handleKakaoLogin}>
-          <Kakao />
-        </TouchableOpacity>
+        <Kakao />
+        <Apple />
       </LoginButtonGroup>
       {/* sns login end */}
       <Footer>
