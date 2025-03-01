@@ -55,7 +55,7 @@ const Card: React.FC<CardProps> = ({ data, isHorizontal = true }) => {
 const styles = StyleSheet.create({
   cardContainer: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "transparent",
     borderColor: "#ddd",
     flexDirection: "row",
     gap: 12,

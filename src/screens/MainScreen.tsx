@@ -4,16 +4,20 @@ import { ScrollView, StyleSheet, ImageBackground, Text, View, FlatList, Alert } 
 
 import { Divider } from "react-native-paper";
 import CarouselBanner from "../assets/images/sample/carousels/banner1.png";
+import CarouselBanner2 from "../assets/images/sample/carousels/banner2.png";
+import CarouselBanner3 from "../assets/images/sample/carousels/banner3.png";
+
 import { categoryItems, lunchToday } from "../mock/DiningMockData";
 
 import Card from "../common/atom/Card";
+import { FlexBox } from "../common/FlexBox";
 
 function MainScreen() {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* 배너 영역 */}
       <View style={styles.bannerContainer}>
-        <ImageBackground source={CarouselBanner} style={styles.banner} imageStyle={styles.bannerImage}>
+        <ImageBackground source={CarouselBanner} style={styles.bannerWrap} imageStyle={styles.bannerImage}>
           {/* 아래쪽 그라데이션 효과 */}
           {/* <LinearGradient colors={["transparent", "rgba(0,0,0,0.6)"]} style={styles.gradientOverlay} /> */}
 
@@ -37,13 +41,18 @@ function MainScreen() {
               <Text style={styles.categoryText}>{item.title}</Text>
             </View>
           )}
+          columnWrapperStyle={styles.categoryRow}
         />
       </View>
 
       <Divider size="thin" orientation="horizontal" color="#000000" />
 
       <View style={styles.foodListContainer}>
-        <Text style={styles.mainTitle}>점심 맛집 정복, 오늘은 뭐 먹지?</Text>
+        <FlexBox justifyContent="space-between" marginBottom={16}>
+          <Text style={styles.mainTitle}>점심 맛집 정복, 오늘은 뭐 먹지?</Text>
+          <Text style={styles.totalView}>전체보기</Text>
+        </FlexBox>
+
         <ScrollView
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
@@ -67,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
 
-  banner: {
+  bannerWrap: {
     borderRadius: 12,
     minHeight: 180,
   },
@@ -83,14 +92,20 @@ const styles = StyleSheet.create({
     borderRadius: 12,
   },
   categoryContainer: {
-    margin: 16,
-    padding: 16,
+    width: "100%",
+    paddingHorizontal: 16,
+    marginTop: 16,
     shadowColor: "#000",
   },
   categoryItem: {
     alignItems: "center",
     flex: 1,
     justifyContent: "center",
+    marginHorizontal: 4,
+  },
+  categoryRow: {
+    justifyContent: "space-between",
+    marginBottom: 16,
   },
   categoryText: {
     color: "#444",
@@ -109,6 +124,11 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 20,
     fontWeight: "700",
+  },
+  totalView: {
+    fontSize: 14,
+    fontWeight: "500",
+    color: "#8C8C8C",
   },
   storeInfo: {
     color: "#fff",
