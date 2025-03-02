@@ -15,7 +15,6 @@ export const RegistReview = () => {
       </FlexBox>
       <TextArea
         variant="default"
-        description="regist review content"
         placeholder="다녀오신 식당은 어떠셨나요? 사진과 함께 자세히 작어주시면 다른 유저들에게 도움이 돼요! (선택)"
       />
     </View>

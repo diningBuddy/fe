@@ -3,93 +3,68 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import { facilityList, modeList } from "../../../../mock/OnboardingMockData";
 import { OutlineChip } from "../../../../common/atom/Chip";
+import { FlexBox } from "../../../../common/FlexBox";
 
 const OnboardingMain = () => {
-  const [pressed, setPressed] = useState<string[]>([]);
+  const [selectedChips, setSelectedChips] = useState<string[]>([]);
 
-  const isIncludes = (chipId: string): boolean => {
-    return pressed.includes(chipId);
-  };
+  const isIncludes = (chipId: string): boolean => selectedChips.includes(chipId);
 
   const handleChipList = (value: string) => {
-    setPressed((prev) => (prev.includes(value) ? prev.filter((el) => el !== value) : [...prev, value]));
+    setSelectedChips((prev) => (prev.includes(value) ? prev.filter((el) => el !== value) : [...prev, value]));
   };
 
   return (
-    <>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.chipGroupList}>
-          {facilityList.map((item) => (
-            <View key={item.id}>
-              <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+    <View style={styles.container}>
+      <ScrollView>
+        <FlexBox direction="column" alignItems="flex-start" gap={28}>
+          <Text style={styles.sectionTitle}>시설</Text>
+          <View style={styles.chipGroupList}>
+            {facilityList.map((item) => (
+              <OutlineChip key={item.id} isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
                 {item.title}
               </OutlineChip>
-            </View>
-          ))}
-        </View>
-
-        {/* <View style={styles.chipGroupList}>
-          {modeList.map((item) => (
-            <View key={item.id}>
-              <TextChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
+            ))}
+          </View>
+          {/* 분위기 선택 영역 */}
+          <Text style={styles.sectionTitle}>분위기</Text>
+          <View style={styles.chipGroupList}>
+            {modeList.map((item) => (
+              <OutlineChip key={item.id} isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
                 {item.title}
-              </TextChip>
-            </View>
-          ))}
-        </View> */}
+              </OutlineChip>
+            ))}
+          </View>
+        </FlexBox>
       </ScrollView>
-
-      <View style={styles.mainContent}>
-        {/* 17px 600 #000000 */}
-        <Text style={styles.sectionTitle}>시설</Text>
-        {facilityList.map((item) => (
-          <View key={item.id} style={styles.chipContainer}>
-            <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
-              {item.title}
-            </OutlineChip>
-          </View>
-        ))}
-
-        <Text style={styles.sectionTitle}>분위기</Text>
-        {modeList.map((item) => (
-          <View key={item.id} style={styles.chipContainer}>
-            <OutlineChip isSelected={isIncludes(item.title)} onPress={() => handleChipList(item.title)}>
-              {item.title}
-            </OutlineChip>
-          </View>
-        ))}
-      </View>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  chipContainer: {
+  container: {
+    paddingHorizontal: 16,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginTop: 20,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#595959",
+    marginTop: 5,
+  },
+  sectionTitle: {
+    fontSize: 17,
+    fontWeight: "600",
+    marginTop: 20,
     marginBottom: 10,
   },
   chipGroupList: {
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 12,
-    margin: 8,
-  },
-
-  container: {
-    alignItems: "center",
-    backgroundColor: "#ffffff",
-    justifyContent: "center",
-    padding: 18,
-  },
-  mainContent: {
-    marginTop: 20,
-    width: "100%",
-  },
-  sectionTitle: {
-    color: "#000000",
-    fontSize: 17,
-    fontWeight: "600",
-    marginBottom: 10,
-    marginTop: 20,
   },
 });
 
