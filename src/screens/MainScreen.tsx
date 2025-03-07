@@ -15,6 +15,8 @@ import BannerCarousel from "../components/Carousel/BannerCarousel";
 import { RootStackParamList, RouteNames } from "../utils/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import NavigationHeader from "../common/atom/NavigationHeader";
+import SwipeableCard from "../common/atom/SwipeableCard";
+import SwipeableCardList from "../components/SwipeableCardList";
 
 function MainScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -63,18 +65,12 @@ function MainScreen() {
             </TouchableOpacity>
           </FlexBox>
 
-          <ScrollView
-            style={styles.container}
-            contentContainerStyle={styles.contentContainer}
-            keyboardShouldPersistTaps="handled">
-            <Card
-              isHorizontal={false}
-              data={lunchToday.map((item) => ({
-                ...item,
-                onPress: () => Alert.alert("가로형 카드 컴포넌트"),
-              }))}
-            />
-          </ScrollView>
+          <SwipeableCardList
+            data={lunchToday.map((item) => ({
+              ...item,
+              onPress: () => Alert.alert(`${item.title} 선택됨`),
+            }))}
+          />
         </View>
       </ScrollView>
     </>

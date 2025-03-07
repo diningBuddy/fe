@@ -5,7 +5,7 @@ const contentList: DiningProps[] = Array.from({ length: 8 }, (_, id) => ({
   title: "",
   img: "",
   grade: "4.8",
-  adress: "서울시 강남구 15m",
+  address: "서울시 강남구 15m",
 }));
 
 export default contentList;

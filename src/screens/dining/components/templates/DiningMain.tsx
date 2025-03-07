@@ -27,7 +27,7 @@ export const DiningMain = () => {
             <BodySemibold16>{item.title}</BodySemibold16>
             {/* <star />  TODO: icon 추가 */}
             <BodySemibold14>{item.grade}</BodySemibold14>
-            <Text>{item.adress}</Text>
+            <Text>{item.address}</Text>
           </View>
         ))}
       </View>
@@ -49,7 +49,7 @@ export const DiningMain = () => {
             <BodySemibold16>{item.title}</BodySemibold16>
             {/* <star />  TODO: icon 추가 */}
             <BodySemibold14>{item.grade}</BodySemibold14>
-            <Text>{item.adress}</Text>
+            <Text>{item.address}</Text>
           </View>
         ))}
       </View>

@@ -3,6 +3,6 @@ export interface DiningProps {
   title: string;
   img: string | number;
   grade: string;
-  adress: string;
+  address: string;
   count: number;
 }
