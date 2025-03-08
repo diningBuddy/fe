@@ -72,6 +72,22 @@ function MainScreen() {
             }))}
           />
         </View>
+
+        <View style={styles.foodListContainer}>
+          <FlexBox justifyContent="space-between" marginBottom={16}>
+            <Text style={styles.mainTitle}>야식의 성지 새벽까지 든든하게</Text>
+            <TouchableOpacity onPress={() => navigation.navigate(RouteNames.CONTENT_LIST)}>
+              <Text style={styles.totalView}>전체보기</Text>
+            </TouchableOpacity>
+          </FlexBox>
+
+          <SwipeableCardList
+            data={lunchToday.map((item) => ({
+              ...item,
+              onPress: () => Alert.alert(`${item.title} 선택됨`),
+            }))}
+          />
+        </View>
       </ScrollView>
     </>
   );
