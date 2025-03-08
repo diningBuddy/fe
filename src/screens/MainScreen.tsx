@@ -15,6 +15,8 @@ import BannerCarousel from "../components/Carousel/BannerCarousel";
 import { RootStackParamList, RouteNames } from "../utils/routes";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import NavigationHeader from "../common/atom/NavigationHeader";
+import SwipeableCard from "../common/atom/SwipeableCard";
+import SwipeableCardList from "../components/SwipeableCardList";
 
 function MainScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
@@ -63,18 +65,28 @@ function MainScreen() {
             </TouchableOpacity>
           </FlexBox>
 
-          <ScrollView
-            style={styles.container}
-            contentContainerStyle={styles.contentContainer}
-            keyboardShouldPersistTaps="handled">
-            <Card
-              isHorizontal={false}
-              data={lunchToday.map((item) => ({
-                ...item,
-                onPress: () => Alert.alert("가로형 카드 컴포넌트"),
-              }))}
-            />
-          </ScrollView>
+          <SwipeableCardList
+            data={lunchToday.map((item) => ({
+              ...item,
+              onPress: () => Alert.alert(`${item.title} 선택됨`),
+            }))}
+          />
+        </View>
+
+        <View style={styles.foodListContainer}>
+          <FlexBox justifyContent="space-between" marginBottom={16}>
+            <Text style={styles.mainTitle}>야식의 성지 새벽까지 든든하게</Text>
+            <TouchableOpacity onPress={() => navigation.navigate(RouteNames.CONTENT_LIST)}>
+              <Text style={styles.totalView}>전체보기</Text>
+            </TouchableOpacity>
+          </FlexBox>
+
+          <SwipeableCardList
+            data={lunchToday.map((item) => ({
+              ...item,
+              onPress: () => Alert.alert(`${item.title} 선택됨`),
+            }))}
+          />
         </View>
       </ScrollView>
     </>

@@ -45,7 +45,7 @@ const generateDiningData = (): DiningProps[] => {
     title,
     img: horizontalFoodImage,
     grade: "4.8",
-    adress: "서울시 강남구 15m",
+    address: "서울시 강남구 15m",
     count: 9999,
   }));
 };
@@ -56,7 +56,7 @@ const midnightMealData = (): DiningProps[] => {
     title,
     img: verticalFoodImage,
     grade: "4.8",
-    adress: "서울시 강남구 15m",
+    address: "서울시 강남구 15m",
     count: 9999,
   }));
 };

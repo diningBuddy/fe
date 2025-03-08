@@ -12,7 +12,7 @@ interface CardProps {
     title: string;
     grade: string;
     count: number;
-    adress: string;
+    address: string;
     category?: string;
     onPress: () => void;
   }>;
@@ -42,7 +42,7 @@ const Card: React.FC<CardProps> = ({ data, isHorizontal = true }) => {
               <Text style={styles.countText}>({item.count})</Text>
             </FlexBox>
 
-            <Text>{item.adress}</Text>
+            <Text>{item.address}</Text>
 
             {!isHorizontal && item.category && <Text style={styles.categoryText}>{item.category}</Text>}
           </FlexBox>
