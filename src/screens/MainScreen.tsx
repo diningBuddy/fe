@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Alert, ImageBackground, ScrollView, View, Text, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, Alert, ScrollView, View, Text, FlatList, TouchableOpacity } from "react-native";
 
 import { FlexBox } from "../common/FlexBox";
 import NavigationHeader from "../common/atom/NavigationHeader";
 import { categoryItems, lunchToday } from "../mock/DiningMockData";
 import Divider from "../common/atom/Divier";
 import SwipeableCardList from "../components/SwipeableCardList";
-import CarouselBanner from "../assets/images/sample/carousels/banner1.png";
 import { FloatingEditButton } from "../common/atom/FloatingButton";
+import BannerCarousel from "../components/Carousel/BannerCarousel";
 
 function MainScreen() {
   const navigation = useNavigation();
@@ -26,17 +26,8 @@ function MainScreen() {
       <NavigationHeader title="성균관대" isGoBackButton isSearchButton />
 
       <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps="handled">
-        {/* 배너 */}
-        <View style={styles.bannerContainer}>
-          <ImageBackground source={CarouselBanner} style={styles.bannerWrap} imageStyle={styles.bannerImage}>
-            <View style={styles.textContainer}>
-              <Text style={styles.storeName}>김문재반점</Text>
-              <Text style={styles.storeInfo}>성균관대 중국요리 추천 순위</Text>
-            </View>
-          </ImageBackground>
-        </View>
+        <BannerCarousel />
 
-        {/* 카테고리 리스트 */}
         <View style={styles.categoryContainer}>
           <FlatList
             data={categoryItems}
@@ -54,7 +45,6 @@ function MainScreen() {
 
         <Divider size="thin" orientation="horizontal" color="#D9D9D9" />
 
-        {/* 음식 리스트 */}
         <View style={styles.foodListContainer}>
           <FlexBox justifyContent="space-between" marginBottom={16}>
             <Text style={styles.mainTitle}>점심 맛집 정복, 오늘은 뭐 먹지?</Text>
@@ -97,17 +87,6 @@ function MainScreen() {
 export default MainScreen;
 
 const styles = StyleSheet.create({
-  bannerContainer: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-  },
-  bannerImage: {
-    borderRadius: 12,
-  },
-  bannerWrap: {
-    borderRadius: 12,
-    minHeight: 180,
-  },
   categoryContainer: {
     marginTop: 16,
     paddingHorizontal: 16,
@@ -145,16 +124,6 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 20,
     fontWeight: "700",
-  },
-  storeInfo: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "500",
-  },
-  storeName: {
-    color: "#fff",
-    fontSize: 17,
-    fontWeight: "600",
   },
   textContainer: {
     left: 16,
