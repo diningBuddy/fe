@@ -27,7 +27,7 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ img, title, grade = "0.0"
       style={styles.cardContainer}>
       <Image source={imageSource} style={styles.image} resizeMode="cover" />
 
-      <FlexBox direction="column" alignItems="flex-start" gap={4}>
+      <FlexBox direction="column" alignItems="flex-start" gap={4} marginTop={12}>
         <BodySemibold16 numberOfLines={1} ellipsizeMode="tail">
           {title}
         </BodySemibold16>
@@ -48,12 +48,12 @@ const SwipeableCard: React.FC<SwipeableCardProps> = ({ img, title, grade = "0.0"
 
 const styles = StyleSheet.create({
   cardContainer: {
-    width: 180,
-    marginRight: 12,
     backgroundColor: "transparent",
+    marginRight: 12,
     overflow: "hidden",
     shadowOpacity: 0.2,
     shadowRadius: 4,
+    width: 180,
   },
   countText: {
     color: "#8C8C8C",
