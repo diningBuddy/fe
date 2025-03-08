@@ -4,6 +4,7 @@ import { StyleSheet, Text, Image, TouchableOpacity, View } from "react-native";
 import { StarPink } from "../../assets/icons/shape";
 import { BodySemibold14, BodySemibold16 } from "./Typo";
 import { FlexBox } from "../FlexBox";
+import NavigationHeader from "./NavigationHeader";
 
 interface CardProps {
   data: Array<{
@@ -22,6 +23,8 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ data, isHorizontal = true }) => {
   return (
     <View style={[styles.cardWrapper, !isHorizontal && styles.verticalWrapper]}>
+      <NavigationHeader title="성균관대" isGoBackButton isSearchButton />
+
       {data.map((item) => (
         <TouchableOpacity
           key={item.id}

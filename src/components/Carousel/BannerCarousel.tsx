@@ -1,9 +1,6 @@
-import React, { useRef } from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
-
-const Carousel = require("react-native-snap-carousel").default;
-
-const MyCarousel = Carousel as any;
+import React, { useRef, useEffect, useState } from "react";
+import { View, Image, Dimensions, StyleSheet } from "react-native";
+import PagerView from "react-native-pager-view";
 
 const { width } = Dimensions.get("window");
 
@@ -14,35 +11,79 @@ const banners = [
 ];
 
 const BannerCarousel = () => {
-  const carouselRef = useRef<any>(null);
+  const pagerRef = useRef<PagerView>(null);
+  const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    let page = 0;
+    const interval = setInterval(() => {
+      page = (page + 1) % banners.length;
+      pagerRef.current?.setPage(page);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <View style={styles.container}>
-      <MyCarousel
-        ref={carouselRef}
-        data={banners}
-        renderItem={({ item }: { item: { image: any } }) => <Image source={item.image} style={styles.bannerImage} />}
-        sliderWidth={width}
-        itemWidth={width - 32}
-        loop
-        autoplay
-        autoplayInterval={5000}
-        inactiveSlideScale={0.9}
-      />
+      <PagerView
+        ref={pagerRef}
+        style={styles.pagerView}
+        initialPage={0}
+        onPageSelected={(e) => setCurrentPage(e.nativeEvent.position)}>
+        {banners.map((item) => (
+          <View key={item.id} style={styles.page}>
+            <Image source={item.image} style={styles.bannerImage} resizeMode="cover" />
+          </View>
+        ))}
+      </PagerView>
+
+      <View style={styles.indicatorContainer}>
+        {banners.map((_, index) => (
+          <View key={index} style={[styles.indicatorDot, currentPage === index && styles.activeDot]} />
+        ))}
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: "center",
-    marginTop: 20,
+  activeDot: {
+    backgroundColor: "#fff",
+    // borderWidth: 1,
+    // borderColor: "#D9D9D9",
   },
   bannerImage: {
-    width: width - 32,
-    height: 180,
     borderRadius: 12,
-    resizeMode: "cover",
+    height: 180,
+    width: width - 32,
+  },
+  container: {
+    alignItems: "center",
+  },
+  indicatorContainer: {
+    alignSelf: "flex-end",
+    bottom: 16,
+    flexDirection: "row",
+    paddingRight: 32,
+    position: "absolute",
+  },
+  indicatorDot: {
+    backgroundColor: "#00000026",
+    borderRadius: 4,
+    height: 8,
+    marginHorizontal: 4,
+    width: 8,
+    // borderWidth: 1,
+    // borderColor: "#BFBFBF",
+  },
+  page: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  pagerView: {
+    height: 180,
+    width: width - 32,
   },
 });
 

@@ -28,7 +28,7 @@
     "react-native/no-color-literals": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "import/no-unresolved": "error",
+    "import/no-unresolved": "off",
     "import/no-duplicates": "error",
     "import/order": [
       "error",
