@@ -26,10 +26,6 @@ function MainScreen() {
       <NavigationHeader title="성균관대" isGoBackButton isSearchButton />
 
       <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps="handled">
-        <View style={styles.textContainer}>
-          <Text style={styles.storeName}>김문재반점</Text>
-          <Text style={styles.storeInfo}>성균관대 중국요리 추천 순위</Text>
-        </View>
         <BannerCarousel />
 
         {/* 카테고리 리스트 */}
@@ -130,16 +126,6 @@ const styles = StyleSheet.create({
   mainTitle: {
     fontSize: 20,
     fontWeight: "700",
-  },
-  storeInfo: {
-    color: "#fff",
-    fontSize: 12,
-    fontWeight: "500",
-  },
-  storeName: {
-    color: "#fff",
-    fontSize: 17,
-    fontWeight: "600",
   },
   textContainer: {
     left: 16,

@@ -1,13 +1,31 @@
 import React, { useRef, useEffect, useState } from "react";
-import { View, Image, Dimensions, StyleSheet } from "react-native";
+import { View, Image, Text, Dimensions, StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
 
 const { width } = Dimensions.get("window");
 
 const banners = [
-  { id: "1", image: require("../../assets/images/sample/carousels/banner1.png") },
-  { id: "2", image: require("../../assets/images/sample/carousels/banner2.png") },
-  { id: "3", image: require("../../assets/images/sample/carousels/banner3.png") },
+  {
+    id: "1",
+    storeName: "차이홍",
+    schoolName: "성균관대",
+    category: "중식",
+    image: require("../../assets/images/sample/carousels/banner1.png"),
+  },
+  {
+    id: "2",
+    storeName: "스시냠냠",
+    schoolName: "중앙대",
+    category: "일식",
+    image: require("../../assets/images/sample/carousels/banner2.png"),
+  },
+  {
+    id: "3",
+    storeName: "타코타코",
+    schoolName: "한양대",
+    category: "아시안",
+    image: require("../../assets/images/sample/carousels/banner3.png"),
+  },
 ];
 
 const BannerCarousel = () => {
@@ -34,6 +52,13 @@ const BannerCarousel = () => {
         {banners.map((item) => (
           <View key={item.id} style={styles.page}>
             <Image source={item.image} style={styles.bannerImage} resizeMode="cover" />
+
+            <View style={styles.bannerTextWrap}>
+              <Text style={styles.storeName}>{item.storeName}</Text>
+              <Text style={styles.schoolCategory}>
+                {item.schoolName} • {item.category}
+              </Text>
+            </View>
           </View>
         ))}
       </PagerView>
@@ -50,13 +75,16 @@ const BannerCarousel = () => {
 const styles = StyleSheet.create({
   activeDot: {
     backgroundColor: "#fff",
-    // borderWidth: 1,
-    // borderColor: "#D9D9D9",
   },
   bannerImage: {
     borderRadius: 12,
     height: 180,
     width: width - 32,
+  },
+  bannerTextWrap: {
+    left: 16,
+    position: "absolute",
+    top: 16,
   },
   container: {
     alignItems: "center",
@@ -74,16 +102,26 @@ const styles = StyleSheet.create({
     height: 8,
     marginHorizontal: 4,
     width: 8,
-    // borderWidth: 1,
-    // borderColor: "#BFBFBF",
   },
   page: {
     alignItems: "center",
     justifyContent: "center",
+    position: "relative",
   },
   pagerView: {
     height: 180,
     width: width - 32,
+  },
+  schoolCategory: {
+    color: "#fff",
+    fontSize: 12,
+    fontWeight: "500",
+    marginTop: 4,
+  },
+  storeName: {
+    color: "#fff",
+    fontSize: 17,
+    fontWeight: "700",
   },
 });
 
