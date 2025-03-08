@@ -28,7 +28,6 @@ function MainScreen() {
       <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps="handled">
         <BannerCarousel />
 
-        {/* 카테고리 리스트 */}
         <View style={styles.categoryContainer}>
           <FlatList
             data={categoryItems}
@@ -46,7 +45,6 @@ function MainScreen() {
 
         <Divider size="thin" orientation="horizontal" color="#D9D9D9" />
 
-        {/* 음식 리스트 */}
         <View style={styles.foodListContainer}>
           <FlexBox justifyContent="space-between" marginBottom={16}>
             <Text style={styles.mainTitle}>점심 맛집 정복, 오늘은 뭐 먹지?</Text>
@@ -89,10 +87,6 @@ function MainScreen() {
 export default MainScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: "relative",
-  },
   categoryContainer: {
     marginTop: 16,
     paddingHorizontal: 16,
@@ -114,6 +108,10 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "500",
     marginTop: 8,
+  },
+  container: {
+    flex: 1,
+    position: "relative",
   },
   contentContainer: {
     paddingBottom: 100,

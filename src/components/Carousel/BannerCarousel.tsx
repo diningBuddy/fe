@@ -2,6 +2,10 @@ import React, { useRef, useEffect, useState } from "react";
 import { View, Image, Text, Dimensions, StyleSheet } from "react-native";
 import PagerView from "react-native-pager-view";
 
+import Banner1 from "../../assets/images/sample/carousels/banner1.png";
+import Banner2 from "../../assets/images/sample/carousels/banner2.png";
+import Banner3 from "../../assets/images/sample/carousels/banner3.png";
+
 const { width } = Dimensions.get("window");
 
 const banners = [
@@ -10,21 +14,21 @@ const banners = [
     storeName: "차이홍",
     schoolName: "성균관대",
     category: "중식",
-    image: require("../../assets/images/sample/carousels/banner1.png"),
+    image: Banner1,
   },
   {
     id: "2",
     storeName: "스시냠냠",
     schoolName: "중앙대",
     category: "일식",
-    image: require("../../assets/images/sample/carousels/banner2.png"),
+    image: Banner2,
   },
   {
     id: "3",
     storeName: "타코타코",
     schoolName: "한양대",
     category: "아시안",
-    image: require("../../assets/images/sample/carousels/banner3.png"),
+    image: Banner3,
   },
 ];
 
