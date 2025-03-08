@@ -1,37 +1,34 @@
 import React from "react";
-import { ScrollView, StyleSheet, ImageBackground, Text, View, FlatList, Alert, TouchableOpacity } from "react-native";
-// import { LinearGradient } from "expo-linear-gradient";
-
-import { Divider } from "react-native-paper";
-import CarouselBanner from "../assets/images/sample/carousels/banner1.png";
-import CarouselBanner2 from "../assets/images/sample/carousels/banner2.png";
-import CarouselBanner3 from "../assets/images/sample/carousels/banner3.png";
-
-import { categoryItems, lunchToday } from "../mock/DiningMockData";
 import { useNavigation } from "@react-navigation/native";
-import Card from "../common/atom/Card";
+import { StyleSheet, Alert, ImageBackground, ScrollView, View, Text, FlatList, TouchableOpacity } from "react-native";
+
 import { FlexBox } from "../common/FlexBox";
-import BannerCarousel from "../components/Carousel/BannerCarousel";
-import { RootStackParamList, RouteNames } from "../utils/routes";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import NavigationHeader from "../common/atom/NavigationHeader";
-import SwipeableCard from "../common/atom/SwipeableCard";
+import { categoryItems, lunchToday } from "../mock/DiningMockData";
+import Divider from "../common/atom/Divier";
 import SwipeableCardList from "../components/SwipeableCardList";
+import CarouselBanner from "../assets/images/sample/carousels/banner1.png";
+import { FloatingEditButton } from "../common/atom/FloatingButton";
 
 function MainScreen() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation();
+
+  const handleMorePress = () => {
+    navigation.navigate("ContentList", { category: "test" });
+  };
+
+  const handleEditClick = () => {
+    Alert.alert("수정 버튼 클릭됨");
+  };
 
   return (
-    <>
+    <View style={styles.container}>
       <NavigationHeader title="성균관대" isGoBackButton isSearchButton />
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.bannerContainer}>
-          {/* <BannerCarousel /> */}
-          <ImageBackground source={CarouselBanner} style={styles.bannerWrap} imageStyle={styles.bannerImage}>
-            {/* 아래쪽 그라데이션 효과 */}
-            {/* <LinearGradient colors={["transparent", "rgba(0,0,0,0.6)"]} style={styles.gradientOverlay} /> */}
 
-            {/* 배너 안의 텍스트 */}
+      <ScrollView contentContainerStyle={styles.contentContainer} keyboardShouldPersistTaps="handled">
+        {/* 배너 */}
+        <View style={styles.bannerContainer}>
+          <ImageBackground source={CarouselBanner} style={styles.bannerWrap} imageStyle={styles.bannerImage}>
             <View style={styles.textContainer}>
               <Text style={styles.storeName}>김문재반점</Text>
               <Text style={styles.storeInfo}>성균관대 중국요리 추천 순위</Text>
@@ -55,12 +52,13 @@ function MainScreen() {
           />
         </View>
 
-        <Divider size="thin" orientation="horizontal" color="#000000" />
+        <Divider size="thin" orientation="horizontal" color="#D9D9D9" />
 
+        {/* 음식 리스트 */}
         <View style={styles.foodListContainer}>
           <FlexBox justifyContent="space-between" marginBottom={16}>
             <Text style={styles.mainTitle}>점심 맛집 정복, 오늘은 뭐 먹지?</Text>
-            <TouchableOpacity onPress={() => navigation.navigate(RouteNames.CONTENT_LIST)}>
+            <TouchableOpacity onPress={handleMorePress}>
               <Text style={styles.totalView}>전체보기</Text>
             </TouchableOpacity>
           </FlexBox>
@@ -70,13 +68,14 @@ function MainScreen() {
               ...item,
               onPress: () => Alert.alert(`${item.title} 선택됨`),
             }))}
+            onMorePress={handleMorePress}
           />
         </View>
 
         <View style={styles.foodListContainer}>
           <FlexBox justifyContent="space-between" marginBottom={16}>
             <Text style={styles.mainTitle}>야식의 성지 새벽까지 든든하게</Text>
-            <TouchableOpacity onPress={() => navigation.navigate(RouteNames.CONTENT_LIST)}>
+            <TouchableOpacity onPress={handleMorePress}>
               <Text style={styles.totalView}>전체보기</Text>
             </TouchableOpacity>
           </FlexBox>
@@ -89,16 +88,19 @@ function MainScreen() {
           />
         </View>
       </ScrollView>
-    </>
+
+      <FloatingEditButton onEditPress={handleEditClick} />
+    </View>
   );
 }
+
+export default MainScreen;
 
 const styles = StyleSheet.create({
   bannerContainer: {
     paddingHorizontal: 16,
     paddingTop: 16,
   },
-
   bannerImage: {
     borderRadius: 12,
   },
@@ -107,10 +109,10 @@ const styles = StyleSheet.create({
     minHeight: 180,
   },
   categoryContainer: {
-    width: "100%",
-    paddingHorizontal: 16,
     marginTop: 16,
+    paddingHorizontal: 16,
     shadowColor: "#000",
+    width: "100%",
   },
   categoryItem: {
     alignItems: "center",
@@ -129,14 +131,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   container: {
-    flexGrow: 1,
-    backgroundColor: "#fff",
-  },
-  container: {
-    flexGrow: 1,
+    flex: 1,
+    position: "relative",
   },
   contentContainer: {
-    paddingBottom: 20,
+    paddingBottom: 100,
   },
   foodListContainer: {
     marginTop: 32,
@@ -157,17 +156,14 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: "600",
   },
-
   textContainer: {
     left: 16,
     position: "absolute",
     top: 20,
   },
   totalView: {
+    color: "#8C8C8C",
     fontSize: 14,
     fontWeight: "500",
-    color: "#8C8C8C",
   },
 });
-
-export default MainScreen;

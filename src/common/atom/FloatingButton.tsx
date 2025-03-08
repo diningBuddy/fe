@@ -1,101 +1,105 @@
-import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, Pressable } from "react-native";
-
-import ThemeStyle from "../../styles/ThemeStyle";
-import { ChevronUp } from "../../assets/icons/arrow/chevron";
-import { PencilEdit } from "../../assets/icons/editor";
+import React, { useRef, useEffect } from "react";
+import { StyleSheet, Pressable, Animated, ScrollView } from "react-native";
+import { Pencil } from "lucide-react-native";
 
 interface FloatingButtonProps {
   onPress: () => void;
   icon: React.ReactNode;
-  isSelectable?: boolean;
 }
 
-const FloatingButton: React.FC<FloatingButtonProps> = ({ onPress, icon, isSelectable = false }) => {
-  const [isPressed, setIsPressed] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
+const FloatingButtonIcon: React.FC<FloatingButtonProps> = ({ onPress, icon }) => {
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const translateYAnim = useRef(new Animated.Value(0)).current;
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
-  const handlePressIn = () => setIsPressed(true);
-  const handlePressOut = () => {
-    setIsPressed(false);
-    if (isSelectable) setIsSelected(!isSelected);
-    onPress();
+  const handleScroll = () => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 0,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(translateYAnim, {
+        toValue: 20,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    scrollTimeout.current = setTimeout(() => {
+      Animated.parallel([
+        Animated.timing(fadeAnim, {
+          toValue: 1,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateYAnim, {
+          toValue: 0,
+          duration: 300,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }, 300);
   };
 
-  const getBackgroundColor = () => {
-    if (isSelected) return ThemeStyle.color.global.neutral[1000];
-    if (isPressed) return ThemeStyle.color.global.neutral[400];
-    return ThemeStyle.color.global.neutral[100];
-  };
-
-  const renderIcon = () => {
-    return React.cloneElement(icon as React.ReactElement, {
-      fill: isSelected ? ThemeStyle.color.global.neutral[100] : ThemeStyle.color.global.neutral[1300],
-    });
-  };
+  useEffect(() => {
+    return () => {
+      if (scrollTimeout.current) {
+        clearTimeout(scrollTimeout.current);
+      }
+    };
+  }, []);
 
   return (
-    <View style={styles.buttonContainer}>
-      <Pressable
-        style={[styles.button, { backgroundColor: getBackgroundColor() }]}
-        onPressIn={handlePressIn}
-        onPressOut={handlePressOut}>
-        {renderIcon()}
+    <Animated.View
+      style={[
+        styles.buttonContainer,
+        {
+          opacity: fadeAnim,
+          transform: [{ translateY: translateYAnim }],
+        },
+      ]}>
+      <Pressable style={styles.button} onPress={onPress}>
+        {icon}
       </Pressable>
-    </View>
+    </Animated.View>
   );
 };
 
-interface TopScrollFloatingButtonProps {
-  scrollViewRef: React.RefObject<ScrollView>;
-  offsetY: number;
+interface FloatingEditButtonProps {
+  // scrollViewRef?: React.RefObject<ScrollView>;
+  onEditPress: () => void;
 }
 
-export const TopScrollFloatingButton: React.FC<TopScrollFloatingButtonProps> = ({ scrollViewRef, offsetY }) => {
-  const handleTopScrollClick = () => {
-    scrollViewRef.current?.scrollTo({ y: 0, animated: true });
-  };
-
-  return (
-    <View style={[styles.floatingButton, offsetY > 100 ? styles.visible : styles.hidden]}>
-      <FloatingButton onPress={handleTopScrollClick} icon={<ChevronUp />} />
-    </View>
-  );
+export const FloatingEditButton: React.FC<FloatingEditButtonProps> = ({
+  // scrollViewRef,
+  onEditPress,
+}) => {
+  return <FloatingButtonIcon onPress={onEditPress} icon={<Pencil size={24} color="#000" />} />;
 };
 
-export const EditFloatingButton: React.FC<{ onPress: () => void }> = ({ onPress }) => (
-  <FloatingButton onPress={onPress} icon={<PencilEdit />} isSelectable />
-);
-
-export default FloatingButton;
+export default FloatingButtonIcon;
 
 const styles = StyleSheet.create({
   button: {
     alignItems: "center",
-    backgroundColor: ThemeStyle.color.global.neutral[100],
+    backgroundColor: "#fff",
     borderRadius: 50,
-    elevation: 5,
+    elevation: 3,
     height: 56,
     justifyContent: "center",
-    shadowColor: "rgba(0, 0, 0, 0.1)",
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 1,
     shadowRadius: 18,
     width: 56,
   },
   buttonContainer: {
-    alignItems: "center",
-    marginBottom: 20,
-  },
-  floatingButton: {
-    transition: "opacity 0.3s ease, transform 0.3s ease",
-  },
-  hidden: {
-    opacity: 0,
-    transform: [{ translateY: 20 }],
-  },
-  visible: {
-    opacity: 1,
-    transform: [{ translateY: 0 }],
+    bottom: 16,
+    position: "absolute",
+    right: 16,
   },
 });
