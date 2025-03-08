@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { View, StyleSheet, ScrollView, Text, NativeSyntheticEvent, NativeScrollEvent, Animated } from "react-native";
 
 import { EditFloatingButton, TopScrollFloatingButton } from "../../common/atom/FloatingButton";
+import NavigationHeader from "../../common/atom/NavigationHeader";
 
 const FloatingButtonSample = () => {
   const scrollViewRef = useRef<ScrollView>(null);
@@ -62,6 +63,8 @@ const FloatingButtonSample = () => {
 
   return (
     <View style={styles.container}>
+      <NavigationHeader title="FloatingButtonSample" isGoBackButton isSearchButton />
+
       <ScrollView
         ref={scrollViewRef}
         contentContainerStyle={styles.content}

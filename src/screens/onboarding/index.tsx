@@ -2,22 +2,16 @@ import { StyleSheet, ScrollView } from "react-native";
 
 import OnBoardingHeader from "./components/templates/OnBoardingHeader";
 import OnBoardingMain from "./components/templates/OnBoardingMain";
+import NavigationHeader from "../../common/atom/NavigationHeader";
 
 const OnboardingPage = () => {
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <>
+      <NavigationHeader isGoBackButton />
       <OnBoardingHeader />
       <OnBoardingMain />
-    </ScrollView>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    // alignItems: "center",
-    // justifyContent: "center",
-    paddingHorizontal: 16,
-  },
-});
 
 export default OnboardingPage;
