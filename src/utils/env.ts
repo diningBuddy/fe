@@ -4,8 +4,8 @@ type Environment = "local" | "dev" | "prod";
 
 // 환경 변수 인터페이스 정의
 interface EnvVariables {
-  environment: Environment;
-  kakao_api_key: string;
+  ENVIRONMENT: Environment;
+  KAKAO_API_KEY: string;
   DEV_API_HOST: string;
   PROD_API_HOST: string;
 }
@@ -56,10 +56,10 @@ export const getEnvironment = () => {
   const env = getEnv();
 
   return {
-    environment: env.environment,
-    isLocal: env.environment === "local",
-    isDev: env.environment === "dev",
-    isProd: env.environment === "prod",
+    environment: env.ENVIRONMENT,
+    isLocal: env.ENVIRONMENT === "local",
+    isDev: env.ENVIRONMENT === "dev",
+    isProd: env.ENVIRONMENT === "prod",
   };
 };
 
@@ -70,7 +70,7 @@ export const getEnvironment = () => {
 export const getKakaoApiKey = (): string => {
   const env = getEnv();
 
-  return env.kakao_api_key;
+  return env.KAKAO_API_KEY;
 };
 
 /**
@@ -103,10 +103,10 @@ export const getConfig = () => {
   const { isLocal, isDev, isProd } = getEnvironment();
 
   return {
-    kakaoApiKey: env.kakao_api_key,
+    kakaoApiKey: env.KAKAO_API_KEY,
     apiHost: getApiHost(),
     environment: {
-      current: env.environment,
+      current: env.ENVIRONMENT,
       isLocal,
       isDev,
       isProd,
