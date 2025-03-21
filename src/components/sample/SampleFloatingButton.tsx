@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { View, StyleSheet, ScrollView, Text } from "react-native";
 
 import { FloatingEditButton } from "../../common/atom/FloatingButton";

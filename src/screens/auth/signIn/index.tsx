@@ -1,10 +1,9 @@
-import React from "react";
-import { Image, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
+import { Image } from "react-native";
+import styled from "styled-components/native";
 
-import { Apple, Kakao } from "../../../assets/icons/sns";
 import { Logo } from "../../../assets/icons/common";
+import { Apple, Kakao } from "../../../assets/icons/sns";
 
 export const SignIn = () => {
   const navigation = useNavigation();

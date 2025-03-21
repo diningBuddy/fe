@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
 import { BodyMedium14, BodyRegular12 } from "./Typo";
 import { ChevronDown } from "../../assets/icons/arrow/chevron";

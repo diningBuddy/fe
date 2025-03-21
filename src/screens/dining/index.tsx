@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 
-import Toast from "../../common/atom/Toast";
 import DiningHeader from "./components/templates/DiningHeader";
 import DiningMain from "./components/templates/DiningMain";
+import Toast from "../../common/atom/Toast";
 
 interface ToastHandle {
   showToast: () => void;

@@ -1,10 +1,9 @@
-import React from "react";
 import { View } from "react-native";
 
-import searchList from "../../../../mock/SearchMockData";
 import { ArrowTrendiingUp } from "../../../../assets/icons/arrow";
 import { HeartFill } from "../../../../assets/icons/shape";
 import Divider from "../../../../common/atom/Divier";
+import searchList from "../../../../mock/SearchMockData";
 
 export const SearchMain = () => {
   return (

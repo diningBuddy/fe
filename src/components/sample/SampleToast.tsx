@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
-import { Button, ScrollView, View } from "react-native";
 import React, { useState } from "react";
+import { Button, ScrollView, View } from "react-native";
+import styled from "styled-components/native";
 
 import Toast from "../../common/atom/Toast";
 

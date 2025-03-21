@@ -1,8 +1,7 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "styled-components/native";
+import { useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { ThemeContext } from "styled-components/native";
 
-import ThemeStyle from "../../styles/ThemeStyle";
 import {
   BodyMedium14,
   BodyMedium16,
@@ -22,9 +21,11 @@ import {
   HeadingSemiBold40,
   HeadingSemiBold44,
 } from "../../common/atom/Typo";
+import ThemeStyle from "../../styles/ThemeStyle";
 
 const SampleFont = () => {
   const theme = useContext(ThemeContext) || ThemeStyle;
+
   return (
     <View style={styles.container}>
       <Text>스타일 컴포넌트 적용</Text>

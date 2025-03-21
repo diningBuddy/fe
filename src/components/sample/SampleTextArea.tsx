@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
 import { ScrollView } from "react-native";
+import styled from "styled-components/native";
 
-import TextArea from "../../common/atom/TextAre";
 import NavigationHeader from "../../common/atom/NavigationHeader";
+import TextArea from "../../common/atom/TextAre";
 
 const SampleTextArea = () => {
   return (

@@ -1,6 +1,5 @@
 import { ScrollView, Text } from "react-native";
 import styled from "styled-components/native";
-import React from "react";
 
 import Divider from "../../common/atom/Divier";
 import NavigationHeader from "../../common/atom/NavigationHeader";

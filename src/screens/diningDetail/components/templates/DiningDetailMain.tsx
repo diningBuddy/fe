@@ -1,9 +1,8 @@
-import React from "react";
 import { View, StyleSheet, Button, Text } from "react-native";
 
+import { ButtonText } from "../../../../common/atom/Button";
 import { BodySemibold14, BodySemibold16, HeadingRegular20 } from "../../../../common/atom/Typo";
 import { lunchToday, midnightMeal } from "../../../../mock/DiningMockData";
-import { ButtonText } from "../../../../common/atom/Button";
 
 export const DiningDetailMain = () => {
   return (

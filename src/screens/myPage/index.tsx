@@ -1,7 +1,7 @@
 import { StyleSheet, ScrollView } from "react-native";
 
-import { MypageMain } from "./components/templates/MypageMain";
 import { MypageHeader } from "./components/templates/MypageHeader";
+import { MypageMain } from "./components/templates/MypageMain";
 
 const MyPage = () => {
   return (
@@ -19,4 +19,5 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 });
+
 export default MyPage;

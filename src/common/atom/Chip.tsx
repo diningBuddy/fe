@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
 
 interface ChipProps {
   children: React.ReactNode;
@@ -102,7 +102,9 @@ const getBackgroundColor = (
   isPressed: boolean,
   mode: string
 ) => {
-  if (isDisabled) return theme.color.sys.tertiary.pressed;
+  if (isDisabled) {
+    return theme.color.sys.tertiary.pressed;
+  }
 
   const backgroundMap: Record<"outline" | "noOutline", string> = {
     outline: isSelected
@@ -143,8 +145,12 @@ const ChipBox = styled(TouchableOpacity)<ChipProps>`
 `;
 
 const getTextColor = (theme: string, isDisabled: boolean, isSelected: boolean, isPressed: boolean, mode: string) => {
-  if (isPressed) return theme.color.theme.headingText;
-  if (isDisabled) return "rgba(0, 0, 0, 0.2)";
+  if (isPressed) {
+    return theme.color.theme.headingText;
+  }
+  if (isDisabled) {
+    return "rgba(0, 0, 0, 0.2)";
+  }
 
   const colorMap: Record<"outline" | "noOutline", string> = {
     outline: isSelected ? theme.color.sys.primary.default : theme.color.theme.headingText,

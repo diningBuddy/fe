@@ -1,8 +1,6 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 
-import Popup from "../../../common/atom/Popup";
 import { Button } from "../../../common/atom/Button";
 import Input from "../../../common/atom/Input";
 

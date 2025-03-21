@@ -1,17 +1,14 @@
-import React from "react";
-import { ScrollView, StyleSheet, ImageBackground, Text, View, FlatList } from "react-native";
-
 // 아이콘 리스트
-import BibimbapIcon from "../assets/icons/diningCategory/bibimbap.svg";
-import PastaIcon from "../assets/icons/diningCategory/pasta.svg";
-import OriginiIcon from "../assets/icons/diningCategory/origini.svg";
 import BaoIcon from "../assets/icons/diningCategory/bao.svg";
-import TokpokkiIcon from "../assets/icons/diningCategory/tokpokki.svg";
-import FriedChickenIcon from "../assets/icons/diningCategory/fired-chicken.svg";
-import PizzaIcon from "../assets/icons/diningCategory/pizza.svg";
+import BibimbapIcon from "../assets/icons/diningCategory/bibimbap.svg";
 import BurgersIcon from "../assets/icons/diningCategory/burgers.svg";
-import TacoIcon from "../assets/icons/diningCategory/taco.svg";
 import CoffeeIcon from "../assets/icons/diningCategory/coffee.svg";
+import FriedChickenIcon from "../assets/icons/diningCategory/fired-chicken.svg";
+import OriginiIcon from "../assets/icons/diningCategory/origini.svg";
+import PastaIcon from "../assets/icons/diningCategory/pasta.svg";
+import PizzaIcon from "../assets/icons/diningCategory/pizza.svg";
+import TacoIcon from "../assets/icons/diningCategory/taco.svg";
+import TokpokkiIcon from "../assets/icons/diningCategory/tokpokki.svg";
 import { DiningProps } from "../screens/dining/dining.props";
 
 // 카테고리 리스트
@@ -29,7 +26,6 @@ export const categoryItems = [
 ];
 
 const horizontalFoodImage = require("../assets/images/sample/horizontal-food.png");
-
 const verticalFoodImage = require("../assets/images/sample/vertical-food.png");
 
 export const categoryList = categoryItems.map((item, index) => ({

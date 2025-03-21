@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 
-import { StarPink } from "../../assets/icons/shape";
 import { BodySemibold14, BodySemibold16 } from "./Typo";
+import { StarPink } from "../../assets/icons/shape";
 import { FlexBox } from "../FlexBox";
 
 interface SwipeableCardProps {

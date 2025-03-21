@@ -1,11 +1,11 @@
 import { Button, View } from "react-native";
 
 import { ChevronRight } from "../../../../assets/icons/arrow/chevron";
-import Toast from "../../../../common/atom/Toast";
+import { Coin } from "../../../../assets/icons/shape";
 import { ButtonText } from "../../../../common/atom/Button";
 import Tag from "../../../../common/atom/Tag";
+import Toast from "../../../../common/atom/Toast";
 import { BodyMedium14, BodySemibold16 } from "../../../../common/atom/Typo";
-import { Coin } from "../../../../assets/icons/shape";
 import { userInfo } from "../../../../mock/MypageMockData";
 
 export const MypageHeader = () => {

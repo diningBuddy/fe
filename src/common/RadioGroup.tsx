@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 
 import { RadioFillOne, RadioOutlineOne, RadioFillTwo, RadioOutlineTwo } from "../assets/icons/shape";

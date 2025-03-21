@@ -1,6 +1,5 @@
-import styled from "styled-components/native";
 import { ScrollView } from "react-native";
-import React from "react";
+import styled from "styled-components/native";
 
 import Search from "../../common/atom/Search";
 

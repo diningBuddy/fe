@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { TextInput, TouchableOpacity } from "react-native";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
-import { CircleClose } from "../../assets/icons/shape";
 import { SearchIcon } from "../../assets/icons/general";
+import { CircleClose } from "../../assets/icons/shape";
 
 interface InputProps {
   placeholder?: string;

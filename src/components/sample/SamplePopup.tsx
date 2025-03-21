@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Button, ScrollView } from "react-native";
 import styled from "styled-components/native";
-import React, { useState } from "react";
 
 import Popup from "../../common/atom/Popup";
 

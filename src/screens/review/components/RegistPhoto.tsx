@@ -1,8 +1,7 @@
-import React from "react";
 import { View } from "react-native";
 
-import { BodyMedium14 } from "../../../common/atom/Typo";
 import Tag from "../../../common/atom/Tag";
+import { BodyMedium14 } from "../../../common/atom/Typo";
 import { FlexBox } from "../../../common/FlexBox";
 
 export const RegistPhoto = () => {

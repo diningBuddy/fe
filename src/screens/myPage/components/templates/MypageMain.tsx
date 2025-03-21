@@ -1,11 +1,11 @@
 import { View } from "react-native";
 
+import { ChevronRight } from "../../../../assets/icons/arrow/chevron";
+import { Kebob } from "../../../../assets/icons/shape";
 import Empty from "../../../../common/atom/Empty";
 import Tabs from "../../../../common/atom/Tab";
 import { BodyMedium14, BodyRegular12, BodySemibold14 } from "../../../../common/atom/Typo";
 import { bookmarkList, myReviewList } from "../../../../mock/MypageMockData";
-import { Kebob } from "../../../../assets/icons/shape";
-import { ChevronRight } from "../../../../assets/icons/arrow/chevron";
 
 export const MypageMain = () => {
   const tabs = [

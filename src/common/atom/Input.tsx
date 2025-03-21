@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { TextInput, TouchableOpacity } from "react-native";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
 import { BodyMedium14, BodyRegular12 } from "./Typo";
 import { CircleClose } from "../../assets/icons/shape";
@@ -52,7 +52,9 @@ const Input: React.FC<InputProps> = ({
             value={value}
             onFocus={() => !isDisabled && setState("focused")}
             onBlur={() => {
-              if (!value && !isDisabled) setState("initial");
+              if (!value && !isDisabled) {
+                setState("initial");
+              }
             }}
             onChangeText={onChangeText}
             editable={!isDisabled}

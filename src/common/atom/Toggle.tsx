@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components/native";
 import { Animated, TouchableWithoutFeedback } from "react-native";
+import styled from "styled-components/native";
 
 import ThemeStyle from "../../styles/ThemeStyle";
 

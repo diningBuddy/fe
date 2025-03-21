@@ -143,6 +143,7 @@ export const color = {
 };
 
 const ThemeStyle = { color };
+
 export type Theme = typeof ThemeStyle;
 
 export default ThemeStyle;

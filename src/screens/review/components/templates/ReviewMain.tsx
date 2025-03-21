@@ -1,10 +1,10 @@
 import { View } from "react-native";
 
-import SelectArade from "../SelectArade";
+import { Button, ButtonText } from "../../../../common/atom/Button";
+import Divider from "../../../../common/atom/Divier";
 import RegistPhoto from "../RegistPhoto";
 import RegistReview from "../RegistReview";
-import Divider from "../../../../common/atom/Divier";
-import { Button, ButtonText } from "../../../../common/atom/Button";
+import SelectArade from "../SelectArade";
 
 export const ReviewMain = () => {
   return (

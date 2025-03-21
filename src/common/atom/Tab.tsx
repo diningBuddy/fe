@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 
-import { color } from "../../styles/ThemeStyle";
 import { BodySemibold14 } from "./Typo";
+import { color } from "../../styles/ThemeStyle";
 
 interface TabContentProps {
   label: string;

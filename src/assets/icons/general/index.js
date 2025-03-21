@@ -9,10 +9,11 @@ import CheckBadge from "./check-badge.svg";
 import CheckCircleOutline from "./check-circle-outline.svg";
 import CheckCircle from "./check-circle.svg";
 import Check from "./check.svg";
+import CircleQuestion from "./circle-question.svg";
 import EyeOutline from "./eye-outline.svg";
-import Eye from "./eye.svg";
 import EyeSlashOutline from "./eye-slash-outline.svg";
 import EyeSlash from "./eye-slash.svg";
+import Eye from "./eye.svg";
 import FunnelOutline from "./funnel-outline.svg";
 import Funnel from "./funnel.svg";
 import HandThumbDownOutline from "./hand-thumb-down-outline.svg";
@@ -22,7 +23,6 @@ import HandThumbUp from "./hand-thumb-up.svg";
 import HomeOutline from "./home-outline.svg";
 import Home from "./home.svg";
 import SearchIcon from "./search.svg";
-import CircleQuestion from "./circle-question.svg";
 
 export {
   Bar2,

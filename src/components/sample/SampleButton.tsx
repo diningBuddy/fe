@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 
 // eslint-disable-next-line import/namespace
-import { Button, ButtonText } from "../../common/atom/Button";
 import { ChevronRight } from "../../assets/icons/arrow/chevron";
+import { Button, ButtonText } from "../../common/atom/Button";
 import NavigationHeader from "../../common/atom/NavigationHeader";
 
 const SampleButton = () => {
   const [isPressed, setIsPressed] = useState(false);
+
   return (
     <>
       <NavigationHeader title="SampleButton" isGoBackButton />

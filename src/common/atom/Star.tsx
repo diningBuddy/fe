@@ -16,8 +16,11 @@ const Star: React.FC<StarProps> = ({ size = "lg", star = 0, onChange }) => {
   // 별을 클릭할 때 동작
   const handleStarPress = (index: number) => {
     const newRating = index + 1; // 클릭한 별에 따라 새로운 별점 계산
+
     setRating(newRating); // 별점 업데이트
-    if (onChange) onChange(newRating); // 부모 컴포넌트에 별점 전달
+    if (onChange) {
+      onChange(newRating);
+    } // 부모 컴포넌트에 별점 전달
   };
 
   return (

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { Text, View } from "react-native";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
 interface ProgressProps {
   value: number; // 0 ~ 100 사이의 숫자 (진행 상태)
@@ -50,9 +50,15 @@ const Label = styled(Text)<{ theme: DefaultTheme }>`
 const ProgressBarWrapper = styled(View)<{ props: ProgressProps }>`
   width: 100%;
   height: ${({ size }) => {
-    if (size === "sm") return "2px";
-    if (size === "md") return "4px";
-    if (size === "lg") return "8px";
+    if (size === "sm") {
+      return "2px";
+    }
+    if (size === "md") {
+      return "4px";
+    }
+    if (size === "lg") {
+      return "8px";
+    }
     return "8px";
   }};
   background-color: ${({ theme }) => theme.color.sys.tertiary.default};

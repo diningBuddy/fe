@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components/native";
 import Svg, { Circle, Path, SvgProps } from "react-native-svg";
+import styled from "styled-components/native";
 
 import ThemeStyle from "../../styles/ThemeStyle";
 

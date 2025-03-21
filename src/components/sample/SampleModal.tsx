@@ -1,6 +1,6 @@
+import React from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 import { Appbar } from "react-native-paper";
-import React from "react";
 
 const SampleModal = ({ navigation }) => {
   const styles = StyleSheet.create({

@@ -1,6 +1,5 @@
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Text, TouchableOpacity, View } from "react-native";
 
 import { RootStackParamList, RouteNames } from "../utils/routes";
 

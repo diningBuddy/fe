@@ -1,9 +1,9 @@
-import React, { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react";
-import styled, { ThemeContext } from "styled-components/native";
+import { forwardRef, useContext, useImperativeHandle, useRef, useState } from "react";
 import { Animated, Dimensions, StyleSheet, View } from "react-native";
+import styled, { ThemeContext } from "styled-components/native";
 
-import { CheckCircleGreen, InformationCircle, Warning } from "../../assets/icons/shape";
 import { BodyMedium14, BodySemibold12 } from "./Typo";
+import { CheckCircleGreen, InformationCircle, Warning } from "../../assets/icons/shape";
 
 interface ToastProps {
   variant?: "default" | "success" | "destructive" | "informative";

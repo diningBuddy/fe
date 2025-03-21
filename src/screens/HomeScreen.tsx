@@ -1,10 +1,10 @@
-import React, { useCallback, useContext } from "react";
-import styled, { ThemeContext } from "styled-components/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useCallback, useContext } from "react";
 import { ScrollView, StyleSheet } from "react-native";
+import styled, { ThemeContext } from "styled-components/native";
 
-import { RootStackParamList, RouteNames } from "../utils/routes";
 import { HeadingSemiBold24 } from "../common/atom/Typo";
+import { RootStackParamList, RouteNames } from "../utils/routes";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 

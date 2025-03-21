@@ -1,9 +1,8 @@
-import React from "react";
 import { Alert, ScrollView, StyleSheet } from "react-native";
 
-import { lunchToday } from "../../mock/DiningMockData";
 import Card from "../../common/atom/Card";
 import NavigationHeader from "../../common/atom/NavigationHeader";
+import { lunchToday } from "../../mock/DiningMockData";
 
 const SampleCard = () => {
   return (

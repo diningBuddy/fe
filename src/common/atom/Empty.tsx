@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components/native";
 
 import { BodyMedium14, BodySemibold12, BodySemibold14 } from "./Typo";
-import ThemeStyle from "../../styles/ThemeStyle";
 import { CircleQuestion } from "../../assets/icons/general";
+import ThemeStyle from "../../styles/ThemeStyle";
 
 interface EmptyProps {
   title?: string;
@@ -25,6 +25,7 @@ const Empty: React.FC<EmptyProps> = ({
   const theme = ThemeStyle.color;
   const ButtonBgColor = buttonColor || (mode === "main" ? theme.sys.primary.default : theme.theme.headingText);
   const ButtonTextColor = theme.global.neutral[100];
+
   return (
     <Container>
       <CircleQuestion width={40} height={40} fill={theme.global.neutral[800]} />

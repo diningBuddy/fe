@@ -1,14 +1,14 @@
 import { ScrollView, Text } from "react-native";
 import styled from "styled-components/native";
-import React from "react";
 
-import Star from "../../common/atom/Star";
 import NavigationHeader from "../../common/atom/NavigationHeader";
+import Star from "../../common/atom/Star";
 
 const SampleStar = () => {
   const handleStarChange = (rating: number) => {
     console.log("Selected Rating:", rating);
   };
+
   return (
     <>
       <NavigationHeader title="샘플 버튼" isGoBackButton />
