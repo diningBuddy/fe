@@ -4,5 +4,5 @@
     "strict": true,
     "moduleResolution": "node"
   },
-  "include": ["src", "src/global.d.ts", "./app.config.ts", "./babel.config.js"]
+  "include": ["src", "src/global.d.ts", "./app.config.ts", "./babel.config.js", "./eslint.js"]
 }
