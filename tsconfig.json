@@ -4,5 +4,14 @@
     "strict": true,
     "moduleResolution": "node"
   },
-  "include": ["src", "src/global.d.ts", "./app.config.ts", "./babel.config.js", "./eslint.js"]
+  "include": [
+    "src",
+    "src/global.d.ts",
+    "./app.config.ts",
+    "./babel.config.js",
+    "./.eslintrc.cjs",
+    "./eslint.js",
+    "./svg.d.ts",
+    "./metro.config.js"
+  ]
 }
