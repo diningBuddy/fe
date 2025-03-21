@@ -54,6 +54,9 @@ module.exports = {
     "react/destructuring-assignment": "off", //추후 warn로
     "@typescript-eslint/no-explicit-any": "warn", // 추후 error로
 
+    // TODO : 인라인 스타일 제한해제(추후 논의 후 수정)
+    "react-native/no-inline-styles": "off",
+
     // styled-components 걷어낸 뒤 제거 //
     "react-native/no-color-literals": "off",
     "react-native/sort-styles": "off",
