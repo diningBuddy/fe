@@ -60,6 +60,7 @@ module.exports = {
     // styled-components 걷어낸 뒤 제거 //
     "react-native/no-color-literals": "off",
     "react-native/sort-styles": "off",
+    "react-native/no-raw-text": "off",
     ///////////////////////////////////
 
     // unused-imports rules
