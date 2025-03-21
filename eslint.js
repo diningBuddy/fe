@@ -4,6 +4,14 @@ module.exports = {
     node: true,
     "react-native/react-native": true,
   },
+  overrides: [
+    {
+      files: ["*.config.js", "metro.config.js"],
+      rules: {
+        "@typescript-eslint/no-var-requires": "off",
+      },
+    },
+  ],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
