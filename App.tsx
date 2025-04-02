@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useContext } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { ThemeContext, ThemeProvider } from "styled-components/native";
 
@@ -47,6 +47,8 @@ import OnboardingPage from "./src/screens/onboarding";
 import ReviewPage from "./src/screens/review";
 import ThemeStyle from "./src/styles/ThemeStyle";
 import { RootStackParamList, RouteNames } from "./src/utils/routes";
+import { initializeKakaoSDK } from "@react-native-kakao/core";
+import { getKakaoNativeAppKey } from "./src/utils/env";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -64,6 +66,15 @@ const HomeTab = () => {
 
 export default function App() {
   const theme = useContext(ThemeContext) || ThemeStyle;
+  const kakaoNativeAppKey = getKakaoNativeAppKey();
+
+  const initializeApp = useCallback(() => {
+    initializeKakaoSDK(kakaoNativeAppKey);
+  }, [kakaoNativeAppKey]);
+
+  useEffect(() => {
+    initializeApp();
+  }, [initializeApp]);
 
   return (
     <ThemeProvider theme={ThemeStyle}>
