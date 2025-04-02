@@ -1,4 +1,3 @@
-import { initializeKakaoSDK } from "@react-native-kakao/core";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -48,9 +47,10 @@ import MypageScreen from "./src/screens/MypageScreen";
 import OnboardingPage from "./src/screens/onboarding";
 import ReviewPage from "./src/screens/review";
 import ThemeStyle from "./src/styles/ThemeStyle";
-import { getKakaoNativeAppKey } from "./src/utils/env";
+
 import { RootStackParamList, RouteNames } from "./src/utils/routes";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { initializeKakao } from "./src/utils/kakaoLoginUtils";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -68,11 +68,10 @@ const HomeTab = () => {
 
 export default function App() {
   const theme = useContext(ThemeContext) || ThemeStyle;
-  const kakaoNativeAppKey = getKakaoNativeAppKey();
 
   const initializeApp = useCallback(() => {
-    initializeKakaoSDK(kakaoNativeAppKey);
-  }, [kakaoNativeAppKey]);
+    initializeKakao();
+  }, []);
 
   useEffect(() => {
     initializeApp();
