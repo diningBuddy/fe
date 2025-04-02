@@ -12,7 +12,7 @@ interface AuthResultBase {
 interface KakaoLoginInfo extends AuthResultBase {
   accessToken: string | undefined;
   refreshToken: string | undefined;
-  profile: KakaoUser | undefined;
+  userInfo: KakaoUser | undefined;
   // add more fields if needed(ex. expiredAt)
 }
 interface KakaoUserInfo extends AuthResultBase {
@@ -46,13 +46,13 @@ export const signInWithKakao = async (): Promise<KakaoLoginInfo> => {
     const token = await login();
     const { accessToken, refreshToken } = token;
 
-    const profile = await me();
+    const userInfo = await me();
 
     return {
       status: "success",
       accessToken,
       refreshToken,
-      profile,
+      userInfo,
     };
   } catch (error) {
     console.error("Kakao login failed", error);
@@ -60,7 +60,7 @@ export const signInWithKakao = async (): Promise<KakaoLoginInfo> => {
       status: "error",
       accessToken: undefined,
       refreshToken: undefined,
-      profile: undefined,
+      userInfo: undefined,
     };
   }
 };
