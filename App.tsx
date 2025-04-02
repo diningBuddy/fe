@@ -1,58 +1,52 @@
-import React, { useContext } from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { TouchableOpacityProps, ScrollView, StyleSheet } from "react-native";
-import { ThemeContext, ThemeProvider } from "styled-components/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useContext } from "react";
+import { ScrollView, StyleSheet } from "react-native";
+import { ThemeContext, ThemeProvider } from "styled-components/native";
 
-import ThemeStyle from "./src/styles/ThemeStyle";
-import HomeScreen from "./src/screens/HomeScreen";
-import ListScreen from "./src/screens/ListScreen";
-import MapScreen from "./src/screens/MapScreen";
-import { RootStackParamList, RouteNames } from "./src/utils/routes";
-import MypageScreen from "./src/screens/MypageScreen";
-import BrowserScreen from "./src/screens/BrowserScreen";
-import SampleColor from "./src/components/sample/SampleColor";
-import SampleFont from "./src/components/sample/SampleFont";
 import SampleButton from "./src/components/sample/SampleButton";
-import SampleInput from "./src/components/sample/SampleInput";
-import SampleTextArea from "./src/components/sample/SampleTextArea";
-import SampleRadioGroup from "./src/components/sample/SampleRadioGroup";
-import SampleTag from "./src/components/sample/SampleTag";
-import SampleSearch from "./src/components/sample/SampleSearch";
-import SampleChip from "./src/components/sample/SampleChip";
+import SampleCard from "./src/components/sample/SampleCard";
 import SampleCheckbox from "./src/components/sample/SampleCheckbox";
-import SampleFloatingButton from "./src/components/sample/SampleFloatingButton";
-import SampleEmpty from "./src/components/sample/SampleEmpty";
-import SampleToggle from "./src/components/sample/SampleToggle";
-import SampleTooltip from "./src/components/sample/SampleTooltip";
-import SampleToast from "./src/components/sample/SampleToast";
-import SampleTab from "./src/components/sample/SampleTab";
+import SampleChip from "./src/components/sample/SampleChip";
+import SampleColor from "./src/components/sample/SampleColor";
 import SampleDivider from "./src/components/sample/SampleDivider";
-import SampleStar from "./src/components/sample/SampleStar";
 import SampleDropdown from "./src/components/sample/SampleDropdown";
+import SampleEmpty from "./src/components/sample/SampleEmpty";
+import SampleFloatingButton from "./src/components/sample/SampleFloatingButton";
+import SampleFont from "./src/components/sample/SampleFont";
+import SampleInput from "./src/components/sample/SampleInput";
 import SampleModal from "./src/components/sample/SampleModal";
 import SamplePopup from "./src/components/sample/SamplePopup";
 import SampleProgress from "./src/components/sample/SampleProgress";
-import SampleCard from "./src/components/sample/SampleCard";
+import SampleRadioGroup from "./src/components/sample/SampleRadioGroup";
+import SampleSearch from "./src/components/sample/SampleSearch";
 import SampleSpinner from "./src/components/sample/SampleSpinner";
+import SampleStar from "./src/components/sample/SampleStar";
+import SampleTab from "./src/components/sample/SampleTab";
+import SampleTag from "./src/components/sample/SampleTag";
+import SampleTextArea from "./src/components/sample/SampleTextArea";
+import SampleToast from "./src/components/sample/SampleToast";
+import SampleToggle from "./src/components/sample/SampleToggle";
+import SampleTooltip from "./src/components/sample/SampleTooltip";
+import Inquiry from "./src/screens/auth/Inquiry";
 import SignIn from "./src/screens/auth/signIn";
 import SignUp from "./src/screens/auth/signup";
-import VerifyPhone from "./src/screens/auth/VerifyPhone";
-import InsertInfo from "./src/screens/auth/signup/InsertInfo";
 import AccessRights from "./src/screens/auth/signup/AccessRights";
-import Inquiry from "./src/screens/auth/Inquiry";
+import InsertInfo from "./src/screens/auth/signup/InsertInfo";
+import VerifyPhone from "./src/screens/auth/VerifyPhone";
+import BrowserScreen from "./src/screens/BrowserScreen";
 import ContentList from "./src/screens/dining/ContentList";
 import RankingList from "./src/screens/dining/RankingList";
+import HomeScreen from "./src/screens/HomeScreen";
+import ListScreen from "./src/screens/ListScreen";
 import MainScreen from "./src/screens/MainScreen";
+import MapScreen from "./src/screens/MapScreen";
+import MypageScreen from "./src/screens/MypageScreen";
 import OnboardingPage from "./src/screens/onboarding";
 import ReviewPage from "./src/screens/review";
-
-export type Props = {
-  label: string;
-  color?: string;
-  onPress?: (data?: unknown) => void;
-} & TouchableOpacityProps;
+import ThemeStyle from "./src/styles/ThemeStyle";
+import { RootStackParamList, RouteNames } from "./src/utils/routes";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -68,7 +62,7 @@ const HomeTab = () => {
   );
 };
 
-const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
+export default function App() {
   const theme = useContext(ThemeContext) || ThemeStyle;
 
   return (
@@ -126,7 +120,7 @@ const App: React.FC<Props> = ({ label, onPress, color, ...rest }) => {
       </NavigationContainer>
     </ThemeProvider>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -140,5 +134,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default App;
