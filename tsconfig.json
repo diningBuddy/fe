@@ -12,6 +12,7 @@
     "./.eslintrc.cjs",
     "./eslint.js",
     "./svg.d.ts",
-    "./metro.config.js"
+    "./metro.config.js",
+    "./App.tsx"
   ]
 }
