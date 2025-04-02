@@ -64,8 +64,8 @@ export const getEnvironment = () => {
 };
 
 /**
- * 카카오 API 키를 가져옵니다.
- * @returns 카카오 API 키
+ * 카카오 native app key를 가져옵니다.
+ * @returns 카카오 native app key
  */
 export const getKakaoNativeAppKey = (): string => {
   const env = getEnv();
