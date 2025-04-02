@@ -1,6 +1,8 @@
 import { initializeKakaoSDK } from "@react-native-kakao/core";
 import { getAccessToken, KakaoAccessTokenInfo, KakaoUser, login, logout, me, unlink } from "@react-native-kakao/user";
 
+import { getKakaoNativeAppKey } from "./env";
+
 type Status = "success" | "error";
 
 interface AuthResultBase {
@@ -21,14 +23,20 @@ interface KakaoTokenInfo extends AuthResultBase {
   tokenInfo: KakaoAccessTokenInfo | undefined;
 }
 
-export const initializeKakao = (nativeAppKey: string): boolean => {
+export const initializeKakao = (): AuthResultBase => {
+  const kakaoNativeAppKey = getKakaoNativeAppKey();
+
   try {
-    initializeKakaoSDK(nativeAppKey);
+    initializeKakaoSDK(kakaoNativeAppKey);
     console.log("Kakao SDK initialized successfully");
-    return true;
+    return {
+      status: "success",
+    };
   } catch (error) {
     console.error("Failed to initialize Kakao SDK", error);
-    return false;
+    return {
+      status: "error",
+    };
   }
 };
 
