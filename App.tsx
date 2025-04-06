@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useCallback, useContext, useEffect } from "react";
 import { ScrollView, StyleSheet } from "react-native";
-
 import { ThemeContext, ThemeProvider } from "styled-components/native";
 
 import SampleButton from "./src/components/sample/SampleButton";
@@ -48,9 +47,9 @@ import OnboardingPage from "./src/screens/onboarding";
 import ReviewPage from "./src/screens/review";
 import ThemeStyle from "./src/styles/ThemeStyle";
 
-import { RootStackParamList, RouteNames } from "./src/utils/routes";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { initializeKakao } from "./src/utils/kakaoLoginUtils";
+import { RootStackParamList, RouteNames } from "./src/utils/routes";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator<RootStackParamList>();

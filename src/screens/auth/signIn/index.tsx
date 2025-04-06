@@ -1,11 +1,11 @@
 import { useNavigation } from "@react-navigation/native";
 import { useCallback } from "react";
 import { Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 
 import { Logo } from "../../../assets/icons/common";
 import { Apple, Kakao } from "../../../assets/icons/sns";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { signInWithKakao } from "../../../utils/kakaoLoginUtils";
 
 export const SignIn = () => {
