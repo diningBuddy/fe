@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import { Button, ScrollView, View } from "react-native";
 import styled from "styled-components/native";
-import React, { useState } from "react";
 
 import Spinner from "../../common/atom/Spinner"; // Spinner 컴포넌트 import
 

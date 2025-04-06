@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
 import { TextProps, Text } from "react-native";
+import styled from "styled-components/native";
 
 interface TypoStyle extends TextProps {
   margin?: string;

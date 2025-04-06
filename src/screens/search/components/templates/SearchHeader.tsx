@@ -1,9 +1,8 @@
-import React from "react";
 import { View, Button } from "react-native";
 
 import { ButtonText } from "../../../../common/atom/Button";
-import searchList from "../../../../mock/SearchMockData";
 import Divider from "../../../../common/atom/Divier";
+import searchList from "../../../../mock/SearchMockData";
 
 export const SearchHeader = () => {
   return (

@@ -12,7 +12,9 @@ interface TooltipProps {
 const Tooltip: React.FC<TooltipProps> = ({ message, position = "bottomCenter" }) => {
   const [visible, setVisible] = useState(true);
 
-  if (!visible) return null;
+  if (!visible) {
+    return null;
+  }
 
   return (
     <View style={[styles.tooltipContainer, styles[position]]}>

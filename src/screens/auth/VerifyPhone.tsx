@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 
+import { Button } from "../../common/atom/Button";
 import Input from "../../common/atom/Input";
 import Toast from "../../common/atom/Toast";
-import { Button } from "../../common/atom/Button";
 
 export const VerifyPhone = () => {
   const [isVerifyRequested, setVerifyRequested] = useState(false);

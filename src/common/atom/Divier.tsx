@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components/native";
 import { ViewProps } from "react-native";
+import styled from "styled-components/native";
 
 // DividerProps 인터페이스 정의
 interface DividerProps extends ViewProps {

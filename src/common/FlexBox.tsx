@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
 import { View } from "react-native";
+import styled from "styled-components/native";
 
 export interface FlexBoxProps {
   direction?: "row" | "column" | "row-reverse" | "column-reverse";

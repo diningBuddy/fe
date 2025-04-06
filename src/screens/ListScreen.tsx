@@ -1,16 +1,17 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "styled-components/native";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { useContext } from "react";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { ThemeContext } from "styled-components/native";
 
-import ThemeStyle from "../styles/ThemeStyle";
 import SampleColor from "../components/sample/SampleColor";
+import ThemeStyle from "../styles/ThemeStyle";
 import { RootStackParamList, RouteNames } from "../utils/routes";
 
 type Props = NativeStackScreenProps<RootStackParamList>;
 
 const ListScreen = ({ navigation }: Props) => {
   const theme = useContext(ThemeContext) || ThemeStyle;
+
   return (
     <View style={styles.container}>
       <TouchableOpacity

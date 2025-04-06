@@ -1,8 +1,8 @@
 import { StyleSheet, ScrollView, Alert } from "react-native";
 
 import Card from "../../common/atom/Card";
-import { midnightMeal } from "../../mock/DiningMockData";
 import NavigationHeader from "../../common/atom/NavigationHeader";
+import { midnightMeal } from "../../mock/DiningMockData";
 
 export const ContentListPage = () => {
   return (

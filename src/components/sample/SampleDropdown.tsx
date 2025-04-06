@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { Button, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import styled from "styled-components/native";
-import React, { useState } from "react";
 
 import Dropdown from "../../common/atom/Dropdown";
 

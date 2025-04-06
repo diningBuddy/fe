@@ -1,9 +1,9 @@
-import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import reviewContent from "../../../../mock/ReviewMockData";
-import NavigationHeader from "../../../../common/atom/NavigationHeader";
+import { View, Text, StyleSheet } from "react-native";
+
 import { Button, ButtonText } from "../../../../common/atom/Button";
+import NavigationHeader from "../../../../common/atom/NavigationHeader";
 import { FlexBox } from "../../../../common/FlexBox";
+import reviewContent from "../../../../mock/ReviewMockData";
 
 export const ReviewHeader = () => {
   return (

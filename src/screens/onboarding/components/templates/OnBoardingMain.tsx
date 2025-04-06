@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
-import { facilityList, modeList } from "../../../../mock/OnboardingMockData";
 import { OutlineChip } from "../../../../common/atom/Chip";
 import { FlexBox } from "../../../../common/FlexBox";
+import { facilityList, modeList } from "../../../../mock/OnboardingMockData";
 
 const OnboardingMain = () => {
   const [selectedChips, setSelectedChips] = useState<string[]>([]);

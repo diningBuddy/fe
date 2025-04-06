@@ -1,9 +1,8 @@
-import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 
+import { Button } from "../../common/atom/Button";
 import Input from "../../common/atom/Input";
 import TextArea from "../../common/atom/TextAre";
-import { Button } from "../../common/atom/Button";
 
 export const Inquiry = () => {
   return (

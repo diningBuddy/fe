@@ -1,12 +1,11 @@
-import React from "react";
 import { ImageBackground, TouchableOpacity, View, StyleSheet, Text, FlatList } from "react-native";
 
-import { categoryList } from "../../../../mock/DiningMockData";
+import { Bookmark } from "../../../../assets/icons/general";
 import { HeartBlank } from "../../../../assets/icons/shape";
+import { OutlineChip } from "../../../../common/atom/Chip";
 import Star from "../../../../common/atom/Star";
 import { BodyMedium14, BodyMedium16, BodyRegular12, BodySemibold16 } from "../../../../common/atom/Typo";
-import { OutlineChip } from "../../../../common/atom/Chip";
-import { Bookmark } from "../../../../assets/icons/general";
+import { categoryList } from "../../../../mock/DiningMockData";
 
 export const DiningDetailHeader = () => {
   return (

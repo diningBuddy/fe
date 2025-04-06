@@ -1,4 +1,3 @@
-import React from "react";
 import { Text } from "react-native";
 
 import Tabs from "../../common/atom/Tab";

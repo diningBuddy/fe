@@ -1,14 +1,13 @@
-import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Alert, ScrollView, View, Text, FlatList, TouchableOpacity } from "react-native";
 
-import { FlexBox } from "../common/FlexBox";
-import NavigationHeader from "../common/atom/NavigationHeader";
-import { categoryItems, lunchToday } from "../mock/DiningMockData";
 import Divider from "../common/atom/Divier";
-import SwipeableCardList from "../components/SwipeableCardList";
 import { FloatingEditButton } from "../common/atom/FloatingButton";
+import NavigationHeader from "../common/atom/NavigationHeader";
+import { FlexBox } from "../common/FlexBox";
 import BannerCarousel from "../components/Carousel/BannerCarousel";
+import SwipeableCardList from "../components/SwipeableCardList";
+import { categoryItems, lunchToday } from "../mock/DiningMockData";
 
 function MainScreen() {
   const navigation = useNavigation();

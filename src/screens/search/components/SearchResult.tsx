@@ -1,10 +1,9 @@
-import React from "react";
 import { View, Text } from "react-native";
 
-import searchList from "../../../mock/SearchMockData";
 import { FilterOutline } from "../../../assets/icons/time";
 import Empty from "../../../common/atom/Empty";
 import Tabs from "../../../common/atom/Tab";
+import searchList from "../../../mock/SearchMockData";
 
 export const SearchResult = () => {
   const tabs = [

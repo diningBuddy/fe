@@ -1,6 +1,6 @@
+import { ChevronRight } from "lucide-react-native";
 import React from "react";
 import { FlatList, TouchableOpacity, Text, StyleSheet, View } from "react-native";
-import { ChevronRight } from "lucide-react-native";
 
 import SwipeableCard from "../common/atom/SwipeableCard";
 

@@ -18,4 +18,5 @@ const styles = StyleSheet.create({
     padding: 18,
   },
 });
+
 export default EditProfile;

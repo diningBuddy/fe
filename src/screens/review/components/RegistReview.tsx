@@ -1,9 +1,8 @@
-import React from "react";
 import { View, StyleSheet } from "react-native";
 
-import { BodyMedium14 } from "../../../common/atom/Typo";
 import Tag from "../../../common/atom/Tag";
 import TextArea from "../../../common/atom/TextAre";
+import { BodyMedium14 } from "../../../common/atom/Typo";
 import { FlexBox } from "../../../common/FlexBox";
 
 export const RegistReview = () => {

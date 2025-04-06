@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 import { TextInput } from "react-native";
+import styled, { DefaultTheme, ThemeContext } from "styled-components/native";
 
 import { BodyMedium14, BodyRegular12 } from "./Typo";
 
@@ -56,8 +56,11 @@ const TextArea: React.FC<TextAreaProps> = ({
             value={value}
             onFocus={() => !isDisabled && setState("focused")}
             onBlur={() => {
-              if (!value && !isDisabled) setState("initial");
-              else if (!isDisabled) setState("filled");
+              if (!value && !isDisabled) {
+                setState("initial");
+              } else if (!isDisabled) {
+                setState("filled");
+              }
             }}
             onChangeText={handleTextChange}
             editable={state !== "disabled"}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native";
+import styled from "styled-components/native";
 
 import { CheckboxOff1, CheckboxOff2, CheckboxSquare1, CheckboxSquare2 } from "../../assets/icons/shape";
 
@@ -22,7 +22,9 @@ const Checkbox: React.FC<CheckboxProps> = ({ checked = false, disabled = false, 
   const [isChecked, setIsChecked] = useState(checked);
 
   const toggleCheckbox = () => {
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
     setIsChecked(!isChecked);
     onToggle && onToggle(!isChecked);
   };

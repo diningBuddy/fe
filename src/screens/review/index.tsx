@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView } from "react-native";
+import { ScrollView } from "react-native";
 
 import ReviewHeader from "./components/templates/ReviewHeader";
 import ReviewMain from "./components/templates/ReviewMain";

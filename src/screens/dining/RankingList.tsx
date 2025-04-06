@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ScrollView, StyleSheet, FlatList, Text, Alert, View, ImageBackground } from "react-native";
 
-import Tabs from "../../common/atom/Tab";
 import { Filter } from "../../assets/icons/time";
-import { OutlineChip } from "../../common/atom/Chip";
-import Card from "../../common/atom/Card";
-import { lunchToday } from "../../mock/DiningMockData";
-import { FlexBox } from "../../common/FlexBox";
-import getRankColor from "../../utils/getRankColor";
 import RankingListBanner from "../../assets/images/sample/rankingList-banner.png";
+import Card from "../../common/atom/Card";
+import { OutlineChip } from "../../common/atom/Chip";
 import NavigationHeader from "../../common/atom/NavigationHeader";
+import Tabs from "../../common/atom/Tab";
+import { FlexBox } from "../../common/FlexBox";
+import { lunchToday } from "../../mock/DiningMockData";
+import getRankColor from "../../utils/getRankColor";
 // import { LinearGradient } from "expo-linear-gradient";
 
 const RankingList = () => {
@@ -78,6 +78,7 @@ const RankingList = () => {
             keyExtractor={(item, index) => `${item.id}-${index}`}
             renderItem={({ item, index }) => {
               const rankColor = getRankColor(index);
+
               return (
                 <FlexBox gap={12} marginLeft={16} justifyContent="flex-start">
                   <Text style={[styles.rankText, { color: rankColor }]}>{index + 1}</Text>

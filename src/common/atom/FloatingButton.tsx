@@ -1,6 +1,6 @@
-import React, { useRef, useEffect } from "react";
-import { StyleSheet, Pressable, Animated, ScrollView } from "react-native";
 import { Pencil } from "lucide-react-native";
+import React, { useRef, useEffect } from "react";
+import { StyleSheet, Pressable, Animated } from "react-native";
 
 interface FloatingButtonProps {
   onPress: () => void;
