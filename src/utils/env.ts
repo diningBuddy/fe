@@ -5,7 +5,7 @@ type Environment = "local" | "dev" | "prod";
 // 환경 변수 인터페이스 정의
 interface EnvVariables {
   ENVIRONMENT: Environment;
-  KAKAO_API_KEY: string;
+  KAKAO_NATIVE_APP_KEY: string;
   DEV_API_HOST: string;
   PROD_API_HOST: string;
 }
@@ -33,8 +33,8 @@ export const getEnv = (): EnvVariables => {
     throw new EnvironmentError("ENVIRONMENT");
   }
 
-  if (!env.KAKAO_API_KEY) {
-    throw new EnvironmentError("KAKAO_API_KEY");
+  if (!env.KAKAO_NATIVE_APP_KEY) {
+    throw new EnvironmentError("KAKAO_NATIVE_APP_KEY");
   }
 
   if (!env.DEV_API_HOST) {
@@ -64,13 +64,13 @@ export const getEnvironment = () => {
 };
 
 /**
- * 카카오 API 키를 가져옵니다.
- * @returns 카카오 API 키
+ * 카카오 native app key를 가져옵니다.
+ * @returns 카카오 native app key
  */
-export const getKakaoApiKey = (): string => {
+export const getKakaoNativeAppKey = (): string => {
   const env = getEnv();
 
-  return env.KAKAO_API_KEY;
+  return env.KAKAO_NATIVE_APP_KEY;
 };
 
 /**
@@ -103,7 +103,7 @@ export const getConfig = () => {
   const { isLocal, isDev, isProd } = getEnvironment();
 
   return {
-    kakaoApiKey: env.KAKAO_API_KEY,
+    kakaoApiKey: env.KAKAO_NATIVE_APP_KEY,
     apiHost: getApiHost(),
     environment: {
       current: env.ENVIRONMENT,

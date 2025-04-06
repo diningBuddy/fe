@@ -1,9 +1,12 @@
 import { useNavigation } from "@react-navigation/native";
+import { useCallback } from "react";
 import { Image } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 
 import { Logo } from "../../../assets/icons/common";
 import { Apple, Kakao } from "../../../assets/icons/sns";
+import { signInWithKakao } from "../../../utils/kakaoLoginUtils";
 
 export const SignIn = () => {
   const navigation = useNavigation();
@@ -15,6 +18,13 @@ export const SignIn = () => {
   const handlePhoneSignIn = () => {
     navigation.navigate("VerifyPhone");
   };
+
+  const handleKakaoLogin = useCallback(async () => {
+    const res = await signInWithKakao();
+
+    // TODO : 로그인 api 호출
+    console.log(res);
+  }, []);
 
   return (
     <Container>
@@ -30,7 +40,10 @@ export const SignIn = () => {
       <Image source={require("../../../assets/images/signIn/kakao-login.png")} />
       {/* <Image source={require("../../../assets/images/signIn/apple-login.png")} /> */}
       <LoginButtonGroup>
-        <Kakao />
+        {/* TODO : 버튼 컴포넌트 분리 */}
+        <TouchableOpacity onPress={handleKakaoLogin}>
+          <Kakao />
+        </TouchableOpacity>
         <Apple />
       </LoginButtonGroup>
       {/* sns login end */}

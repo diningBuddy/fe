@@ -2,6 +2,8 @@ import { ExpoConfig, ConfigContext } from "@expo/config";
 import "dotenv/config";
 
 export default ({ config }: ConfigContext): ExpoConfig => {
+  const kakaoNativeAppKey = process.env.KAKAO_NATIVE_APP_KEY;
+
   return {
     ...config,
     name: "fe",
@@ -35,13 +37,34 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         projectId: "22f005d7-35ba-4816-bab5-519e216b3ae9",
       },
       env: {
-        KAKAO_API_KEY: process.env.KAKAO_API_KEY,
+        KAKAO_NATIVE_APP_KEY: process.env.KAKAO_NATIVE_APP_KEY,
         ENVIRONMENT: process.env.ENVIRONMENT,
         DEV_API_HOST: process.env.DEV_API_HOST,
         PROD_API_HOST: process.env.PROD_API_HOST,
       },
     },
     owner: "meokguskku",
-    plugins: ["expo-build-properties"],
+    plugins: [
+      [
+        "expo-build-properties",
+        {
+          android: {
+            extraMavenRepos: ["https://devrepo.kakao.com/nexus/content/groups/public/"],
+          },
+        },
+      ],
+      [
+        "@react-native-kakao/core",
+        {
+          nativeAppKey: kakaoNativeAppKey,
+          android: {
+            authCodeHandlerActivity: true,
+          },
+          ios: {
+            handleKakaoOpenUrl: true,
+          },
+        },
+      ],
+    ],
   };
 };
