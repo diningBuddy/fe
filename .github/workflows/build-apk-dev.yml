@@ -16,8 +16,8 @@ jobs:
           submodules: true
           token: ${{ secrets.SUBMODULE_ACCESS_TOKEN }}
 
-      - name: Copy development/.env to .env
-        run: cp env/development/.env .env
+      - name: Copy /FE/development/.env to .env
+        run: cp env/FE/development/.env .env
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
