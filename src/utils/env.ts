@@ -6,8 +6,7 @@ type Environment = "local" | "dev" | "prod";
 interface EnvVariables {
   ENVIRONMENT: Environment;
   KAKAO_NATIVE_APP_KEY: string;
-  DEV_API_HOST: string;
-  PROD_API_HOST: string;
+  API_HOST: string;
 }
 
 class EnvironmentError extends Error {
@@ -37,18 +36,8 @@ export const getEnv = (): EnvVariables => {
     throw new EnvironmentError("KAKAO_NATIVE_APP_KEY");
   }
 
-  switch (env.ENVIRONMENT) {
-    case "local":
-    case "dev":
-      if (!env.DEV_API_HOST) {
-        throw new EnvironmentError("DEV_API_HOST");
-      }
-      break;
-    case "prod":
-      if (!env.PROD_API_HOST) {
-        throw new EnvironmentError("PROD_API_HOST");
-      }
-      break;
+  if (!env.API_HOST) {
+    throw new EnvironmentError("API_HOST");
   }
 
   return env;
@@ -85,20 +74,9 @@ export const getKakaoNativeAppKey = (): string => {
  * @throws EnvironmentError 환경에 맞는 API 호스트가 정의되지 않았을 때
  */
 export const getApiHost = (): string => {
-  const { environment } = getEnvironment();
   const env = getEnv();
 
-  switch (environment) {
-    case "local":
-    case "dev":
-      return env.DEV_API_HOST;
-
-    case "prod":
-      return env.PROD_API_HOST;
-
-    default:
-      throw new EnvironmentError();
-  }
+  return env.API_HOST;
 };
 
 /**

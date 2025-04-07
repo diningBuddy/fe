@@ -9,7 +9,7 @@
       "env": {
         "KAKAO_NATIVE_APP_KEY": "$(KAKAO_NATIVE_APP_KEY)",
         "ENVIRONMENT": "dev",
-        "DEV_API_HOST": "$(DEV_API_HOST)"
+        "API_HOST": "$(API_HOST)"
       }
     },
     "preview": {

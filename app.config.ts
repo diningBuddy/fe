@@ -39,8 +39,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       env: {
         KAKAO_NATIVE_APP_KEY: process.env.KAKAO_NATIVE_APP_KEY,
         ENVIRONMENT: process.env.ENVIRONMENT,
-        DEV_API_HOST: process.env.DEV_API_HOST,
-        PROD_API_HOST: process.env.PROD_API_HOST,
+        API_HOST: process.env.API_HOST,
       },
     },
     owner: "meokguskku",
