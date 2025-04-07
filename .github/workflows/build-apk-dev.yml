@@ -21,29 +21,44 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Authenticate with EAS
-        run: eas whoami
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Start EAS build (APK)
-        run: eas build --platform android --non-interactive --profile development
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
       - name: Get latest build URL
         id: get_url
         run: |
-          BUILD_URL=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
-          echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
+          BUILD_JSON=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json)
+          echo "JSON Output: $BUILD_JSON"
+          if [ -n "$BUILD_JSON" ] && [ "$BUILD_JSON" != "[]" ]; then
+            BUILD_URL=$(echo "$BUILD_JSON" | jq -r '.[0].artifacts.buildUrl')
+            echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
+          else
+            echo "No finished builds found"
+            exit 1
+          fi
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
-      - name: Send to Discord
-        run: |
-          curl -X POST -H "Content-Type: application/json" \
-          -d "{\"content\": \"APK 빌드 완료!\n👉 ${BUILD_URL}\"}" \
-          ${{ secrets.DISCORD_WEBHOOK_URL }}
+      # - name: Authenticate with EAS
+      #   run: eas whoami
+      #   env:
+      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
+
+      # - name: Install dependencies
+      #   run: npm ci
+
+      # - name: Start EAS build (APK)
+      #   run: eas build --platform android --non-interactive --profile development
+      #   env:
+      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
+
+      # - name: Get latest build URL
+      #   id: get_url
+      #   run: |
+      #     BUILD_URL=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
+      #     echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
+      #   env:
+      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
+
+      # - name: Send to Discord
+      #   run: |
+      #     curl -X POST -H "Content-Type: application/json" \
+      #     -d "{\"content\": \"APK 빌드 완료!\n👉 ${BUILD_URL}\"}" \
+      #     ${{ secrets.DISCORD_WEBHOOK_URL }}
