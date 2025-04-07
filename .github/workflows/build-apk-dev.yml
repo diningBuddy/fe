@@ -34,11 +34,6 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
-      - name: Wait for build to complete
-        run: eas build:wait --platform android --non-interactive
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
       - name: Get latest build URL
         id: get_url
         run: |
