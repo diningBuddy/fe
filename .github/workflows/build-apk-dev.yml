@@ -10,8 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repo (with submodules)
         uses: actions/checkout@v3
+        with:
+          submodules: true
+          token: ${{ secrets.SUBMODULE_ACCESS_TOKEN }}
+
+      - name: Copy development/.env to .env
+        run: cp env/development/.env .env
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -26,39 +32,24 @@ jobs:
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
-      - name: Get latest build URL
-        id: get_url
-        run: |
-          BUILD_JSON=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json)
-          echo "JSON Output: $BUILD_JSON"
-          if [ -n "$BUILD_JSON" ] && [ "$BUILD_JSON" != "[]" ]; then
-            BUILD_URL=$(echo "$BUILD_JSON" | jq -r '.[0].artifacts.buildUrl')
-            echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
-          else
-            echo "No finished builds found"
-            exit 1
-          fi
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start EAS build (APK)
+        run: eas build --platform android --non-interactive --profile development
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
-      # - name: Install dependencies
-      #   run: npm ci
+      - name: Get latest build URL
+        id: get_url
+        run: |
+          BUILD_URL=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
+          echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
-      # - name: Start EAS build (APK)
-      #   run: eas build --platform android --non-interactive --profile development
-      #   env:
-      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
-      # - name: Get latest build URL
-      #   id: get_url
-      #   run: |
-      #     BUILD_URL=$(eas build:list --limit 1 --platform android --status finished --non-interactive --json | jq -r '.[0].artifacts.buildUrl')
-      #     echo "BUILD_URL=$BUILD_URL" >> $GITHUB_OUTPUT
-      #   env:
-      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
-      # - name: Send to Discord
-      #   run: |
-      #     curl -X POST -H "Content-Type: application/json" \
-      #     -d "{\"content\": \"APK 빌드 완료!\n👉 ${BUILD_URL}\"}" \
-      #     ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - name: Send to Discord
+        run: |
+          curl -X POST -H "Content-Type: application/json" \
+          -d "{\"content\": \"APK 빌드 완료!\n👉 ${BUILD_URL}\"}" \
+          ${{ secrets.DISCORD_WEBHOOK_URL }}
