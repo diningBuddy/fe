@@ -23,7 +23,7 @@ class EnvironmentError extends Error {
  * @throws EnvironmentError 환경 변수가 정의되지 않았을 때
  */
 export const getEnv = (): EnvVariables => {
-  const env = Constants.expoConfig?.extra?.env;
+  const env = Constants.expoConfig?.extra?.env as EnvVariables;
 
   if (!env) {
     throw new EnvironmentError();
@@ -37,15 +37,21 @@ export const getEnv = (): EnvVariables => {
     throw new EnvironmentError("KAKAO_NATIVE_APP_KEY");
   }
 
-  if (!env.DEV_API_HOST) {
-    throw new EnvironmentError("DEV_API_HOST");
+  switch (env.ENVIRONMENT) {
+    case "local":
+    case "dev":
+      if (!env.DEV_API_HOST) {
+        throw new EnvironmentError("DEV_API_HOST");
+      }
+      break;
+    case "prod":
+      if (!env.PROD_API_HOST) {
+        throw new EnvironmentError("PROD_API_HOST");
+      }
+      break;
   }
 
-  if (!env.PROD_API_HOST) {
-    throw new EnvironmentError("PROD_API_HOST");
-  }
-
-  return env as EnvVariables;
+  return env;
 };
 
 /**
