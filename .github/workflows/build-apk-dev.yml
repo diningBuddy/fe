@@ -21,6 +21,11 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
+      - name: Authenticate with EAS
+        run: eas whoami
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
+
       - name: Get latest build URL
         id: get_url
         run: |
@@ -35,11 +40,6 @@ jobs:
           fi
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
-
-      # - name: Authenticate with EAS
-      #   run: eas whoami
-      #   env:
-      #     EXPO_TOKEN: ${{ secrets.EXPO_TOKEN_DEV }}
 
       # - name: Install dependencies
       #   run: npm ci
